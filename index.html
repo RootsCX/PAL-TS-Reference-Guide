@@ -321,8 +321,8 @@ const DATA = [
     backTo: "cat-lights",
     title: "Evenglow (Niche & Nicheless)",
     photo: "assets/image_01.png",
-    photoAlt: "Evenglow nicheless RGB pool light",
-    tags: ["evenglow","12v","light won't turn on","out of sync","niche","pcr-4","pcr-2d"],
+    photoAlt: "Evenglow RGB pool light",
+    tags: ["evenglow","12v","light won't turn on","out of sync","niche","pcr-4","pcr-2d","24v","pcr-1z","pcr-2z"],
     videos: [],
     videoNote: "No confirmed PAL install video found for this product line specifically. \"PAL LED Evenflex Concrete\" exists but is most likely Evenglow Flex (a strip product), not the EGL/EGM niche light covered here — not linked to avoid mixing up products. Check with David.",
     driverVideos: [
@@ -351,7 +351,17 @@ const DATA = [
       "If comfortable with a multimeter: check DC volts at the cable from the driver side — expecting 12V DC. Voltage present but light still dead → light head is bad. No voltage → problem is upstream (driver/cable).",
       "No multimeter handy? Swap in a known-good light head if available, or move to the driver check before sending a replacement part.",
       "Reinstall: niched — hook into the niche slot, secure with the top mounting screw, don't overtighten. Nicheless — thread back in clockwise until snug."
-    ]
+    ],
+    extra: `
+      <div class="section-label">Niche Installation Reference</div>
+      <img class="zoomable" src="assets/image_30.jpg" alt="Evenglow niche cutaway dimensions diagram" style="width:100%;border-radius:8px;margin-top:8px;border:1px solid #2a3b5c;cursor:zoom-in;">
+      <span style="display:block;font-size:11px;color:#9fb0c5;margin-top:4px;font-style:italic;">Standard niche depth, conduit height, and water-line clearances (tap to zoom)</span>
+
+      <div class="section-label">Newer Generation — 24V Remote Driver</div>
+      <div class="note-box">PAL's current EvenGlow spec sheet documents a newer 24V driver generation (PCR-1Z/2Z remote driver family, 3-switch cloning DIP incl. Astral) — distinct from the 12V PCR-4/PCR-2D + PCT-1 setup covered in the Facts and troubleshooting steps above. If the driver on-site matches the board below rather than the black-box PCR-4/PCR-2D pictured in Facts, you're on this newer generation — check its own DIP/wiring against this diagram instead of the one above.</div>
+      <img class="zoomable" src="assets/image_31.jpg" alt="Evenglow 24V PCR-1Z wiring overview diagram" style="width:100%;border-radius:8px;margin-top:8px;border:1px solid #2a3b5c;cursor:zoom-in;">
+      <span style="display:block;font-size:11px;color:#9fb0c5;margin-top:4px;font-style:italic;">24V PCR-1Z driver wiring overview — Blue/Grey/Red/White light leads, E/A/N power terminals, 3-switch cloning DIP (tap to zoom)</span>
+    `
   },
   {
     id: "treomax",
