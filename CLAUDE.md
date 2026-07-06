@@ -71,15 +71,65 @@ Don't use bare `eval()` — `const` declarations don't leak into the outer scope
   Jandy → LED, Hayward → ColorLogic.
 - PAL driver evolution: 12V → 24V DC, two-wire → four-wire connections, two-button →
   one-button interior. Relevant for diagnosing mixed-generation field installs.
+- **Recurring 12V/24V copy-paste artifact across PAL's own manuals:** confirmed
+  independently in the Evenglow Nicheless, Treo Max+, Treo Retro, and Treo Mini+ source
+  manuals — each has a troubleshooting-table row or install-diagram callout saying
+  "12volts DC"/"12 VAC" that contradicts 24V/24VAC stated repeatedly elsewhere in the same
+  document (and in Treo Retro's case, the driver page also mislabels the product as "the
+  PAL Treo Max"). This is a stale/reused table template, not a real spec difference — treat
+  24V DC as correct and flag the discrepancy in-card rather than rewriting the source
+  manual's wording.
 - Water intrusion is the most common root cause of shorts in flashing-light scenarios.
 
 ## Open content gaps (known, not yet built)
 - **PCR-5S** (5-channel relay controller) — entirely undocumented in the guide.
+- **Canadian Retro**, **Evenglow Sonar Retro**, **TreoMicro Nicheless**, **Evenglow
+  Fiberglass Wet Niche** — four products with source manuals on hand (`source-manuals/`)
+  but no card in `DATA` yet. In progress — see "Image refresh / new-card batch" below.
 
 Note: the LED Bubbler (Niche Bubbler) troubleshooting card now exists in `DATA`
-(id: `ledbubbler`) — no longer an open gap. Several bubbler install videos still sit
-unmapped in the "Other PAL Videos" catch-all card (id: `morevideos`) rather than being
-attached to that card — that part of the original gap note still holds.
+(id: `ledbubbler`) — no longer an open gap. Aqualumin Replacement (id: `aqualumin`) is
+also now built — see batch status below. Several bubbler install videos, and Treo Micro
+videos, still sit unmapped in the "Other PAL Videos" catch-all card (id: `morevideos`)
+rather than being attached to their own card — resolve once TreoMicro Nicheless is built.
+The Sonar-branded videos in that same catch-all (PAL Sonar Remote Programming ×2, PAL
+Sonar Light, PAL Canadian Sonar Light, PAL Retro Lamp/Bulb Troubleshooting, PAL Retro
+Light) were **not** moved to the new `aqualumin` card — unconfirmed whether they show this
+specific AquaLumin-niche product or the still-unbuilt Evenglow Sonar Retro (same Sonar
+tech platform, different niche adapter). Confirm actual video content before attaching to
+either card.
+
+## Image refresh / new-card batch (in progress)
+Cory is having all product images redone from official manuals rather than the original
+sloppy crops. Workflow: Cory drops PDFs into `source-manuals/<ProductName>/` (gitignored,
+never committed); images are extracted via PyMuPDF + Pillow at high DPI (350), cropped
+tight, saved as numbered `assets/image_NN.jpg|png`, and wired into the matching `DATA`
+card. Cross-manual factual conflicts (see 12V/24V note below) are flagged in-card, not
+silently resolved.
+
+Status as of 2026-07-06:
+- **Evenglow** — split into two cards (`evenglow` = Niche, `evenglownicheless` =
+  Nicheless) since install process differs fundamentally (lift-out-and-replace vs.
+  drill-and-thread). Both refreshed. Done.
+- **Treo Max+ (V2)** (`treomax`) — refreshed. Done.
+- **Treo Retro** (`treoretro`) — refreshed. Done. Single card (unlike Evenglow) since one
+  manual covers both niche and nicheless mounting for this product.
+- **Treo Mini+ (V2)** (`treomini`) — refreshed. Done. Added a Winterization section
+  (wasn't present before) including the groundwater-check/no-partial-drain-at-light-height
+  notes from the source manual; fixed the card's own stale "Faulty driver: 12V DC" line to
+  24V DC and flagged the source manual's matching 12VAC/24VAC install-diagram artifact.
+- **Aqualumin Replacement** (`aqualumin`) — new card, built. Genuinely different product
+  family from the rest of this guide: retrofits a new PAL bracket + light into an existing
+  Pentair AquaLumin niche, runs on its own PCR-2T-65 transformer (not the PCR-1Z/2Z family),
+  and clones to competitor automation by holding a channel button on its "Sonar" remote
+  instead of a DIP switch bank — flagged prominently in-card so techs don't reach for the
+  Drivers card's DIP table by habit. Also documents the one-time gel-pack kit for reusing
+  an existing 2-wire cable instead of running new cable. No 12V/24V artifact found in this
+  manual (unlike the other refreshed products) — it consistently states 24V DC throughout.
+- **Canadian Retro**, **Evenglow Sonar Retro**, **TreoMicro Nicheless**, **Evenglow
+  Fiberglass Wet Niche** — new cards, not yet built.
+- No live push has gone out for any of this batch yet — holding per Cory's request until
+  he says to go live.
 
 ## Pending sign-off
 Decision-tree diagrams (Master Triage, Driver Power and Manual Test, Cloning and DIP

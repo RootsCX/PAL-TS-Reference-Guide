@@ -135,10 +135,12 @@
     </select>
     <select id="productSelect">
       <option value="">Jump to a product…</option>
-      <option value="evenglow">Evenglow (Niche &amp; Nicheless)</option>
+      <option value="evenglow">Evenglow (Niche)</option>
+      <option value="evenglownicheless">Evenglow (Nicheless)</option>
       <option value="treomax">Treo Max+ (V2)</option>
       <option value="treoretro">Treo Retro</option>
       <option value="treomini">Treo Mini+ (V2)</option>
+      <option value="aqualumin">Aqualumin Replacement (Sonar Retro Fit)</option>
       <option value="drivers">Drivers (PCR-1Z / PCR-2Z family)</option>
       <option value="pcr2dmx">PCR-2DMX Driver (2-Zone DMX)</option>
       <option value="pcr3d500">PCR-3D-120/500 (500W Driver)</option>
@@ -239,7 +241,7 @@ const DATA = [
   {
     id: "products",
     title: "Products",
-    tags: ["products","evenglow","treo max","treo retro","treo mini","drivers","pcr-2dmx","pcr-3d","pcr-3dmx-8z","dmx","wifi","color touch","waterblade","watersphere","bubbler","evenglow flex","lights","water features","landscape lighting","path way light","bollard light","garden up light"],
+    tags: ["products","evenglow","evenglow nicheless","treo max","treo retro","treo mini","drivers","pcr-2dmx","pcr-3d","pcr-3dmx-8z","dmx","wifi","color touch","waterblade","watersphere","bubbler","evenglow flex","lights","water features","landscape lighting","path way light","bollard light","garden up light"],
     facts: "Choose a category below, then a product.",
     extra: `
       <div class="section-label">Select a Category</div>
@@ -253,15 +255,17 @@ const DATA = [
   {
     id: "cat-lights",
     title: "Lights",
-    tags: ["lights","evenglow","treo max","treo retro","treo mini"],
+    tags: ["lights","evenglow","evenglow nicheless","treo max","treo retro","treo mini"],
     facts: "All PAL underwater pool lights. Tap a product to open its troubleshooting table.",
     backTo: "products",
     extra: `
       <div class="section-label">Select a Product</div>
-      <div class="product-link" onclick="jumpToProduct('evenglow')">Evenglow (Niche &amp; Nicheless)</div>
+      <div class="product-link" onclick="jumpToProduct('evenglow')">Evenglow (Niche)</div>
+      <div class="product-link" onclick="jumpToProduct('evenglownicheless')">Evenglow (Nicheless)</div>
       <div class="product-link" onclick="jumpToProduct('treomax')">Treo Max+ (V2)</div>
       <div class="product-link" onclick="jumpToProduct('treoretro')">Treo Retro</div>
       <div class="product-link" onclick="jumpToProduct('treomini')">Treo Mini+ (V2)</div>
+      <div class="product-link" onclick="jumpToProduct('aqualumin')">Aqualumin Replacement (Sonar Retro Fit)</div>
     `
   },
   {
@@ -319,7 +323,7 @@ const DATA = [
   {
     id: "evenglow",
     backTo: "cat-lights",
-    title: "Evenglow (Niche & Nicheless)",
+    title: "Evenglow (Niche)",
     photo: "assets/image_01.png",
     photoAlt: "Evenglow RGB pool light",
     tags: ["evenglow","12v","light won't turn on","out of sync","niche","pcr-4","pcr-2d","24v","pcr-1z","pcr-2z"],
@@ -346,11 +350,11 @@ const DATA = [
     steps: [
       "Check <b>LED Light Diagnostics</b> first if the complaint is 'not working' or 'flashing' — this rules out light-head/short issues before you touch the driver.",
       "Switch off the breaker or wall switch for the pool light before touching anything.",
-      "<b>Niched:</b> undo the pilot screw at the top of the light, lift the whole assembly out of the niche, set on the deck/coping. &nbsp; <b>Nicheless:</b> twist counter-clockwise by hand to back the light out.<br><img class=\"zoomable\" src=\"assets/image_03.jpg\" alt=\"Evenglow niched screw and hook diagram\" style=\"width:100%;border-radius:8px;margin-top:8px;border:1px solid #2a3b5c;cursor:zoom-in;\"><span style=\"display:block;font-size:11px;color:#9fb0c5;margin-top:4px;font-style:italic;\">Niched version — screw + hook locations</span><br><img class=\"zoomable\" src=\"assets/image_04.jpg\" alt=\"Evenglow nicheless twist diagram\" style=\"width:100%;border-radius:8px;margin-top:8px;border:1px solid #2a3b5c;cursor:zoom-in;\"><span style=\"display:block;font-size:11px;color:#9fb0c5;margin-top:4px;font-style:italic;\">Nicheless version — twist direction to remove/install</span>",
-      "Unscrew the cap on the back connector and separate the plug.<br><img class='zoomable' src='assets/image_05.jpg' alt='Treo Max+ connecting to light plug diagram' style='width:100%;border-radius:8px;margin-top:8px;border:1px solid #2a3b5c;cursor:zoom-in;'><span style='display:block;font-size:11px;color:#9fb0c5;margin-top:4px;font-style:italic;'>Connecting to light — plug and cap sequence (tap to zoom)</span>",
+      "Undo the pilot screw at the top of the light, lift the whole assembly out of the niche, set on the deck/coping.<br><img class=\"zoomable\" src=\"assets/image_03.jpg\" alt=\"Evenglow niched screw and hook diagram\" style=\"width:100%;border-radius:8px;margin-top:8px;border:1px solid #2a3b5c;cursor:zoom-in;\"><span style=\"display:block;font-size:11px;color:#9fb0c5;margin-top:4px;font-style:italic;\">Screw + hook locations (tap to zoom)</span>",
+      "Unscrew the cap on the back connector and separate the plug.",
       "If comfortable with a multimeter: check DC volts at the cable from the driver side — expecting 12V DC. Voltage present but light still dead → light head is bad. No voltage → problem is upstream (driver/cable).",
       "No multimeter handy? Swap in a known-good light head if available, or move to the driver check before sending a replacement part.",
-      "Reinstall: niched — hook into the niche slot, secure with the top mounting screw, don't overtighten. Nicheless — thread back in clockwise until snug."
+      "Reinstall: hook into the niche slot, secure with the top mounting screw, don't overtighten."
     ],
     extra: `
       <div class="section-label">Niche Installation Reference</div>
@@ -364,19 +368,72 @@ const DATA = [
     `
   },
   {
+    id: "evenglownicheless",
+    backTo: "cat-lights",
+    title: "Evenglow (Nicheless)",
+    photo: "assets/image_32.jpg",
+    photoAlt: "Evenglow Nicheless RGB pool light",
+    tags: ["evenglow nicheless","evenglow","12v","light won't turn on","out of sync","nicheless","pcr-4","pcr-2d","24v","pcr-1z","pcr-2z","drill","hole saw","wall fitting"],
+    videos: [],
+    videoNote: "No confirmed PAL install video found for this product line specifically — not linked to avoid attaching the wrong product's install steps. Check with David.",
+    driverVideos: [
+      {title:"PAL PCR4 PCT1 Coding", url:"https://youtu.be/tiKvKwUdNQE"},
+      {title:"PAL PCR2D PCT1 Coding", url:"https://youtu.be/TUDnVlOdwjU"},
+      {title:"PAL PCR2D PCT1 Manual Check", url:"https://youtu.be/K9zOumkBbEA"},
+    ],
+    facts: "<b>Power/driver:</b> PCR-4 (50W) or PCR-2D (16/35/55W) · PCT-1 remote — same driver family as Evenglow (Niche), per this product's own install guide<br><b>Voltage:</b> 12V DC — do not connect to 120V<br><img class='zoomable' src='assets/image_02.jpg' alt='Evenglow PCR-4/PCR-2D driver and cloning DIP table' style='width:100%;border-radius:8px;margin-top:8px;border:1px solid #2a3b5c;cursor:zoom-in;'><span style='display:block;font-size:11px;color:#9fb0c5;margin-top:4px;font-style:italic;'>PCR-4/PCR-2D drivers and cloning DIP table (tap to zoom)</span>",
+    issuesNote: "Work this in order — \"faulty globe\" is a conclusion you arrive at, not something you test for directly. You confirm it by ruling out everything upstream first.<br><br><b>Flag for Jason:</b> this product's own install guide contradicts itself — page 2 specifies 12V DC / PCR-4 &amp; PCR-2D, but the page 7 driver diagram and page 8 troubleshooting table reference the 24V PCR-1Z/PCR-2Z family (24V DC readings) and even mislabel the product as \"the Bubbler\" — almost certainly a boilerplate page reused across PAL manuals without being fully edited. Issues below follow the 12V page 2 spec as the more reliable source; confirm actual driver/voltage on site before assuming a reading is wrong.",
+    issues: [
+      ["Driver not connected to power","Confirm driver plugged in, power LED lit. No LED → driver goes back to PAL"],
+      ["Faulty driver","Check driver output under load — should read 12V DC"],
+      ["Cut cable","Check voltage at the light with a multimeter (light disconnected from cable)"],
+      ["Faulty LED driver inside control box","Push test button inside control box. Still nothing → return to PAL"],
+      ["Faulty globe","Only conclude this if voltage at the light tests correct and the light still won't illuminate. Replace globe."],
+      ["Handset will not operate / stuck on one colour","Press the manual button on the driver to confirm colors change there. Works on the driver but not the handset → recode the handset to the driver."],
+    ],
+    syncIssues: [
+      ["Miswired to control box","Check color wire sequence (R/G/B/+W) into control box terminals"],
+      ["Miswired to LED lamp","Check color sequence at the LED lamp terminal block inside the light"],
+    ],
+    steps: [
+      "Check <b>LED Light Diagnostics</b> first if the complaint is 'not working' or 'flashing' — this rules out light-head/short issues before you touch the driver.",
+      "Switch off the breaker or wall switch for the pool light before touching anything.",
+      "Twist the light anti-clockwise to back it out of the nicheless wall fitting.<br><img class=\"zoomable\" src=\"assets/image_35.jpg\" alt=\"Evenglow nicheless twist to remove/install diagram\" style=\"width:100%;border-radius:8px;margin-top:8px;border:1px solid #2a3b5c;cursor:zoom-in;\"><span style=\"display:block;font-size:11px;color:#9fb0c5;margin-top:4px;font-style:italic;\">Twist anti-clockwise to remove, clockwise to install (tap to zoom)</span>",
+      "Unscrew the cap on the back connector and separate the plug.<br><img class='zoomable' src='assets/image_37.jpg' alt='Evenglow nicheless connecting to light plug diagram' style='width:100%;border-radius:8px;margin-top:8px;border:1px solid #2a3b5c;cursor:zoom-in;'><span style='display:block;font-size:11px;color:#9fb0c5;margin-top:4px;font-style:italic;'>Connecting to light — plug and cap sequence (tap to zoom)</span>",
+      "If comfortable with a multimeter: check DC volts at the cable from the driver side — expecting 12V DC. Voltage present but light still dead → light head is bad. No voltage → problem is upstream (driver/cable).",
+      "No multimeter handy? Swap in a known-good light head if available, or move to the driver check before sending a replacement part.",
+      "Reinstall: fresh thread sealant tape (or silicone) on the light's threads, twist clockwise into the nicheless wall fitting until snug — don't overtighten."
+    ],
+    escalate: "Converting a pool between niche and nicheless (or a first-time nicheless install) means drilling a 1⅞\" hole through the pool wall and setting a permanent 1.5\" wall fitting — an irreversible structural change, not a simple parts swap. Don't walk a homeowner through drilling over the phone. Escalate to Jason or a local installer.",
+    extra: `
+      <div class="section-label">Nicheless Installation Reference (New Install)</div>
+      <img class="zoomable" src="assets/image_33.jpg" alt="Evenglow nicheless drilling and sealing diagram" style="width:100%;border-radius:8px;margin-top:8px;border:1px solid #2a3b5c;cursor:zoom-in;">
+      <span style="display:block;font-size:11px;color:#9fb0c5;margin-top:4px;font-style:italic;">Drilling the 1⅞" hole (fibreglass/vinyl) and sealing the light into the 1.5" wall fitting (tap to zoom)</span>
+      <img class="zoomable" src="assets/image_34.jpg" alt="Evenglow nicheless gunite installation setup diagram" style="width:100%;border-radius:8px;margin-top:8px;border:1px solid #2a3b5c;cursor:zoom-in;">
+      <span style="display:block;font-size:11px;color:#9fb0c5;margin-top:4px;font-style:italic;">Gunite installation setup — conduit run and wall fitting placement (tap to zoom)</span>
+      <img class="zoomable" src="assets/image_36.jpg" alt="Evenglow nicheless final installation cutaway diagram" style="width:100%;border-radius:8px;margin-top:8px;border:1px solid #2a3b5c;cursor:zoom-in;">
+      <span style="display:block;font-size:11px;color:#9fb0c5;margin-top:4px;font-style:italic;">Final installation — light seated in the wall fitting (tap to zoom)</span>
+
+      <div class="section-label">Newer Generation — 24V Remote Driver</div>
+      <div class="note-box">Same caveat as Evenglow (Niche): PAL's current sell sheet for this product documents a newer 24V driver generation (PCR-1Z/2Z remote driver family) — distinct from the 12V PCR-4/PCR-2D setup covered above. If the driver on-site matches the board below rather than the black-box PCR-4/PCR-2D pictured in Facts, check its own DIP/wiring against this diagram instead.</div>
+      <img class="zoomable" src="assets/image_31.jpg" alt="Evenglow 24V PCR-1Z wiring overview diagram" style="width:100%;border-radius:8px;margin-top:8px;border:1px solid #2a3b5c;cursor:zoom-in;">
+      <span style="display:block;font-size:11px;color:#9fb0c5;margin-top:4px;font-style:italic;">24V PCR-1Z driver wiring overview — Blue/Grey/Red/White light leads, E/A/N power terminals, 3-switch cloning DIP (tap to zoom)</span>
+    `
+  },
+  {
     id: "treomax",
     backTo: "cat-lights",
     title: "Treo Max+ (V2)",
-    photo: "assets/image_06.png",
+    photo: "assets/image_38.jpg",
     photoAlt: "Treo Max+ RGB pool light",
-    tags: ["treo max","24v","light won't turn on","out of sync","gunite","nicheless"],
+    tags: ["treo max","24v","light won't turn on","out of sync","gunite","nicheless","pcr-1z","pcr-2z","drill","hole saw","wall fitting"],
     videos: [{title:"PAL Concrete Treo Max Light", url:"https://youtu.be/z7e21HO3RFg"}],
     videoNote: "Note: \"PAL Treo Max Wet Niche Animation\" and the two \"Treo Max XL\" videos exist but reference a different niche fitting / XL variant — not linked here to avoid attaching the wrong product's install steps.",
-    facts: "<b>Power:</b> requires PAL remote driver, 24VAC, sold separately — do not connect to 120V<br><b>Note:</b> legacy Treo Max replaced by Treo Max+ (V2) — 33% brighter, black/white body, 7W. Confirm customer has V2.",
+    facts: "<b>Power:</b> requires PAL remote driver (PCR-1Z/2Z family), 24VAC, sold separately — do not connect to 120V<br><b>Note:</b> legacy Treo Max replaced by Treo Max+ (V2) — 33% brighter, black/white body, 7W. Confirm customer has V2.<br><img class='zoomable' src='assets/image_31.jpg' alt='Treo Max+ 24V PCR-1Z wiring overview diagram' style='width:100%;border-radius:8px;margin-top:8px;border:1px solid #2a3b5c;cursor:zoom-in;'><span style='display:block;font-size:11px;color:#9fb0c5;margin-top:4px;font-style:italic;'>Same 24V PCR-1Z remote driver family used across current-gen PAL lights (tap to zoom)</span>",
     issuesNote: "Work this in order — \"faulty light head\" is a conclusion you arrive at, not something you test for directly. You confirm it by ruling out everything upstream first.",
     issues: [
       ["No power to driver","Confirm power connection + indicator LED. No LED → return to PAL"],
-      ["Faulty driver","Check driver output under load — confirm 24VAC at driver. (Older manual text says 12V DC — flag any mismatch to Jason, don't assume the driver's bad off this reading alone)"],
+      ["Faulty driver","Check driver output under load — confirm 24VAC at driver. (This product's own troubleshooting table says \"12volts DC\" — the same copy-paste artifact seen across other PAL manuals. The 24VAC spec repeated throughout the install guide is the reliable figure; don't assume the driver's bad off a stray 12V mention alone.)"],
       ["Cut cable","Check voltage at light with multimeter (light disconnected from cable)"],
       ["Faulty LED driver inside control box","Push test button. Still nothing → return to PAL"],
       ["Faulty light head","Only conclude this if voltage at the light tests correct and the light still won't illuminate. Replace light head."],
@@ -388,27 +445,39 @@ const DATA = [
     steps: [
       "Check <b>LED Light Diagnostics</b> first if the complaint is 'not working' or 'flashing' — this rules out light-head/short issues before you touch the driver.",
       "Switch off the breaker or wall switch before touching anything.",
-      "Twist the light counter-clockwise by hand to back it out — same method for gunite/concrete and vinyl/fiberglass installs.",
-      "Unscrew the cap on the back connector and separate the plug.<br><img class='zoomable' src='assets/image_07.jpg' alt='Treo Max+ connecting to light plug diagram' style='width:100%;border-radius:8px;margin-top:8px;border:1px solid #2a3b5c;cursor:zoom-in;'><span style='display:block;font-size:11px;color:#9fb0c5;margin-top:4px;font-style:italic;'>Connecting to light — plug and cap sequence (tap to zoom)</span>",
+      "Twist the light counter-clockwise by hand to back it out of the wall fitting — same method for gunite/concrete and vinyl/fiberglass installs.<br><img class=\"zoomable\" src=\"assets/image_39.jpg\" alt=\"Treo Max+ twist to remove/install diagram\" style=\"width:100%;border-radius:8px;margin-top:8px;border:1px solid #2a3b5c;cursor:zoom-in;\"><span style=\"display:block;font-size:11px;color:#9fb0c5;margin-top:4px;font-style:italic;\">Twist counter-clockwise to remove, clockwise to install (tap to zoom)</span>",
+      "Unscrew the cap on the back connector and separate the plug.<br><img class='zoomable' src='assets/image_41.jpg' alt='Treo Max+ connecting to light plug diagram' style='width:100%;border-radius:8px;margin-top:8px;border:1px solid #2a3b5c;cursor:zoom-in;'><span style='display:block;font-size:11px;color:#9fb0c5;margin-top:4px;font-style:italic;'>Connecting to light — plug and cap sequence (tap to zoom)</span>",
       "Check the O-ring on the connector is sitting flat, not twisted — a twisted O-ring is a common, easy-to-miss cause of water intrusion.",
       "If checking voltage: expecting 24V AC at the driver side of the cable.",
-      "Reinstall: fresh thread tape or a thin bead of silicone on the threads, align straight (don't cross-thread), twist clockwise by hand until snug — don't overtighten.<br><img class=\"zoomable\" src=\"assets/image_08.jpg\" alt=\"Treo Max+ thread tape and wall fitting diagram\" style=\"width:100%;border-radius:8px;margin-top:8px;border:1px solid #2a3b5c;cursor:zoom-in;\"><span style=\"display:block;font-size:11px;color:#9fb0c5;margin-top:4px;font-style:italic;\">Thread tape / silicone seal at the wall fitting</span>"
+      "Reinstall: fresh thread tape or a thin bead of silicone on the threads, align straight (don't cross-thread), twist clockwise by hand until snug — don't overtighten.<br><img class=\"zoomable\" src=\"assets/image_44.jpg\" alt=\"Treo Max+ thread tape and wall fitting diagram\" style=\"width:100%;border-radius:8px;margin-top:8px;border:1px solid #2a3b5c;cursor:zoom-in;\"><span style=\"display:block;font-size:11px;color:#9fb0c5;margin-top:4px;font-style:italic;\">Thread tape / silicone seal at the wall fitting (tap to zoom)</span>"
     ],
-    finalImage: "img class='zoomable' src='assets/image_09.jpg' alt='Treo Max+ final installation cutaway diagram' style='width:100%;border-radius:8px;margin-top:8px;border:1px solid #2a3b5c;cursor:zoom-in;'><span style='display:block;font-size:11px;color:#9fb0c5;margin-top:4px;font-style:italic;'>Final installation — light seated flush against the wall (tap to zoom)</span>",
-    escalate: "If the customer reports resistance backing the light out, or it won't budge by hand — stop, don't force it. Overtightened or corroded threads can crack the wall fitting. Escalate to Jason."
+    finalImage: "img class='zoomable' src='assets/image_40.jpg' alt='Treo Max+ final installation cutaway diagram' style='width:100%;border-radius:8px;margin-top:8px;border:1px solid #2a3b5c;cursor:zoom-in;'><span style='display:block;font-size:11px;color:#9fb0c5;margin-top:4px;font-style:italic;'>Final installation — light seated flush against the wall (tap to zoom)</span>",
+    escalate: "If the customer reports resistance backing the light out, or it won't budge by hand — stop, don't force it. Overtightened or corroded threads can crack the wall fitting. Escalate to Jason.<br><br>A first-time vinyl/fiberglass install means drilling a 2½\" hole through the pool wall for the 1.5\" wall fitting — an irreversible structural change, not a simple parts swap. Don't walk a homeowner through drilling over the phone.",
+    extra: `
+      <div class="section-label">New Install Reference</div>
+      <img class="zoomable" src="assets/image_42.jpg" alt="Treo Max+ gunite installation setup diagram" style="width:100%;border-radius:8px;margin-top:8px;border:1px solid #2a3b5c;cursor:zoom-in;">
+      <span style="display:block;font-size:11px;color:#9fb0c5;margin-top:4px;font-style:italic;">Gunite/concrete installation setup — conduit run and wall fitting placement (tap to zoom)</span>
+      <img class="zoomable" src="assets/image_43.jpg" alt="Treo Max+ drilling hole diagram" style="width:100%;border-radius:8px;margin-top:8px;border:1px solid #2a3b5c;cursor:zoom-in;">
+      <span style="display:block;font-size:11px;color:#9fb0c5;margin-top:4px;font-style:italic;">Drilling the 2½" hole for vinyl/fiberglass pools (tap to zoom)</span>
+
+      <div class="section-label">Winterization</div>
+      <div class="note-box">Water level must sit at least 4" above or below the light. If partially draining the pool, don't leave the water level sitting right at the height of the light, and confirm no water is trapped in the conduit — freeze expansion can crack it.</div>
+    `
   },
   {
     id: "treoretro",
     backTo: "cat-lights",
     title: "Treo Retro",
+    photo: "assets/image_45.jpg",
+    photoAlt: "Treo Retro light head and threaded connector, line diagram",
     tags: ["treo retro","24v","light won't turn on","out of sync","niche","nicheless","pcr-1z","pcr-2z"],
     videos: [{title:"PAL GLoBrite Treo Retro Fit", url:"https://youtu.be/iyptiOMdRGQ"}],
     videoNote: "Note: \"PAL Retro Lamp/Bulb Troubleshooting\" and \"PAL Retro Light\" read as Sonar Retro (a different lamp/bulb-style product) — not linked here to avoid conflating product lines.",
-    facts: "<b>Power/driver:</b> PCR-1Z (up to 2 lights) or PCR-2Z (up to 5 lights), PCZ-2 transmitter<br><b>Fits:</b> standard Pentair-style niches plus gunite/fiberglass/vinyl nicheless variants",
+    facts: "<b>Power/driver:</b> PCR-1Z (up to 2 lights) or PCR-2Z (up to 5 lights), PCZ-2 transmitter, 24V DC<br><b>Fits:</b> standard Pentair GLoBrite-style niches plus gunite/fiberglass/vinyl nicheless variants<br><img class='zoomable' src='assets/image_48.jpg' alt='Treo Retro PCR-1Z/PCR-2Z driver and cloning DIP switch table' style='width:100%;border-radius:8px;margin-top:8px;border:1px solid #2a3b5c;cursor:zoom-in;'><span style='display:block;font-size:11px;color:#9fb0c5;margin-top:4px;font-style:italic;'>PCR-2Z (up to 5 lights) / PCR-1Z (up to 2 lights) driver + PCZ-2 transmitter, with cloning DIP table (tap to zoom)</span>",
     issuesNote: "Work this in order — \"faulty globe\" is a conclusion you arrive at, not something you test for directly. You confirm it by ruling out everything upstream first.",
     issues: [
       ["Driver not connected/switched on","Confirm power + indicator LED. No LED → return to PAL"],
-      ["Faulty driver","Check driver output under load — 12V DC"],
+      ["Faulty driver","Check driver output under load — confirm 24V DC at driver. (This product's own troubleshooting table says \"12volts DC\" — the same copy-paste artifact seen across other PAL manuals; the driver page for this same product also mislabels it as \"the PAL Treo Max.\" 24V DC is corroborated throughout the rest of this manual — don't assume the driver's bad off a stray 12V mention alone.)"],
       ["Cut cable","Check voltage at light (light disconnected from cable)"],
       ["Faulty LED driver inside control box","Push test button. No response → return to PAL"],
       ["Faulty globe","Only conclude this if voltage at the light tests correct and the light still won't illuminate. Replace globe."],
@@ -421,25 +490,36 @@ const DATA = [
       "Check <b>LED Light Diagnostics</b> first if the complaint is 'not working' or 'flashing' — this rules out light-head/short issues before you touch the driver.",
       "Switch off the breaker or wall switch first.",
       "<b>First confirm which version the customer has</b> — nicheless has a flush flat face with small tool slots; niched sits inside a visible ring/niche. Giving the wrong removal method risks damage.",
-      "<b>Nicheless:</b> insert a flat tool into the face slots, twist counter-clockwise to back it out. <b>Niched:</b> follows standard niche-mount removal, similar to Evenglow.<br><img class=\"zoomable\" src=\"assets/image_10.jpg\" alt=\"Treo Retro tool twist removal and install diagram\" style=\"width:100%;border-radius:8px;margin-top:8px;border:1px solid #2a3b5c;cursor:zoom-in;\"><span style=\"display:block;font-size:11px;color:#9fb0c5;margin-top:4px;font-style:italic;\">Insert tool into slots, twist to remove (left) or install (right)</span>",
-      "Unscrew the connector cap, separate the plug, inspect cable for damage/kinks.",
+      "<b>Nicheless:</b> insert the tool into the face slots, twist counter-clockwise to back it out. <b>Niched:</b> follows standard niche-mount removal, similar to Evenglow.<br><img class=\"zoomable\" src=\"assets/image_46.jpg\" alt=\"Treo Retro tool twist removal and install diagram\" style=\"width:100%;border-radius:8px;margin-top:8px;border:1px solid #2a3b5c;cursor:zoom-in;\"><span style=\"display:block;font-size:11px;color:#9fb0c5;margin-top:4px;font-style:italic;\">Insert tool into slots, twist to remove (left) or install (right) (tap to zoom)</span>",
+      "Unscrew the connector cap, separate the plug, inspect cable for damage/kinks.<br><img class='zoomable' src='assets/image_47.jpg' alt='Treo Retro connecting to light plug diagram' style='width:100%;border-radius:8px;margin-top:8px;border:1px solid #2a3b5c;cursor:zoom-in;'><span style='display:block;font-size:11px;color:#9fb0c5;margin-top:4px;font-style:italic;'>Connecting to light — remove caps, insert plug, secure with screw-on cap (tap to zoom)</span>",
       "If checking voltage: expecting 24V DC from the driver side of the cable.",
       "Reinstall (nicheless): tool back into the slots, line up the light, twist clockwise until snug and flush."
-    ]
+    ],
+    escalate: "A first-time gunite/concrete nicheless install means drilling and threading a 1.5\" wall fitting directly into the wall — an irreversible structural change, not a simple parts swap. Don't walk a homeowner through drilling over the phone.",
+    extra: `
+      <div class="section-label">New Install Reference</div>
+      <img class="zoomable" src="assets/image_49.jpg" alt="Treo Retro niche installation diagram — concrete, fiberglass, vinyl" style="width:100%;border-radius:8px;margin-top:8px;border:1px solid #2a3b5c;cursor:zoom-in;">
+      <span style="display:block;font-size:11px;color:#9fb0c5;margin-top:4px;font-style:italic;">Niche installation — concrete (Pentair GLoBrite niche), fiberglass, and vinyl variants (tap to zoom)</span>
+      <img class="zoomable" src="assets/image_50.jpg" alt="Treo Retro gunite/concrete nicheless installation setup diagram" style="width:100%;border-radius:8px;margin-top:8px;border:1px solid #2a3b5c;cursor:zoom-in;">
+      <span style="display:block;font-size:11px;color:#9fb0c5;margin-top:4px;font-style:italic;">Gunite/concrete nicheless installation setup — conduit run and wall fitting placement (tap to zoom). Note: this page's own callout labels the transformer "12 VAC" despite the diagram's own "24VAC Transformer" label at top — same copy-paste artifact, 24VAC is correct.</span>
+
+      <div class="section-label">Winterization</div>
+      <div class="note-box">Water level must sit at least 4" above or below the light, and all water drained from the wall fitting and conduit — or remove the light entirely, purge the conduit, and cap the wall fitting with a 1.5" NPT male plug and thread sealing tape. Water trapped in the conduit risks freeze-expansion damage.</div>
+    `
   },
   {
     id: "treomini",
     backTo: "cat-lights",
     title: "Treo Mini+ (V2)",
-    photo: "assets/image_11.png",
-    photoAlt: "Treo Mini+ RGB pool light",
+    photo: "assets/image_51.jpg",
+    photoAlt: "Treo Mini+ RGB pool light head",
     tags: ["treo mini","24v","light won't turn on","out of sync","nicheless","treo tool"],
     videos: [{title:"PAL Concrete Treo Mini Light", url:"https://youtu.be/fM76I39ncZM"}],
-    facts: "<b>Power/driver:</b> PCR-1Z or PCR-2Z series only<br><b>Requires:</b> the Treo Tool (ships with the light) for install/removal — will NOT back out by hand<br><b>SKUs:</b> -80 (80ft cable), -150 (150ft cable), -001 (light only)",
-    issuesNote: "Work this in order — \"faulty light head\" is a conclusion you arrive at, not something you test for directly. You confirm it by ruling out everything upstream first.",
+    facts: "<b>Power/driver:</b> PCR-1Z or PCR-2Z series only (16W/65W PCR-1ZW variants for remote/WiFi)<br><b>Voltage:</b> 24V DC — do not connect to 120V<br><b>Requires:</b> the Treo Tool (ships with the light) for install/removal — will NOT back out by hand<br><b>SKUs:</b> -80 (80ft cable), -150 (150ft cable), -001 (light only)",
+    issuesNote: "Work this in order — \"faulty light head\" is a conclusion you arrive at, not something you test for directly. You confirm it by ruling out everything upstream first.<br><br><b>Flag:</b> this product's own install guide (FIG.1 below) labels the transformer \"12 VAC\" in one callout, while the same diagram's own top label reads \"24VAC PAL LED Driver\" — the same copy-paste artifact seen across other PAL manuals (Evenglow Nicheless, Treo Max+, Treo Retro). 24V DC is correct; don't let a stray 12V mention drive a driver-replacement call.",
     issues: [
       ["No power to driver","Confirm power + indicator LED. No LED → return to PAL"],
-      ["Faulty driver","Check driver output — 12V DC under load"],
+      ["Faulty driver","Check driver output under load — confirm 24V DC at driver"],
       ["Cut cable","Check voltage at light (light disconnected from cable)"],
       ["Faulty LED driver inside control box","Push test button → no response → return to PAL"],
       ["Faulty light head","Only conclude this if voltage at the light tests correct and the light still won't illuminate. Replace light head."],
@@ -452,12 +532,67 @@ const DATA = [
       "Check <b>LED Light Diagnostics</b> first if the complaint is 'not working' or 'flashing' — this rules out light-head/short issues before you touch the driver.",
       "Switch off the breaker or wall switch first.",
       "<b>Confirm the customer/tech has the Treo Tool on-site before going further</b> — it's the small metal tool with notches that shipped with the light. Don't let anyone attempt removal with pliers or by hand — that can damage the fixture.",
-      "Align the tool notches with the light's notches, twist counter-clockwise to back the light out.<br><img class=\"zoomable\" src=\"assets/image_12.jpg\" alt=\"Treo Mini+ Treo Tool alignment diagram\" style=\"width:100%;border-radius:8px;margin-top:8px;border:1px solid #2a3b5c;cursor:zoom-in;\"><span style=\"display:block;font-size:11px;color:#9fb0c5;margin-top:4px;font-style:italic;\">FIG.4 — Treo Tool notch alignment, twist direction</span>",
-      "Unscrew the connector cap, separate the plug, inspect the cable.<br><img class=\"zoomable\" src=\"assets/image_13.jpg\" alt=\"Treo Mini+ plug attachment diagram\" style=\"width:100%;border-radius:8px;margin-top:8px;border:1px solid #2a3b5c;cursor:zoom-in;\"><span style=\"display:block;font-size:11px;color:#9fb0c5;margin-top:4px;font-style:italic;\">FIG.3 — remove caps, align/insert plug, hand-tighten</span>",
+      "Align the tool notches with the light's notches, twist counter-clockwise to back the light out.<br><img class=\"zoomable\" src=\"assets/image_55.jpg\" alt=\"Treo Mini+ Treo Tool alignment diagram\" style=\"width:100%;border-radius:8px;margin-top:8px;border:1px solid #2a3b5c;cursor:zoom-in;\"><span style=\"display:block;font-size:11px;color:#9fb0c5;margin-top:4px;font-style:italic;\">FIG.4 — Treo Tool notch alignment, twist direction (tap to zoom)</span>",
+      "Unscrew the connector cap, separate the plug, inspect the cable.<br><img class=\"zoomable\" src=\"assets/image_54.jpg\" alt=\"Treo Mini+ plug attachment diagram\" style=\"width:100%;border-radius:8px;margin-top:8px;border:1px solid #2a3b5c;cursor:zoom-in;\"><span style=\"display:block;font-size:11px;color:#9fb0c5;margin-top:4px;font-style:italic;\">FIG.3 — remove caps, align/insert plug, hand-tighten (tap to zoom)</span>",
       "If checking voltage: expecting 24V DC from the driver side.",
-      "Reinstall: confirm O-ring sits flat. Coil extra cable into the wall fitting counter-clockwise first (so it's not jammed). Use the Treo Tool again — align notches, twist clockwise until snug and flush.<br><img class=\"zoomable\" src=\"assets/image_14.jpg\" alt=\"Treo Mini+ sealant tape diagram\" style=\"width:100%;border-radius:8px;margin-top:8px;border:1px solid #2a3b5c;cursor:zoom-in;\"><span style=\"display:block;font-size:11px;color:#9fb0c5;margin-top:4px;font-style:italic;\">FIG.2 — sealant tape / gasket on the thread</span>"
+      "Reinstall: use the fitted gasket with plumber's tape on the thread to help seal. Coil extra cable into the wall fitting counter-clockwise first (so it's not jammed). Use the Treo Tool again — align notches, twist clockwise until snug and flush.<br><img class=\"zoomable\" src=\"assets/image_53.jpg\" alt=\"Treo Mini+ gasket and plumber's tape diagram\" style=\"width:100%;border-radius:8px;margin-top:8px;border:1px solid #2a3b5c;cursor:zoom-in;\"><span style=\"display:block;font-size:11px;color:#9fb0c5;margin-top:4px;font-style:italic;\">FIG.2 — plumber's tape / gasket on the thread (tap to zoom)</span>"
     ],
-    escalate: "If the customer doesn't have the Treo Tool, don't have them improvise with another tool. Escalate to whether a replacement light + new tool should ship, or whether a local installer/dealer needs to be involved."
+    escalate: "If the customer doesn't have the Treo Tool, don't have them improvise with another tool. Escalate to whether a replacement light + new tool should ship, or whether a local installer/dealer needs to be involved.<br><br>A first-time vinyl/fiberglass install means drilling a 2½\" hole through the pool wall for the 1.5\" wall fitting — an irreversible structural change, not a simple parts swap. Don't walk a homeowner through drilling over the phone.",
+    extra: `
+      <div class="section-label">New Install Reference</div>
+      <img class="zoomable" src="assets/image_52.jpg" alt="Treo Mini+ gunite/concrete installation setup diagram" style="width:100%;border-radius:8px;margin-top:8px;border:1px solid #2a3b5c;cursor:zoom-in;">
+      <span style="display:block;font-size:11px;color:#9fb0c5;margin-top:4px;font-style:italic;">FIG.1 — gunite/concrete installation setup — conduit run and wall fitting placement (tap to zoom). Note: the "12 VAC" callout on the right contradicts this same diagram's own "24VAC PAL LED Driver" label at top left — same copy-paste artifact, 24VAC is correct.</span>
+      <img class="zoomable" src="assets/image_56.jpg" alt="Treo Mini+ vinyl/fiberglass hole-cut installation diagram" style="width:100%;border-radius:8px;margin-top:8px;border:1px solid #2a3b5c;cursor:zoom-in;">
+      <span style="display:block;font-size:11px;color:#9fb0c5;margin-top:4px;font-style:italic;">FIG.5 — vinyl/fiberglass install: 2½" hole saw, center positioned 12" below water level or 18" below deck (min. 4" of water) (tap to zoom)</span>
+
+      <div class="section-label">Winterization</div>
+      <div class="note-box">Water level must sit at least 4" above or below the light, per local winterization requirements — consult a local pool professional. Never drain water from the pool without first checking local groundwater levels; draining without checking can cause structural damage. If partially draining the pool, do NOT maintain the water level at the height of the light — water trapped in the conduit risks freeze-expansion damage. Remove the light with the Treo Tool the same way as a service call (FIG.4 above).</div>
+      <img class="zoomable" src="assets/image_57.jpg" alt="Treo Mini+ winterization removal diagram" style="width:100%;border-radius:8px;margin-top:8px;border:1px solid #2a3b5c;cursor:zoom-in;">
+      <span style="display:block;font-size:11px;color:#9fb0c5;margin-top:4px;font-style:italic;">FIG.13 — Treo Tool removal for winterization (tap to zoom)</span>
+    `
+  },
+  {
+    id: "aqualumin",
+    backTo: "cat-lights",
+    title: "Aqualumin Replacement (Sonar Retro Fit)",
+    photo: "assets/image_58.jpg",
+    photoAlt: "Aqualumin Sonar Retro replacement light, remote, and mounting bracket",
+    tags: ["aqualumin","aqualumin replacement","sonar retro","sonar","pentair aqualumin","nicheless replacement","pcr-2t-65","gel pack"],
+    facts: `<b>Purpose:</b> full retrofit replacement for an old Pentair AquaLumin nicheless light — new bracket + new light head bolt into the existing niche/wall fitting, which stays in place<br>
+            <b>Power/driver:</b> 24V DC only, and this product's own spec sheet says it's <b>only compatible with the PAL PCR-2T-65 transformer</b> — do not assume the PCR-1Z/2Z family drivers used elsewhere in this guide will work here. One PCR-2T-65 powers up to 4 lights.<br>
+            <b>Control:</b> "Sonar" handheld remote (channel buttons 1–4, not Z1/Z2 zones) + optional Wi-Fi module (64-PAL-SW, sold separately) for app control<br>
+            <b>Color:</b> 16 million colors, adjustable white 2700K–6500K<br>
+            <b>SKUs:</b> 64-PAL-RAL (remote, no transformer) / -80 / -150 (cable lengths) / -T, -80-T, -150-T (bundled with the PCR-2T-65 transformer)`,
+    videoNote: "The \"Other PAL Videos\" catch-all card lists PAL Sonar Remote Programming (with and without cloning), PAL Sonar Light, PAL Canadian Sonar Light, and PAL Retro Lamp/Bulb Troubleshooting — all Sonar-branded like this product's remote. Not linked here yet because it's unconfirmed whether they cover this specific AquaLumin-niche product or the separate Evenglow Sonar Retro (still an open card gap) — same underlying Sonar tech platform, different niche adapter. Confirm against the actual video content before attaching either here or to Evenglow Sonar Retro once that card is built.",
+    issuesNote: "This product's own manual has no troubleshooting table — treat electrical faults like any other PAL LED light (see LED Light Diagnostics and Probability-Based Diagnostic Framework). Its pairing/cloning mechanism is genuinely different from the rest of this guide — don't reach for the PCR-1Z/2Z DIP switch table below by habit.",
+    issues: [
+      ["No power to light","Confirm 24V DC at the PCR-2T-65 transformer output. This product is only rated for the PCR-2T-65 — a PCR-1Z/2Z substitution is not supported by the spec sheet"],
+      ["Light unresponsive to remote","Re-pair: within 3 seconds of powering the light on, press the desired channel number's power button 3 times — light flashes 3x to confirm linking. If that fails, first confirm which channel it's currently linked to (see cloning/pairing reference below) rather than assuming a dead remote or receiver"],
+      ["Wrong/no response after cloning to a competitor automation system","Cloning here is done by holding a channel's power button on the remote (Channel 1 = PAL, 2 = Jandy, 3 = Hayward, 4 = Pentair) — there is no DIP switch bank on this product. Confirm the tech didn't try to apply the PCR-1Z/2Z DIP table from the Drivers card; it doesn't apply."],
+      ["Leaking after a gel-pack (reused-cable) install","The gel pack is a one-time seal — once its screws are seated they cannot be backed out and reset without breaking the water-tight seal. The fix is a new gel pack kit, not re-tightening the existing one."],
+    ],
+    steps: [
+      "Remove the old AquaLumin: undo the bolt at the top of the light, then remove the gray plastic protector and all 4 bolts from the niche.<br><img class=\"zoomable\" src=\"assets/image_59.jpg\" alt=\"Old AquaLumin light in niche before removal\" style=\"width:100%;border-radius:8px;margin-top:8px;border:1px solid #2a3b5c;cursor:zoom-in;\"><span style=\"display:block;font-size:11px;color:#9fb0c5;margin-top:4px;font-style:italic;\">FIG.1 — old AquaLumin light seated in the niche, before removal (tap to zoom)</span>",
+      "Decide the cable path before going further: a new cable ships with most SKUs (pull it through the mount and conduit back to the transformer), or reuse the existing 2-wire cable with the included gel pack kit — see Gel Pack Wiring reference below. The gel pack route is one-time-only, so don't start it without confirming which path the customer/tech wants.",
+      "Place the gray gasket plate closest to the liner, light mount facing outward with \"TOP\" up, and align the screws with the niche — the niche may force the mount slightly off from straight up-and-down; that's normal, just rotate the mount to match the screw holes.<br><img class=\"zoomable\" src=\"assets/image_60.jpg\" alt=\"Aqualumin gasket plate and light mount alignment against niche\" style=\"width:100%;border-radius:8px;margin-top:8px;border:1px solid #2a3b5c;cursor:zoom-in;\"><span style=\"display:block;font-size:11px;color:#9fb0c5;margin-top:4px;font-style:italic;\">FIG.2/3 — three machine screws secure the light mount through the gasket plate into the niche; the fourth pan-head screw secures only the gasket plate (tap to zoom)</span>",
+      "Pull the cable through the light mount and conduit back to the 24V PCR-2T-65 transformer — brown and blue terminals are on the left side of the transformer.",
+      "Attach the light to the mounting plate with the thin screws at the 1, 3, and 7 o'clock positions.<br><img class=\"zoomable\" src=\"assets/image_61.jpg\" alt=\"Aqualumin replacement light fully installed and flush with pool wall\" style=\"width:100%;border-radius:8px;margin-top:8px;border:1px solid #2a3b5c;cursor:zoom-in;\"><span style=\"display:block;font-size:11px;color:#9fb0c5;margin-top:4px;font-style:italic;\">FIG.4 — light seated flush in the mounting plate (tap to zoom)</span>"
+    ],
+    escalate: "This is a full mount replacement, not a bulb swap — the entire old AquaLumin bracket and light come out, and a new PAL bracket and light bolt into the existing niche/wall fitting. A first-time install should go to a qualified pool tech, not be walked through over the phone.<br><br>If reusing the existing cable via the gel pack kit, make sure the installer knows it's a one-time seal — the screw sequence has to be right the first time (see Gel Pack Wiring reference below).",
+    extra: `
+      <div class="section-label">Cloning / Remote Reference (Sonar Technology — no DIP switches)</div>
+      <img class="zoomable" src="assets/image_62.jpg" alt="Aqualumin Sonar remote pairing, cloning, and unpairing reference diagram" style="width:100%;border-radius:8px;margin-top:8px;border:1px solid #2a3b5c;cursor:zoom-in;">
+      <span style="display:block;font-size:11px;color:#9fb0c5;margin-top:4px;font-style:italic;">Sonar handheld remote — pairing to a zone (press channel's power button 3x), cloning (hold channel's power button — 1=PAL, 2=Jandy, 3=Hayward, 4=Pentair), and unpairing (press linked channel's power button 5x) (tap to zoom)</span>
+
+      <div class="section-label">Gel Pack Wiring (reusing existing cable)</div>
+      <img class="zoomable" src="assets/image_64.jpg" alt="Aqualumin gel pack prepping, wiring, and attaching diagram" style="width:100%;border-radius:8px;margin-top:8px;border:1px solid #2a3b5c;cursor:zoom-in;">
+      <span style="display:block;font-size:11px;color:#9fb0c5;margin-top:4px;font-style:italic;">Gel pack prep (drill a 5/16" hole in the top face, avoiding sidewalls, so trapped air can escape and the seal forms), wiring (positive wire to the screw furthest from the cable entry, negative to the closest), and attaching (screws MUST go in 1st/2nd/3rd as marked — water seal is confirmed when gel appears through the drilled hole) (tap to zoom)</span>
+      <div class="note-box">The gel pack can only be installed once — once its screws are seated they must not be removed or reset, or the water-tight seal is compromised.</div>
+
+      <div class="section-label">Replacement Parts</div>
+      <img class="zoomable" src="assets/image_63.jpg" alt="Aqualumin replacement parts exploded diagram" style="width:100%;border-radius:8px;margin-top:8px;border:1px solid #2a3b5c;cursor:zoom-in;">
+      <span style="display:block;font-size:11px;color:#9fb0c5;margin-top:4px;font-style:italic;">1: Wall Mounting Bracket (64-PAL-RAL-BRK) · 2: Wall Spacer/Gasket (64-PAL-RAL-GASKET) · 3: Gel Pack (64-PAL-RAL-GEL) · Screw Bag (64-PAL-RAL-SCREW) (tap to zoom)</span>
+    `
   },
   {
     id: "drivers",
@@ -1008,7 +1143,7 @@ function matches(item, q){
   return false;
 }
 
-const HIDDEN_BY_DEFAULT = new Set(['evenglow','treomax','treoretro','treomini','drivers','pcr2dmx','pcr3d500','pcr3dmx8z','wifi','waterblade','watersphere','ledbubbler','evenglowflex','pathwaylight','bollardlight','gardenuplight','cat-lights','cat-drivers','cat-water','cat-wifi','cat-landscape']);
+const HIDDEN_BY_DEFAULT = new Set(['evenglow','evenglownicheless','treomax','treoretro','treomini','aqualumin','drivers','pcr2dmx','pcr3d500','pcr3dmx8z','wifi','waterblade','watersphere','ledbubbler','evenglowflex','pathwaylight','bollardlight','gardenuplight','cat-lights','cat-drivers','cat-water','cat-wifi','cat-landscape']);
 
 function render(){
   const q = searchEl.value.trim();
