@@ -148,6 +148,9 @@
       <option value="watersphere">WaterSphere</option>
       <option value="ledbubbler">LED Bubbler (Niche Bubbler)</option>
       <option value="evenglowflex">Evenglow Flex (Waterfall Strip Light)</option>
+      <option value="pathwaylight">Path Way Light</option>
+      <option value="bollardlight">Bollard Light</option>
+      <option value="gardenuplight">Garden Up Light</option>
     </select>
     <div class="chips" id="chips"></div>
   </header>
@@ -236,7 +239,7 @@ const DATA = [
   {
     id: "products",
     title: "Products",
-    tags: ["products","evenglow","treo max","treo retro","treo mini","drivers","pcr-2dmx","pcr-3d","pcr-3dmx-8z","dmx","wifi","color touch","waterblade","watersphere","bubbler","evenglow flex","lights","water features"],
+    tags: ["products","evenglow","treo max","treo retro","treo mini","drivers","pcr-2dmx","pcr-3d","pcr-3dmx-8z","dmx","wifi","color touch","waterblade","watersphere","bubbler","evenglow flex","lights","water features","landscape lighting","path way light","bollard light","garden up light"],
     facts: "Choose a category below, then a product.",
     extra: `
       <div class="section-label">Select a Category</div>
@@ -244,6 +247,7 @@ const DATA = [
       <div class="product-link" onclick="jumpToProduct('cat-drivers')">Drivers</div>
       <div class="product-link" onclick="jumpToProduct('cat-water')">Water Features</div>
       <div class="product-link" onclick="jumpToProduct('cat-wifi')">Wi-Fi &amp; App</div>
+      <div class="product-link" onclick="jumpToProduct('cat-landscape')">Landscape Lighting</div>
     `
   },
   {
@@ -297,6 +301,19 @@ const DATA = [
     extra: `
       <div class="section-label">Select a Product</div>
       <div class="product-link" onclick="jumpToProduct('wifi')">Wi-Fi &amp; Color Touch App</div>
+    `
+  },
+  {
+    id: "cat-landscape",
+    title: "Landscape Lighting",
+    tags: ["landscape lighting","path way light","bollard light","garden up light","pathway","bollard","stake","landscape"],
+    facts: "Above-ground landscape fixtures (stake-mounted). Tap a product to open its troubleshooting table. Only 3 of these products currently have manuals on file — additional landscape fixtures will be added as manuals come in.",
+    backTo: "products",
+    extra: `
+      <div class="section-label">Select a Product</div>
+      <div class="product-link" onclick="jumpToProduct('pathwaylight')">Path Way Light</div>
+      <div class="product-link" onclick="jumpToProduct('bollardlight')">Bollard Light</div>
+      <div class="product-link" onclick="jumpToProduct('gardenuplight')">Garden Up Light</div>
     `
   },
   {
@@ -613,11 +630,32 @@ const DATA = [
     id: "waterblade",
     backTo: "cat-water",
     title: "WaterBlade (incl. LIT / RAIN)",
-    tags: ["waterblade","water blade","sheet water","rain water","waterfall","efwb","efwbl","not flowing","leaking","no water","clogged","pump sizing"],
+    tags: ["waterblade","water blade","sheet water","rain water","waterfall","efwb","efwbl","not flowing","leaking","no water","clogged","pump sizing","dip switch","cloning"],
     facts: `Sheet-water spillway waterfall unit. Four variants: <b>64-EFWB</b> (waterblade only), <b>64-EFWBL</b> (with EvenGlow LIT strip), <b>64-EFWB-RN</b> (rainfitting insert), <b>64-EFWBL-RN</b> (rainfitting + light).<br>
             Lengths: 1' / 1'6" / 2' / 3' / 4' / 5' (300–1500mm). Rear-feed or bottom-feed. Low voltage — 24V DC on the lit versions.<br>
             <b>No serviceable parts.</b> Includes the electrical components — if a lit unit fails, the entire unit must be removed and replaced. Do not attempt to open or repair in the field.<br>
-            Driver (lit versions only): <b>PCR-1ZW-16</b> (16W, supports 300–1200mm lengths) or <b>PCR-1ZW-65</b> (65W, supports up to 2400mm). WiFi/RF, 24V DC, IP65, UL Listed. Same PAL Touch remote/app and OEM cloning (Hayward/Jandy/Pentair) as other PAL lights — see <b>Drivers</b> and <b>Cloning to Competitor Systems</b> cards.`,
+            Driver (lit versions only): <b>PCR-1ZW-16</b> (16W, supports 300–1200mm lengths) or <b>PCR-1ZW-65</b> (65W, supports up to 2400mm). WiFi/RF, 24V DC, IP65, UL Listed. Same PAL Touch remote/app and OEM cloning (Hayward/Jandy/Pentair) as other PAL lights — see <b>Drivers</b> and <b>Cloning to Competitor Systems</b> cards.<br><br>
+            <b>Pump sizing by length</b> (model / flow rate GPM-LPM):
+            <table style="width:100%; border-collapse:collapse; margin:6px 0; font-size:0.92em;">
+              <tr style="border-bottom:1px solid #ccc;"><td style="padding:2px 8px 2px 0;"><b>Length</b></td><td style="padding:2px 8px;"><b>Model #</b></td><td style="padding:2px 0;"><b>Flow (GPM/LPM)</b></td></tr>
+              <tr><td>1'0" / 300mm</td><td>64-EFWBL-1-6N-R/B</td><td>12-14 / 45-53</td></tr>
+              <tr><td>1'6" / 450mm</td><td>64-EFWBL-1B-6N-R/B</td><td>18-21 / 67-80</td></tr>
+              <tr><td>2'0" / 600mm</td><td>64-EFWBL-2-6N-R/B</td><td>24-28 / 90-106</td></tr>
+              <tr><td>3'0" / 900mm</td><td>64-EFWBL-3-6N-R/B</td><td>36-42 / 135-159</td></tr>
+              <tr><td>4'0" / 1200mm</td><td>64-EFWBL-4-6N-R/B</td><td>48-56 / 180-212</td></tr>
+              <tr><td>5'0" / 1500mm</td><td>64-EFWBL-5-6N-R/B</td><td>60-70 / 225-265</td></tr>
+            </table>
+            Min <b>1-1/2" PVC</b> for all runs; step up to <b>2"</b> for runs over 60ft or waterfalls over 60" long. Waterfalls up to 48" have one inlet; 60" units have two inlets.<br><br>
+            <b>LIT driver DIP switches (S1/S2/S3)</b> — same clone-protocol pattern as other PAL drivers, set at the enclosure:
+            <table style="width:100%; border-collapse:collapse; margin:6px 0; font-size:0.92em;">
+              <tr style="border-bottom:1px solid #ccc;"><td style="padding:2px 8px 2px 0;"><b>Mode</b></td><td style="padding:2px 0;"><b>S1 / S2 / S3</b></td></tr>
+              <tr><td>PAL (native)</td><td>ON / OFF / OFF</td></tr>
+              <tr><td>Jandy (LED)</td><td>OFF / ON / OFF</td></tr>
+              <tr><td>Pentair (IntelliBrite)</td><td>OFF / OFF / ON</td></tr>
+              <tr><td>Hayward (ColorLogic)</td><td>ON / ON / OFF</td></tr>
+              <tr><td>Astral</td><td>ON / OFF / ON</td></tr>
+            </table>
+            <i>Note: confirm exact DIP legend against the physical enclosure label on-site before quoting a customer — verify silkscreen matches this table.</i>`,
     issuesNote: "Sheet-water problems (no flow, weak flow, splashing) are plumbing issues, not electrical — separate from LIT sync/power issues, which follow the same head/cable/driver framework as other PAL lights.",
     issues: [
       ["No water flow / waterfall not running","Confirm pump is on and valve (3-way or 2-way) is diverted to the waterfall, not bypassed back to the pool"],
@@ -625,10 +663,13 @@ const DATA = [
       ["Splashing instead of a clean sheet","Confirm the unit was installed level and lip is not pointing downward — check orientation against install diagram"],
       ["Clogging / reduced flow over time","Only filtered water should be used with this product — confirm a properly sized filter sits between pump and waterfall, especially on multi-waterfall/multi-pump setups"],
       ["Leaking at the wall / mortar joint","Check that lip extends the minimum required distance beyond the finished wall (min 2/5\" / 10mm) and that top/side mortar coverage meets the 1/2\" (12mm) minimum — this is an install defect, not a product fault"],
+      ["Lip flush or recessed instead of protruding","During install the lip must protrude a minimum of 1-1/4\" from the wall face before rendering/tiling — if it was rendered flush, this is a finish-installer error, not a product defect"],
       ["LIT version — light not turning on or not syncing","Follow the same driver/cable/head diagnostic as other PAL lights — see <b>Probability-Based Diagnostic Framework</b> and <b>Drivers</b> cards. No user-serviceable parts inside the light section itself."],
+      ["LIT version — won't clone to automation system","Confirm both the driver protocol AND the DIP switch bank (S1/S2/S3) match the target brand — see DIP table above. Mismatch between the two is the most common cloning failure, same as other PAL drivers."],
+      ["Customer reports GFCI tripping","Do not troubleshoot further in the field — GFCI trips indicate a genuine ground fault. Confirm GFCI is OEM-installed and tested via its test/reset button; if it trips without the test button being pressed, treat as an electrical fault requiring a licensed electrician, not a light/driver replacement."],
     ],
-    note: "If waterfall flow rate exceeds 40% of the filtered pool flow, a separate dedicated pump and filter are recommended. 2\" plumbing or larger is recommended when more than 1500mm of total waterfall length is installed on one line.",
-    escalate: "Any failure of a LIT WaterBlade's electrical/light section requires full unit replacement — there are no field-serviceable parts inside. Do not authorize a technician to open the light housing."
+    note: "If waterfall flow rate exceeds 40% of the filtered pool flow, a separate dedicated pump and filter are recommended. 2\" plumbing or larger is recommended when more than 1500mm of total waterfall length is installed on one line. Electrical: OEM transformer only (no substitutes), no extension cords, GFCI-protected circuit required, and unit must be properly bonded (#6 AWG copper) per NEC/CEC — these are code/safety items, escalate to a licensed electrician rather than a field tech if in question.",
+    escalate: "Any failure of a LIT WaterBlade's electrical/light section requires full unit replacement — there are no field-serviceable parts inside. Do not authorize a technician to open the light housing. Any suspected ground fault or wiring/bonding issue goes to a licensed electrician, not a PAL technician."
   },
   {
     id: "watersphere",
@@ -683,6 +724,68 @@ const DATA = [
       ["Strip not staying adhered / lifting inside waterfall channel","Confirm it was retrofit into a channel sized for the strip and not exposed to flow velocities beyond the waterfall's designed spillway — this is an install/fit issue, not a product defect"],
     ],
     note: "Don't confuse with WaterBlade — Evenglow Flex is the LED strip retrofit product for existing third-party waterfalls; WaterBlade is PAL's own spillway unit. If a call references a David-confirmed video titled \"PAL LED Evenflex Concrete,\" that is most likely this product, not the Evenglow niche/nicheless pool light."
+  },
+  {
+    id: "pathwaylight",
+    backTo: "cat-landscape",
+    title: "Path Way Light",
+    tags: ["path way light","pathway light","landscape","stake","canopy","45-pal-gl9-pls"],
+    facts: `Models: <b>45-PAL-GL9-RGB-PLS</b> / <b>-CW-PLS</b> / <b>-WW-PLS</b>. Stake-mounted landscape fixture with a separate canopy (ships uninstalled).<br>
+            Requires a <b>PAL PCR-1Z / PCR-2Z Class 2 LED Driver</b> (sold separately) — see <b>Drivers</b> card.<br>
+            Install order: canopy onto fixture first (align center hole, rotate <b>clockwise</b> until secure) → fixture threads onto base (hand-tighten, do not overtighten) → stakes screw into base → mallet-drive stake, leaving a 1/2"–1" gap at the base for the cable → feed cable through base, wire to driver output (match colors) → verify <b>24V DC</b> at the fixture with a voltmeter before final seating.<br>
+            Install 5ft+ from any pool, spa, or fountain. Do not touch the hot lens/enclosure. Use only PAL-supplied components — substitutions void UL/cUL listing.`,
+    issuesNote: "Same head/cable/driver framework as pool lights applies here — see Probability-Based Diagnostic Framework and LED Light Diagnostics cards for electrical faults.",
+    issues: [
+      ["Light not turning on","Verify 24V DC at the fixture with a voltmeter. No voltage → driver/breaker/wiring upstream, see Drivers card. Voltage present but dark → bad fixture, see LED Light Diagnostics card"],
+      ["Fixture loose or wobbly","Confirm the stake was driven until nearly flush with the ground (not just tapped) and the fixture is fully hand-threaded onto the base — do not overtighten, it damages the threads"],
+      ["Canopy loose or sitting crooked","Canopy ships separately and is easy to skip — confirm it was rotated clockwise onto the fixture until fully secure before the unit was staked"],
+      ["Flickering or intermittent — suspected short","Confirm waterproof connectors were used at every splice; check the low-voltage cable wasn't buried more than the 6ft max allowed before terminating at a connector; otherwise follow LED Light Diagnostics for short isolation"],
+      ["Multiple lights out on the same run / dim at the far end","Check daisy-chain wire gauge and run length against the load table: 12AWG for runs under 160W, 10AWG for under 180W, max 0-40ft from the driver. Confirm the transformer is centered on the load (or evenly spread across multiple transformers)"],
+      ["Cable pinched or twisted","Most common at the stake gap during mallet-driving — the 1/2\"-1\" gap at the base must be left clear so the cable isn't pinched underneath"],
+    ],
+    note: "3-year warranty against material/workmanship defects. Voided by misuse, incorrect installation, or connection to a non-approved PAL power supply. Register at pallighting.com/product-registration; proof of purchase required for warranty claims.",
+    escalate: "Do not authorize substituted or non-OEM parts in the field — this voids UL/cUL listing and is a liability issue, not a troubleshooting shortcut. Confirmed dead fixture (voltage present, head fails LED diagnostics) → warranty replacement path."
+  },
+  {
+    id: "bollardlight",
+    backTo: "cat-landscape",
+    title: "Bollard Light",
+    tags: ["bollard light","landscape","stake","45-pal-gl9-plc"],
+    facts: `Models: <b>45-PAL-GL9-RGB-PLC</b> / <b>-CW-PLC</b> / <b>-WW-PLC</b>. Stake-mounted landscape fixture — same base/stake mechanism as Path Way Light, but no separate canopy.<br>
+            Requires a <b>PAL PCR-1Z / PCR-2Z Class 2 LED Driver</b> (sold separately) — see <b>Drivers</b> card.<br>
+            Install order: fixture threads onto base (hand-tighten, do not overtighten) → stakes screw into base → mallet-drive stake, leaving a 1/2"–1" gap at the base for the cable → feed cable through base, wire to driver output (match colors) → verify <b>24V DC</b> at the fixture with a voltmeter before final seating.<br>
+            Install 5ft+ from any pool, spa, or fountain. Do not touch the hot lens/enclosure. Use only PAL-supplied components — substitutions void UL/cUL listing.`,
+    issuesNote: "Same head/cable/driver framework as pool lights applies here — see Probability-Based Diagnostic Framework and LED Light Diagnostics cards for electrical faults.",
+    issues: [
+      ["Light not turning on","Verify 24V DC at the fixture with a voltmeter. No voltage → driver/breaker/wiring upstream, see Drivers card. Voltage present but dark → bad fixture, see LED Light Diagnostics card"],
+      ["Fixture loose or wobbly","Confirm the stake was driven until nearly flush with the ground (not just tapped) and the fixture is fully hand-threaded onto the base — do not overtighten, it damages the threads"],
+      ["Flickering or intermittent — suspected short","Confirm waterproof connectors were used at every splice; check the low-voltage cable wasn't buried more than the 6ft max allowed before terminating at a connector; otherwise follow LED Light Diagnostics for short isolation"],
+      ["Multiple lights out on the same run / dim at the far end","Check daisy-chain wire gauge and run length against the load table: 12AWG for runs under 160W, 10AWG for under 180W, max 0-40ft from the driver. Confirm the transformer is centered on the load (or evenly spread across multiple transformers)"],
+      ["Cable pinched or twisted","Most common at the stake gap during mallet-driving — the 1/2\"-1\" gap at the base must be left clear so the cable isn't pinched underneath"],
+    ],
+    note: "3-year warranty against material/workmanship defects. Voided by misuse, incorrect installation, or connection to a non-approved PAL power supply. Register at pallighting.com/product-registration; proof of purchase required for warranty claims.",
+    escalate: "Do not authorize substituted or non-OEM parts in the field — this voids UL/cUL listing and is a liability issue, not a troubleshooting shortcut. Confirmed dead fixture (voltage present, head fails LED diagnostics) → warranty replacement path."
+  },
+  {
+    id: "gardenuplight",
+    backTo: "cat-landscape",
+    title: "Garden Up Light",
+    tags: ["garden up light","garden light","landscape","stake","45-pal-gl9-ul"],
+    facts: `Models: <b>45-PAL-GL9-RGB-UL</b> / <b>-CW-UL</b> / <b>-WW-UL</b>. Stake-mounted landscape fixture — <b>differs from Path Way / Bollard</b>: the stake threads directly onto the bottom of the fixture, there is no separate base plate.<br>
+            Requires a <b>PAL PCR-1Z / PCR-2Z Class 2 LED Driver</b> (sold separately) — see <b>Drivers</b> card.<br>
+            Install order: feed cable through the stake opening (not pinched/twisted) → align threaded end of stake with the threaded insert on the light and thread on <b>clockwise</b> by hand until fully secure → mallet-drive the stake into the ground → wire to driver output (match colors) → verify <b>24V DC</b> at the fixture with a voltmeter.<br>
+            Install 5ft+ from any pool, spa, or fountain. Do not touch the hot lens/enclosure. Use only PAL-supplied components — substitutions void UL/cUL listing.`,
+    issuesNote: "Same head/cable/driver framework as pool lights applies here — see Probability-Based Diagnostic Framework and LED Light Diagnostics cards for electrical faults.",
+    issues: [
+      ["Light not turning on","Verify 24V DC at the fixture with a voltmeter. No voltage → driver/breaker/wiring upstream, see Drivers card. Voltage present but dark → bad fixture, see LED Light Diagnostics card"],
+      ["Stake won't thread on, or threads feel stripped","Since the stake threads directly into the fixture (no base plate on this model), confirm it was hand-threaded and not overtightened or cross-threaded during install — this is the most likely install-defect point unique to this product"],
+      ["Fixture loose or wobbly in the ground","Confirm the stake was fully mallet-driven into the ground and that the fixture was fully threaded onto the stake before driving"],
+      ["Flickering or intermittent — suspected short","Confirm waterproof connectors were used at every splice; check the low-voltage cable wasn't buried more than the 6ft max allowed before terminating at a connector; otherwise follow LED Light Diagnostics for short isolation"],
+      ["Multiple lights out on the same run / dim at the far end","Check daisy-chain wire gauge and run length against the load table: 12AWG for runs under 160W, 10AWG for under 180W, max 0-40ft from the driver. Confirm the transformer is centered on the load (or evenly spread across multiple transformers)"],
+      ["Cable pinched or twisted","Check the stake opening the cable was fed through before threading onto the fixture — this is the pinch point on this model, rather than a base gap"],
+    ],
+    note: "3-year warranty against material/workmanship defects. Voided by misuse, incorrect installation, or connection to a non-approved PAL power supply. Register at pallighting.com/product-registration; proof of purchase required for warranty claims.",
+    escalate: "Do not authorize substituted or non-OEM parts in the field — this voids UL/cUL listing and is a liability issue, not a troubleshooting shortcut. Confirmed dead fixture (voltage present, head fails LED diagnostics) → warranty replacement path."
   },
   {
     id: "quickship",
@@ -863,7 +966,7 @@ function matches(item, q){
   return false;
 }
 
-const HIDDEN_BY_DEFAULT = new Set(['evenglow','treomax','treoretro','treomini','drivers','pcr2dmx','pcr3d500','pcr3dmx8z','wifi','waterblade','watersphere','ledbubbler','evenglowflex','cat-lights','cat-drivers','cat-water','cat-wifi']);
+const HIDDEN_BY_DEFAULT = new Set(['evenglow','treomax','treoretro','treomini','drivers','pcr2dmx','pcr3d500','pcr3dmx8z','wifi','waterblade','watersphere','ledbubbler','evenglowflex','pathwaylight','bollardlight','gardenuplight','cat-lights','cat-drivers','cat-water','cat-wifi','cat-landscape']);
 
 function render(){
   const q = searchEl.value.trim();
