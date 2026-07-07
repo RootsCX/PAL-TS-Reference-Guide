@@ -707,6 +707,9 @@ const DATA = [
             <b>PCR-1Z-SM</b> = switch mode only (8 preset color modes via board buttons, no remote/app) — cannot upgrade to Wi-Fi/remote without swapping to PCR-1Z/2Z<br>
             <b>PCR-2Z</b> dual-zone wattage: 60/120W &nbsp; All 24V DC, UL676 Pool &amp; Spa Lighting Class 2 LED Driver<br>
             1 transmitter (PCZ-2) pairs to unlimited receivers · 1 receiver max 4 transmitters`,
+    syncIssues: [
+      ["Zones showing different colors (2-zone driver w/ remote or Wi-Fi)","Not a fault — PCR-2Z/PCR-2ZW let each zone be set independently (e.g. spa on red, pool on green). To bring both zones back to the same color, double-tap Z1 or Z2 on the remote to sync them together. Not documented in PAL's manual — confirmed in the field."],
+    ],
     steps: [
       "Switch off power to the driver at the breaker before opening the enclosure.",
       "Driver box is usually wall-mounted within ~5 ft of the pool, above the waterline. Open the cover (screws around the edge) to see the circuit board.<br><img class=\"zoomable\" src=\"assets/image_66.jpg\" alt=\"Labeled PCR-1Z/PCR-1Z-SM driver board diagram\" style=\"width:100%;border-radius:8px;margin-top:8px;border:1px solid #2a3b5c;cursor:zoom-in;\"><span style=\"display:block;font-size:11px;color:#9fb0c5;margin-top:4px;font-style:italic;\">Labeled board (V2 PCR-1Z/PCR-1Z-SM) — Manual Operation Button, Code Setting Button, LED Indicator, Wi-Fi Connector (tap to zoom)</span>",
