@@ -141,10 +141,18 @@
       <option value="treoretro">Treo Retro</option>
       <option value="treomini">Treo Mini+ (V2)</option>
       <option value="aqualumin">Aqualumin Replacement (Sonar Retro Fit)</option>
+      <option value="sonarretro">Sonar Retro Bulb (Evenglow)</option>
+      <option value="evenglowfiberglass">Evenglow Fiberglass (Wet Niche)</option>
       <option value="drivers">Drivers (PCR-1Z / PCR-2Z family)</option>
       <option value="pcr2dmx">PCR-2DMX Driver (2-Zone DMX)</option>
       <option value="pcr3d500">PCR-3D-120/500 (500W Driver)</option>
       <option value="pcr3dmx8z">PCR-3DMX-8Z (8-Zone DMX)</option>
+      <option value="pcr2d">PCR-2D Driver (Color Touch Series 2)</option>
+      <option value="pcr300">PCR-300 Driver (LED Optics Series 3)</option>
+      <option value="pcr4">PCR-4 Driver (Color Touch Series 4)</option>
+      <option value="commander2">Commander Series 2 (PC-2D)</option>
+      <option value="ledoptics2">LED Optics Series 2 (PCR-200)</option>
+      <option value="pc2t">Power Supply Series 2 (PC-2T)</option>
       <option value="wifi">Wi-Fi &amp; Color Touch App</option>
       <option value="waterblade">WaterBlade (incl. LIT / RAIN)</option>
       <option value="watersphere">WaterSphere</option>
@@ -246,7 +254,7 @@ const DATA = [
     extra: `
       <div class="section-label">Select a Category</div>
       <div class="product-link" onclick="jumpToProduct('cat-lights')">Lights</div>
-      <div class="product-link" onclick="jumpToProduct('cat-drivers')">Drivers</div>
+      <div class="product-link" onclick="jumpToProduct('cat-drivers')">Drivers &amp; Controllers</div>
       <div class="product-link" onclick="jumpToProduct('cat-water')">Water Features</div>
       <div class="product-link" onclick="jumpToProduct('cat-wifi')">Wi-Fi &amp; App</div>
       <div class="product-link" onclick="jumpToProduct('cat-landscape')">Landscape Lighting</div>
@@ -266,12 +274,14 @@ const DATA = [
       <div class="product-link" onclick="jumpToProduct('treoretro')">Treo Retro</div>
       <div class="product-link" onclick="jumpToProduct('treomini')">Treo Mini+ (V2)</div>
       <div class="product-link" onclick="jumpToProduct('aqualumin')">Aqualumin Replacement (Sonar Retro Fit)</div>
+      <div class="product-link" onclick="jumpToProduct('sonarretro')">Sonar Retro Bulb (Evenglow)</div>
+      <div class="product-link" onclick="jumpToProduct('evenglowfiberglass')">Evenglow Fiberglass (Wet Niche)</div>
     `
   },
   {
     id: "cat-drivers",
-    title: "Drivers",
-    tags: ["drivers","pcr-1z","pcr-2z","pcr-2dmx","pcr-3d","pcr-3dmx-8z","dmx"],
+    title: "Drivers & Controllers",
+    tags: ["drivers","controllers","pcr-1z","pcr-2z","pcr-2dmx","pcr-3d","pcr-3dmx-8z","dmx"],
     facts: "All PAL lighting controllers/drivers. Tap a product to open its troubleshooting table.",
     backTo: "products",
     extra: `
@@ -280,6 +290,12 @@ const DATA = [
       <div class="product-link" onclick="jumpToProduct('pcr2dmx')">PCR-2DMX Driver (2-Zone DMX)</div>
       <div class="product-link" onclick="jumpToProduct('pcr3d500')">PCR-3D-120/500 (500W Driver)</div>
       <div class="product-link" onclick="jumpToProduct('pcr3dmx8z')">PCR-3DMX-8Z (8-Zone DMX)</div>
+      <div class="product-link" onclick="jumpToProduct('pcr2d')">PCR-2D Driver (Color Touch Series 2)</div>
+      <div class="product-link" onclick="jumpToProduct('pcr300')">PCR-300 Driver (LED Optics Series 3)</div>
+      <div class="product-link" onclick="jumpToProduct('pcr4')">PCR-4 Driver (Color Touch Series 4)</div>
+      <div class="product-link" onclick="jumpToProduct('commander2')">Commander Series 2 (PC-2D)</div>
+      <div class="product-link" onclick="jumpToProduct('ledoptics2')">LED Optics Series 2 (PCR-200)</div>
+      <div class="product-link" onclick="jumpToProduct('pc2t')">Power Supply Series 2 (PC-2T)</div>
     `
   },
   {
@@ -328,7 +344,7 @@ const DATA = [
     photoAlt: "Evenglow RGB pool light",
     tags: ["evenglow","12v","light won't turn on","out of sync","niche","pcr-4","pcr-2d","24v","pcr-1z","pcr-2z"],
     videos: [],
-    videoNote: "No confirmed PAL install video found for this product line specifically. \"PAL LED Evenflex Concrete\" exists but is most likely Evenglow Flex (a strip product), not the EGL/EGM niche light covered here — not linked to avoid mixing up products. Check with David.",
+    videoNote: "No confirmed PAL install video found for this product line specifically. \"PAL LED Evenflex Concrete\" exists but is most likely Evenglow Flex (a strip product), not the EGL/EGM niche light covered here — not linked to avoid mixing up products.",
     driverVideos: [
       {title:"PAL PCR4 PCT1 Coding", url:"https://youtu.be/tiKvKwUdNQE"},
       {title:"PAL PCR2D PCT1 Coding", url:"https://youtu.be/TUDnVlOdwjU"},
@@ -362,7 +378,7 @@ const DATA = [
       <span style="display:block;font-size:11px;color:#9fb0c5;margin-top:4px;font-style:italic;">Standard niche depth, conduit height, and water-line clearances (tap to zoom)</span>
 
       <div class="section-label">Newer Generation — 24V Remote Driver</div>
-      <div class="note-box">PAL's current EvenGlow spec sheet documents a newer 24V driver generation (PCR-1Z/2Z remote driver family, 3-switch cloning DIP incl. Astral) — distinct from the 12V PCR-4/PCR-2D + PCT-1 setup covered in the Facts and troubleshooting steps above. If the driver on-site matches the board below rather than the black-box PCR-4/PCR-2D pictured in Facts, you're on this newer generation — check its own DIP/wiring against this diagram instead of the one above.</div>
+      <div class="note-box">PAL's current EvenGlow spec sheet documents a newer 24V driver generation (PCR-1Z/2Z remote driver family, 3-switch cloning DIP incl. Astral) — distinct from the 12V PCR-4/PCR-2D + PCT-1 setup covered in the Facts and troubleshooting steps above. If the driver on-site matches the board below rather than the black-box PCR-4/PCR-2D pictured in Facts, you're on this newer generation — check its own DIP/wiring against this diagram instead of the one above.<br><br><b>Also see the PCR-2D card:</b> PAL's dedicated PCR-2D sell sheet states 24V DC for that driver, conflicting with the 12V DC documented here — an unresolved cross-manual conflict, not a reason to change either card. Confirm actual voltage on site.</div>
       <img class="zoomable" src="assets/image_31.jpg" alt="Evenglow 24V PCR-1Z wiring overview diagram" style="width:100%;border-radius:8px;margin-top:8px;border:1px solid #2a3b5c;cursor:zoom-in;">
       <span style="display:block;font-size:11px;color:#9fb0c5;margin-top:4px;font-style:italic;">24V PCR-1Z driver wiring overview — Blue/Grey/Red/White light leads, E/A/N power terminals, 3-switch cloning DIP (tap to zoom)</span>
     `
@@ -375,14 +391,14 @@ const DATA = [
     photoAlt: "Evenglow Nicheless RGB pool light",
     tags: ["evenglow nicheless","evenglow","12v","light won't turn on","out of sync","nicheless","pcr-4","pcr-2d","24v","pcr-1z","pcr-2z","drill","hole saw","wall fitting"],
     videos: [],
-    videoNote: "No confirmed PAL install video found for this product line specifically — not linked to avoid attaching the wrong product's install steps. Check with David.",
+    videoNote: "No confirmed PAL install video found for this product line specifically — not linked to avoid attaching the wrong product's install steps.",
     driverVideos: [
       {title:"PAL PCR4 PCT1 Coding", url:"https://youtu.be/tiKvKwUdNQE"},
       {title:"PAL PCR2D PCT1 Coding", url:"https://youtu.be/TUDnVlOdwjU"},
       {title:"PAL PCR2D PCT1 Manual Check", url:"https://youtu.be/K9zOumkBbEA"},
     ],
     facts: "<b>Power/driver:</b> PCR-4 (50W) or PCR-2D (16/35/55W) · PCT-1 remote — same driver family as Evenglow (Niche), per this product's own install guide<br><b>Voltage:</b> 12V DC — do not connect to 120V<br><img class='zoomable' src='assets/image_02.jpg' alt='Evenglow PCR-4/PCR-2D driver and cloning DIP table' style='width:100%;border-radius:8px;margin-top:8px;border:1px solid #2a3b5c;cursor:zoom-in;'><span style='display:block;font-size:11px;color:#9fb0c5;margin-top:4px;font-style:italic;'>PCR-4/PCR-2D drivers and cloning DIP table (tap to zoom)</span>",
-    issuesNote: "Work this in order — \"faulty globe\" is a conclusion you arrive at, not something you test for directly. You confirm it by ruling out everything upstream first.<br><br><b>Flag for Jason:</b> this product's own install guide contradicts itself — page 2 specifies 12V DC / PCR-4 &amp; PCR-2D, but the page 7 driver diagram and page 8 troubleshooting table reference the 24V PCR-1Z/PCR-2Z family (24V DC readings) and even mislabel the product as \"the Bubbler\" — almost certainly a boilerplate page reused across PAL manuals without being fully edited. Issues below follow the 12V page 2 spec as the more reliable source; confirm actual driver/voltage on site before assuming a reading is wrong.",
+    issuesNote: "Work this in order — \"faulty globe\" is a conclusion you arrive at, not something you test for directly. You confirm it by ruling out everything upstream first.<br><br><b>Note:</b> this product's own install guide contradicts itself — page 2 specifies 12V DC / PCR-4 &amp; PCR-2D, but the page 7 driver diagram and page 8 troubleshooting table reference the 24V PCR-1Z/PCR-2Z family (24V DC readings) and even mislabel the product as \"the Bubbler\" — almost certainly a boilerplate page reused across PAL manuals without being fully edited. Issues below follow the 12V page 2 spec as the more reliable source; confirm actual driver/voltage on site before assuming a reading is wrong.",
     issues: [
       ["Driver not connected to power","Confirm driver plugged in, power LED lit. No LED → driver goes back to PAL"],
       ["Faulty driver","Check driver output under load — should read 12V DC"],
@@ -415,7 +431,7 @@ const DATA = [
       <span style="display:block;font-size:11px;color:#9fb0c5;margin-top:4px;font-style:italic;">Final installation — light seated in the wall fitting (tap to zoom)</span>
 
       <div class="section-label">Newer Generation — 24V Remote Driver</div>
-      <div class="note-box">Same caveat as Evenglow (Niche): PAL's current sell sheet for this product documents a newer 24V driver generation (PCR-1Z/2Z remote driver family) — distinct from the 12V PCR-4/PCR-2D setup covered above. If the driver on-site matches the board below rather than the black-box PCR-4/PCR-2D pictured in Facts, check its own DIP/wiring against this diagram instead.</div>
+      <div class="note-box">Same caveat as Evenglow (Niche): PAL's current sell sheet for this product documents a newer 24V driver generation (PCR-1Z/2Z remote driver family) — distinct from the 12V PCR-4/PCR-2D setup covered above. If the driver on-site matches the board below rather than the black-box PCR-4/PCR-2D pictured in Facts, check its own DIP/wiring against this diagram instead.<br><br><b>Also see the PCR-2D card:</b> PAL's dedicated PCR-2D sell sheet states 24V DC for that driver, conflicting with the 12V DC documented here — an unresolved cross-manual conflict, not a reason to change either card. Confirm actual voltage on site.</div>
       <img class="zoomable" src="assets/image_31.jpg" alt="Evenglow 24V PCR-1Z wiring overview diagram" style="width:100%;border-radius:8px;margin-top:8px;border:1px solid #2a3b5c;cursor:zoom-in;">
       <span style="display:block;font-size:11px;color:#9fb0c5;margin-top:4px;font-style:italic;">24V PCR-1Z driver wiring overview — Blue/Grey/Red/White light leads, E/A/N power terminals, 3-switch cloning DIP (tap to zoom)</span>
     `
@@ -472,7 +488,7 @@ const DATA = [
     photoAlt: "Treo Retro light head and threaded connector, line diagram",
     tags: ["treo retro","24v","light won't turn on","out of sync","niche","nicheless","pcr-1z","pcr-2z"],
     videos: [{title:"PAL GLoBrite Treo Retro Fit", url:"https://youtu.be/iyptiOMdRGQ"}],
-    videoNote: "Note: \"PAL Retro Lamp/Bulb Troubleshooting\" and \"PAL Retro Light\" read as Sonar Retro (a different lamp/bulb-style product) — not linked here to avoid conflating product lines.",
+    videoNote: "Note: \"PAL Retro Lamp/Bulb Troubleshooting\" and \"PAL Retro Light\" are about the Sonar Retro Bulb (a different, bulb-swap-style product — see that card) — not linked here to avoid conflating product lines.",
     facts: "<b>Power/driver:</b> PCR-1Z (up to 2 lights) or PCR-2Z (up to 5 lights), PCZ-2 transmitter, 24V DC<br><b>Fits:</b> standard Pentair GLoBrite-style niches plus gunite/fiberglass/vinyl nicheless variants<br><img class='zoomable' src='assets/image_48.jpg' alt='Treo Retro PCR-1Z/PCR-2Z driver and cloning DIP switch table' style='width:100%;border-radius:8px;margin-top:8px;border:1px solid #2a3b5c;cursor:zoom-in;'><span style='display:block;font-size:11px;color:#9fb0c5;margin-top:4px;font-style:italic;'>PCR-2Z (up to 5 lights) / PCR-1Z (up to 2 lights) driver + PCZ-2 transmitter, with cloning DIP table (tap to zoom)</span>",
     issuesNote: "Work this in order — \"faulty globe\" is a conclusion you arrive at, not something you test for directly. You confirm it by ruling out everything upstream first.",
     issues: [
@@ -563,7 +579,7 @@ const DATA = [
             <b>Control:</b> "Sonar" handheld remote (channel buttons 1–4, not Z1/Z2 zones) + optional Wi-Fi module (64-PAL-SW, sold separately) for app control<br>
             <b>Color:</b> 16 million colors, adjustable white 2700K–6500K<br>
             <b>SKUs:</b> 64-PAL-RAL (remote, no transformer) / -80 / -150 (cable lengths) / -T, -80-T, -150-T (bundled with the PCR-2T-65 transformer)`,
-    videoNote: "The \"Other PAL Videos\" catch-all card lists PAL Sonar Remote Programming (with and without cloning), PAL Sonar Light, PAL Canadian Sonar Light, and PAL Retro Lamp/Bulb Troubleshooting — all Sonar-branded like this product's remote. Not linked here yet because it's unconfirmed whether they cover this specific AquaLumin-niche product or the separate Evenglow Sonar Retro (still an open card gap) — same underlying Sonar tech platform, different niche adapter. Confirm against the actual video content before attaching either here or to Evenglow Sonar Retro once that card is built.",
+    videoNote: "The \"PAL Sonar Remote Programming\" videos are cross-referenced on the <b>Sonar Retro Bulb</b> card rather than duplicated here — same remote-button pairing/cloning shape, though that product's remote goes up to a 5th (Astral) channel that this one's reference doesn't show. \"PAL Sonar Light\" and \"PAL Canadian Sonar Light\" remain in the Other PAL Videos catch-all, unconfirmed whether they show this product or the still-unbuilt Canadian Retro.",
     issuesNote: "This product's own manual has no troubleshooting table — treat electrical faults like any other PAL LED light (see LED Light Diagnostics and Probability-Based Diagnostic Framework). Its pairing/cloning mechanism is genuinely different from the rest of this guide — don't reach for the PCR-1Z/2Z DIP switch table below by habit.",
     issues: [
       ["No power to light","Confirm 24V DC at the PCR-2T-65 transformer output. This product is only rated for the PCR-2T-65 — a PCR-1Z/2Z substitution is not supported by the spec sheet"],
@@ -595,6 +611,82 @@ const DATA = [
     `
   },
   {
+    id: "sonarretro",
+    backTo: "cat-lights",
+    title: "Sonar Retro Bulb (Evenglow)",
+    photo: "assets/image_94.jpg",
+    photoAlt: "PAL Sonar Retro Bulb, multi-color LED lit",
+    tags: ["sonar retro","retro bulb","retro lamp","sonar","par38","bulb replacement","screw-in bulb","evenglow","cloning","remote"],
+    videos: [
+      {title:"PAL Sonar Remote Programming", url:"https://youtu.be/wXuuqXFJvwY"},
+      {title:"PAL Sonar Remote Programming No Cloning", url:"https://youtu.be/8ape6dn3eac"},
+      {title:"PAL Retro Lamp/Bulb Troubleshooting", url:"https://youtu.be/LAUh6TSKc0g"},
+      {title:"PAL Retro Light", url:"https://youtu.be/RzfOV0NYd2I"},
+    ],
+    videoNote: "The two \"PAL Sonar Remote Programming\" videos cover this product's remote (zone linking + cloning channels) — the same remote-button cloning convention, minus the 5th (Astral) channel, is also used on the <b>Aqualumin Replacement</b> card. \"PAL Sonar Light\" and \"PAL Canadian Sonar Light\" remain in the <b>Other PAL Videos</b> catch-all — unconfirmed whether they show this product or the still-unbuilt Canadian Retro (same Sonar tech platform).",
+    facts: `<b>Part numbers:</b> 64-PAL-SRL-RGB / -RGB-120 (multi-color) &nbsp; 64-PAL-SRL-CW / -CW-120 (cool white) &nbsp; 64-PAL-SRL-WW / -WW-120 (warm white) &nbsp; Accessories: 64-PAL-SR (Sonar remote), 64-PAL-SW (Sonar Wi-Fi module, sold separately)<br>
+            <b>What the number means:</b> <b>SRL</b> = Sonar Retro Lamp &nbsp; <b>RGB/CW/WW</b> = color option &nbsp; <b>-120</b> suffix = 120V mains version (unmarked = Low Voltage)<br>
+            <b>What it is:</b> a screw-in LED bulb retrofit for an <b>existing</b> PAR38-style pool light fixture — not a full light/housing replacement like the other products in this guide. The customer's existing housing, lens, and gasket stay in place; only the bulb itself is swapped. Suitable for gunite/concrete, fiberglass, and vinyl liner pools.<br>
+            <b>How it operates:</b> remote-controlled via the handheld Sonar remote (color wheel, warm/cool white slider, brightness) or the Color Touch app over the optional Wi-Fi module. Zone linking and OEM cloning are both set by pressing channel buttons on the remote — there are no DIP switches on this product.<br><br>
+            16 million colors (RGB models), color temperature adjustable 2700K–6500K &nbsp; 8 independently-controllable zones (channel buttons 1–8)<br>
+            <b>Flag — remote channel count differs from Aqualumin's:</b> this manual's cloning list uses 5 channels (1=PAL, 2=Jandy, 3=Hayward, 4=Pentair, <b>5=Astral</b>) — the Aqualumin Replacement card's remote reference only goes up to channel 4 (no Astral). Same pairing/cloning/unpairing procedure shape (press 3x to link, hold to clone, press 5x to unlink) on both, but don't assume the two remotes are interchangeable hardware.<br>
+            <b>Flag — manual's own Table of Contents doesn't match its content:</b> the install manual's ToC lists page 3 as "Nicheless Installation" and page 8 as "Troubleshooting," but neither section exists — page 3 is actually the Bulb Installation steps (this is a bulb swap, not a niche install), and page 8 is just a contact-info footer. Likely a ToC template reused from a different PAL manual and never updated. There is no troubleshooting section anywhere in this manual.<br>
+            <b>Voltage note:</b> unlike most other PAL manuals in this guide, this one never states a numeric output voltage (no "12V"/"24V" spec line) — nothing to flag re: the recurring artifact. It does ship in two distinct supply families (Low Voltage vs "-120" mains) — confirm the correct SKU matches the existing fixture's supply before installing; the manual calls mismatched voltage a risk of "catastrophic failure" and electric shock.`,
+    steps: [
+      "<b>Steps 1–2 — remove the old bulb:</b> turn power off at the breaker, then remove the existing light fixture from the niche and place it on the pool deck (do not attempt this underwater). With the fixture out and the lens off, inspect the tensioning clip/fasteners for damage and replace if stripped, then unscrew and remove the old bulb.<br><img class=\"zoomable\" src=\"assets/image_96.jpg\" alt=\"Sonar Retro Bulb removal steps 1 and 2 diagram\" style=\"width:100%;border-radius:8px;margin-top:8px;border:1px solid #2a3b5c;cursor:zoom-in;\"><span style=\"display:block;font-size:11px;color:#9fb0c5;margin-top:4px;font-style:italic;\">Steps 1–2 — removing the existing fixture and old bulb (tap to zoom)</span>",
+      "<b>Steps 3–4 — inspect and dry the housing:</b> check the housing for damage, inspect the rubber seal where the power cord enters for leaks/deterioration, and check the lens/gasket seating surface for imperfections. Make sure the inside of the housing is completely dry before continuing.<br><img class=\"zoomable\" src=\"assets/image_97.jpg\" alt=\"Sonar Retro Bulb inspection steps 3 and 4 diagram\" style=\"width:100%;border-radius:8px;margin-top:8px;border:1px solid #2a3b5c;cursor:zoom-in;\"><span style=\"display:block;font-size:11px;color:#9fb0c5;margin-top:4px;font-style:italic;\">Steps 3–4 — inspecting the housing and drying it out (tap to zoom)</span>",
+      "<b>Steps 5–6 — install the new bulb and reseal:</b> screw the new PAL Sonar Retro Bulb into the housing. Installing a new lens gasket is highly recommended — a bad seal risks a leak and electric shock. Set the lens and cover plate on the housing and tighten evenly so the gasket seals all the way around.<br><img class=\"zoomable\" src=\"assets/image_98.jpg\" alt=\"Sonar Retro Bulb installation steps 5 and 6 diagram\" style=\"width:100%;border-radius:8px;margin-top:8px;border:1px solid #2a3b5c;cursor:zoom-in;\"><span style=\"display:block;font-size:11px;color:#9fb0c5;margin-top:4px;font-style:italic;\">Steps 5–6 — installing the new bulb and resealing the lens (tap to zoom)</span>",
+      "<b>Steps 7–8 — leak check:</b> submerge the fixture and check for air bubbles at the gasket or power cord entrance before going further — if bubbles appear, pull it back out and reseat the gasket/lens. Once submerged with no leaks, turn power back on and leave the bulb on for 30 minutes, continuing to check for bubbles, before calling the install complete.",
+      "<b>Linking to a zone:</b> within 3 seconds of turning the light on, press the desired zone's channel button 3 times — the light flashes 3 times once linked. To unlink, press that same channel button 5 times — the light flashes 9 times to confirm.<br><img class=\"zoomable\" src=\"assets/image_95.jpg\" alt=\"Sonar remote button layout and programming reference diagram\" style=\"width:100%;border-radius:8px;margin-top:8px;border:1px solid #2a3b5c;cursor:zoom-in;\"><span style=\"display:block;font-size:11px;color:#9fb0c5;margin-top:4px;font-style:italic;\">Sonar remote — button layout, zone linking/unlinking, and cloning channels (tap to zoom)</span>",
+      "<b>Cloning to a competitor system:</b> within 3 seconds of turning the light on, press and hold the channel button for the target brand — 1 = PAL, 2 = Jandy, 3 = Hayward, 4 = Pentair, 5 = Astral. See <b>Cloning to Competitor Systems</b> for the driver-protocol-setting side of a clone job.",
+    ],
+    note: "This manual has no troubleshooting section (see the Table of Contents flag above) — treat electrical faults like any other PAL LED light: see <b>LED Light Diagnostics</b> and <b>Probability-Based Diagnostic Framework</b>."
+  },
+  {
+    id: "evenglowfiberglass",
+    backTo: "cat-lights",
+    title: "Evenglow Fiberglass (Wet Niche)",
+    photo: "assets/image_99.jpg",
+    photoAlt: "Evenglow Fiberglass RGB pool light, lit",
+    tags: ["evenglow fiberglass","fiberglass wet niche","egf","12v","24v","light won't turn on","out of sync","drill","hole saw","fibreglass nut","wall fitting","pcr-4","pcr-2d","pcr-1z","pcr-2z"],
+    facts: "<b>Power/driver:</b> PCR-4 (50W) or PCR-2D (16/35/55W) · PCT-1 remote — same driver family as Evenglow (Niche) and Evenglow (Nicheless)<br><b>Voltage:</b> 12V DC — do not connect to 120V (consistent throughout this manual, no internal contradiction)<br><img class='zoomable' src='assets/image_103.jpg' alt='Evenglow Fiberglass PCR-4/PCR-2D driver, PCT-1 transmitter, and cloning DIP table' style='width:100%;border-radius:8px;margin-top:8px;border:1px solid #2a3b5c;cursor:zoom-in;'><span style='display:block;font-size:11px;color:#9fb0c5;margin-top:4px;font-style:italic;'>PCR-4/PCR-2D drivers, PCT-1 transmitter, and 2-switch cloning DIP table — no Astral option on this older table (tap to zoom)</span>",
+    issuesNote: "Work this in order — \"faulty globe\" is a conclusion you arrive at, not something you test for directly. You confirm it by ruling out everything upstream first.",
+    issues: [
+      ["Driver not connected to power","Confirm driver plugged in, power LED lit. No LED → driver goes back to PAL"],
+      ["Faulty driver","Check driver output under load — should read 12V DC"],
+      ["Cut cable","Check voltage at the light with a multimeter (light disconnected from cable)"],
+      ["Faulty LED driver inside control box","Push test button inside control box. Still nothing → return to PAL"],
+      ["Faulty globe","Only conclude this if voltage at the light tests correct and the light still won't illuminate. Replace globe."],
+    ],
+    syncIssues: [
+      ["Miswired to control box","Check color wire sequence into control box terminals"],
+      ["Miswired to LED lamp","Check color sequence at the LED lamp terminal block inside the light"],
+    ],
+    steps: [
+      "Check <b>LED Light Diagnostics</b> first if the complaint is 'not working' or 'flashing' — this rules out light-head/short issues before you touch the driver.",
+      "Switch off the breaker before touching anything.",
+      "Twist the light anti-clockwise to back it out of the fibreglass fitting.<br><img class=\"zoomable\" src=\"assets/image_102.jpg\" alt=\"Evenglow Fiberglass removing and installing light diagram\" style=\"width:100%;border-radius:8px;margin-top:8px;border:1px solid #2a3b5c;cursor:zoom-in;\"><span style=\"display:block;font-size:11px;color:#9fb0c5;margin-top:4px;font-style:italic;\">Twist anti-clockwise to remove, clockwise to install (tap to zoom)</span>",
+      "Unscrew the protective caps from the plug and light socket, then separate the plug.<br><img class=\"zoomable\" src=\"assets/image_104.jpg\" alt=\"Evenglow Fiberglass connecting to light plug diagram\" style=\"width:100%;border-radius:8px;margin-top:8px;border:1px solid #2a3b5c;cursor:zoom-in;\"><span style=\"display:block;font-size:11px;color:#9fb0c5;margin-top:4px;font-style:italic;\">Connecting to light — plug and cap sequence (tap to zoom)</span>",
+      "If comfortable with a multimeter: check DC volts at the cable from the driver side — expecting 12V DC. Voltage present but light still dead → light head is bad. No voltage → problem is upstream (driver/cable).",
+      "No multimeter handy? Swap in a known-good light head if available, or move to the driver check before sending a replacement part.",
+      "Reinstall: twist clockwise into the fibreglass fitting until snug — hand-tight only, don't overtighten."
+    ],
+    escalate: "A first-time fiberglass wet-niche install means drilling a new hole through the pool wall and setting a permanent fibreglass nut/fitting assembly — an irreversible structural change, not a simple parts swap. Don't walk a homeowner through drilling over the phone.<br><br><b>Flag — conflicting hole size across PAL's own documents:</b> this product's install manual specifies a 2⅜\" or 2½\" holesaw, but PAL's current sell sheet for this same product specifies a 1⅞\" holesaw instead (the same size used on the Evenglow Nicheless card) — a materially different diameter for what should be the same physical fitting. Don't drill from memory off either document alone; confirm the correct size against the actual fibreglass nut hardware in hand before cutting. See Pending Sign-off in CLAUDE.md.",
+    extra: `
+      <div class="section-label">New Install — Drilling &amp; Fitting Reference</div>
+      <img class="zoomable" src="assets/image_100.jpg" alt="Evenglow Fiberglass drilling hole diagram" style="width:100%;border-radius:8px;margin-top:8px;border:1px solid #2a3b5c;cursor:zoom-in;">
+      <span style="display:block;font-size:11px;color:#9fb0c5;margin-top:4px;font-style:italic;">Drilling the hole — see the escalate warning above re: conflicting hole-saw size (tap to zoom)</span>
+      <img class="zoomable" src="assets/image_101.jpg" alt="Evenglow Fiberglass installing light and sealing to pool shell diagram" style="width:100%;border-radius:8px;margin-top:8px;border:1px solid #2a3b5c;cursor:zoom-in;">
+      <span style="display:block;font-size:11px;color:#9fb0c5;margin-top:4px;font-style:italic;">Assembling the washer/nut over the cable and sealing the light to the pool shell with silicone on both sides (tap to zoom)</span>
+      <div class="note-box">Minor — this manual's own Table of Contents lists page 3 as "Nicheless Installation," but the actual page 3 heading reads "Wet Niche Installation." Same reused-ToC-template pattern seen on other PAL manuals; doesn't change any actual instructions.</div>
+
+      <div class="section-label">Newer Generation — 24V Remote Driver</div>
+      <div class="note-box">PAL's current sell sheet for this product documents a newer 24V driver generation (PCR-1Z/2Z remote driver family, part no. 64-PCR-1Z/2Z) — distinct from the 12V PCR-4/PCR-2D setup covered in the Facts and steps above. If the driver on-site matches the board on the Drivers card rather than the black-box PCR-4/PCR-2D pictured in Facts, you're on this newer generation — check its own DIP/wiring against that card's diagrams instead of the one above.<br><br><b>Notable data point for the PCR-2D voltage question:</b> this same sell sheet's "Design &amp; Features" bullet list reads "Low Power / 12/24V DC" — both voltages in one line, on the same sheet whose driver-spec box elsewhere states "24V DC" specifically for the PCR-1Z/2Z. Could mean the light body itself is agnostic to either driver generation, or could just be another instance of the recurring 12V/24V copy-paste artifact. Not resolved — see the <b>PCR-2D</b> card and Pending Sign-off in CLAUDE.md.</div>
+      <img class="zoomable" src="assets/image_31.jpg" alt="Evenglow 24V PCR-1Z wiring overview diagram" style="width:100%;border-radius:8px;margin-top:8px;border:1px solid #2a3b5c;cursor:zoom-in;">
+      <span style="display:block;font-size:11px;color:#9fb0c5;margin-top:4px;font-style:italic;">24V PCR-1Z driver wiring overview — Blue/Grey/Red/White light leads, E/A/N power terminals, 3-switch cloning DIP (tap to zoom)</span>
+    `
+  },
+  {
     id: "drivers",
     backTo: "cat-drivers",
     title: "PCR-1Z / PCR-2Z / PCR-1Z-SM / PCR-1ZW / PCR-2ZW Drivers",
@@ -607,7 +699,7 @@ const DATA = [
       {title:"PAL PCR 2Z WiFi Coding", url:"https://youtu.be/wflvMlZTDn4"},
       {title:"PAL App and Handset Coding", url:"https://youtu.be/lmNrurKlMJM"},
     ],
-    videoNote: "Note: there are two videos both titled \"PAL PCR 1Z USA Setup\" with different links — flagging for David to confirm which is current before either gets linked here.",
+    videoNote: "Note: PAL has two videos both titled \"PAL PCR 1Z USA Setup\" with different links (listed in the Other PAL Videos card) — confirm which is current before sharing either with a customer.",
     facts: `<b>Part numbers:</b> 64-PCR-1Z-16 / -65 (single zone) &nbsp; 64-PCR-2Z-65 (dual zone) &nbsp; 64-PCR-1ZW-16 / -65, 64-PCR-2ZW-65 (built-in Wi-Fi) &nbsp; 64-PCR-1Z-SM-16 / -65 (switch mode)<br>
             <b>What the number means:</b> <b>1Z/2Z</b> = number of independently-controlled zones &nbsp; <b>W</b> = built-in Wi-Fi module &nbsp; <b>SM</b> = Switch Mode (no remote/app, color set by buttons on the board) &nbsp; <b>-16/-65</b> = wattage rating<br>
             <b>What it is:</b> an outdoor-rated low-voltage transformer/driver that powers PAL 4-wire RGB LED pool lights and lets a handheld remote, the Color Touch app (W models), or a competitor automation system control their color and zones.<br>
@@ -620,7 +712,7 @@ const DATA = [
       "Driver box is usually wall-mounted within ~5 ft of the pool, above the waterline. Open the cover (screws around the edge) to see the circuit board.<br><img class=\"zoomable\" src=\"assets/image_66.jpg\" alt=\"Labeled PCR-1Z/PCR-1Z-SM driver board diagram\" style=\"width:100%;border-radius:8px;margin-top:8px;border:1px solid #2a3b5c;cursor:zoom-in;\"><span style=\"display:block;font-size:11px;color:#9fb0c5;margin-top:4px;font-style:italic;\">Labeled board (V2 PCR-1Z/PCR-1Z-SM) — Manual Operation Button, Code Setting Button, LED Indicator, Wi-Fi Connector (tap to zoom)</span>",
       "<b>Confirm power first:</b> with power restored, is the LED lit? No LED → problem is the breaker, incoming wiring, or a dead driver — not the light.",
       "<b>If LED is lit but lights still won't respond:</b> press the manual operation button once. Lights come on with that button but not remote/app → driver is fine, it's a pairing or automation issue, not hardware.",
-      "<b>Pairing the remote (Matching Code, per the current official manual):</b> apply power to the receiver, then within 5 seconds press Z1 once on the remote — the light flashes white 3 times if matching succeeded.<br><b>Flag:</b> this guide previously described a different procedure here (Code Setting button inside the box, then Z1 pressed three times). That may reflect real field behavior on an older board revision, so it isn't deleted outright — but the manual's own \"Matching Code\" procedure above is the one to try first, and this discrepancy should go to Jason to confirm which applies before either fully replaces the other.<br><img class='zoomable' src='assets/image_70.jpg' alt='PCZ-2 transmitter labeled remote diagram' style='width:100%;border-radius:8px;margin-top:8px;border:1px solid #2a3b5c;cursor:zoom-in;'><span style='display:block;font-size:11px;color:#9fb0c5;margin-top:4px;font-style:italic;'>PCZ-2 remote — button layout, functions, Matching/Clearing Code procedures (tap to zoom)</span>",
+      "<b>Pairing the remote (Matching Code, per the current official manual):</b> apply power to the receiver, then within 5 seconds press Z1 once on the remote — the light flashes white 3 times if matching succeeded.<br><b>If that doesn't work:</b> try the older procedure instead — Code Setting button inside the box, then press Z1 three times. This may apply on older board revisions.<br><img class='zoomable' src='assets/image_70.jpg' alt='PCZ-2 transmitter labeled remote diagram' style='width:100%;border-radius:8px;margin-top:8px;border:1px solid #2a3b5c;cursor:zoom-in;'><span style='display:block;font-size:11px;color:#9fb0c5;margin-top:4px;font-style:italic;'>PCZ-2 remote — button layout, functions, Matching/Clearing Code procedures (tap to zoom)</span>",
       "<b>Remote paired to the wrong receiver, or a spare remote needs disconnecting:</b> Clearing Code — apply power to the receiver, then hold Z1 down for 3 seconds. Light flashes 6 times if clearing succeeded. A new code then has to be applied via the Matching Code steps above.",
       "<b>Still no response after the manual button test:</b> this points to a faulty driver. Don't have the customer attempt board-level repair — move to replacement/warranty path.",
     ],
@@ -731,7 +823,7 @@ const DATA = [
       "Driver is factory set to operate with the included PCZ-2 transmitter — just fit its 2 batteries. See the Drivers card for full PCZ-2 remote button layout, pairing steps, and mode list.",
     ],
     extra: `
-      <div class="note-box"><b>Newer V3 board exists, not yet built into this guide:</b> PAL's Aug–Sept 2025 update addendum describes a "3D and 3DMX High Powered" V3 board (SKUs 64-PCR-3D / 64-PCR-3DW / 64-PCR-3DMX — <b>not</b> the 8Z variant) that is mode-selected via dip switches A/B into 4 distinct operating modes (Cloner / Module / PCR8-legacy / DMX), each with its own dip-switch meanings — a genuine architecture change, not a copy-paste artifact. The Cloning/Zone tables below apply to the standard board only. Don't apply the V3 mode scheme in the field from memory — this needs Jason's review before it's built into the guide as its own diagnostic section (see CLAUDE.md Pending Sign-off).</div>
+      <div class="note-box"><b>Newer V3 board exists — not yet covered below:</b> PAL's Aug–Sept 2025 update addendum describes a "3D and 3DMX High Powered" V3 board (SKUs 64-PCR-3D / 64-PCR-3DW / 64-PCR-3DMX — <b>not</b> the 8Z variant) that is mode-selected via dip switches A/B into 4 distinct operating modes (Cloner / Module / PCR8-legacy / DMX), each with its own dip-switch meanings — a genuine architecture change, not a copy-paste artifact. The Cloning/Zone tables below apply to the standard board only. Check which board is installed before applying the V3 mode scheme from memory — its dip-switch behavior is not documented here yet.</div>
 
       <div class="section-label">Cloning Settings (Jandy / Pentair / Hayward / PAL / Astral)</div>
       <table class="dip-table">
@@ -822,6 +914,112 @@ const DATA = [
         <li>Driver can only be tested with an active DMX signal present — a driver with no DMX source connected will not light up even if healthy.</li>
       </ul>
     `
+  },
+  {
+    id: "pcr2d",
+    backTo: "cat-drivers",
+    title: "PCR-2D Driver (Color Touch Series 2)",
+    photo: "assets/image_88.jpg",
+    photoAlt: "PCR-2D driver enclosure with Color Touch label",
+    tags: ["pcr-2d","color touch","evenglow driver","remote only","pct-1","cloning","42-pcr-2d","hayward","jandy","pentair"],
+    facts: `<b>Part numbers:</b> 42-PCR-2D-16-24 / -35-24 / -60-24 (remote only) &nbsp; 42-PCR-2DW-16-24 / -35-24 / -60-24 (built-in Wi-Fi)<br>
+            <b>What the number means:</b> <b>2D</b> = Color Touch Series 2 driver platform &nbsp; <b>-16/-35/-60</b> = wattage rating &nbsp; <b>W</b> = built-in Wi-Fi module &nbsp; <b>-24</b> suffix = 24V DC output<br>
+            <b>What it is:</b> an outdoor Color Touch remote-control transformer/driver for PAL 4-wire RGB LED lights (marketed under PAL's EvenGlow banner), with OEM cloning to Hayward/Jandy/Pentair automation systems.<br>
+            <b>How it operates:</b> converts mains power down to DC output for the lights (see voltage flag below), then reads color/brightness/mode commands from the paired PCT-1 handheld remote, or the Color Touch app over Wi-Fi on "W" models — same color-wheel/cloning concept as the PCR-1Z/2Z family on the Drivers card, though this is a separate SKU platform (42- prefix vs 64-) with no install manual on file to confirm whether that card's pairing/DIP steps carry over directly.<br><br>
+            IP65, UL Listed to UL379 Swimming Pool, Spa &amp; Fountain Transformer Class 2 LED Driver, AS/NZ approved &nbsp; Enclosure 9&#8534;&quot; x 3&#8533;&quot; (239 x 80mm), plus 2&#8531;&quot; (59mm) deep for Wi-Fi models / 1&frac12;&quot; (41mm) for non-Wi-Fi<br><br>
+            <b>Flag — voltage conflict across two PAL sources, not yet resolved:</b> this product's current sell sheet states 24V DC consistently (spec bullets and the full SKU table below — every part number carries the "-24" suffix) — but the same sell sheet's own product photography (this card's hero image) shows the physical enclosure sticker printed "OUTPUT VOLTAGE = 12V D/C" on every wattage variant pictured. That part matches the recurring 12V/24V label copy-paste artifact seen across PAL's manuals (8th confirmed instance). Separately — and not the same issue — the <b>Evenglow (Niche)</b> and <b>Evenglow (Nicheless)</b> cards in this guide, sourced from Evenglow's own install manual, document the PCR-4/PCR-2D driver combo as genuinely <b>12V DC</b> for older Evenglow installs, a conclusion reached before this sell sheet was on file. Given PAL's known 12V&rarr;24V driver evolution over time, "PCR-2D" may span an older 12V-era board and a newer 24V-era board under the same name. Don't assume either source is wrong — confirm actual output voltage at the driver before wiring anything downstream.`,
+    extra: `
+      <div class="section-label">Model / SKU Reference</div>
+      <table style="width:100%; border-collapse:collapse; margin:6px 0; font-size:0.92em;">
+        <tr style="border-bottom:1px solid #ccc;"><td style="padding:2px 8px 2px 0;"><b>Model</b></td><td style="padding:2px 8px;"><b>Description</b></td><td style="padding:2px 0;"><b>Power Rating</b></td></tr>
+        <tr><td>42-PCR-2D-16-24</td><td>16 Watt Remote Control Transformer</td><td>24V / 16W</td></tr>
+        <tr><td>42-PCR-2D-35-24</td><td>35 Watt Remote Control Transformer</td><td>24V / 35W</td></tr>
+        <tr><td>42-PCR-2D-60-24</td><td>60 Watt Remote Control Transformer</td><td>24V / 60W</td></tr>
+        <tr><td>42-PCR-2DW-16-24</td><td>16 Watt Remote Control Transformer with Wi-Fi</td><td>24V / 16W</td></tr>
+        <tr><td>42-PCR-2DW-35-24</td><td>35 Watt Remote Control Transformer with Wi-Fi</td><td>24V / 35W</td></tr>
+        <tr><td>42-PCR-2DW-60-24</td><td>60 Watt Remote Control Transformer with Wi-Fi</td><td>24V / 60W</td></tr>
+      </table>
+      <div class="note-box">See the <b>Evenglow (Niche)</b> and <b>Evenglow (Nicheless)</b> cards for PCT-1 remote coding videos (PAL PCR2D PCT1 Coding / Manual Check) — those are cross-referenced there rather than duplicated here.</div>
+    `
+  },
+  {
+    id: "pcr300",
+    backTo: "cat-drivers",
+    title: "PCR-300 Driver (LED Optics Series 3)",
+    photo: "assets/image_89.jpg",
+    photoAlt: "PCR-300-24 driver enclosure with LED Optics label",
+    tags: ["pcr-300","led optics","optic fiber","strip lights","cloning","42-pcr-300","remote only"],
+    facts: `<b>Part numbers:</b> 42-PCR-300U-CL (110W, 12V DC) &nbsp; 42-PCR-300U-24 (158W, 24V DC) &nbsp; 42-PCR-300UW-CL / -24 (same wattages, built-in Wi-Fi)<br>
+            <b>What the number means:</b> <b>300</b> = LED Optics Series 3 driver platform &nbsp; <b>U</b> = remote-control unit &nbsp; <b>W</b> = built-in Wi-Fi module &nbsp; <b>-CL</b> = 12V DC output &nbsp; <b>-24</b> = 24V DC output<br>
+            <b>What it is:</b> an outdoor Color Touch remote-control transformer/driver for PAL 4-wire digital LED Optic strip lights (fiber/strip-style lighting, not the standard 4-wire RGB light heads covered elsewhere in this guide), with OEM cloning to Pentair/Hayward/Jandy automation systems.<br>
+            <b>How it operates:</b> converts mains power down to 12V or 24V DC depending on the SKU ordered — both are genuinely real, separate product variants here (see flag below, this is not the recurring artifact) — then reads color/brightness/mode commands from the paired remote or the Color Touch app over Wi-Fi on "W" models. Same color-wheel/cloning concept as the PCR-2D and PCR-1Z/2Z families, sized instead for LED Optic strip runs.<br><br>
+            IP65, UL Listed to UL379 Swimming Pool, Spa &amp; Fountain Transformer Class 2 LED Driver, AS/NZ approved &nbsp; Enclosure 9&quot; (228mm) x 7&quot; (177mm) x 3&frac34;&quot; (95mm)<br><br>
+            <b>Flag — nameplate wattage vs. actual SKU wattage mismatch:</b> the sell sheet's header/title and the enclosure sticker pictured on its cover page both read "PCR-300D" / "OUTPUT POWER = 300 WATTS" — but the actual SKU table (and this card's own hero photo label, which reads 158W) show the real output is only 110W (12V models) or 158W (24V models). "300" appears to be a model-family/platform number, not the true output wattage of any single unit — confirm the nameplate rating on the physical unit in front of you rather than assuming 300W from the product name. Same pattern already flagged on the PCR-3D-120/500 card.<br>
+            <b>Note — genuine dual-voltage product, not the recurring artifact:</b> unlike the 12V/24V copy-paste pattern seen elsewhere in PAL's manuals, the 12V and 24V references here are not a contradiction — this product ships in both a real 12V DC (110W, "-CL" suffix) and a real 24V DC (158W, "-24" suffix) version side by side. Confirm which was ordered/installed before troubleshooting voltage readings.`,
+    extra: `
+      <div class="section-label">Model / SKU Reference</div>
+      <table style="width:100%; border-collapse:collapse; margin:6px 0; font-size:0.92em;">
+        <tr style="border-bottom:1px solid #ccc;"><td style="padding:2px 8px 2px 0;"><b>Model</b></td><td style="padding:2px 8px;"><b>Description</b></td><td style="padding:2px 0;"><b>Power Rating</b></td></tr>
+        <tr><td>42-PCR-300U-CL</td><td>PAL Multi Color Remote Control Transformer</td><td>12V DC / 110W</td></tr>
+        <tr><td>42-PCR-300U-24</td><td>PAL Multi Color Remote Control Transformer</td><td>24V DC / 158W</td></tr>
+        <tr><td>42-PCR-300UW-CL</td><td>PAL Multi Color Remote Control Transformer &amp; Wi-Fi</td><td>12V DC / 110W</td></tr>
+        <tr><td>42-PCR-300UW-24</td><td>PAL Multi Color Remote Control Transformer &amp; Wi-Fi</td><td>24V DC / 158W</td></tr>
+      </table>
+    `
+  },
+  {
+    id: "pcr4",
+    backTo: "cat-drivers",
+    title: "PCR-4 Driver (Color Touch Series 4)",
+    photo: "assets/image_90.jpg",
+    photoAlt: "PCR-4 driver enclosure with Color Touch EvenGlow label",
+    tags: ["pcr-4","color touch","evenglow driver","2 wire","pct-1"],
+    facts: `<b>Part number:</b> PCR-4 (per enclosure label; no full manual on file to confirm sub-SKU suffixes)<br>
+            <b>What it is:</b> a Color Touch/EvenGlow-branded remote-control transformer, already cross-referenced throughout the <b>Evenglow (Niche)</b> and <b>Evenglow (Nicheless)</b> cards as one of the two drivers used with those lights (alongside PCR-2D).<br><br>
+            Read directly off the enclosure label pictured (this card's hero photo) — no install/spec manual has been provided for this product, so nothing below is inferred beyond what the label states:<br>
+            Supply voltage 100–240V (47–63Hz) &nbsp; Supply current (typ.) 0.7A/115VAC, 0.3A/240VAC &nbsp; <b>Output voltage 12V D/C &nbsp; Output power 50 Watts</b><br>
+            IP65, suitable for wet locations &nbsp; UL Listed (UL 8750) &nbsp; Approved to IEC/AS/NZS 61347 (TUV15577EA)<br>
+            This label's 12V DC / 50W reading is independent, direct-label confirmation of the same figures already used in the Evenglow cards' facts (PCR-4 = 50W, 12V DC) — no conflict here, unlike the ongoing PCR-2D voltage question.`
+  },
+  {
+    id: "commander2",
+    backTo: "cat-drivers",
+    title: "Commander Series 2 (PC-2D)",
+    photo: "assets/image_91.jpg",
+    photoAlt: "PAL Commander PC-2D driver enclosure",
+    tags: ["commander","pc-2d","2 wire","transformer"],
+    facts: `<b>Part number:</b> PC-2D (per enclosure label; no manual on file to confirm sub-SKU suffixes)<br>
+            <b>What it is:</b> a "Commander"-branded receiver/driver for PAL <b>2-wire</b> LED lights — an older/simpler wiring generation than the 4-wire RGB family documented elsewhere in this guide (Drivers, PCR-2DMX, PCR-3D, PCR-2D, PCR-300 cards). Not yet seen cross-referenced by name in any other card in this guide.<br><br>
+            Read directly off the enclosure label pictured (this card's hero photo) — no install/spec manual has been provided, so nothing below is inferred beyond what the label states:<br>
+            Supply voltage 100–240V (50/60Hz) &nbsp; Supply power 23 Watts &nbsp; <b>Output voltage 12V D/C &nbsp; Output power 16 Watts</b><br>
+            IP65, suitable for wet locations &nbsp; UL Listed &nbsp; SELV`
+  },
+  {
+    id: "ledoptics2",
+    backTo: "cat-drivers",
+    title: "LED Optics Series 2 (PCR-200)",
+    photo: "assets/image_92.jpg",
+    photoAlt: "PAL LED Optics PCR-200 driver enclosure",
+    tags: ["led optics","pcr-200","optic fiber","strip lights","transformer"],
+    facts: `<b>Part number:</b> PCR-200 (per enclosure label; no manual on file to confirm sub-SKU suffixes)<br>
+            <b>What it is:</b> an LED Optics-branded receiver/driver for PAL 4-wire RGB LED Optic strip lights — same product category as the PCR-300 card (LED Optics Series 3) but an earlier/lower-wattage platform in that same family, per the enclosure label branding.<br><br>
+            Read directly off the enclosure label pictured (this card's hero photo) — no install/spec manual has been provided, so nothing below is inferred beyond what the label states:<br>
+            Supply voltage 100–240V (47–63Hz) &nbsp; Supply current (typ.) 2.2A/115VAC, 1.2A/240VAC &nbsp; <b>Output voltage 12V D/C &nbsp; Output power 200 Watts</b><br>
+            IP65, suitable for wet locations &nbsp; UL Listed`
+  },
+  {
+    id: "pc2t",
+    backTo: "cat-drivers",
+    title: "Power Supply Series 2 (PC-2T)",
+    photo: "assets/image_93.jpg",
+    photoAlt: "PAL PC-2T transformer enclosure",
+    tags: ["power supply","pc-2t","2 wire","transformer","non-remote"],
+    facts: `<b>Part number:</b> PC-2T (per enclosure label; no manual on file to confirm sub-SKU suffixes)<br>
+            <b>What it is:</b> a plain PAL transformer for <b>2-wire</b> LED lights — no "R" in the model name and no remote/app control icon on the label, consistent with this being a basic power supply rather than a receiver/driver.<br><br>
+            Read directly off the enclosure label pictured (this card's hero photo) — no install/spec manual has been provided, so nothing below is inferred beyond what the label states:<br>
+            Supply voltage 100–240V (50/60Hz) &nbsp; Supply power 23 Watts &nbsp; <b>Output voltage 12V D/C &nbsp; Output power 16 Watts</b><br>
+            IP65, suitable for wet locations &nbsp; UL Listed &nbsp; SELV<br><br>
+            <b>Flag — do not confuse with the Aqualumin Replacement card's PCR-2T-65 transformer:</b> the name is similar but the label on this unit reads "PC-2T" (no R), 12V DC, 16W, for 2-wire lights — the <b>Aqualumin Replacement</b> card requires the <b>PCR-2T-65</b> transformer specifically (64- SKU family, 24V DC, higher wattage, powers up to 4 lights). Nothing on file confirms these are the same physical product under two naming conventions, or two genuinely different transformers — treat them as unconfirmed-different until a manual says otherwise, and don't substitute one for the other on an Aqualumin job.`
   },
   {
     id: "wifi",
@@ -948,7 +1146,7 @@ const DATA = [
       ["Wrong colors or won't respond to automation panel","This is a cloned installation — check both the driver protocol setting and DIP switch bank against the target brand. See Cloning to Competitor Systems card."],
       ["Strip not staying adhered / lifting inside waterfall channel","Confirm it was retrofit into a channel sized for the strip and not exposed to flow velocities beyond the waterfall's designed spillway — this is an install/fit issue, not a product defect"],
     ],
-    note: "Don't confuse with WaterBlade — Evenglow Flex is the LED strip retrofit product for existing third-party waterfalls; WaterBlade is PAL's own spillway unit. If a call references a David-confirmed video titled \"PAL LED Evenflex Concrete,\" that is most likely this product, not the Evenglow niche/nicheless pool light."
+    note: "Don't confuse with WaterBlade — Evenglow Flex is the LED strip retrofit product for existing third-party waterfalls; WaterBlade is PAL's own spillway unit. If a call references a video titled \"PAL LED Evenflex Concrete,\" that is most likely this product, not the Evenglow niche/nicheless pool light."
   },
   {
     id: "pathwaylight",
@@ -1079,15 +1277,11 @@ const DATA = [
     id: "morevideos",
     title: "Other PAL Videos (Not Yet Mapped to a Guide Section)",
     tags: ["video","sonar","bubbler","treo micro","push fit","waterblade","perimeter","field plug","canadian"],
-    note: "These are real PAL videos that don't have a confirmed home in this guide yet — either the product isn't covered here, or the match was too uncertain to attach to a specific card. Listed so nothing from David's list gets silently dropped. Ask David to confirm before linking any of these to a specific product.",
+    note: "These are real PAL videos that don't have a confirmed home in this guide yet — either the product isn't covered here, or the match was too uncertain to attach to a specific card. Confirm a video actually matches the customer's product before sharing it.",
     extra: `
       <ul class="steps">
-        <li>PAL Sonar Remote Programming — <a href="https://youtu.be/wXuuqXFJvwY" target="_blank" style="color:#3dbfa0;">https://youtu.be/wXuuqXFJvwY</a></li>
-        <li>PAL Sonar Remote Programming No Cloning — <a href="https://youtu.be/8ape6dn3eac" target="_blank" style="color:#3dbfa0;">https://youtu.be/8ape6dn3eac</a></li>
         <li>PAL Sonar Light — <a href="https://youtu.be/OCvvkSpDH0o" target="_blank" style="color:#3dbfa0;">https://youtu.be/OCvvkSpDH0o</a></li>
         <li>PAL Canadian Sonar Light — <a href="https://youtu.be/gc4m8RZpbVY" target="_blank" style="color:#3dbfa0;">https://youtu.be/gc4m8RZpbVY</a></li>
-        <li>PAL Retro Lamp/Bulb Troubleshooting (Sonar Retro, not Treo Retro) — <a href="https://youtu.be/LAUh6TSKc0g" target="_blank" style="color:#3dbfa0;">https://youtu.be/LAUh6TSKc0g</a></li>
-        <li>PAL Retro Light (Sonar Retro, not Treo Retro) — <a href="https://youtu.be/RzfOV0NYd2I" target="_blank" style="color:#3dbfa0;">https://youtu.be/RzfOV0NYd2I</a></li>
         <li>PAL Concrete Bubbler — <a href="https://youtu.be/KvsNwfZWJ74" target="_blank" style="color:#3dbfa0;">https://youtu.be/KvsNwfZWJ74</a></li>
         <li>PAL Fiberglass Bubbler — <a href="https://youtu.be/VQPbLz4XC3g" target="_blank" style="color:#3dbfa0;">https://youtu.be/VQPbLz4XC3g</a></li>
         <li>PAL Bubbler — <a href="https://youtu.be/dkC_xBB1xlI" target="_blank" style="color:#3dbfa0;">https://youtu.be/dkC_xBB1xlI</a></li>
@@ -1213,7 +1407,7 @@ function matches(item, q){
   return false;
 }
 
-const HIDDEN_BY_DEFAULT = new Set(['evenglow','evenglownicheless','treomax','treoretro','treomini','aqualumin','drivers','pcr2dmx','pcr3d500','pcr3dmx8z','wifi','waterblade','watersphere','ledbubbler','evenglowflex','pathwaylight','bollardlight','gardenuplight','cat-lights','cat-drivers','cat-water','cat-wifi','cat-landscape']);
+const HIDDEN_BY_DEFAULT = new Set(['evenglow','evenglownicheless','treomax','treoretro','treomini','aqualumin','sonarretro','evenglowfiberglass','drivers','pcr2dmx','pcr3d500','pcr3dmx8z','pcr2d','pcr300','pcr4','commander2','ledoptics2','pc2t','wifi','waterblade','watersphere','ledbubbler','evenglowflex','pathwaylight','bollardlight','gardenuplight','cat-lights','cat-drivers','cat-water','cat-wifi','cat-landscape']);
 
 function render(){
   const q = searchEl.value.trim();
@@ -1234,7 +1428,9 @@ function render(){
     return;
   }
   let backHTML = '';
-  if(directId && HIDDEN_BY_DEFAULT.has(directId)){
+  if(directId === 'products'){
+    backHTML = `<div class="back-link" onclick="jumpToProduct('')">&larr; Back to Home</div>`;
+  } else if(directId && HIDDEN_BY_DEFAULT.has(directId)){
     const currentItem = filtered[0];
     const backTarget = (currentItem && currentItem.backTo) ? currentItem.backTo : 'products';
     const targetItem = DATA.find(d => d.id === backTarget);

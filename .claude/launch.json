@@ -4,8 +4,8 @@
     {
       "name": "static-preview",
       "runtimeExecutable": "ruby",
-      "runtimeArgs": ["-run", "-e", "httpd", "/private/tmp/claude-501/-Users-corybradley-Documents-PAL-TS-Reference-Guide/19711e9a-3466-49b7-9136-4db79a0af3ea/scratchpad/preview-copy", "-p", "8934"],
-      "port": 8934
+      "runtimeArgs": ["-run", "-e", "httpd", "/private/tmp/claude-501/-Users-corybradley-Documents-PAL-TS-Reference-Guide/6d3dd382-988d-4b5c-9eb7-0d61c83a9280/scratchpad/preview-copy", "-p", "8935"],
+      "port": 8935
     }
   ]
 }
