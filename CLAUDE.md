@@ -260,9 +260,8 @@ Status as of 2026-07-06:
   and `sonarretro`. Images: hero (`image_111.jpg`) via the same isolated-alpha-XObject
   technique as the other Sonar-platform cards; diagrams (`image_112.jpg`–`image_116.jpg`)
   autocropped from vector line art via PIL `ImageChops.difference`.
-- **Lights batch complete.** Evenglow through Canadian Retro are all built. No live push
-  has gone out for any of this batch yet — holding per Cory's request until he says to go
-  live.
+- **Lights batch complete.** Evenglow through Canadian Retro are all built and pushed live
+  (commit cc8515f).
 
 ## Drivers / Controllers refresh batch (in progress)
 Separate from the Lights batch above — Cory added a further-organized
@@ -390,8 +389,7 @@ Status as of 2026-07-07:
   genuinely different transformers — treat as unconfirmed-different, don't substitute one
   for the other on an Aqualumin job.
 - All 6 new driver cards wired into the `cat-drivers` hub, the `productSelect` dropdown,
-  and `HIDDEN_BY_DEFAULT` — same pattern as the rest of this batch. No live push has gone
-  out for any of this batch yet, still holding per Cory's request.
+  and `HIDDEN_BY_DEFAULT` — same pattern as the rest of this batch. Pushed live.
 
 ## Automation integrations
 New top-level category, separate from the Lights and Drivers/Controllers batches above —
@@ -439,7 +437,7 @@ etc.) under the `products` hub.
     workaround would apply to any future non-light-product card that needs a
     cause/action table.
   - Wired into `cat-automation`, the `productSelect` dropdown, and `HIDDEN_BY_DEFAULT` —
-    same pattern as the rest of the guide. No live push has gone out for this yet.
+    same pattern as the rest of the guide. Pushed live (commit b6c8bb5).
 
 ## Strip Lighting batch (in progress)
 New products added under the existing `cat-lights` hub (not a new category) — Cory's
@@ -507,8 +505,8 @@ come from each tier's own spec sheets/brochure instead.
   symptoms (dark spot, cracked at a corner, dim segment), so the hardcoded "Light Not
   Turning On" section label is a reasonable-enough fit here, unlike the DMX-only
   `attendant` card.
-  Wired into `cat-lights`, the `productSelect` dropdown, and `HIDDEN_BY_DEFAULT`. No live
-  push has gone out for this yet.
+  Wired into `cat-lights`, the `productSelect` dropdown, and `HIDDEN_BY_DEFAULT`. Pushed
+  live (commit 8517844, along with the rest of the Strip Lighting batch).
   **Corrected 2026-07-07** after building the Perimeter Strip Kits card below, using
   evidence found in that research: (1) the "not field-cut" claim was an overstatement —
   PAL's own in-field cut/reseal instructions explicitly list Quick-Ship SKUs as an
@@ -579,7 +577,7 @@ come from each tier's own spec sheets/brochure instead.
   be re-rendered/re-cropped after Read-tool verification caught the wrong content) —
   every crop in this card was verified with the Read tool before being treated as final.
   Wired into `cat-lights`, the `productSelect` dropdown, and `HIDDEN_BY_DEFAULT`,
-  positioned directly after `quickshipstrip`. No live push has gone out for this yet.
+  positioned directly after `quickshipstrip`. Pushed live (commit 8517844).
 - **Custom Strip Lighting (Design-Build)** (`customstrip`) — new card, built 2026-07-07.
   Last one in the Strip Lighting batch. Confirmed via md5 that the Custom Strip folder's
   `INSTALLATION_GUIDE.pdf` is byte-identical to Quick-Ship's copy (same shared 30-page
@@ -627,8 +625,7 @@ come from each tier's own spec sheets/brochure instead.
   Wired into `cat-lights`, the `productSelect` dropdown, and `HIDDEN_BY_DEFAULT`,
   positioned directly after `perimeterstripkit`.
 - **Strip Lighting batch complete.** Quick-Ship, Perimeter Strip Kits, and Custom Strip
-  are all built. No live push has gone out for any of this batch yet, still holding per
-  Cory's request.
+  are all built and pushed live (commit 8517844).
 
 ## Pending sign-off
 Decision-tree diagrams (Master Triage, Driver Power and Manual Test, Cloning and DIP
