@@ -598,7 +598,9 @@ const DATA = [
     id: "drivers",
     backTo: "cat-drivers",
     title: "PCR-1Z / PCR-2Z / PCR-1Z-SM / PCR-1ZW / PCR-2ZW Drivers",
-    tags: ["driver","pcr-1z","pcr-2z","pcr-1z-sm","wifi","remote pairing","dip switch","cloning","jandy","pentair","hayward","astral","all lights out","won't sync"],
+    photo: "assets/image_65.jpg",
+    photoAlt: "PCR-1Z/PCR-1Z-SM single-zone driver and PCR-2Z dual-zone driver enclosures side by side",
+    tags: ["driver","pcr-1z","pcr-2z","pcr-1z-sm","wifi","remote pairing","dip switch","cloning","jandy","pentair","hayward","astral","all lights out","won't sync","matching code","clearing code"],
     videos: [
       {title:"PAL PCR 1Z SM USA Setup", url:"https://youtu.be/WQdC7NVrqiY"},
       {title:"PAL PCR 2Z USA Setup", url:"https://youtu.be/Xe6EjE5v3hc"},
@@ -606,17 +608,20 @@ const DATA = [
       {title:"PAL App and Handset Coding", url:"https://youtu.be/lmNrurKlMJM"},
     ],
     videoNote: "Note: there are two videos both titled \"PAL PCR 1Z USA Setup\" with different links — flagging for David to confirm which is current before either gets linked here.",
-    facts: `<b>PCR-1Z-SM</b> = switch mode only, cannot upgrade to Wi-Fi/remote without swapping to PCR-1Z/2Z<br>
-            <b>PCR-1Z</b> = single zone, up to 2 lights &nbsp; <b>PCR-2Z</b> = dual zone, up to 5 lights<br>
-            <b>"W" suffix</b> = built-in Wi-Fi<br>
-            1 transmitter pairs to unlimited receivers · 1 receiver max 4 transmitters`,
+    facts: `<b>Part numbers:</b> 64-PCR-1Z-16 / -65 (single zone) &nbsp; 64-PCR-2Z-65 (dual zone) &nbsp; 64-PCR-1ZW-16 / -65, 64-PCR-2ZW-65 (built-in Wi-Fi) &nbsp; 64-PCR-1Z-SM-16 / -65 (switch mode)<br>
+            <b>What the number means:</b> <b>1Z/2Z</b> = number of independently-controlled zones &nbsp; <b>W</b> = built-in Wi-Fi module &nbsp; <b>SM</b> = Switch Mode (no remote/app, color set by buttons on the board) &nbsp; <b>-16/-65</b> = wattage rating<br>
+            <b>What it is:</b> an outdoor-rated low-voltage transformer/driver that powers PAL 4-wire RGB LED pool lights and lets a handheld remote, the Color Touch app (W models), or a competitor automation system control their color and zones.<br>
+            <b>How it operates:</b> converts mains power down to 24V DC for the lights, then reads color/mode commands from the paired PCZ-2 remote (or Wi-Fi/app on "W" models) over its own short-range wireless link — it is not DMX and does not need a separate controller. DIP switches on the board let it instead accept commands from a Jandy, Pentair, Hayward, or Astral automation system ("cloning"), in place of the PAL remote.<br><br>
+            <b>PCR-1Z-SM</b> = switch mode only (8 preset color modes via board buttons, no remote/app) — cannot upgrade to Wi-Fi/remote without swapping to PCR-1Z/2Z<br>
+            <b>PCR-2Z</b> dual-zone wattage: 60/120W &nbsp; All 24V DC, UL676 Pool &amp; Spa Lighting Class 2 LED Driver<br>
+            1 transmitter (PCZ-2) pairs to unlimited receivers · 1 receiver max 4 transmitters`,
     steps: [
       "Switch off power to the driver at the breaker before opening the enclosure.",
-      "Driver box is usually wall-mounted within ~5 ft of the pool, above the waterline. Open the cover (screws around the edge) to see the circuit board.",
-      "Locate the controls: a red power LED, a manual operation button, and a separate Code Setting button — usually near each other, close to the dip switches.<br><img class=\"zoomable\" src=\"assets/image_15.jpg\" alt=\"Labeled PCR-1Z driver board diagram\" style=\"width:100%;border-radius:8px;margin-top:8px;border:1px solid #2a3b5c;cursor:zoom-in;\"><span style=\"display:block;font-size:11px;color:#9fb0c5;margin-top:4px;font-style:italic;\">Labeled board — Manual Operation Button, Code Setting Button, LED Indicator, Wi-Fi Connector</span>",
+      "Driver box is usually wall-mounted within ~5 ft of the pool, above the waterline. Open the cover (screws around the edge) to see the circuit board.<br><img class=\"zoomable\" src=\"assets/image_66.jpg\" alt=\"Labeled PCR-1Z/PCR-1Z-SM driver board diagram\" style=\"width:100%;border-radius:8px;margin-top:8px;border:1px solid #2a3b5c;cursor:zoom-in;\"><span style=\"display:block;font-size:11px;color:#9fb0c5;margin-top:4px;font-style:italic;\">Labeled board (V2 PCR-1Z/PCR-1Z-SM) — Manual Operation Button, Code Setting Button, LED Indicator, Wi-Fi Connector (tap to zoom)</span>",
       "<b>Confirm power first:</b> with power restored, is the LED lit? No LED → problem is the breaker, incoming wiring, or a dead driver — not the light.",
       "<b>If LED is lit but lights still won't respond:</b> press the manual operation button once. Lights come on with that button but not remote/app → driver is fine, it's a pairing or automation issue, not hardware.",
-      "<b>Pairing the remote:</b> press Code Setting button inside the box, then on the remote press Z1 (or S+) three times quickly — light should flash to confirm.<br><img class='zoomable' src='assets/image_16.jpg' alt='PCZ-2 transmitter labeled remote diagram' style='width:100%;border-radius:8px;margin-top:8px;border:1px solid #2a3b5c;cursor:zoom-in;'><span style='display:block;font-size:11px;color:#9fb0c5;margin-top:4px;font-style:italic;'>PCZ-2 remote — button layout and functions (tap to zoom)</span>",
+      "<b>Pairing the remote (Matching Code, per the current official manual):</b> apply power to the receiver, then within 5 seconds press Z1 once on the remote — the light flashes white 3 times if matching succeeded.<br><b>Flag:</b> this guide previously described a different procedure here (Code Setting button inside the box, then Z1 pressed three times). That may reflect real field behavior on an older board revision, so it isn't deleted outright — but the manual's own \"Matching Code\" procedure above is the one to try first, and this discrepancy should go to Jason to confirm which applies before either fully replaces the other.<br><img class='zoomable' src='assets/image_70.jpg' alt='PCZ-2 transmitter labeled remote diagram' style='width:100%;border-radius:8px;margin-top:8px;border:1px solid #2a3b5c;cursor:zoom-in;'><span style='display:block;font-size:11px;color:#9fb0c5;margin-top:4px;font-style:italic;'>PCZ-2 remote — button layout, functions, Matching/Clearing Code procedures (tap to zoom)</span>",
+      "<b>Remote paired to the wrong receiver, or a spare remote needs disconnecting:</b> Clearing Code — apply power to the receiver, then hold Z1 down for 3 seconds. Light flashes 6 times if clearing succeeded. A new code then has to be applied via the Matching Code steps above.",
       "<b>Still no response after the manual button test:</b> this points to a faulty driver. Don't have the customer attempt board-level repair — move to replacement/warranty path.",
     ],
     note: "Multimeter check (PCR-1Z/2Z family, expecting 24V DC at output terminals) should only be walked through with an actual pool tech comfortable working inside a live enclosure — for homeowners, stop at the manual-button test.",
@@ -629,7 +634,7 @@ const DATA = [
         <tr><td>ON ON OFF ON</td><td class="action">PAL</td></tr>
         <tr><td>OFF OFF ON ON</td><td class="action">Astral</td></tr>
       </table>
-      <br><img class='zoomable' src='assets/image_17.jpg' alt='PCR-2Z board with Z2 terminal blocks diagram' style='width:100%;border-radius:8px;margin-top:8px;border:1px solid #2a3b5c;cursor:zoom-in;'><span style='display:block;font-size:11px;color:#9fb0c5;margin-top:4px;font-style:italic;'>PCR-2Z board — Z2 terminal blocks for second zone (tap to zoom)</span><div class="section-label">V3 PCR-1Z-SM Cloning (3-switch)</div>
+      <br><img class='zoomable' src='assets/image_67.jpg' alt='PCR-2Z board with Z1/Z2 terminal blocks diagram' style='width:100%;border-radius:8px;margin-top:8px;border:1px solid #2a3b5c;cursor:zoom-in;'><span style='display:block;font-size:11px;color:#9fb0c5;margin-top:4px;font-style:italic;'>PCR-2Z board — Z1 + Z2 terminal blocks, one zone each (tap to zoom)</span><div class="section-label">V3 PCR-1Z-SM Cloning (3-switch)</div>
       <table class="dip-table">
         <tr><td>OFF ON OFF</td><td class="action">Jandy</td></tr>
         <tr><td>OFF OFF OFF</td><td class="action">Pentair</td></tr>
@@ -637,58 +642,97 @@ const DATA = [
         <tr><td>ON ON OFF</td><td class="action">PAL</td></tr>
         <tr><td>ON ON ON</td><td class="action">Astral</td></tr>
       </table>
+      <img class='zoomable' src='assets/image_68.jpg' alt='PCR-1Z-SM and PCR-1Z/2Z cloning tables with automation brand logos' style='width:100%;border-radius:8px;margin-top:8px;border:1px solid #2a3b5c;cursor:zoom-in;'>
+      <span style='display:block;font-size:11px;color:#9fb0c5;margin-top:4px;font-style:italic;'>Both cloning tables above, matched against each brand's actual logo (tap to zoom)</span>
+
+      <div class="section-label">Zone / Color Temperature Settings (PCR-2Z and V2 PCR-1Z-SM only)</div>
+      <div class="note-box">New to this guide — not previously documented. These are a separate "Other Config" switch bank from the cloning DIP switches above; don't confuse the two banks on the board.</div>
+      <ul class="steps">
+        <li>Switch 1: ON = driver operates entirely as Zone 2 on the remote, OFF = Zone 1 (only matters in single-zone mode)</li>
+        <li>Switch 2: ON = single zone operation, OFF = two zone operation</li>
+        <li>Switches 3 &amp; 4 together set the approximate color temperature of mixed white lights — see table below</li>
+      </ul>
+      <img class='zoomable' src='assets/image_69.jpg' alt='PCR-2Z zone and color temperature DIP switch table' style='width:100%;border-radius:8px;margin-top:8px;border:1px solid #2a3b5c;cursor:zoom-in;'>
+      <span style='display:block;font-size:11px;color:#9fb0c5;margin-top:4px;font-style:italic;'>Switch 3/4 color temperature table (tap to zoom)</span>
+
+      <div class="section-label">Automation Clone Mode — Dedicated Output Relay</div>
+      <div class="note-box">If a customer's automation system needs to switch the PAL lights on/off directly while cloned (not just leave them always-on), a dedicated relay wired between supply and driver is required — the driver alone doesn't provide that switching path once cloned. Wi-Fi module isn't needed in clone mode; disconnect it if not in use.</div>
+      <img class='zoomable' src='assets/image_71.jpg' alt='Automation dedicated light output relay wiring diagram' style='width:100%;border-radius:8px;margin-top:8px;border:1px solid #2a3b5c;cursor:zoom-in;'>
+      <span style='display:block;font-size:11px;color:#9fb0c5;margin-top:4px;font-style:italic;'>Dedicated output relay wiring — applies to PCR-1Z-SM, PCR-1Z, and PCR-2Z (tap to zoom)</span>
     `
   },
   {
     id: "pcr2dmx",
     backTo: "cat-drivers",
     title: "PCR-2DMX Driver (2-Zone DMX)",
+    photo: "assets/image_72.jpg",
+    photoAlt: "PCR-2DMX driver enclosure",
     tags: ["pcr-2dmx","dmx","2 zone","dip switch","channel address","long strip","64-pcr-2dmx"],
-    facts: `<b>PAL drivers are DMX receivers, not controllers.</b> A DMX controller is required between any home automation system and the driver:<br>
+    facts: `<b>Part number:</b> 64-PCR-2DMX<br>
+            <b>What the number means:</b> <b>2DMX</b> = 2 independently-addressable zones, controlled over a DMX512 signal instead of PAL's own remote/app<br>
+            <b>What it is:</b> an outdoor-rated DMX receiver/driver for PAL 4-wire RGB LED lights, used when a home automation or show-control system needs to address the lights directly over DMX rather than through PAL's remote/Wi-Fi ecosystem.<br>
+            <b>How it operates:</b> sits downstream of a separate DMX controller, not connected to a home automation system directly. <b>PAL drivers are DMX receivers, not controllers</b> — a DMX controller is required in between:<br>
             Home Automation System &rarr; DMX Controller &rarr; PAL DMX Driver<br>
+            The driver reads its assigned starting channel from its own dipswitches, then maps the incoming DMX data to Red/Green/Blue output for each of its 2 zones.<br><br>
             16/35/65W versions, 24V DC output for PAL 4-wire lights &nbsp; <b>2 zones</b> (Z1 + Z2 terminal blocks)<br>
             No bonding required — Class 2 power supply, all-plastic PAL fixtures, complies with NEC article 680`,
     steps: [
       "Mount on a flat surface using the enclosure's mounting legs — minimum 5 ft horizontally from the inner pool wall, no lower than 1 ft above max pool water level (measured to top of enclosure).",
       "Bottom (bottom-front) right-hand conduit entry: connect the 110-240V power supply to NEC code requirements.",
-      "Remaining bottom conduit entries: connect the 4-core wire from the PAL 4-wire lights — 2 output conduit entries are provided for up to 2 PAL-LED 4-wire lights per zone terminal block.",
-      "Connect DMX input to the green \"In\" screw terminal block. If looping to another DMX device, use the \"Thru\" terminal block. If this is the last device in the chain, the supplied shunt MUST be placed across the \"Term\"/J3 pins to close the universe — remove it if chaining further.",
+      "Remaining bottom conduit entries: connect the 4-core wire from the PAL 4-wire lights — 2 output conduit entries are provided for up to 2 PAL-LED 4-wire lights per zone terminal block.<br><img class=\"zoomable\" src=\"assets/image_73.jpg\" alt=\"Labeled PCR-2DMX driver board diagram\" style=\"width:100%;border-radius:8px;margin-top:8px;border:1px solid #2a3b5c;cursor:zoom-in;\"><span style=\"display:block;font-size:11px;color:#9fb0c5;margin-top:4px;font-style:italic;\">Labeled board — Manual Operation Button, Code Setting Button, DMX In/Thru/Terminate, Z1 + Z2 terminal blocks, cloning DIP table (tap to zoom)</span>",
+      "Connect DMX input to the green \"In\" screw terminal block. If looping to another DMX device, use the \"Thru\" terminal block. If this is the last device in the chain, the supplied shunt MUST be placed across the \"Term\"/J3 pins to close the universe — remove it if chaining further.<br><img class=\"zoomable\" src=\"assets/image_74.jpg\" alt=\"DMX In/Thru/Term jumper diagram\" style=\"width:100%;border-radius:8px;margin-top:8px;border:1px solid #2a3b5c;cursor:zoom-in;\"><span style=\"display:block;font-size:11px;color:#9fb0c5;margin-top:4px;font-style:italic;\">Shunt on J3 = closed universe (last device); shunt removed = signal passes Thru to the next device (tap to zoom)</span>",
     ],
     issues: [
       ["No DMX signal reaching lights","Confirm shunt/jumper is on \"DMX Term\" only if this is the last device — otherwise it should be removed to pass signal Thru"],
       ["Long run looks dim","Check dipswitch #9 (Long Strip mode). ON intentionally lowers brightness for 30+ ft strip runs — not a fault"],
-      ["Wrong light responds to wrong channel","Confirm 3-channel (dip #7 OFF, addresses 1-379) vs 4-channel (dip #7 ON, addresses 1-505) addressing matches what the DMX controller expects before assuming a wiring fault"],
+      ["Wrong light responds to wrong channel","Confirm 3-channel (dip #7 OFF, addresses 1-379) vs 4-channel (dip #7 ON, addresses 1-505) addressing matches what the DMX controller expects before assuming a wiring fault — see the full address tables below for the exact SW2/SW3 combination"],
       ["All outputs off ~60s after DMX loss","Expected behavior — output holds for 60 seconds after DMX signal is lost, then drives off. Fan (if fitted) turns off after an additional 60 seconds"],
     ],
     issuesNote: "The \"CPU\" LED on the PCB doubles as the DMX signal indicator in DMX mode — illuminated during the DMX packet, flash rate depends on the controller's refresh rate. At high refresh rates it may not appear to flash at all, which is normal, not a fault.",
-    note: "Full per-address dip switch tables (SW2/SW3, 3-channel vs 4-channel) are lengthy binary tables in the source PDF — not reproduced here. Pattern: addresses step by 6 per driver in 3-channel mode, by 8 per driver in 4-channel mode. Pull the source manual for the exact switch combination for a given start address rather than guessing.",
     extra: `
       <div class="section-label">Zone 2 Terminal Blocks</div>
       <div class="order-note">Zone 2 lights connect to the separate Z2 terminal block for independent operation from Zone 1.</div>
+
+      <div class="section-label">Full Per-Address DIP Switch Tables (SW2/SW3)</div>
+      <div class="note-box">Addresses step by 6 per driver in 3-channel mode, by 8 per driver in 4-channel mode. Full tables below — zoom in to read the exact switch combination for a given start address rather than guessing.</div>
+      <img class="zoomable" src="assets/image_75.jpg" alt="PCR-2DMX 3-channel address DIP switch table" style="width:100%;border-radius:8px;margin-top:8px;border:1px solid #2a3b5c;cursor:zoom-in;">
+      <span style="display:block;font-size:11px;color:#9fb0c5;margin-top:4px;font-style:italic;">3-channel addresses, dipswitch #7 OFF — start addresses 1 through 379 (tap to zoom)</span>
+      <img class="zoomable" src="assets/image_76.jpg" alt="PCR-2DMX 4-channel address DIP switch table" style="width:100%;border-radius:8px;margin-top:8px;border:1px solid #2a3b5c;cursor:zoom-in;">
+      <span style="display:block;font-size:11px;color:#9fb0c5;margin-top:4px;font-style:italic;">4-channel addresses, dipswitch #7 ON — start addresses 1 through 505 (tap to zoom)</span>
+
       <div class="section-label">Other Notes</div>
       <ul class="steps">
         <li>Temperature limiting: if the driver's internal temperature exceeds ~60°C, output levels are automatically reduced. This is protective, not a fault.</li>
         <li>The PCR DMX input does not support RDM.</li>
-        <li>Cloning DIP (Jandy/Pentair/Hayward/PAL/Astral) follows the same 3-switch pattern as the PCR-1Z/2Z family — see the Drivers card for the table. The scan of this specific manual's cloning table was garbled by PDF extraction; confirm exact switch positions against the source PDF before quoting them to a customer.</li>
+        <li>Cloning DIP (Jandy/Pentair/Hayward/PAL/Astral) follows the same 3-switch pattern as the PCR-1Z/2Z family — see the Drivers card for the table, or the labeled board diagram above (confirmed to match exactly, no longer a garbled scan).</li>
       </ul>
     `
   },
   {
     id: "pcr3d500",
     backTo: "cat-drivers",
-    title: "PCR-3D-120/500 (500W High-Power Driver, PCZ-2 Remote)",
-    tags: ["pcr-3d","500w","remote only","pcz-2","cloning","zone","64-pcr-3d-120-500"],
-    facts: `500W single Class 2 driver, IP65, UL Listed Swimming Pool and Spa Transformer (WDGV)<br>
+    title: "PCR-3D-120/500 (High-Power Driver, PCZ-2 Remote)",
+    photo: "assets/image_77.jpg",
+    photoAlt: "PCR-3D driver enclosure",
+    tags: ["pcr-3d","500w","300w","remote only","pcz-2","cloning","zone","64-pcr-3d-120-500"],
+    facts: `<b>Part number:</b> 64-PCR-3D-300 (WiFi version: 64-PCR-3DW-300) — this manual's own title uses "PCR-3D-120/500" instead, see the flagged naming mismatch below<br>
+            <b>What the number means:</b> <b>3D</b> = higher-power driver board platform (vs. the 1Z/2Z family) &nbsp; <b>-300</b> = 300W rating &nbsp; <b>W</b> = built-in Wi-Fi<br>
+            <b>What it is:</b> a higher-wattage outdoor transformer/driver for larger PAL 4-wire RGB LED light runs than the 1Z/2Z family supports, controlled by the same PCZ-2 handheld remote family used across PAL's other drivers.<br>
+            <b>How it operates:</b> converts mains power down to 24V DC, then reads color/zone commands from the paired PCZ-2 remote over its own short-range wireless link (not DMX, no separate controller needed) — same operating principle as the Drivers card, just packaged as a single higher-wattage physical unit with Z1+Z2 terminal blocks. DIP switches let it instead be cloned into a Jandy/Pentair/Hayward/Astral automation system in place of the PAL remote.<br><br>
+            Single Class 2 driver, IP65, UL Listed Swimming Pool and Spa Transformer (WDGV) — 11½&quot; x 4¾&quot; x 6⅝&quot; (293 x 119 x 173mm)<br>
             Factory-paired to the included <b>PCZ-2</b> handheld remote — fit its 2 batteries and it's ready to pair<br>
             Has Z1 + Z2 terminal blocks (2 zones) despite being a single physical unit<br>
-            <b>Note:</b> this manual's cover/title lists 12V DC but the installation notes state 24V DC output — confirm actual output voltage before advising a customer rather than assuming either figure`,
+            <b>Flag — wattage/SKU naming mismatch:</b> this manual's own title is "PCR-3D-120/500," but PAL's current sell sheet lists the PCR-3D as 300W/24V only (SKU 64-PCR-3D-300, WiFi version 64-PCR-3DW-300) — confirm the actual nameplate rating on the unit in front of you rather than assuming from either document<br>
+            <b>Note:</b> this manual's cover/title also lists 12V DC but the installation notes state 24V DC output — matches the same recurring copy-paste artifact confirmed across other PAL manuals; 24V DC is correct`,
     steps: [
-      "Mount on a flat surface using the enclosure's mounting legs — minimum 5 ft horizontally from the inner pool wall, no lower than 1 ft above max pool water level (measured to top of enclosure).",
-      "Feed the mains power cable through the center-front conduit entry. Using a twist-on wire nut, join the mains wires to the 2 loose wires from the PCB, matching colors — connect to NEC code requirements.",
-      "Use the remaining conduit entries for the 4-core wire from the PAL 4-wire lights — 2 output conduit entries are provided per zone for up to 2 PAL-LED 4-wire lights.",
+      "Mount on a flat surface using the enclosure's mounting legs — minimum 5 ft horizontally from the inner pool wall, no lower than 1 ft above max pool water level (measured to top of enclosure).<br><img class=\"zoomable\" src=\"assets/image_78.jpg\" alt=\"PCR-3D dimension diagram\" style=\"width:100%;border-radius:8px;margin-top:8px;border:1px solid #2a3b5c;cursor:zoom-in;\"><span style=\"display:block;font-size:11px;color:#9fb0c5;margin-top:4px;font-style:italic;\">11½\" x 4¾\" x 6⅝\" (293 x 119 x 173mm) (tap to zoom)</span>",
+      "Remove conduit plugs as required, leaving plugs in unused conduit adapters — do not use the side knock-outs. Feed the mains power cable through the center-front conduit entry; using a twist-on wire nut, join the mains wires to the 2 loose wires from the PCB, matching colors — connect to NEC code requirements.<br><img class=\"zoomable\" src=\"assets/image_79.jpg\" alt=\"PCR-3D conduit removal and internal wiring diagram\" style=\"width:100%;border-radius:8px;margin-top:8px;border:1px solid #2a3b5c;cursor:zoom-in;\"><span style=\"display:block;font-size:11px;color:#9fb0c5;margin-top:4px;font-style:italic;\">Conduit removal, mains wire-nut splice, and Z1/Z2 terminal block wiring (tap to zoom)</span>",
+      "Use the remaining conduit entries for the 4-core wire from the PAL 4-wire lights — 2 output conduit entries are provided per zone for up to 2 PAL-LED 4-wire lights (shown in the diagram above).",
       "Driver is factory set to operate with the included PCZ-2 transmitter — just fit its 2 batteries. See the Drivers card for full PCZ-2 remote button layout, pairing steps, and mode list.",
     ],
     extra: `
+      <div class="note-box"><b>Newer V3 board exists, not yet built into this guide:</b> PAL's Aug–Sept 2025 update addendum describes a "3D and 3DMX High Powered" V3 board (SKUs 64-PCR-3D / 64-PCR-3DW / 64-PCR-3DMX — <b>not</b> the 8Z variant) that is mode-selected via dip switches A/B into 4 distinct operating modes (Cloner / Module / PCR8-legacy / DMX), each with its own dip-switch meanings — a genuine architecture change, not a copy-paste artifact. The Cloning/Zone tables below apply to the standard board only. Don't apply the V3 mode scheme in the field from memory — this needs Jason's review before it's built into the guide as its own diagnostic section (see CLAUDE.md Pending Sign-off).</div>
+
       <div class="section-label">Cloning Settings (Jandy / Pentair / Hayward / PAL / Astral)</div>
       <table class="dip-table">
         <tr><td>OFF ON OFF ON</td><td class="action">Jandy</td></tr>
@@ -697,6 +741,10 @@ const DATA = [
         <tr><td>ON ON OFF ON</td><td class="action">PAL</td></tr>
         <tr><td>OFF OFF ON ON</td><td class="action">Astral</td></tr>
       </table>
+      <img class="zoomable" src="assets/image_80.jpg" alt="PCR-3D cloning settings DIP switch table with board diagram" style="width:100%;border-radius:8px;margin-top:8px;border:1px solid #2a3b5c;cursor:zoom-in;">
+      <span style="display:block;font-size:11px;color:#9fb0c5;margin-top:4px;font-style:italic;">Code Setting Switches location on board (tap to zoom)</span>
+      <div class="note-box">If the PAL lights are to be used with automation, do not also use the handheld remote control, and disconnect the Wi-Fi module from the board if fitted. If the automation system does not turn the PAL lights on or off and the driver has power, press the Z1 button once to turn the PAL driver on.</div>
+
       <div class="section-label">Zone Settings</div>
       <table class="dip-table">
         <tr><td>SW1 ON</td><td class="action">Driver operates entirely as Zone 2 (single-zone mode only)</td></tr>
@@ -708,25 +756,44 @@ const DATA = [
         <tr><td>SW3/4 OFF-ON</td><td class="action">4000K</td></tr>
         <tr><td>SW3/4 ON-ON</td><td class="action">3000K</td></tr>
       </table>
+      <img class="zoomable" src="assets/image_81.jpg" alt="PCR-3D zone and color temperature DIP switch table with board diagram" style="width:100%;border-radius:8px;margin-top:8px;border:1px solid #2a3b5c;cursor:zoom-in;">
+      <span style="display:block;font-size:11px;color:#9fb0c5;margin-top:4px;font-style:italic;">Other Config Switches location on board (tap to zoom)</span>
       <div class="order-note">Must power off before changing any dip switch. When synced to another brand, static colors match but color-change timing may vary, and PAL's infinite color/dimming features aren't available while cloned.</div>
+
+      <div class="section-label">Automation Clone Mode — Dedicated Output Relay</div>
+      <div class="note-box">If a customer's automation system needs to switch the PAL lights on/off directly while cloned (not just leave them always-on), a dedicated relay wired between supply and driver is required — the driver alone doesn't provide that switching path once cloned.</div>
+      <img class="zoomable" src="assets/image_83.jpg" alt="Automation dedicated light output relay wiring diagram" style="width:100%;border-radius:8px;margin-top:8px;border:1px solid #2a3b5c;cursor:zoom-in;">
+      <span style="display:block;font-size:11px;color:#9fb0c5;margin-top:4px;font-style:italic;">Dedicated output relay wiring (tap to zoom)</span>
+
       <div class="section-label">Maintenance</div>
       <ul class="steps">
         <li>Periodically check the fan filter for dirt/dust buildup.</li>
         <li>Unclip the cover from the bottom of the controller to access the filter. Clean with water if necessary and let it fully dry before replacing.</li>
       </ul>
+      <img class="zoomable" src="assets/image_82.jpg" alt="PCR-3D fan filter maintenance diagram" style="width:100%;border-radius:8px;margin-top:8px;border:1px solid #2a3b5c;cursor:zoom-in;">
+      <span style="display:block;font-size:11px;color:#9fb0c5;margin-top:4px;font-style:italic;">Unclip the bottom cover to access the fan filter (tap to zoom)</span>
     `
   },
   {
     id: "pcr3dmx8z",
     backTo: "cat-drivers",
     title: "PCR-3DMX-8Z (8-Zone DMX Driver)",
+    photo: "assets/image_87.jpg",
+    photoAlt: "PCR-3DMX-8Z driver enclosure",
     tags: ["pcr-3dmx","8z","8 zone","dmx","channel address","dip switch","jst clip","64-pcr-3dmx-8z"],
-    facts: `8-zone DMX driver, IP65, UL Listed Class 2 Power Supply, 3-year warranty<br>
+    facts: `<b>Part number:</b> 64-PCR-3DMX-8Z<br>
+            <b>What the number means:</b> <b>3DMX</b> = higher-power driver board platform running DMX firmware (vs. the smaller PCR-2DMX) &nbsp; <b>8Z</b> = 8 independently-addressable zones<br>
+            <b>What it is:</b> an outdoor-rated 8-zone DMX receiver/driver for PAL 4-wire RGB LED lights, built for larger installs where a home automation or show-control system needs to choreograph many zones over DMX rather than through PAL's own remote/Wi-Fi ecosystem.<br>
+            <b>How it operates:</b> same DMX-receiver architecture as the PCR-2DMX card, scaled up to 8 zones (24 total channels). Sits downstream of a separate DMX controller — <b>PAL drivers are DMX receivers, not controllers</b> (Home Automation System &rarr; DMX Controller &rarr; PAL DMX Driver). Reads its assigned starting channel from its own dipswitches, then maps incoming DMX data to Red/Green/Blue output per zone; multiple 8-zone drivers can be chained by giving each one a different starting channel.<br><br>
+            8-zone DMX driver, IP65, UL Listed Class 2 Power Supply, 3-year warranty — 11&#8541;&quot; x 4&#8541;&quot; x 6&#8542;&quot; (293 x 119 x 175mm)<br>
             <b>Input power wiring is reversed from other PAL drivers</b> — at the JST clip behind the front board: <b>Brown = Positive (Hot)</b>, on the TOP of the clip; <b>Blue = Negative (Neutral)</b>, on the bottom. Confirm this explicitly before wiring — it's a common source of "no power" calls on this specific model.<br>
-            24 total DMX channels per 8-zone driver (3 channels — R/G/B — per zone)`,
+            24 total DMX channels per 8-zone driver (3 channels — R/G/B — per zone)<br>
+            <b>Note:</b> this manual's title and "Important Information" section both state 12V DC, but "IMPORTANT INFORMATION" also says (twice) the driver is "specifically designed to supply 24V DC" — matches the same recurring copy-paste artifact confirmed across other PAL manuals; 24V DC is correct<br>
+            <b>Flag — manual naming artifact:</b> this manual's own install-steps heading says "INSTALLATION INSTRUCTIONS FOR PCR-2MX RGB OUTDOOR DRIVER" and its DMX Operation section says "remote DMX control over the two zone outputs in the PCR 2Z" — both clearly copy-pasted from a 2-zone product's manual and left unedited. Doesn't change any actual instructions for this 8-zone unit, but don't let a customer reading their own manual get confused by it — flagged here rather than silently retyped as if PAL's manual said "8Z" throughout.<br>
+            Excluded from the "3D and 3DMX High Powered" V3 board update (SKUs 64-PCR-3D / 64-PCR-3DW / 64-PCR-3DMX) per PAL's own addendum — that 4-mode dip-switch architecture does not apply to this 8Z model`,
     steps: [
-      "Mount on a flat surface using the enclosure's mounting legs — minimum 5 ft horizontally from the inner pool wall, no lower than 1 ft above max pool water level.",
-      "Front-left entry: connect the 100-240V power supply. At the JST clip, join brown and blue open wires using twist-on wire connectors — brown on top (positive/hot), blue on bottom (negative/neutral).",
+      "Mount on a flat surface using the enclosure's mounting legs — minimum 5 ft horizontally from the inner pool wall, no lower than 1 ft above max pool water level.<br><img class=\"zoomable\" src=\"assets/image_84.jpg\" alt=\"PCR-3DMX-8Z dimension and knockout diagram\" style=\"width:100%;border-radius:8px;margin-top:8px;border:1px solid #2a3b5c;cursor:zoom-in;\"><span style=\"display:block;font-size:11px;color:#9fb0c5;margin-top:4px;font-style:italic;\">11&#8541;\" x 4&#8541;\" x 6&#8542;\" (293 x 119 x 175mm) — 6 conduit knockouts, use a 3/16\" flat-blade screwdriver + light hammer tap, or drill the centered pilot point (tap to zoom)</span>",
+      "Front-left entry: connect the 100-240V power supply. At the JST clip, join brown and blue open wires using twist-on wire connectors — brown on top (positive/hot), blue on bottom (negative/neutral).<br><img class=\"zoomable\" src=\"assets/image_85.jpg\" alt=\"Labeled PCR-3DMX-8Z driver board diagram\" style=\"width:100%;border-radius:8px;margin-top:8px;border:1px solid #2a3b5c;cursor:zoom-in;\"><span style=\"display:block;font-size:11px;color:#9fb0c5;margin-top:4px;font-style:italic;\">Labeled board — DMX In/Thru/Shunt-Termination, DIP Switches 9-1, DMX Connection LED, Zone 1-8 terminals, JST input power clip (tap to zoom)</span>",
       "Remaining conduit entries: connect the 4-core wire from the PAL 4-wire lights to the correct zone terminals.",
       "Connect DMX input to the \"IN\" screw terminal block, DMX loop to the \"THRU\" terminal block. If no loop-out is used, place the supplied shunt across the \"TERM\" pins. Shielded DMX cable or shielded twisted pair (e.g. CAT5e/6) is recommended.",
     ],
@@ -742,7 +809,10 @@ const DATA = [
       <div class="section-label">Zone / Channel Mapping (single 8-zone driver)</div>
       <div class="order-note">Each zone occupies 3 sequential channels (Red, Green, Blue): Zone 1 = CH1-3, Zone 2 = CH4-6, Zone 3 = CH7-9, Zone 4 = CH10-12, Zone 5 = CH13-15, Zone 6 = CH16-18, Zone 7 = CH19-21, Zone 8 = CH22-24.</div>
       <div class="section-label">Starting Channel by Driver # (multiple 8-zone drivers chained)</div>
-      <div class="order-note">Each 8-zone driver occupies 24 channels. Starting channel = 1 + 24 &times; (driver # &minus; 1) — e.g. driver 1 starts at channel 1, driver 2 at channel 25, driver 3 at channel 49, and so on. If mixing an 8-zone driver with a 2-zone driver, the 2-zone unit picks up the next open channel after the 8-zone block. The exact 9-switch (SW1-SW9) binary dipswitch combination for each starting channel is in the source PDF — pull it rather than estimating for a live install.</div>
+      <div class="note-box"><b>Flag — the manual's own table disagrees with itself:</b> it has two "STARTING CHANNEL" columns side by side, headed "Verify These." For drivers 1-4 both columns agree (1, 25, 49, 73 — matching the arithmetic pattern 1 + 24 &times; (driver # &minus; 1)). From driver 5 onward the two columns diverge by a consistent 3 channels (e.g. driver 5: 97 vs 100; driver 22: 505 vs 508) — the dipswitch pattern shown corresponds to the second (higher) column. Don't silently pick one — set the dipswitches per the image below and verify the actual live starting channel against the DMX controller rather than trusting either printed number blindly.</div>
+      <img class="zoomable" src="assets/image_86.jpg" alt="PCR-3DMX-8Z starting channel DIP switch table and zone channel allocations" style="width:100%;border-radius:8px;margin-top:8px;border:1px solid #2a3b5c;cursor:zoom-in;">
+      <span style="display:block;font-size:11px;color:#9fb0c5;margin-top:4px;font-style:italic;">Full starting-channel DIP table (drivers 1-22) and 8-zone channel allocations (tap to zoom)</span>
+      <div class="order-note">If mixing an 8-zone driver with a 2-zone driver, the 2-zone unit picks up the next open channel after the 8-zone block.</div>
       <div class="section-label">Other Notes</div>
       <ul class="steps">
         <li>All vertical dipswitches (SW6, SW7, SW9, SW5) should be in the OFF position — these double as power/signal status LEDs and should be lit once the driver has power.</li>
