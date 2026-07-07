@@ -109,22 +109,21 @@ Don't use bare `eval()` — `const` declarations don't leak into the outer scope
   the official PCR-1Z/2Z/1Z-SM manual.
 
 ## Open content gaps (known, not yet built)
-- **PCR-5S** (5-channel relay controller) — entirely undocumented in the guide.
-- **Canadian Retro**, **TreoMicro Nicheless** — two remaining products with source manuals
-  on hand (`source-manuals/`) but no card in `DATA` yet. In progress, one at a time,
-  pausing for Cory after each — see "Image refresh / new-card batch" below.
+- **PCR-5S** (5-channel relay controller) — entirely undocumented in the guide. The only
+  remaining known gap — the Lights refresh/new-card batch (Evenglow through Canadian
+  Retro) is now complete, see "Image refresh / new-card batch" below.
 
 Note: the LED Bubbler (Niche Bubbler) troubleshooting card now exists in `DATA`
-(id: `ledbubbler`) — no longer an open gap. Aqualumin Replacement (id: `aqualumin`) and
-Sonar Retro Bulb (id: `sonarretro`) are also now built — see batch status below. Several
-bubbler install videos, and Treo Micro videos, still sit unmapped in the "Other PAL
-Videos" catch-all card (id: `morevideos`) rather than being attached to their own card —
-resolve once TreoMicro Nicheless is built. Of the Sonar-branded videos in that catch-all,
-"PAL Sonar Remote Programming" (×2) and "PAL Retro Lamp/Bulb Troubleshooting" / "PAL Retro
-Light" have now been moved to the `sonarretro` card (confirmed match — see batch status).
-"PAL Sonar Light" and "PAL Canadian Sonar Light" remain unmapped — still unconfirmed
-whether they show the `sonarretro` product or the still-unbuilt Canadian Retro (same Sonar
-tech platform, different niche adapter); resolve once Canadian Retro is built.
+(id: `ledbubbler`) — no longer an open gap. Aqualumin Replacement (`aqualumin`), Sonar
+Retro Bulb (`sonarretro`), Evenglow Fiberglass (`evenglowfiberglass`), Treo Micro
+(`treomicro`), and Canadian Retro (`canadianretro`) are all now built — see batch status
+below. Several bubbler install videos and Treo Micro videos still sit unmapped in the
+"Other PAL Videos" catch-all card (id: `morevideos`) rather than being attached to their
+own card. Of the Sonar-branded videos in that catch-all, "PAL Sonar Remote Programming"
+(×2) and "PAL Retro Lamp/Bulb Troubleshooting" / "PAL Retro Light" moved to the
+`sonarretro` card, and "PAL Canadian Sonar Light" moved to the `canadianretro` card
+(confirmed matches). "PAL Sonar Light" (non-Canadian) remains unmapped — still
+unconfirmed which product it shows.
 
 ## Image refresh / new-card batch (in progress)
 Cory is having all product images redone from official manuals rather than the original
@@ -204,10 +203,54 @@ Status as of 2026-07-06:
   two-page-per-PDF-page spreads; split into left/right halves and autocropped via PIL
   `ImageChops.difference` before saving. Reused the existing `image_31.jpg` (24V PCR-1Z
   wiring overview) for the Newer-Generation note-box rather than re-extracting it.
-- **Canadian Retro**, **TreoMicro Nicheless** — new cards, not yet built. Proceeding one at
-  a time in that order, pausing for Cory after each, per his request (2026-07-07).
-- No live push has gone out for any of this batch yet — holding per Cory's request until
-  he says to go live.
+- **Treo Micro (Nicheless)** (`treomicro`) — new card, built (2026-07-07). Two source
+  files: an 8-page install/troubleshooting manual (`TreoMicro.pdf`) and a 2-page sell sheet
+  (`PALTreoMicro-2.pdf`). Genuinely different mechanism from every other nicheless card so
+  far: push-to-fit (not twist), removed with a flat-blade screwdriver rather than unscrewing
+  or twisting, and it supports three distinct wall-fitting paths from one manual — concrete/
+  gunite (conduit embedded during construction, no retrofit option), fiberglass (new 50mm/2"
+  hole + 64-EGMIC-NA adapter, escalate-worthy first install), and vinyl (64-EGMIC-CG adapter
+  threads into an *existing* standard 1.5" wall fitting — no new drilling if that fitting's
+  already there). Findings: (1) the recurring 12V/24V artifact, this time appearing twice in
+  one manual — the troubleshooting table says "12volts DC" and the Gunite/Concrete install
+  diagram itself has both a "24VDC Transformer" label and a "12 VAC Voltage Transformer"
+  callout side by side — front matter and sell sheet both confirm 24V DC is correct. (2) The
+  cloning DIP table is an older 2-switch scheme (no Astral), unlike the 3-switch V3 table on
+  the `drivers` card, despite both covering PCR-1Z/2Z — flagged, not merged. (3) This manual
+  states PCR-2Z can power up to 60 Treo Micro lights (PCR-1Z up to 14) with a J box — much
+  higher than the "up to 5 / up to 2" figures on the `treoretro` card. Not treated as a
+  conflict — Treo Micro is lower-wattage, so more fit per driver — but cross-referenced both
+  directions so a tech doesn't assume one number applies to the other product. Images: hero
+  (`image_105.jpg`) via the same isolated-alpha-XObject technique as Sonar Retro Bulb and
+  Evenglow Fiberglass; diagrams (`image_106.jpg`–`image_110.jpg`) autocropped from vector
+  line art via PIL `ImageChops.difference`.
+- **Canadian Retro (Sonar)** (`canadianretro`) — new card, built (2026-07-07). Last one in
+  the Lights batch. Two source files: an 8-page install manual (`SonarCanadianRetro.pdf`,
+  titled "Sonar Canadian Retro Light") and a 2-page sell sheet (`PALCanadaRetro.pdf`,
+  titled "Sonar LED Retro-Fit Pool Light for Aqua/Lamp® Replacement" — confirms this is a
+  Canadian-market retrofit for a specific competitor niche brand, "Aqua/Lamp"). Yet another
+  distinct install mechanism from every other retrofit card so far: not a bulb swap (Sonar
+  Retro Bulb) or a bracket+light swap onto an existing niche (Aqualumin) — this is a full
+  light replacement wired on-site via a field-attachable plug (strip cable, wire into a
+  screw-terminal plug block, assemble a plug housing/gland), then mounted through a new
+  adapter plate that reuses the existing niche's mounting tabs. Findings: (1) voltage is
+  genuinely flexible here, not the recurring artifact — the install manual consistently
+  states 12V AC *or* 12/24V DC throughout, no internal contradiction — though the sell
+  sheet's own feature bullet narrows it to "12V AC" only, a minor cross-document
+  inconsistency flagged but not resolved. (2) No troubleshooting section exists in either
+  source (same coverage gap as Aqualumin), so the card points to LED Light Diagnostics and
+  the Probability-Based Framework instead. (3) No remote pairing/cloning button sequence is
+  documented for this product specifically, even though the sell sheet confirms Hayward/
+  Jandy/Pentair cloning support via the same general "Sonar" remote family used on
+  Aqualumin and Sonar Retro Bulb — flagged as unconfirmed rather than assumed identical.
+  Moved "PAL Canadian Sonar Light" out of the `morevideos` catch-all onto this card
+  (confirmed match on manual title) and updated the cross-reference notes on `aqualumin`
+  and `sonarretro`. Images: hero (`image_111.jpg`) via the same isolated-alpha-XObject
+  technique as the other Sonar-platform cards; diagrams (`image_112.jpg`–`image_116.jpg`)
+  autocropped from vector line art via PIL `ImageChops.difference`.
+- **Lights batch complete.** Evenglow through Canadian Retro are all built. No live push
+  has gone out for any of this batch yet — holding per Cory's request until he says to go
+  live.
 
 ## Drivers / Controllers refresh batch (in progress)
 Separate from the Lights batch above — Cory added a further-organized

@@ -143,6 +143,8 @@
       <option value="aqualumin">Aqualumin Replacement (Sonar Retro Fit)</option>
       <option value="sonarretro">Sonar Retro Bulb (Evenglow)</option>
       <option value="evenglowfiberglass">Evenglow Fiberglass (Wet Niche)</option>
+      <option value="treomicro">Treo Micro (Nicheless)</option>
+      <option value="canadianretro">Canadian Retro (Sonar)</option>
       <option value="drivers">Drivers (PCR-1Z / PCR-2Z family)</option>
       <option value="pcr2dmx">PCR-2DMX Driver (2-Zone DMX)</option>
       <option value="pcr3d500">PCR-3D-120/500 (500W Driver)</option>
@@ -276,6 +278,8 @@ const DATA = [
       <div class="product-link" onclick="jumpToProduct('aqualumin')">Aqualumin Replacement (Sonar Retro Fit)</div>
       <div class="product-link" onclick="jumpToProduct('sonarretro')">Sonar Retro Bulb (Evenglow)</div>
       <div class="product-link" onclick="jumpToProduct('evenglowfiberglass')">Evenglow Fiberglass (Wet Niche)</div>
+      <div class="product-link" onclick="jumpToProduct('treomicro')">Treo Micro (Nicheless)</div>
+      <div class="product-link" onclick="jumpToProduct('canadianretro')">Canadian Retro (Sonar)</div>
     `
   },
   {
@@ -579,7 +583,7 @@ const DATA = [
             <b>Control:</b> "Sonar" handheld remote (channel buttons 1–4, not Z1/Z2 zones) + optional Wi-Fi module (64-PAL-SW, sold separately) for app control<br>
             <b>Color:</b> 16 million colors, adjustable white 2700K–6500K<br>
             <b>SKUs:</b> 64-PAL-RAL (remote, no transformer) / -80 / -150 (cable lengths) / -T, -80-T, -150-T (bundled with the PCR-2T-65 transformer)`,
-    videoNote: "The \"PAL Sonar Remote Programming\" videos are cross-referenced on the <b>Sonar Retro Bulb</b> card rather than duplicated here — same remote-button pairing/cloning shape, though that product's remote goes up to a 5th (Astral) channel that this one's reference doesn't show. \"PAL Sonar Light\" and \"PAL Canadian Sonar Light\" remain in the Other PAL Videos catch-all, unconfirmed whether they show this product or the still-unbuilt Canadian Retro.",
+    videoNote: "The \"PAL Sonar Remote Programming\" videos are cross-referenced on the <b>Sonar Retro Bulb</b> card rather than duplicated here — same remote-button pairing/cloning shape, though that product's remote goes up to a 5th (Astral) channel that this one's reference doesn't show. \"PAL Canadian Sonar Light\" has been moved to the <b>Canadian Retro</b> card (confirmed match). \"PAL Sonar Light\" (non-Canadian) remains in the Other PAL Videos catch-all, still unconfirmed which product it shows.",
     issuesNote: "This product's own manual has no troubleshooting table — treat electrical faults like any other PAL LED light (see LED Light Diagnostics and Probability-Based Diagnostic Framework). Its pairing/cloning mechanism is genuinely different from the rest of this guide — don't reach for the PCR-1Z/2Z DIP switch table below by habit.",
     issues: [
       ["No power to light","Confirm 24V DC at the PCR-2T-65 transformer output. This product is only rated for the PCR-2T-65 — a PCR-1Z/2Z substitution is not supported by the spec sheet"],
@@ -623,7 +627,7 @@ const DATA = [
       {title:"PAL Retro Lamp/Bulb Troubleshooting", url:"https://youtu.be/LAUh6TSKc0g"},
       {title:"PAL Retro Light", url:"https://youtu.be/RzfOV0NYd2I"},
     ],
-    videoNote: "The two \"PAL Sonar Remote Programming\" videos cover this product's remote (zone linking + cloning channels) — the same remote-button cloning convention, minus the 5th (Astral) channel, is also used on the <b>Aqualumin Replacement</b> card. \"PAL Sonar Light\" and \"PAL Canadian Sonar Light\" remain in the <b>Other PAL Videos</b> catch-all — unconfirmed whether they show this product or the still-unbuilt Canadian Retro (same Sonar tech platform).",
+    videoNote: "The two \"PAL Sonar Remote Programming\" videos cover this product's remote (zone linking + cloning channels) — the same remote-button cloning convention, minus the 5th (Astral) channel, is also used on the <b>Aqualumin Replacement</b> card. \"PAL Canadian Sonar Light\" has been moved to the <b>Canadian Retro</b> card (confirmed match). \"PAL Sonar Light\" (non-Canadian) remains in the <b>Other PAL Videos</b> catch-all — still unconfirmed which product it shows.",
     facts: `<b>Part numbers:</b> 64-PAL-SRL-RGB / -RGB-120 (multi-color) &nbsp; 64-PAL-SRL-CW / -CW-120 (cool white) &nbsp; 64-PAL-SRL-WW / -WW-120 (warm white) &nbsp; Accessories: 64-PAL-SR (Sonar remote), 64-PAL-SW (Sonar Wi-Fi module, sold separately)<br>
             <b>What the number means:</b> <b>SRL</b> = Sonar Retro Lamp &nbsp; <b>RGB/CW/WW</b> = color option &nbsp; <b>-120</b> suffix = 120V mains version (unmarked = Low Voltage)<br>
             <b>What it is:</b> a screw-in LED bulb retrofit for an <b>existing</b> PAR38-style pool light fixture — not a full light/housing replacement like the other products in this guide. The customer's existing housing, lens, and gasket stay in place; only the bulb itself is swapped. Suitable for gunite/concrete, fiberglass, and vinyl liner pools.<br>
@@ -685,6 +689,82 @@ const DATA = [
       <img class="zoomable" src="assets/image_31.jpg" alt="Evenglow 24V PCR-1Z wiring overview diagram" style="width:100%;border-radius:8px;margin-top:8px;border:1px solid #2a3b5c;cursor:zoom-in;">
       <span style="display:block;font-size:11px;color:#9fb0c5;margin-top:4px;font-style:italic;">24V PCR-1Z driver wiring overview — Blue/Grey/Red/White light leads, E/A/N power terminals, 3-switch cloning DIP (tap to zoom)</span>
     `
+  },
+  {
+    id: "treomicro",
+    backTo: "cat-lights",
+    title: "Treo Micro (Nicheless)",
+    photo: "assets/image_105.jpg",
+    photoAlt: "Treo Micro RGB pool light, lit",
+    tags: ["treo micro","treomicro","egmic","24v","12v","light won't turn on","out of sync","nicheless","push to fit","pcr-1z","pcr-2z","drill","hole saw","wall fitting"],
+    facts: "<b>Power/driver:</b> PCR-1Z (up to 14 lights w/ J box) or PCR-2Z (up to 60 lights w/ J box) · PCZ-2 remote<br><b>Voltage:</b> 24V DC — do not connect to 120V<br><img class='zoomable' src='assets/image_109.jpg' alt='Treo Micro PCR-1Z/PCR-2Z drivers, PCZ-2 transmitter, and cloning DIP table' style='width:100%;border-radius:8px;margin-top:8px;border:1px solid #2a3b5c;cursor:zoom-in;'><span style='display:block;font-size:11px;color:#9fb0c5;margin-top:4px;font-style:italic;'>PCR-1Z/PCR-2Z drivers, PCZ-2 transmitter, and 2-switch cloning DIP table — no Astral option on this table (tap to zoom)</span>",
+    issuesNote: "Work this in order — \"faulty globe\" is a conclusion you arrive at, not something you test for directly. You confirm it by ruling out everything upstream first.<br><br><b>Flag — 12V/24V artifact, two spots in this manual:</b> the front matter (\"This 24V Underwater Light... DO NOT CONNECT THIS 24V DC LIGHT DIRECT TO A 120V CIRCUIT\") and the sell sheet both state 24V DC consistently for this product — but the troubleshooting table below states \"Check Driver output under load using a multimeter. 12volts DC,\" and the Gunite/Concrete install diagram (see Extra below) labels the same transformer box \"24VDC Transformer\" right next to a separate \"12 VAC Voltage Transformer\" callout. Matches the recurring 12V/24V copy-paste artifact confirmed across other PAL manuals — 24V DC is correct; the Action column below has been corrected to read 24V DC rather than reproducing the manual's 12V line as-is.",
+    issues: [
+      ["Driver not connected to power","Confirm driver plugged in, power LED lit. No LED → driver goes back to PAL"],
+      ["Faulty driver","Check driver output under load — should read 24V DC"],
+      ["Cut cable","Check voltage at the light with a multimeter (light disconnected from cable)"],
+      ["Faulty LED driver inside control box","Push test button inside control box. Still nothing → return to PAL"],
+      ["Faulty globe","Only conclude this if voltage at the light tests correct and the light still won't illuminate. Replace globe."],
+    ],
+    syncIssues: [
+      ["Miswired to control box","Check color wire sequence into control box terminals"],
+      ["Miswired to LED lamp","Check color sequence at the LED lamp terminal block inside the light"],
+    ],
+    steps: [
+      "Check <b>LED Light Diagnostics</b> first if the complaint is 'not working' or 'flashing' — this rules out light-head/short issues before you touch the driver.",
+      "Switch off the breaker before touching anything.",
+      "Carefully use a flat-blade screwdriver to dislodge the light from the niche/pipe, then pull it out.<br><img class=\"zoomable\" src=\"assets/image_108.jpg\" alt=\"Treo Micro removing and installing light diagram\" style=\"width:100%;border-radius:8px;margin-top:8px;border:1px solid #2a3b5c;cursor:zoom-in;\"><span style=\"display:block;font-size:11px;color:#9fb0c5;margin-top:4px;font-style:italic;\">Removing (screwdriver dislodge + pull) and installing (push to fit) (tap to zoom)</span>",
+      "Unscrew the protective caps from the plug and light socket, then insert the plug into the light and secure with the screw-on sleeve.<br><img class=\"zoomable\" src=\"assets/image_110.jpg\" alt=\"Treo Micro connecting to light plug diagram\" style=\"width:100%;border-radius:8px;margin-top:8px;border:1px solid #2a3b5c;cursor:zoom-in;\"><span style=\"display:block;font-size:11px;color:#9fb0c5;margin-top:4px;font-style:italic;\">Connecting to light — cap removal and plug/sleeve sequence (tap to zoom)</span>",
+      "If comfortable with a multimeter: check DC volts at the cable from the driver side — expecting 24V DC. Voltage present but light still dead → light head is bad. No voltage → problem is upstream (driver/cable).",
+      "No multimeter handy? Swap in a known-good light head if available, or move to the driver check before sending a replacement part.",
+      "Reinstall: push the light into the niche/conduit, then use the tool to rotate it so the PAL logo shows at top — push-to-fit, don't force it."
+    ],
+    escalate: "A first-time fiberglass install means drilling a 50mm (2\") hole through the pool wall for the PAL Micro Wall Fitting + 64-EGMIC-NA adapter — an irreversible structural change, not a simple parts swap. Don't walk a homeowner through drilling over the phone.<br><br>Vinyl installs are different: the 64-EGMIC-CG adapter threads into an <b>existing</b> standard 1.5\" vinyl wall fitting — no new drilling needed if that fitting is already in place. Concrete/gunite installs require the 1\" conduit to already be embedded during construction — not a retrofit option for an existing pool that doesn't already have it.",
+    extra: `
+      <div class="section-label">Wall Fitting Reference — Concrete / Fiberglass / Vinyl</div>
+      <img class="zoomable" src="assets/image_106.jpg" alt="Treo Micro wall fitting diagrams for concrete, fiberglass, and vinyl pools" style="width:100%;border-radius:8px;margin-top:8px;border:1px solid #2a3b5c;cursor:zoom-in;">
+      <span style="display:block;font-size:11px;color:#9fb0c5;margin-top:4px;font-style:italic;">Concrete (gunite surround), fiberglass (64-EGMIC-NA adapter, 50mm hole), and vinyl (64-EGMIC-CG thread adapter) — all push-to-fit at the light itself (tap to zoom)</span>
+
+      <div class="section-label">Gunite/Concrete Installation Setup</div>
+      <img class="zoomable" src="assets/image_107.jpg" alt="Treo Micro gunite concrete nicheless installation setup diagram" style="width:100%;border-radius:8px;margin-top:8px;border:1px solid #2a3b5c;cursor:zoom-in;">
+      <span style="display:block;font-size:11px;color:#9fb0c5;margin-top:4px;font-style:italic;">48" min from pool edge to transformer, 18" min junction box/transformer to max water level, 4" min to top of lens (tap to zoom)</span>
+
+      <div class="section-label">Winterization</div>
+      <div class="note-box">If the pool isn't drained completely, lower the water level below the light and drain all water from the wall fitting and conduit. Alternatively, remove the light completely, purge the conduit of water, and plug the wall fitting. Water trapped in the conduit risks freeze-expansion damage.</div>
+
+      <div class="section-label">Other Notes</div>
+      <ul class="steps">
+        <li>This manual's cloning DIP table only has 2 switches (Jandy/Pentair/Hayward/PAL, no Astral) — an older/simpler scheme than the 3-switch V3 table on the <b>Drivers</b> card. Confirm which board revision is actually on-site before assuming Astral cloning is available.</li>
+        <li>This manual states PCR-2Z can power up to 60 Treo Micro lights (with J box) and PCR-1Z up to 14 (with J box) — much higher than the "PCR-2Z up to 5 lights / PCR-1Z up to 2 lights" figures noted on the <b>Treo Retro</b> card. Not a contradiction: Treo Micro is a lower-wattage fixture than the standard 4-wire lights those figures were based on, so more of them fit within the same driver wattage budget. Don't apply either set of numbers to the other product line.</li>
+      </ul>
+    `
+  },
+  {
+    id: "canadianretro",
+    backTo: "cat-lights",
+    title: "Canadian Retro (Sonar)",
+    photo: "assets/image_111.jpg",
+    photoAlt: "Canadian Retro RGB pool light, lit",
+    tags: ["canadian retro","sonar canadian retro","egm2","aqua lamp replacement","aqualamp","12v","24v","field wireable","plug block","adapter plate"],
+    videos: [{title:"PAL Canadian Sonar Light", url:"https://youtu.be/gc4m8RZpbVY"}],
+    videoNote: "Moved here from the Other PAL Videos catch-all — high-confidence match on title (\"Sonar Canadian Retro Light\" is this product's own manual title). \"PAL Sonar Light\" (non-Canadian) remains in that catch-all — still unconfirmed which product it shows.",
+    facts: `<b>Purpose:</b> full retrofit replacement light, per PAL's own sell sheet built specifically for <b>Aqua/Lamp&reg; brand</b> niche replacements — reuses the existing niche's mounting tabs via a new adapter plate (available in white or grey to match). Different mechanism from every other retrofit in this guide: Aqualumin swaps in a new bracket + light for Pentair AquaLumin niches, Sonar Retro Bulb is a bulb-only swap into an existing PAR38 fixture, and this is a full light replacement wired on-site via a field-attachable plug rather than a factory cable/plug or a gel-pack.<br>
+            <b>Power/driver:</b> works with a 12V AC <b>or</b> 12/24V DC Class 2 LED driver — stated consistently throughout this install manual (Guides &amp; Warnings and Step 2), genuinely flexible rather than the recurring 12V/24V artifact seen elsewhere. Each light draws approximately 10W.<br>
+            <b>Control:</b> Color Touch remote with OEM cloning (Hayward/Jandy/Pentair), optional Wi-Fi/app control per the sell sheet — exact pairing/cloning button steps aren't documented in either source on file for this specific product (see note below).<br>
+            <b>SKU:</b> 64-EGM2-CA (PAL Evenglow Multi Color Sonar Canadian Retro Light with Remote) — only one SKU listed, no separate cool-white/warm-white or wattage variants shown.<br><br>
+            <b>Flag — minor cross-document inconsistency, not the recurring artifact:</b> the install manual describes this product as compatible with 12V AC <b>or</b> 12/24V DC drivers — but the sell sheet's "Design &amp; Features" bullet narrows it to "Works on standard 12V AC Transformer" only, not mentioning the DC options. Likely the sell sheet is just describing the most common configuration rather than contradicting the manual, but confirm the actual transformer/driver in place on-site rather than assuming from either document alone.<br>
+            <b>Note — remote steps not documented:</b> the sell sheet confirms this product uses a Color Touch remote with Hayward/Jandy/Pentair cloning, the same general "Sonar" remote family as the <b>Aqualumin Replacement</b> and <b>Sonar Retro Bulb</b> cards — but no button-sequence steps for pairing or cloning are shown in either source here. Don't assume the button layout is identical to those other cards without checking the physical remote in hand.`,
+    steps: [
+      "Turn off power to the pool lights — confirm the system is safely isolated for the entire replacement. If in doubt, get an electrician to assist; failure to isolate power can result in severe injury or death.",
+      "Check the transformer: confirm it matches the light's rating (12V AC or 12/24V DC), isn't damaged, is rated for swimming pool lights, and is <b>not</b> a switch-mode transformer. Each light draws about 10W.",
+      "Remove the existing light: twist counter-clockwise and pull it out from the wall, then take it out of the water and lay it face-down on a soft surface.<br><img class=\"zoomable\" src=\"assets/image_116.jpg\" alt=\"Canadian Retro removing existing light and stripping cable diagram\" style=\"width:100%;border-radius:8px;margin-top:8px;border:1px solid #2a3b5c;cursor:zoom-in;\"><span style=\"display:block;font-size:11px;color:#9fb0c5;margin-top:4px;font-style:italic;\">Removing the old light (twist counter-clockwise) and stripping the cable to 10mm insulated end / 10mm bare wire (tap to zoom)</span>",
+      "Disconnect the cable from the old light — cut it away, leaving enough length for future service access, then strip the outer and inner sheaths to leave 10mm of insulated end and 10mm of bare wire.",
+      "Wire the field-attachable plug: feed the plug nut, gland nut, and gland internal grabber (rubber seal inside) over the cable in that order. Insert the white wire into the socket marked B- and the black wire into the socket marked + on the plug block, securing each with its screw.<br><img class=\"zoomable\" src=\"assets/image_112.jpg\" alt=\"Canadian Retro plug assembly wiring diagram\" style=\"width:100%;border-radius:8px;margin-top:8px;border:1px solid #2a3b5c;cursor:zoom-in;\"><span style=\"display:block;font-size:11px;color:#9fb0c5;margin-top:4px;font-style:italic;\">Plug nut / gland nut / gland internal grabber over the cable, then wiring white to B- and black to + on the plug block — don't over-tighten (tap to zoom)</span>",
+      "Remove the protective cover from the plug housing and discard it. Wrap the plug housing around the plug block with the clip and secure with 2 screws, then push the gland internal grabber into the top of the plug housing and screw on the gland nut to secure the cable.<br><img class=\"zoomable\" src=\"assets/image_113.jpg\" alt=\"Canadian Retro plug housing assembly diagram\" style=\"width:100%;border-radius:8px;margin-top:8px;border:1px solid #2a3b5c;cursor:zoom-in;\"><span style=\"display:block;font-size:11px;color:#9fb0c5;margin-top:4px;font-style:italic;\">Plug housing wrap + 2-screw secure, then gland grabber and gland nut onto the cable — don't over-tighten (tap to zoom)</span>",
+      "Install the adapter plate: align it with the existing mounting tabs in the niche and push to fit into position. Remove the dust cap from the back of the new Retro Light, insert the plug, and hand-tighten the nut clockwise onto the light.<br><img class=\"zoomable\" src=\"assets/image_114.jpg\" alt=\"Canadian Retro adapter plate and light installation diagram\" style=\"width:100%;border-radius:8px;margin-top:8px;border:1px solid #2a3b5c;cursor:zoom-in;\"><span style=\"display:block;font-size:11px;color:#9fb0c5;margin-top:4px;font-style:italic;\">Adapter plate onto existing mounting tabs, then plug into the light and hand-tighten (tap to zoom)</span>",
+      "Coil the cable into the niche, position the light in the adapter plate, and secure with 2 x M4x5mm screws. Turn power back on at the mains/lighting controller/transformer and confirm the system is operational.<br><img class=\"zoomable\" src=\"assets/image_115.jpg\" alt=\"Canadian Retro securing light and winterization diagram\" style=\"width:100%;border-radius:8px;margin-top:8px;border:1px solid #2a3b5c;cursor:zoom-in;\"><span style=\"display:block;font-size:11px;color:#9fb0c5;margin-top:4px;font-style:italic;\">Securing the light with 2 screws; winterization uses the same 2 screws in reverse (tap to zoom)</span>",
+    ],
+    note: "This manual has no troubleshooting section — treat electrical faults like any other PAL LED light: see <b>LED Light Diagnostics</b> and <b>Probability-Based Diagnostic Framework</b>. For winterization: undo the 2 securing screws, remove the light from the adapter plate, lift it above water, dry it, and disconnect the cable. Store the light and cable with dust caps on to protect the pins."
   },
   {
     id: "drivers",
@@ -1284,7 +1364,6 @@ const DATA = [
     extra: `
       <ul class="steps">
         <li>PAL Sonar Light — <a href="https://youtu.be/OCvvkSpDH0o" target="_blank" style="color:#3dbfa0;">https://youtu.be/OCvvkSpDH0o</a></li>
-        <li>PAL Canadian Sonar Light — <a href="https://youtu.be/gc4m8RZpbVY" target="_blank" style="color:#3dbfa0;">https://youtu.be/gc4m8RZpbVY</a></li>
         <li>PAL Concrete Bubbler — <a href="https://youtu.be/KvsNwfZWJ74" target="_blank" style="color:#3dbfa0;">https://youtu.be/KvsNwfZWJ74</a></li>
         <li>PAL Fiberglass Bubbler — <a href="https://youtu.be/VQPbLz4XC3g" target="_blank" style="color:#3dbfa0;">https://youtu.be/VQPbLz4XC3g</a></li>
         <li>PAL Bubbler — <a href="https://youtu.be/dkC_xBB1xlI" target="_blank" style="color:#3dbfa0;">https://youtu.be/dkC_xBB1xlI</a></li>
@@ -1410,7 +1489,7 @@ function matches(item, q){
   return false;
 }
 
-const HIDDEN_BY_DEFAULT = new Set(['evenglow','evenglownicheless','treomax','treoretro','treomini','aqualumin','sonarretro','evenglowfiberglass','drivers','pcr2dmx','pcr3d500','pcr3dmx8z','pcr2d','pcr300','pcr4','commander2','ledoptics2','pc2t','wifi','waterblade','watersphere','ledbubbler','evenglowflex','pathwaylight','bollardlight','gardenuplight','cat-lights','cat-drivers','cat-water','cat-wifi','cat-landscape']);
+const HIDDEN_BY_DEFAULT = new Set(['evenglow','evenglownicheless','treomax','treoretro','treomini','aqualumin','sonarretro','evenglowfiberglass','treomicro','canadianretro','drivers','pcr2dmx','pcr3d500','pcr3dmx8z','pcr2d','pcr300','pcr4','commander2','ledoptics2','pc2t','wifi','waterblade','watersphere','ledbubbler','evenglowflex','pathwaylight','bollardlight','gardenuplight','cat-lights','cat-drivers','cat-water','cat-wifi','cat-landscape']);
 
 function render(){
   const q = searchEl.value.trim();
