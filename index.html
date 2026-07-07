@@ -1413,39 +1413,122 @@ const DATA = [
     id: "watersphere",
     backTo: "cat-water",
     title: "WaterSphere",
-    tags: ["watersphere","water sphere","globe","bubbler globe","sun shelf","24 inch","32 inch","egbsp"],
-    facts: `Illuminated acrylic globe water feature. <b>Gunite/concrete installations only</b> — PAL wet niche fitting, no bonding required, UL676 Pool & Spa Lighting certified.<br>
-            Sizes: 24" or 32" acrylic globe diameter. Cord lengths: 80', 150', or custom. Multi-color light, 5W (24V DC).<br>
-            Codes: 64-EGBSP-CGS-080-24 / -32 (80ft cord) and 64-EGBSP-CGS-150-24 / -32 (150ft cord).<br>
-            Stack order (top to bottom): WaterSphere globe → Bubbler Light → Concrete Niche.`,
+    photo: "assets/image_153.jpg",
+    photoAlt: "PAL WaterSphere acrylic globe on its adapter base",
+    tags: ["watersphere","water sphere","globe","bubbler globe","sun shelf","24 inch","32 inch","egbsp","polywatch","anti-fog","check valve","flow control valve"],
+    facts: `Illuminated acrylic globe water feature that mounts <b>on top of an LED Bubbler</b> — the Sphere itself has no electronics; all lighting/electrical is the Bubbler's (see <b>LED Bubbler</b> card). <b>Gunite/concrete installations only</b> — PAL wet niche fitting, no bonding required, UL676 Pool & Spa Lighting certified.<br>
+            <b>Stack order (top to bottom):</b> WaterSphere globe → Adapter → Bubbler Light → Concrete Niche.<br>
+            Two nominal sizes, actual dimensions per the current sell sheet: <b>"24"</b> = 600mm (23-5/8") globe diameter, 624mm (24-9/16") overall height, uses the <b>Medium Adapter</b>. <b>"32"</b> = 800mm (31-1/2") globe diameter, 837mm (32-15/16") overall height, uses the <b>Large Adapter</b> — note the "32-inch" name is a half-inch over the actual 31.5" diameter, don't take the nominal size as an exact field measurement.<br>
+            Multi-color light, 5W (24V DC) — driven entirely by the Bubbler underneath; no separate driver for the globe itself.`,
+    issuesNote: "No dedicated troubleshooting section exists in the source manual (Sections are Safety, Preparation, Installation, and Replacement Parts only) — issues below are inferred from the manual's own warnings and this guide's shared diagnostic framework, same pattern as the pcr2d/pcr300/Perimeter Strip Kit cards.",
     issues: [
       ["Customer wants to install on a sun shelf","We actively discourage this — WaterSphere is only rated/intended for gunite/concrete installation and is not designed for sun shelf use"],
       ["Installed on a vinyl or fiberglass pool","Not supported — WaterSphere requires the PAL wet niche fitting used in gunite/concrete construction only"],
-      ["Light not illuminating","Follow the same driver/cable/head diagnostic as other PAL lights (24V DC) — see <b>Probability-Based Diagnostic Framework</b>"],
-      ["Color not syncing with other PAL lights","Check wiring color sequence at the driver — same troubleshooting as Evenglow sync issues"],
-      ["Globe cracked, cloudy, or discolored","Acrylic globe is a wear item exposed to pool chemicals and UV — inspect and replace globe, not the full light assembly, unless the light body itself is damaged"],
+      ["Light not illuminating","This is the Bubbler's light, not a separate driver — follow the same driver/cable/head diagnostic as other PAL lights (24V DC) on the <b>LED Bubbler</b> card and <b>Probability-Based Diagnostic Framework</b>"],
+      ["Color not syncing with other PAL lights","Check wiring color sequence at the driver — same troubleshooting as Evenglow/Bubbler sync issues"],
+      ["Globe scratched","Don't jump straight to globe replacement — apply a pea-size amount of PolyWatch paste over the scratch and rub with a clean cloth until it's removed. This is the manual's own first-line fix, not just a cosmetic workaround."],
+      ["Globe hazy or fogged (inner surface)","Spray Anti-Fog Spray on the inner surface of the globe and polish with a clean cloth"],
+      ["Globe cracked or otherwise damaged beyond PolyWatch/Anti-Fog","Acrylic globe is a wear item exposed to pool chemicals and UV — replace the globe itself, not the full Bubbler light assembly, unless the light body is also damaged"],
+      ["Little or no water effect over the sphere / weak flow","Confirm a check valve is installed (prevents drain-off when the system is off) and a flow control valve is present and adjusted — both are required for the intended water effect, not optional extras. Target pump output is 30-34 GPM / 113-128 LPM per sphere; for multiple spheres, add their total volume together to size the pump."],
+      ["Uneven water effect across multiple spheres","Confirm the plumbing layout matches the spheres' spacing — equal-distance spheres should use looped plumbing with one shared ball valve; spheres at different distances need individual flow control valves per sphere plus a three-way valve, not a shared loop"],
+      ["Sphere popped off / won't seat, or damage at first startup","Confirm the pump's automatic self-priming was disengaged before startup — the manual explicitly warns self-priming can cause personal injury or damage to the WaterSphere. Also confirm the O-ring was in place in the collar and the sphere was fully twisted to lock via the bayonet fitting, not just set on top."],
     ],
-    note: "This is a 24V product and requires a compatible 24V transformer (64-PCR Series Drivers). No bonding terminal is required on the forming shell since the fixture is all-plastic construction and complies with NEC article 680."
+    note: "This is a 24V product and requires a compatible 24V transformer (64-PCR Series Drivers) — same driver family as the Bubbler underneath it, see <b>Drivers</b> card for DIP-switch/cloning setup (not duplicated here). No bonding terminal is required on the forming shell since the fixture is all-plastic construction and complies with NEC article 680.",
+    extra: `
+      <div class="note-box"><b>SKU / kit-contents flag, not resolved:</b> three different sources disagree on WaterSphere part numbers and what's actually in the box. The install manual's own cover page lists <b>64-EGBSP-24</b> / <b>64-EGBSP-32</b> ("with Concrete Mounting Bracket"), with no cord-length variants. The current sell sheet instead lists <b>64-EGBSP-CGS-080-24/-32</b> and <b>64-EGBSP-CGS-150-24/-32</b>, described as "PAL Water Sphere <b>with light</b> and cable and Plug" — implying the Bubbler light and cable are bundled in. But the install manual's own Package Contents (Sphere + Adapter + 6 screws only) and Replacement Parts section both explicitly list "PAL Evenglow Bubbler — Sold Separately" with its own part number (64-EGB-CGS-XXX). Confirm against the actual packing slip/order what's included before a job — don't assume a customer's Sphere order included a Bubbler light, or vice versa.</div>
+      <div class="note-box"><b>Cross-reference to the LED Bubbler card:</b> the Bubbler's own install manual repeats this manual's IMPORTANT NOTICE paragraph verbatim, including a sun-shelf warning that's specifically about the WaterSphere — confirmed here as the original source of that text, so treat it as reused boilerplate in the Bubbler manual, not a Bubbler-specific instruction. The Bubbler manual's "Optional lens (only available for 600mm and 800mm Spheres)" callout, on the other hand, is accurate and intentional, not an error — this manual's own Replacement Parts diagram shows the same optional Lens Adapter as part of the Sphere-to-Bubbler stack, since the two products share physical hardware.</div>
+
+      <div class="section-label">Sphere Preparation &amp; Fixing to the Bubbler</div>
+      <div class="order-note">Due to the production process, acrylic thickness may vary and shipping/production scratches are normal — this is routine prep, not a defect to escalate.</div>
+      <img class="zoomable" src="assets/image_155.jpg" alt="WaterSphere scratch and haze removal, and fixing the sphere to the bubbler collar diagrams" style="width:100%;border-radius:8px;margin-top:12px;border:1px solid #2a3b5c;cursor:zoom-in;"><span style="display:block;font-size:11px;color:#9fb0c5;margin-top:4px;font-style:italic;">E. Removing scratches (PolyWatch) and haze (Anti-Fog Spray); F. Attaching the gray sphere adapter to the bubbler collar, then locking the sphere onto the adapter via bayonet fitting — confirm O-ring is seated in the collar first (tap to zoom)</span>
+
+      <div class="section-label">Plumbing Overview</div>
+      <div class="order-note">The WaterSphere is a plumbed water feature in addition to an electrical one — this diagram is the Sphere's equivalent of the Bubbler's separate Water Pressure Guide. A check valve and flow control valve are both required, and pump auto-priming must be disengaged before startup.</div>
+      <img class="zoomable" src="assets/image_156.jpg" alt="WaterSphere plumbing overview diagram with check valve, flow control valve, and multi-sphere plumbing options" style="width:100%;border-radius:8px;margin-top:12px;border:1px solid #2a3b5c;cursor:zoom-in;"><span style="display:block;font-size:11px;color:#9fb0c5;margin-top:4px;font-style:italic;">Basic plumbing overview (niche, check valve, flow control valve, pump); looped plumbing for equal-distance spheres vs. individual flow control valves + three-way valve for spheres at different distances (tap to zoom)</span>
+
+      <div class="section-label">Stack Order &amp; Replacement Parts</div>
+      <img class="zoomable" src="assets/image_154.jpg" alt="WaterSphere to Bubbler Light to Concrete Niche stack order diagram" style="width:100%;border-radius:8px;margin-top:12px;border:1px solid #2a3b5c;cursor:zoom-in;"><span style="display:block;font-size:11px;color:#9fb0c5;margin-top:4px;font-style:italic;">WaterSphere → Bubbler Light → Concrete Niche stack order (tap to zoom)</span>
+      <img class="zoomable" src="assets/image_157.jpg" alt="WaterSphere replacement parts exploded diagram — medium and large adapters, lens adapter, bubbler" style="width:100%;border-radius:8px;margin-top:12px;border:1px solid #2a3b5c;cursor:zoom-in;"><span style="display:block;font-size:11px;color:#9fb0c5;margin-top:4px;font-style:italic;">Medium Adapter (600mm/24" Sphere) vs. Large Adapter (800mm/32" Sphere), optional Lens Adapter, and the Bubbler assembly underneath (sold separately, part 64-EGB-CGS-XXX) (tap to zoom)</span>
+      <div class="note-box">If replacing the optional Lens Adapter: the manual explicitly warns a silicone gasket must be used at that joint, otherwise the screw will be too long.</div>
+    `
   },
   {
     id: "ledbubbler",
     backTo: "cat-water",
     title: "LED Bubbler (Niche Bubbler)",
-    tags: ["bubbler","led bubbler","niche bubbler","spout","donut light","egb","concrete bubbler","vinyl bubbler","fiberglass bubbler","plume"],
-    facts: `Concrete/Vinyl Niche Bubbler with Color Touch Technology, 12/24V DC, RGB / 4-wire, plug-and-play detachable design.<br>
-            <b>Gunite/Concrete:</b> 64-EGB-CGS-80 (80ft cable), 64-EGB-CGS-150 (150ft cable).<br>
-            <b>Vinyl Liner/Fiberglass:</b> 64-EGB-FVS-80, 64-EGB-FVS-150 (80/150ft supply cable).<br>
-            Two spout lens sizes included (¾" and 1.2") to adjust plume height/shape. Deeper lens placement underwater = less lighting effect visible above water. Plume height charts in the manual are reference only — actual height varies with plumbing and water conditions.`,
+    photo: "assets/image_146.jpg",
+    photoAlt: "PAL LED Niche Bubbler light and lens assembly with plug",
+    tags: ["bubbler","led bubbler","niche bubbler","spout","donut light","egb","concrete bubbler","vinyl bubbler","fiberglass bubbler","plume","plume height","water pressure","holesaw"],
+    videos: [
+      {title:"PAL Concrete Bubbler", url:"https://youtu.be/KvsNwfZWJ74"},
+      {title:"PAL Fiberglass Bubbler", url:"https://youtu.be/VQPbLz4XC3g"},
+      {title:"PAL Bubbler", url:"https://youtu.be/dkC_xBB1xlI"},
+      {title:"PAL - Pentair Cascade Replacement Bubbler", url:"https://youtu.be/HbARJl3LFss"},
+    ],
+    facts: `Concrete/Vinyl Niche Bubbler with Color Touch Technology, RGB / 4-wire, plug-and-play detachable design. The install manual's own IMPORTANT NOTICE states plainly "this is a 24V light" requiring a compatible 24V transformer — treat 24V DC as correct (see voltage flag below).<br>
+            <b>Gunite/Concrete:</b> 64-EGB-CGS-80 (80ft cable), 64-EGB-CGS-150 (150ft cable). Lens must sit no less than 1" (25mm) below normal water level.<br>
+            <b>Vinyl Liner/Fiberglass:</b> 64-EGB-FVS-80, 64-EGB-FVS-150 (80/150ft supply cable). New-hole install uses a 6-1/2" holesaw. Lens must sit no less than <b>18" (457mm)</b> below normal water level — a materially deeper minimum than the Concrete version's 1" figure. Don't carry one product's depth minimum over to the other.<br>
+            Two spout lens sizes included (¾" and 1.2") to adjust plume height/shape. Deeper lens placement underwater = less lighting effect visible above water. Plume height chart below is reference only — actual height varies with plumbing and water conditions.<br>
+            Driver: 64-PCR-1Z/2Z (single & dual zone), 24V DC, Wi-Fi and RF — same driver family, remote, and DIP-switch cloning table already documented on the <b>Drivers</b> card; not duplicated here.`,
     issuesNote: "This product has its own official troubleshooting section in the manual — work it in order before escalating.",
     issues: [
-      ["Remote is unresponsive — bubbler not reacting to commands","Check for red light in center of color wheel when pressing buttons (fresh batteries if not). Then resync: verify DIP switches 1, 2, 4 are UP, press Code Setting (LED 3 blinks once), tap Z1 on remote 3x — LED blinks 3x if successful"],
+      ["Remote is unresponsive — bubbler not reacting to commands","Check for red light in center of color wheel when pressing buttons (fresh batteries if not). Then resync: verify DIP switches 1, 2, 4 are UP, press Code Setting (LED 3 blinks once), tap Z1 on remote 3x — LED blinks 3x if successful. (This manual's own separate 'Matching Code' reference elsewhere describes a single press of Z1 within 5 seconds instead of 3 taps — see voltage/procedure flags below, same open question as the Drivers card's pairing-procedure sign-off.)"],
       ["Bubbler lights not dimming","Confirm DIP switches 1, 2, 4 are UP. Disconnect remote (press Code Setting once, hold Z1 — driver blinks 5x), then soft reset: press/hold DIP switches while holding Code Setting button 3 seconds, release Code Setting first, then DIP switches. Re-sync remote."],
       ["Bubbler lights not coming on","Verify 120V power at driver and no tripped breaker/GFCI. Press MANUAL button — if LED 3 turns on, driver is fine, troubleshoot the light itself. If not: check blue LED (transformer powered) and red LEDs (board receiving power) inside driver, inspect for charring/surge damage. If transformer's fine but LED 3 won't activate, disconnect all lights and retry MANUAL to isolate a short."],
       ["Bubbler lights blinking (multi-light systems)","Disconnect one white wire at a time from the driver — when LED 3 stops blinking, that's the faulty fixture"],
       ["Lights not synced (colors don't match across fixtures)","Identify which color is off (Red/Green/Blue), then trace to the matching wire at the driver: Green → GREY wire, Red → RED wire, Blue → BLUE wire. Check for loose connections, corrosion, nicked wire during stripping, or a burn mark/corrosion at the light-head connector (usually an under-tightened nut allowing water intrusion)."],
       ["Not syncing with automation","If on Intellicenter, confirm version — 2.0 is not compatible unless an Intellicenter-programmed board is installed. Otherwise confirm DIP switches match the target automation brand (see Cloning to Competitor Systems card), then try the soft reset procedure above."],
     ],
-    note: "PCR-1Z-SM does not operate with the PCZ-2 handheld transmitter. 1 transmitter can control unlimited receivers; 1 receiver can be coded to a max of 4 transmitters. Winterization: keep water level at least 4 inches above or below the light per local requirements, and be aware trapped conduit water can cause freeze damage."
+    note: "PCR-1Z-SM does not operate with the PCZ-2 handheld transmitter. 1 transmitter can control unlimited receivers; 1 receiver can be coded to a max of 4 transmitters. Winterization: keep water level at least 4 inches above or below the light per local requirements, and be aware trapped conduit water can cause freeze damage.",
+    extra: `
+      <div class="note-box"><b>Voltage flag:</b> the install manual's IMPORTANT NOTICE and driver spec both state 24V DC plainly, with no internal contradiction in that document — but the current PAL sell sheet's own "Design & Features" bullet reads "Low Power / 12/24V DC," another instance of the recurring 12V/24V ambiguity already flagged across several other PAL manuals (see Drivers, PCR-2D, PCR-3D-120/500 cards). Treat 24V DC as correct for this product; confirm on site if in doubt.</div>
+      <div class="note-box"><b>Copy-paste artifact found in this manual, not corrected in the source:</b> the IMPORTANT NOTICE section on the Bubbler's own Preparation page also states "The PAL WaterSphere is only for gunite/concrete installations. We actively discourage users from using the PAL WaterSphere on a sun shelf" — that sentence is about the WaterSphere product, not the Bubbler, and is reused boilerplate from the WaterSphere manual, confirmed as the original source (see WaterSphere card). Separately, the manual's own Section 5 heading reads "INSTALLATION FOR GUNITE/CONCRETE POOLS" a second time, but that section is actually the PCR-1Z/1Z-SM/2Z driver hardware installation instructions, not a pool-installation step — likely reused from the Section 3 heading template. Neither affects the diagnostic content on this card, but don't let a customer's own copy of the manual confuse you on a call. (The Concrete "Installing Luminaire" diagram's "Optional lens (only available for 600mm and 800mm Spheres)" callout, by contrast, is <b>not</b> an artifact — confirmed accurate: it's the same physical hardware documented on the WaterSphere card's Replacement Parts, relevant if this niche will ever have a Sphere added on top.)</div>
+
+      <div class="section-label">Installation — Gunite/Concrete Pools</div>
+      <div class="order-note">Lens min 1" (25mm) below normal water level. No bonding terminal required on the forming shell (all-plastic construction, complies with NEC 680). Driver/junction box location, conduit, and DIP-switch/cloning setup follow the same PCR-1Z/2Z install already documented on the Drivers card — only the niche/luminaire steps specific to the Bubbler are shown below.</div>
+      <img class="zoomable" src="assets/image_147.jpg" alt="Bubbler concrete niche fixing to steel, conduit and fittings, and concrete stage coverage diagram" style="width:100%;border-radius:8px;margin-top:12px;border:1px solid #2a3b5c;cursor:zoom-in;"><span style="display:block;font-size:11px;color:#9fb0c5;margin-top:4px;font-style:italic;">A. Fixing niche to steel reinforcing bar (4 tie points) + conduit/fitting sizes; B. Concrete stage coverage and trim tolerances (tap to zoom)</span>
+      <img class="zoomable" src="assets/image_148.jpg" alt="Bubbler concrete installing cable and render ring finish diagrams" style="width:100%;border-radius:8px;margin-top:12px;border:1px solid #2a3b5c;cursor:zoom-in;"><span style="display:block;font-size:11px;color:#9fb0c5;margin-top:4px;font-style:italic;">C. Installing cable (protective cap stays on until light install), render ring fitment; pool-finish coverage tolerance at the render ring (tap to zoom)</span>
+      <img class="zoomable" src="assets/image_149.jpg" alt="Bubbler concrete installing luminaire and wiring to transformer diagrams" style="width:100%;border-radius:8px;margin-top:12px;border:1px solid #2a3b5c;cursor:zoom-in;"><span style="display:block;font-size:11px;color:#9fb0c5;margin-top:4px;font-style:italic;">D. Installing luminaire — collar screws, gasket, and luminaire seat inside the niche; final cable pull to the 24V transformer (brown/blue terminals) and mounting-plate screw positions (tap to zoom)</span>
+
+      <div class="section-label">Installation — Vinyl Liner / Fiberglass Pools</div>
+      <div class="order-note">Lens min 18" (457mm) below normal water level — confirm this figure specifically before drilling; it is not the same as the Concrete version's 1" minimum. Fiberglass niches may be bedded with marine-grade epoxy or silicone at the flange; vinyl installs require the gasket on both sides of the liner.</div>
+      <img class="zoomable" src="assets/image_150.jpg" alt="Bubbler vinyl/fiberglass drill hole and niche-to-wall mounting diagrams" style="width:100%;border-radius:8px;margin-top:12px;border:1px solid #2a3b5c;cursor:zoom-in;"><span style="display:block;font-size:11px;color:#9fb0c5;margin-top:4px;font-style:italic;">Step 1: drill a 6-1/2" hole in a flat, accessible area of the pool floor/wall; Step continued: niche/nut/gasket stack-up, side-entry conduit wing-nut-and-seal order, fitting glue-up (tap to zoom)</span>
+      <img class="zoomable" src="assets/image_151.jpg" alt="Bubbler vinyl/fiberglass installing cable and installing luminaire diagrams" style="width:100%;border-radius:8px;margin-top:12px;border:1px solid #2a3b5c;cursor:zoom-in;"><span style="display:block;font-size:11px;color:#9fb0c5;margin-top:4px;font-style:italic;">Step 3: installing cable (cable seal, wing nut, protective cap stays on until light install); Step 4: installing luminaire — render ring screws, bubbler collar screws, dress ring rotate-to-lock (tap to zoom)</span>
+
+      <div class="section-label">Plume Height / Water Pressure Guide</div>
+      <div class="order-note">Reference only — actual plume height varies with system plumbing and water conditions. Data measured with a 3HP variable-speed pump; all pipe sizes in this table are 2".</div>
+      <table style="width:100%; border-collapse:collapse; margin:6px 0; font-size:0.92em;">
+        <tr style="border-bottom:1px solid #ccc;"><td style="padding:2px 8px 2px 0;"><b>GPM</b></td><td style="padding:2px 8px;"><b>2" depth</b></td><td style="padding:2px 8px;"><b>4"</b></td><td style="padding:2px 8px;"><b>6"</b></td><td style="padding:2px 8px;"><b>8"</b></td><td style="padding:2px 0;"><b>10"</b></td></tr>
+        <tr><td>15</td><td>5.5"</td><td>6.2"</td><td>5.4"</td><td>3.9"</td><td>2.7"</td></tr>
+        <tr><td>20</td><td>9.8"</td><td>9.4"</td><td>8.6"</td><td>6.7"</td><td>5.1"</td></tr>
+        <tr><td>23</td><td>—</td><td>14.5"</td><td>12.5"</td><td>9.8"</td><td>8.6"</td></tr>
+        <tr><td>30</td><td>—</td><td>22.8"</td><td>16.1"</td><td>12.5"</td><td>11.8"</td></tr>
+        <tr><td>40</td><td>—</td><td>29.5"</td><td>20.4"</td><td>15.3"</td><td>14.1"</td></tr>
+        <tr><td>45</td><td>—</td><td>32.0"</td><td>24.4"</td><td>17.7"</td><td>16.1"</td></tr>
+      </table>
+      <div class="order-note">Blank cells (2" depth at 23+ GPM) were not measured in the source guide — treat as no data, not zero plume height.</div>
+
+      <div class="section-label">Replacement Parts — Vinyl/FG Bubbler</div>
+      <img class="zoomable" src="assets/image_152.jpg" alt="Bubbler vinyl/fiberglass replacement parts exploded diagram" style="width:100%;border-radius:8px;margin-top:12px;border:1px solid #2a3b5c;cursor:zoom-in;"><span style="display:block;font-size:11px;color:#9fb0c5;margin-top:4px;font-style:italic;">Exploded view, items 1-15 (tap to zoom)</span>
+      <table style="width:100%; border-collapse:collapse; margin:6px 0; font-size:0.92em;">
+        <tr style="border-bottom:1px solid #ccc;"><td style="padding:2px 8px 2px 0;"><b>Item</b></td><td style="padding:2px 8px;"><b>Part Number</b></td><td style="padding:2px 0;"><b>Description</b></td></tr>
+        <tr><td>1</td><td>64-EGB-SPOUT-0.75 / -1.2</td><td>Spout Lens ¾" / 1.2"</td></tr>
+        <tr><td>2, 5</td><td>64-EGB-FVS-SCREWS</td><td>M4 Screws (2) / M5 CSK Screws (5)</td></tr>
+        <tr><td>3</td><td>64-EGB-FACEPLATE</td><td>Bubbler Faceplate</td></tr>
+        <tr><td>4</td><td>64-EGB-LENS</td><td>Bubbler Lens</td></tr>
+        <tr><td>6</td><td>64-EGB-FVS-CR</td><td>Vinyl/FG Render Ring</td></tr>
+        <tr><td>7</td><td>64-EGB-FVS-CGN</td><td>Niche Gasket</td></tr>
+        <tr><td>8</td><td>64-EGB-FVS-N</td><td>Vinyl/FG Niche</td></tr>
+        <tr><td>9</td><td>64-EGB-FVS-BOS</td><td>Nut/O-Ring</td></tr>
+        <tr><td>10</td><td>64-EGB-FVS-NUT</td><td>Niche Nut</td></tr>
+        <tr><td>11</td><td>64-EGB-WNS</td><td>Niche Wingnut &amp; Seal</td></tr>
+        <tr><td>12</td><td>64-EGB-SPOUTPF</td><td>40mm Pipe Adapter</td></tr>
+        <tr><td>13</td><td>64-EGB-CA</td><td>Plug Conduit Adapter</td></tr>
+        <tr><td>14</td><td>64-EGB-FVS-CRFR</td><td>Render Ring Gasket</td></tr>
+        <tr><td>15</td><td>64-EGB-FVS-BLS</td><td>Lens Gasket</td></tr>
+      </table>
+      <div class="note-box">Coverage gap: this manual's Replacement Parts section only covers the Vinyl/FG Bubbler. No equivalent parts table exists in the source manual for the Gunite/Concrete version — order concrete parts by description against the Package Contents list rather than a part number if this table doesn't apply.</div>
+    `
   },
   {
     id: "evenglowflex",
@@ -1680,10 +1763,6 @@ const DATA = [
     extra: `
       <ul class="steps">
         <li>PAL Sonar Light — <a href="https://youtu.be/OCvvkSpDH0o" target="_blank" style="color:#3dbfa0;">https://youtu.be/OCvvkSpDH0o</a></li>
-        <li>PAL Concrete Bubbler — <a href="https://youtu.be/KvsNwfZWJ74" target="_blank" style="color:#3dbfa0;">https://youtu.be/KvsNwfZWJ74</a></li>
-        <li>PAL Fiberglass Bubbler — <a href="https://youtu.be/VQPbLz4XC3g" target="_blank" style="color:#3dbfa0;">https://youtu.be/VQPbLz4XC3g</a></li>
-        <li>PAL Bubbler — <a href="https://youtu.be/dkC_xBB1xlI" target="_blank" style="color:#3dbfa0;">https://youtu.be/dkC_xBB1xlI</a></li>
-        <li>PAL - Pentair Cascade Replacement Bubbler — <a href="https://youtu.be/HbARJl3LFss" target="_blank" style="color:#3dbfa0;">https://youtu.be/HbARJl3LFss</a></li>
         <li>PAL Waterblade Installation — <a href="https://youtu.be/eatP5fRQuSo" target="_blank" style="color:#3dbfa0;">https://youtu.be/eatP5fRQuSo</a></li>
         <li>PAL Perimeter Light Concrete — <a href="https://youtu.be/9VYae3lZkj4" target="_blank" style="color:#3dbfa0;">https://youtu.be/9VYae3lZkj4</a></li>
         <li>PAL Concrete Treo Micro Light — <a href="https://youtu.be/QOg0SboRJmI" target="_blank" style="color:#3dbfa0;">https://youtu.be/QOg0SboRJmI</a></li>

@@ -126,16 +126,19 @@ each edit you want reflected in the preview.
   Retro) is now complete, see "Image refresh / new-card batch" below.
 
 Note: the LED Bubbler (Niche Bubbler) troubleshooting card now exists in `DATA`
-(id: `ledbubbler`) — no longer an open gap. Aqualumin Replacement (`aqualumin`), Sonar
-Retro Bulb (`sonarretro`), Evenglow Fiberglass (`evenglowfiberglass`), Treo Micro
-(`treomicro`), and Canadian Retro (`canadianretro`) are all now built — see batch status
-below. Several bubbler install videos and Treo Micro videos still sit unmapped in the
+(id: `ledbubbler`) — no longer an open gap, and as of the Water Features refresh batch
+(see below) it's a full install/troubleshooting card, not a stub. Aqualumin Replacement
+(`aqualumin`), Sonar Retro Bulb (`sonarretro`), Evenglow Fiberglass
+(`evenglowfiberglass`), Treo Micro (`treomicro`), and Canadian Retro (`canadianretro`)
+are all now built — see batch status below. Treo Micro videos still sit unmapped in the
 "Other PAL Videos" catch-all card (id: `morevideos`) rather than being attached to their
 own card. Of the Sonar-branded videos in that catch-all, "PAL Sonar Remote Programming"
 (×2) and "PAL Retro Lamp/Bulb Troubleshooting" / "PAL Retro Light" moved to the
-`sonarretro` card, and "PAL Canadian Sonar Light" moved to the `canadianretro` card
-(confirmed matches). "PAL Sonar Light" (non-Canadian) remains unmapped — still
-unconfirmed which product it shows.
+`sonarretro` card, "PAL Canadian Sonar Light" moved to the `canadianretro` card, and
+"PAL Concrete Bubbler" / "PAL Fiberglass Bubbler" / "PAL Bubbler" / "PAL - Pentair
+Cascade Replacement Bubbler" moved to the `ledbubbler` card (all confirmed matches).
+"PAL Sonar Light" (non-Canadian) remains unmapped — still unconfirmed which product it
+shows.
 
 ## Image refresh / new-card batch (in progress)
 Cory is having all product images redone from official manuals rather than the original
@@ -627,6 +630,124 @@ come from each tier's own spec sheets/brochure instead.
 - **Strip Lighting batch complete.** Quick-Ship, Perimeter Strip Kits, and Custom Strip
   are all built and pushed live (commit 8517844).
 
+## Water Features refresh batch (in progress)
+New source manuals under `source-manuals/Water Features/<Product>/` — Bubblers,
+WaterSphere, Waterblade. Unlike the Lights/Drivers/Strip batches, these three products
+already existed as stub-ish cards in `DATA` (`ledbubbler`, `watersphere`, `waterblade`)
+from earlier work with no image extraction behind them — this batch is a refresh (real
+manual content + images), not new-card creation, except where a product turns out to be
+genuinely undocumented. Same PyMuPDF + Pillow @350dpi workflow, numbered
+`assets/image_NN.jpg`, flag discrepancies in-card rather than resolving them. Proceeding
+one product at a time, pausing for Cory after each.
+
+- **LED Bubbler (Niche Bubbler)** (`ledbubbler`) — refreshed 2026-07-07. Three source
+  files: a 24-page Concrete/Vinyl install & operations manual
+  (`PAL-Bubbler-ConcreteVinyl-InstructionsR00-2.pdf`), a 2-page sell sheet
+  (`PALBubbler-2.pdf`), and a 1-page plume-height/water-pressure reference
+  (`BubblerWaterPressureGuide.pdf`). The card previously had no photo and no install
+  content at all (facts + troubleshooting only) — added a hero photo, full Concrete and
+  Vinyl/FG install-diagram sections, the plume-height table, and a Vinyl/FG replacement
+  parts table. Troubleshooting steps were already accurate against this same manual from
+  earlier work and were left as-is. Findings, all flagged in-card rather than resolved:
+  1. **Two copy-paste artifacts bleeding in from the WaterSphere manual**, not corrected
+     in PAL's own source: the Bubbler manual's IMPORTANT NOTICE section repeats
+     WaterSphere's sun-shelf warning verbatim ("The PAL WaterSphere is only for
+     gunite/concrete installations..."), and the Concrete "Installing Luminaire" diagram
+     has a callout reading "Optional lens (only available for 600mm and 800mm Spheres)" —
+     a WaterSphere globe-size reference with no relevance to the Bubbler's own ¾"/1.2"
+     spout lenses. Both read as reused boilerplate from the WaterSphere manual, not real
+     Bubbler content.
+  2. **Section-heading mislabel** — the manual's own Section 5 (driver/DIP-switch
+     hardware install) is titled "INSTALLATION FOR GUNITE/CONCRETE POOLS," identical to
+     Section 3's title, apparently copy-pasted from that earlier section header. Same
+     reused-template pattern already seen on other cards (e.g. PCR-3DMX-8Z, Evenglow
+     Fiberglass) — flagged, not corrected.
+  3. **Within-manual pairing-procedure inconsistency** — Section 6's troubleshooting
+     "resync the remote" steps say press Code Setting once then tap Z1 three times, while
+     Section 5's own "Features" list documents a different official "Matching Code"
+     procedure (apply power, press Z1 once within 5 seconds) for what appears to be the
+     same action. This is the same open question already flagged on the `drivers` card
+     (see Pending sign-off) — cross-referenced rather than re-litigated here.
+  4. **Real (non-artifact) install-depth difference** — Concrete requires the lens no less
+     than 1" below normal water level; Vinyl/FG requires 18" — a large, easy-to-conflate
+     difference between the two versions of the same product, called out explicitly in
+     facts and in each install section.
+  5. **Voltage** — this manual's own IMPORTANT NOTICE and driver spec consistently state
+     24V DC with no internal contradiction, but the current PAL sell sheet's "Design &
+     Features" bullet reads "Low Power / 12/24V DC" — another instance of the recurring
+     12V/24V ambiguity pattern seen on Drivers/PCR-2D/PCR-3D-120/500, flagged in-card.
+  6. **Coverage gap** — the manual's Replacement Parts section (Section 7) only tables
+     parts for the Vinyl/FG version; no equivalent table exists for Gunite/Concrete.
+     Flagged rather than inventing part numbers.
+  Cross-checked DIP-switch/cloning content against the `drivers` card — identical
+  PCR-1Z/2Z table, so not duplicated here; card points to Drivers instead.
+  Images: hero (`image_146.jpg`) is an isolated alpha-masked cutout of the sell sheet's
+  own exploded light/lens product photo (same XObject+smask technique used on the Sonar
+  Retro Bulb/Evenglow Fiberglass/Treo Micro/Canadian Retro cards), composited onto white
+  and autocropped. `image_147`–`151` are install-diagram pages from the manual, cropped
+  to content bounds via whitespace-band detection and stacked into per-section composites
+  (concrete: niche/conduit/coverage, cable/render-ring, luminaire/wiring; vinyl/FG:
+  drill-hole/niche, cable/luminaire) so callout-connected diagrams aren't split across
+  separate images. `image_152` is the Vinyl/FG replacement-parts exploded diagram only
+  (cropped separately from its own table, which was transcribed as a real HTML table
+  instead per the project's plain-numeric-data preference). Plume height/water-pressure
+  data also transcribed as a real table rather than an image.
+  No changes needed to `productSelect`, hub links, or `HIDDEN_BY_DEFAULT` — this card
+  already existed and was already wired in from earlier work.
+- **WaterSphere** (`watersphere`) — refreshed 2026-07-07. Two source files: a 15-page
+  install & operations manual (`PALWatersphereInstructions-24-32inch.pdf`) and a 4-page
+  sell sheet (`WATERSPHERE-Brochure-24-32inch-2.pdf`). Confirmed the WaterSphere has no
+  electronics of its own — it's an acrylic globe that mounts on an adapter on top of an
+  LED Bubbler, and all lighting/electrical content is the Bubbler's. The install manual's
+  Sections A-D (niche/electrical install) are near-identical to the Bubbler manual's own
+  Sections A-D — same physical niche/collar hardware — so those steps were **not**
+  duplicated here; the card cross-references the `ledbubbler` card instead and only
+  documents what's genuinely Sphere-specific: Sphere Preparation (E), Fixing the Sphere
+  to the Bubbler (F), the plumbing Overview, and Replacement Parts. This also resolved a
+  question from the Bubbler refresh: the Bubbler manual's "Optional lens (only available
+  for 600mm and 800mm Spheres)" callout, initially flagged there as a possible copy-paste
+  artifact, is confirmed **accurate** — this manual's own Replacement Parts diagram shows
+  the same optional Lens Adapter — so that flag was corrected on the `ledbubbler` card.
+  The sun-shelf warning bleeding into the Bubbler manual's IMPORTANT NOTICE, however, is
+  confirmed as a genuine copy-paste artifact — this manual is its actual source.
+  Findings, all flagged in-card rather than resolved:
+  1. **Three-way SKU/kit-contents conflict** — the install manual's own cover page lists
+     `64-EGBSP-24`/`-32` ("with Concrete Mounting Bracket," no cord-length variants); the
+     sell sheet instead lists `64-EGBSP-CGS-080/150-24/-32`, described as including the
+     Bubbler light and cable; but the install manual's own Package Contents and
+     Replacement Parts sections both list the PAL Evenglow Bubbler as sold separately
+     (part `64-EGB-CGS-XXX`), box contents being just Sphere + Adapter + 6 screws. Not
+     resolved — card tells techs to confirm against the actual packing slip rather than
+     assume either document.
+  2. **Nominal vs. actual size** — the "32-inch" Sphere is actually 800mm/31.5" diameter
+     per the sell sheet's own dimension diagram, a real (if minor) rounding gap between
+     the marketing name and the physical part. Included in facts so a tech isn't thrown
+     by a customer's tape-measure reading.
+  3. **No troubleshooting section exists** in this manual at all (ToC is Safety /
+     Preparation / Installation / Replacement Parts only) — same coverage-gap pattern as
+     `pcr2d`/`pcr300`/Perimeter Strip Kit; issues list flagged via `issuesNote` as
+     inferred, not sourced from an official table.
+  Also surfaced a real diagnostic improvement over the old stub card: the manual's own
+  Sphere Preparation section gives PolyWatch (scratches) and Anti-Fog Spray (haze) as the
+  first-line fix for a scratched/hazy globe — the old card jumped straight to "replace
+  the globe." Issues list now sequences PolyWatch/Anti-Fog before replacement.
+  Images: hero (`image_153.jpg`) is an isolated alpha-masked cutout of the sell sheet's
+  own clean product photo (same XObject+smask technique as the Bubbler and other recent
+  cards), tightened to a stricter alpha threshold after an initial crop kept a wide band
+  of soft drop-shadow on one side. `image_154.jpg` is the stack-order diagram with the
+  sell sheet's own QR code cropped out (not useful in this guide and not something we
+  control the destination of). `image_155.jpg` stacks the Sphere Preparation and
+  Fixing-to-Bubbler pages. `image_156.jpg` is the full plumbing overview page (kept as
+  one image since the diagram, both multi-sphere plumbing layouts, and the GPM/warning
+  text are all on one connected page). `image_157.jpg` is the Replacement Parts exploded
+  diagram; adapter/part data was legible enough to fold into facts text rather than
+  needing a separate transcribed table.
+  No changes needed to `productSelect`, hub links, or `HIDDEN_BY_DEFAULT`.
+- **Water Features refresh batch: Bubbler and WaterSphere complete.** Waterblade
+  (`waterblade`) — already a fuller card from earlier work with its own images
+  (`image_18`-`image_21`) — has not yet been checked against the newer
+  `source-manuals/Water Features/Waterblade/` folder; still open for this batch.
+
 ## Pending sign-off
 Decision-tree diagrams (Master Triage, Driver Power and Manual Test, Cloning and DIP
 Switch Check, White/Primary Color Test) were sent to Jason as a standalone PDF for review.
@@ -642,6 +763,13 @@ within 5 seconds). The guide previously said to press Code Setting then Z1 three
 that wording is flagged in-card, not deleted, since it may reflect real behavior on an
 older board revision. Jason should confirm which procedure techs should actually lead
 with before this is fully resolved one way or the other.
+
+**New (2026-07-07):** the `ledbubbler` card's own manual has the same "Matching Code"
+ambiguity as above, self-contained within one document — Section 6 Troubleshooting's
+remote-resync steps (Code Setting once, then Z1 x3) differ from Section 5's own
+"Features" list procedure (Z1 once within 5 seconds). Not a new question, just
+supporting evidence the ambiguity is real and not a one-off typo — cross-referenced on
+the `ledbubbler` card, not re-litigated there.
 
 **New (2026-07-07):** the PCR-3D's "Updates August–September 2025" addendum describes a
 newer "3D and 3DMX High Powered" V3 board (SKUs 64-PCR-3D / 64-PCR-3DW / 64-PCR-3DMX,
