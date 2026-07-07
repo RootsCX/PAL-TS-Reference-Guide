@@ -441,6 +441,195 @@ etc.) under the `products` hub.
   - Wired into `cat-automation`, the `productSelect` dropdown, and `HIDDEN_BY_DEFAULT` —
     same pattern as the rest of the guide. No live push has gone out for this yet.
 
+## Strip Lighting batch (in progress)
+New products added under the existing `cat-lights` hub (not a new category) — Cory's
+`source-manuals/Strip/<Product>/` folder covers PAL's Evenglow linear-strip family in
+three product tiers: Quick Ship Strip, Perimeter Strip Kits, and Custom Strip. Building
+one at a time, pausing for Cory after each.
+
+All three tiers share the exact same 30-page `INSTALLATION_GUIDE.pdf` (confirmed
+byte-identical file across the Quick Ship Strip and Custom Strip folders) — a masonry/
+mounting-scenario reference (pool coping x3 methods, corners & curves, track install,
+steppingstones, infinity edge, water/fire bowls, garden beds, fire feature walls, swim
+outs/baja shelves, hardscapes, water features, spa toe kick, stair installation), not a
+per-product troubleshooting manual. It has no electrical-fault/troubleshooting section at
+all. Product-specific facts (electrical specs, SKUs, wattage tables, driver compatibility)
+come from each tier's own spec sheets/brochure instead.
+
+- **Quick-Ship Strip Lighting (NFWB8/NFLT8)** (`quickshipstrip`) — new card, built
+  2026-07-07. Two source spec sheets (`PAL-NFLT8-Spec-Sheet.V26.2.pdf`,
+  `PAL-NFWB8-Spec-Sheet.V26.2.pdf`) plus a 2-page tier brochure
+  (`Quick-Ship-Strip-Lighting-Brochure-USA-V2.pdf`). This tier is PAL's pre-assembled,
+  factory-terminated, fixed-stocked-length product (4ft–60ft) — explicitly **not**
+  field-cut, which is the main thing that distinguishes it from the still-unbuilt Custom
+  Strip card. Two physical series covered by one card since they're the same product tier
+  or just different bend/mount orientation: NFWB8 ("Side View," side-bending, 238°
+  beam) and NFLT8 ("Top View," top-bending, 112° beam) — same electrical family, same
+  driver compatibility (PCR-1Z/PCR-3D families, shared with the `drivers` and
+  `pcr3d500` cards), different mounting tracks. Confirmed via the spec sheet's own
+  wiring diagram that strip lighting runs off the identical PCR-1Z board/DIP-cloning
+  layout (Jandy/Pentair/Hayward/PAL/Astral) already documented on the `drivers` card —
+  cross-referenced, not duplicated. Three findings, all flagged in-card rather than
+  resolved:
+  1. **Power-consumption conflict** — both spec sheets state "3 W/FT," but the Quick-Ship
+     brochure states "2.5W per Ft" for both series. The brochure's own per-length wattage
+     table is arithmetically consistent with the 3W/ft figure (60ft NFLT8 = 183W ≈
+     3.05W/ft), not 2.5W/ft, but neither document was silently preferred in the card text.
+  2. **Driver wattage/SKU-suffix conflict** — the Quick-Ship brochure's Drivers table
+     lists 64-PCR-1Z-65/64-PCR-3D-120/64-PCR-3D-500 as 55W/100W/400W, while the spec
+     sheets' own Remote Driver reference lists the identical SKUs at 65W/120W/500W
+     (i.e. suffix = wattage). Two PAL documents disagree about the same SKUs' rated
+     wattage.
+  3. **Cutting-increment conflict** — the shared 30-page install guide states Evenglow
+     Flex cuts in increments of "50mm (2\")" in one section (Over-Runs) and "99mm (3.9\")"
+     in another (Steppingstone Entry Points), while the spec sheets separately state
+     "1\" (25mm)." Three different figures across PAL's own documents at the time this
+     card was first built. **Update (Perimeter Strip Kits research, below):** two more
+     NFWB8/NFLT8-specific sources (the dedicated Perimeter Strip Kit install manual and
+     PAL's in-field cut/reseal instructions) both independently confirm 1" (25mm) too —
+     four sources now agree. The card's flag was updated to note this as "leaning
+     resolved" — the general guide's 50mm/99mm figures likely describe a different strip
+     variant, not this product family, though that hasn't been directly confirmed.
+  Also carried forward as a real in-workflow escalation instruction (not a build-process
+  note): PAL's install guide states any submerged strip installation must have its design
+  submitted to design@pallighting.com for sign-off before install — added as an
+  `escalate` box.
+  Images: hero (`image_130.jpg`) cropped from the NFLT8 spec sheet's own clean product
+  photo. `image_131.jpg` (NFWB8-vs-NFLT8 mounting/bend comparison) and `image_132.jpg`
+  (general driver-to-strip wiring diagram) came from the spec sheets at 300dpi.
+  `image_133.jpg` (entry-point dark-spot wrong/correct setting) and `image_134.jpg`
+  (corner bend-radius/overhang clearance) came from the shared install guide, also at
+  300dpi. Ordering/SKU/driver-compatibility data was transcribed as real HTML tables
+  rather than images, since it's plain numeric reference data — more searchable and
+  accessible than a table baked into a JPEG.
+  Render-logic note: like the `attendant` card, this card uses the `issues` field
+  normally (not worked around) — most of its issues are genuinely light/strip-appearance
+  symptoms (dark spot, cracked at a corner, dim segment), so the hardcoded "Light Not
+  Turning On" section label is a reasonable-enough fit here, unlike the DMX-only
+  `attendant` card.
+  Wired into `cat-lights`, the `productSelect` dropdown, and `HIDDEN_BY_DEFAULT`. No live
+  push has gone out for this yet.
+  **Corrected 2026-07-07** after building the Perimeter Strip Kits card below, using
+  evidence found in that research: (1) the "not field-cut" claim was an overstatement —
+  PAL's own in-field cut/reseal instructions explicitly list Quick-Ship SKUs as an
+  applicable product, so it CAN be field-cut/resealed at the installer's risk (facts text
+  and the corresponding issue reworded, not deleted — Custom Strip is still pointed to for
+  a job planned around a non-stocked length from the start); (2) the power-consumption
+  flag was strengthened to note the Perimeter Strip Kit sell sheet independently
+  corroborates 3W/ft (3 of 4 PAL documents now agree, vs. the Quick-Ship brochure's
+  outlier 2.5W/ft); (3) the non-submersible language was sharpened with the specific "15
+  sustained minutes" threshold quoted in the Perimeter Strip Kit manual (same product
+  family, same non-submersible strip); (4) the cutting-increment flag was updated per the
+  4-source resolution above. A cross-reference line to the new Perimeter Strip Kits card
+  was also added at the end of `extra`.
+- **Perimeter Strip Kits (NFWB8/NFLT8)** (`perimeterstripkit`) — new card, built
+  2026-07-07. PAL's all-in-one, longer-length tier (85'/100'/115') of the same Evenglow
+  Strip/Track family as Quick-Ship — one kit contains everything needed for a full
+  perimeter run: LED strip pre-installed on a reel dispenser, PC mounting track, end caps,
+  end-cap glue, a remote driver (transformer + controller combined) with remote, and a
+  pre-installed 100ft 4-wire power cable. Four source files, richest of the strip batch so
+  far: a 2-page sell sheet (`Pool-Perimeter-Strip-Lighting-Kits-USA-Jan29-2026.pdf`, full
+  kit-options/ordering/UPC/driver tables), a dedicated 12-page Install & Operations Manual
+  (`Perimeter-Strip-Kit-US-InstallationGuide-Print.pdf` — unlike Quick-Ship, this tier has
+  its own real Safety/Delivery/Tools/Before-Installation/Installation/Troubleshooting
+  manual, not just the shared 30-page masonry-scenario guide), a 2-page in-field
+  cut/reseal instruction sheet + warranty T&Cs
+  (`PAL-Lighting-Infield-Strip-Cutting-Instructions-with-warranty-VFeb-26.pdf`, explicitly
+  lists both Quick-Ship and Perimeter Strip Kit SKUs as applicable), and confirmed
+  (via md5) that the NFLT8/NFWB8 spec sheets in this folder are byte-identical to the
+  already-processed Quick-Ship copies. Findings:
+  1. **Field-cutting is expected here, not an edge case** — a Perimeter Strip Kit is sized
+     to a specific pool perimeter, so the install manual's own Step 6C treats cutting to
+     fit as a normal step, unlike Quick-Ship where it's an off-label (if PAL-sanctioned)
+     workaround. Same risk/warranty language applies: installer assumes all risk, and an
+     incorrectly-sealed joint is excluded from the 3-year warranty.
+  2. **Power consumption (3W/ft) and cutting increment (1"/25mm)** — both independently
+     corroborated by this tier's own sell sheet/manual, strengthening (not just repeating)
+     the same figures already flagged on the Quick-Ship card — see that card's updated
+     flags above.
+  3. **Driver is a dual-zone board (Z1/Z2)** with universal 100-240V AC input (two loose
+     leads, Brown=active/hot, Blue=neutral) and a specific power-cable wire-color mapping
+     confirmed off the manual's own wiring diagram: Red-Red / Blue-Blue / White-White /
+     Grey-Green (Grey represents the green LED channel — not obvious from the wire color
+     alone, worth calling out explicitly). Same PCR-1Z/PCR-3D driver family as Quick-Ship
+     and the `drivers`/`pcr3d500` cards, but a full-length kit run (255-345W) specifically
+     needs the 400W-class driver (64-PCR-3D-500/-3DW-500) — the 55W/100W-class units in
+     that same family are undersized for any stocked kit length on their own. This kit's
+     own manual doesn't reproduce the Cloning DIP switch table for the board pictured, so
+     the card points to the `drivers` card for that table rather than guessing.
+  4. **Troubleshooting content is thin by design** — no bulleted fault table exists in the
+     dedicated manual beyond a "call or email us" instruction, though it does explicitly
+     acknowledge automation-compatibility issues (e.g. "a Pentair automation system is
+     faulty and causing our LED strip to operate incorrectly") as a real, expected support
+     scenario — cross-referenced to the `competitors` and `attendant` cards. Flagged
+     in-card (`issuesNote`) that the issues list is inferred from the manual's own
+     warnings and this guide's shared diagnostic framework, not copied from a dedicated
+     table — same pattern already used on the `pcr2d`/`pcr300` coverage-gap cards.
+  Also carried forward the same submerged-install design-approval `escalate` box as
+  Quick-Ship (identical source warning, same product family).
+  Images: hero (`image_135.jpg`, kit-contents illustration: reel/tracks/driver) and all
+  install diagrams (`image_136.jpg` pool perimeter/channel/conduit planning,
+  `image_137.jpg` corner bend-radius/curve-spacing, `image_138.jpg` 2-person install
+  technique with the "do not push with screwdriver" warning, `image_139.jpg` safe-to-cut
+  point diagram, `image_140.jpg` resealing-sequence diagram, `image_141.jpg` remote driver
+  wiring diagram) all came from the dedicated 12-page install manual at 300dpi, cropped
+  via row/column whitespace-band inspection against the full rendered page rather than
+  guessed pixel boxes — this workflow hit two page-index mistakes along the way
+  (`image_136` and `image_138` were each initially cropped from the wrong page and had to
+  be re-rendered/re-cropped after Read-tool verification caught the wrong content) —
+  every crop in this card was verified with the Read tool before being treated as final.
+  Wired into `cat-lights`, the `productSelect` dropdown, and `HIDDEN_BY_DEFAULT`,
+  positioned directly after `quickshipstrip`. No live push has gone out for this yet.
+- **Custom Strip Lighting (Design-Build)** (`customstrip`) — new card, built 2026-07-07.
+  Last one in the Strip Lighting batch. Confirmed via md5 that the Custom Strip folder's
+  `INSTALLATION_GUIDE.pdf` is byte-identical to Quick-Ship's copy (same shared 30-page
+  masonry/mounting-scenario guide, already used) — only new source was a 2-page sell sheet
+  (`Custom-Strip-Sales-Sheet-USA-Jan-29-2026.pdf`). This tier turned out to be materially
+  bigger in scope than expected — not just "Quick-Ship's NFWB8/NFLT8 cut to a custom
+  length." It's a project-scoped design-build service (free PAL design consultation,
+  layout, strip built to the job's exact spec, photography credit for selected projects)
+  covering **nine physical variants across three mounting categories**: Side View (NFWB8,
+  NFLS8, NFMS2, NFUS2), Top View (NFLT8, NFMT8, NFUT2), and Hardscape (PLO2-F, PLO2-W) —
+  transcribed as a full comparison table rather than an image, same "real tables over
+  baked-in images" preference used on the sibling cards' ordering tables. Findings:
+  1. **NFLS8 vs NFLT8 naming collision** — one letter apart (S=Side, T=Top) in an
+     otherwise near-identical SKU pattern, both "Flex" strip products in the same family.
+     Flagged prominently as the single most likely misread on a work order.
+  2. **First submersible strip products in the whole guide** — NFUS2 and NFUT2 are
+     genuinely IP68 submersible-rated, unlike every other strip variant across all three
+     cards (Quick-Ship, Perimeter Strip Kits, and this card's other 7 variants), which all
+     carry the non-submersible/15-sustained-minute warning. The shared install guide's own
+     "must read" boilerplate independently corroborates this by explicitly carving out an
+     exception for "underwater rated LED strip lights." Flagged so a tech doesn't reflexively
+     repeat the non-submersible warning to a customer who has one of these two SKUs.
+  3. **Rigid-track Hardscape line (PLO2-F, PLO2-W)** — a fundamentally different mounting
+     mechanism from the other 7 flexible variants: a rigid track with mitred corners for
+     direction changes, not a bendable curve-spaced track. No install manual is on file
+     for this specific mounting system — flagged as a coverage gap rather than assuming
+     the flexible-strip bend-radius/curve-spacing guidance from the other cards applies.
+  4. **No per-length wattage table** — unlike Quick-Ship and Perimeter Strip Kits, this
+     sell sheet doesn't publish one (the product is project-quoted). Flagged not to assume
+     the 3W/ft figure resolved on those two cards applies uniformly across all 9 variants
+     here, especially the physically different Mini/Underwater/Hardscape lines.
+  5. NFWB8 and NFLT8 specifically are the same physical products already documented on the
+     Quick-Ship and Perimeter Strip Kits cards — cross-referenced (three purchase paths
+     for the same two variants), not treated as a conflict.
+  No dedicated troubleshooting section exists in the source sell sheet (same coverage-gap
+  pattern as `pcr2d`/`pcr300`/Perimeter Strip Kits) — issues list is inferred from the
+  shared diagnostic framework and the sibling cards, flagged via `issuesNote`.
+  Images: hero (`image_142.jpg`) cropped from the sell sheet's own hardscape-scene product
+  photo (had to crop tightly around overlapping bullet-point text baked into the same
+  image layer — two earlier crop attempts still caught stray text before landing on a
+  clean product-only region). `image_143.jpg`/`144.jpg`/`145.jpg` (Side View / Top View /
+  Hardscape product-line diagram groups) are direct crops of the sell sheet's own
+  three category sections at 300dpi, each verified against the full page render before
+  being treated as final.
+  Wired into `cat-lights`, the `productSelect` dropdown, and `HIDDEN_BY_DEFAULT`,
+  positioned directly after `perimeterstripkit`.
+- **Strip Lighting batch complete.** Quick-Ship, Perimeter Strip Kits, and Custom Strip
+  are all built. No live push has gone out for any of this batch yet, still holding per
+  Cory's request.
+
 ## Pending sign-off
 Decision-tree diagrams (Master Triage, Driver Power and Manual Test, Cloning and DIP
 Switch Check, White/Primary Color Test) were sent to Jason as a standalone PDF for review.

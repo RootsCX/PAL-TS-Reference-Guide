@@ -145,6 +145,9 @@
       <option value="evenglowfiberglass">Evenglow Fiberglass (Wet Niche)</option>
       <option value="treomicro">Treo Micro (Nicheless)</option>
       <option value="canadianretro">Canadian Retro (Sonar)</option>
+      <option value="quickshipstrip">Quick-Ship Strip Lighting (NFWB8/NFLT8)</option>
+      <option value="perimeterstripkit">Perimeter Strip Kits (NFWB8/NFLT8)</option>
+      <option value="customstrip">Custom Strip Lighting (Design-Build)</option>
       <option value="drivers">Drivers (PCR-1Z / PCR-2Z family)</option>
       <option value="pcr2dmx">PCR-2DMX Driver (2-Zone DMX)</option>
       <option value="pcr3d500">PCR-3D-120/500 (500W Driver)</option>
@@ -282,6 +285,9 @@ const DATA = [
       <div class="product-link" onclick="jumpToProduct('evenglowfiberglass')">Evenglow Fiberglass (Wet Niche)</div>
       <div class="product-link" onclick="jumpToProduct('treomicro')">Treo Micro (Nicheless)</div>
       <div class="product-link" onclick="jumpToProduct('canadianretro')">Canadian Retro (Sonar)</div>
+      <div class="product-link" onclick="jumpToProduct('quickshipstrip')">Quick-Ship Strip Lighting (NFWB8/NFLT8)</div>
+      <div class="product-link" onclick="jumpToProduct('perimeterstripkit')">Perimeter Strip Kits (NFWB8/NFLT8)</div>
+      <div class="product-link" onclick="jumpToProduct('customstrip')">Custom Strip Lighting (Design-Build)</div>
     `
   },
   {
@@ -778,6 +784,219 @@ const DATA = [
       "Coil the cable into the niche, position the light in the adapter plate, and secure with 2 x M4x5mm screws. Turn power back on at the mains/lighting controller/transformer and confirm the system is operational.<br><img class=\"zoomable\" src=\"assets/image_115.jpg\" alt=\"Canadian Retro securing light and winterization diagram\" style=\"width:100%;border-radius:8px;margin-top:8px;border:1px solid #2a3b5c;cursor:zoom-in;\"><span style=\"display:block;font-size:11px;color:#9fb0c5;margin-top:4px;font-style:italic;\">Securing the light with 2 screws; winterization uses the same 2 screws in reverse (tap to zoom)</span>",
     ],
     note: "This manual has no troubleshooting section — treat electrical faults like any other PAL LED light: see <b>LED Light Diagnostics</b> and <b>Probability-Based Diagnostic Framework</b>. For winterization: undo the 2 securing screws, remove the light from the adapter plate, lift it above water, dry it, and disconnect the cable. Store the light and cable with dust caps on to protect the pins."
+  },
+  {
+    id: "quickshipstrip",
+    backTo: "cat-lights",
+    title: "Quick-Ship Strip Lighting (Evenglow Flex NFWB8/NFLT8)",
+    photo: "assets/image_130.jpg",
+    photoAlt: "Evenglow Flex LED strip light, curved, glowing",
+    tags: ["quick ship","quick-ship strip","strip lighting","evenglow flex","nflt8","nfwb8","led strip","linear lighting","pool perimeter","mounting track","dark spot","top view","side view"],
+    facts: `<b>What it is:</b> PAL's pre-assembled, factory-built, stocked-length LED strip product — the "ready to ship" tier of PAL's Evenglow Strip/Track family (see also Perimeter Strip Kits and Custom Strip). Two physical series, not interchangeable:<br>
+            &nbsp;&nbsp;• <b>NFWB8 — "Side View"</b> (side-bending): light exits the side of the track, 238&deg; beam angle, 35 lm/ft, mounts recessed or as a mitered dropdown.<br>
+            &nbsp;&nbsp;• <b>NFLT8 — "Top View"</b> (top-bending): light exits the top of the track, 112&deg; beam angle, 45-46 lm/ft (minor rounding difference between sources), mounts recessed or surface-mount.<br><br>
+            <b>Electrical:</b> 24V DC constant voltage, RGB 4-wire. Every stocked length ships with an 80" (~6.6ft) factory-terminated power cable, straight cable entry only.<br>
+            <b>Stocked lengths:</b> 4' / 6' / 9' / 12' / 18' / 20' / 24' / 36' / 40' / 54' / 60', factory-terminated and sealed at those fixed lengths. Field-cutting/resealing to an in-between length IS possible — PAL's own in-field cut/reseal instructions explicitly list Quick-Ship SKUs as an applicable product, using the identical cut-point/reseal mechanics documented on the Perimeter Strip Kits card — but it's at the installer's risk (see Issues below). For a project planned around a non-stocked length from the start (not a field trim), Custom Strip is still the more appropriate product.<br>
+            <b>Certifications:</b> UL-676 Pool &amp; Spa, IP68 rated for wet locations (non-submersible) — PAL's own install guidance is specific: do not install if the strip will be submerged at any time for longer than 15 sustained minutes. IP68 does not mean safe fully underwater indefinitely.<br>
+            <b>Bending radius:</b> 2&#8539;" (60mm) minimum for standard RGB. SPI/DMX addressable variants need a larger 3" minimum — don't carry the tighter RGB number over to an SPI/DMX run.<br>
+            <b>Corners:</b> the strip itself can bend to a 38.1mm (1&#189;") radius at a 90&deg; corner, but the coping/rebate must allow a minimum 76.2mm (3") of overhang space at every corner for that bend — a corner rebate cut to straight-run dimensions won't leave room for the strip to turn.<br>
+            <b>Rebate/channel:</b> 22.3mm (7/8") deep &times; 22.3mm (7/8") wide is the standard mounting-track channel size used across nearly every application in PAL's install guide (pool coping, corners, garden beds, water features, hardscapes, stairs) for this track — what actually changes scenario-to-scenario is the coping overhang and thickness, not the channel itself.<br>
+            <b>Driver compatibility:</b> runs off the same PCR-1Z / PCR-3D driver families documented on the <b>Drivers</b> and <b>PCR-3D-120/500</b> cards, at strip-specific wattage tiers — 64-PCR-1Z-65 / -1ZW-65 (Wi-Fi), 64-PCR-3D-120 / -3DW-120, 64-PCR-3D-500 / -3DW-500. Cloning DIP bank (Jandy/Pentair/Hayward/PAL/Astral) is the same 3-switch layout as those cards.`,
+    steps: [
+      "Confirm which series is being installed — <b>NFWB8</b> (side-bending, light exits the side of the track) or <b>NFLT8</b> (top-bending, light exits the top of the track). The two use different mounting tracks and are not interchangeable.<br><img class=\"zoomable\" src=\"assets/image_131.jpg\" alt=\"NFWB8 Side View Strip vs NFLT8 Top View Strip comparison diagram\" style=\"width:100%;border-radius:8px;margin-top:8px;border:1px solid #2a3b5c;cursor:zoom-in;\"><span style=\"display:block;font-size:11px;color:#9fb0c5;margin-top:4px;font-style:italic;\">NFWB8 (Side View) vs NFLT8 (Top View) — mounting track profiles, bend direction, and mounting styles (tap to zoom)</span>",
+      "Mount the PC mounting track into the rebate/channel first, then press the strip into the track. Never roll the strip out completely flat, and install with the pool/basin empty where possible to avoid twisting or straining it. This is a 2-person job.",
+      "At every corner, confirm the coping/rebate has at least 76.2mm (3\") of overhang space to accommodate the strip's bend — a rebate cut to the straight-run dimensions alone will bind or crack the strip at the corner.<br><img class=\"zoomable\" src=\"assets/image_134.jpg\" alt=\"Strip lighting corner minimum bend radius and overhang diagram\" style=\"width:100%;border-radius:8px;margin-top:8px;border:1px solid #2a3b5c;cursor:zoom-in;\"><span style=\"display:block;font-size:11px;color:#9fb0c5;margin-top:4px;font-style:italic;\">External and internal corner mounting — 38.1mm (1.5\") bend radius, R50mm (2\") min coping overhang (tap to zoom)</span>",
+      "When a run breaks at an entry-point/conduit exit, place the entry point offset into one segment rather than right at the gap between two segments — this avoids a visible dark spot at the joint.<br><img class=\"zoomable\" src=\"assets/image_133.jpg\" alt=\"Strip lighting entry point wrong setting versus correct setting dark spot diagram\" style=\"width:100%;border-radius:8px;margin-top:8px;border:1px solid #2a3b5c;cursor:zoom-in;\"><span style=\"display:block;font-size:11px;color:#9fb0c5;margin-top:4px;font-style:italic;\">Wrong setting (entry points meet at the gap, creates a dark spot) vs correct setting (entry points offset, diffused light covers the gap) (tap to zoom)</span>",
+      "Wire the driver per its own board layout — Manual Operation Button, Code Setting Button, Module DIP switches for OEM cloning. Same PCR-1Z/PCR-3D board family as the Drivers and PCR-3D-120/500 cards.<br><img class=\"zoomable\" src=\"assets/image_132.jpg\" alt=\"Strip lighting general product wiring diagram, driver to LED strip\" style=\"width:100%;border-radius:8px;margin-top:8px;border:1px solid #2a3b5c;cursor:zoom-in;\"><span style=\"display:block;font-size:11px;color:#9fb0c5;margin-top:4px;font-style:italic;\">General product wiring — driver board (Module Config DIP bank, Wi-Fi connector) to LED Strip, junction box optional per local code (tap to zoom)</span>",
+    ],
+    issues: [
+      ["Dark spot at a joint between two strip runs","Check the entry-point placement against the Wrong/Correct Setting diagram above — an entry point cut right at the gap between two segments (rather than offset into one segment) leaves an unlit dead zone. This is a design/install-placement issue, not a defective strip"],
+      ["Strip cracked, kinked, or won't seat at a corner","Confirm the coping/rebate actually has the minimum 76.2mm (3\") overhang clearance at that corner — a rebate built to straight-run dimensions doesn't leave room for even the minimum 38.1mm (1½\") bend radius"],
+      ["Customer needs a length between two stocked sizes, or wants to trim on site","Quick-Ship CAN be field-cut and resealed using PAL's official cut/reseal procedure (see Perimeter Strip Kits card) but it's at the installer's risk and voids warranty on that joint if not sealed correctly — the factory-terminated stocked lengths ship pre-sealed and fully warrantied as-is. For a job planned around a non-stocked length from the start, point to Custom Strip instead"],
+      ["Section of strip dim or unlit, primaries otherwise fine","Same head/cable/driver logic as any other PAL LED product — see LED Light Diagnostics and the Probability-Based Diagnostic Framework. Confirm actual driver output wattage against the run's rated draw (see wattage flag below) before assuming a bad strip segment"],
+    ],
+    escalate: "Any submerged strip-light installation (below the waterline in the design) must have plans/design submitted to design@pallighting.com for PAL's design-spec approval before install — this isn't optional. Installing a submerged run without that sign-off is a warranty/liability risk, not just a best practice.",
+    extra: `
+      <div class="note-box"><b>Flag — power consumption conflict between PAL documents:</b> the NFLT8/NFWB8 spec sheets each state <b>3 W/FT</b> electrical rating, and the Perimeter Strip Kit sell sheet independently states the same 3W/ft, but the Quick-Ship brochure states <b>2.5W per Ft</b> for both series — 3 of 4 PAL documents on file agree on 3W/ft. Both kits' own ordering tables also line up with 3W/ft math (Quick-Ship's 60ft NFLT8 run at 183W &asymp; 3.05W/ft; Perimeter Kit's 85ft run at exactly 255W = 3W/ft) — treat 3W/ft as the more reliable figure, but confirm actual measured draw on a live run rather than assuming either printed rate.</div>
+      <div class="note-box"><b>Flag — driver wattage naming conflict:</b> the Quick-Ship brochure's own Drivers table lists 64-PCR-1Z-65 as <b>55W</b>, 64-PCR-3D-120 as <b>100W</b>, and 64-PCR-3D-500 as <b>400W</b> — the SKU's number suffix does not match that stated wattage. The NFLT8/NFWB8 spec sheets' own Remote Driver reference section lists those same SKUs at <b>65W / 120W / 500W</b> instead (suffix = wattage). Confirm actual driver wattage off the physical unit's label before sizing a run near a driver's rated capacity.</div>
+      <div class="note-box"><b>Flag — cutting increment conflict, now leaning resolved:</b> PAL's general Strip Installation Guide states Evenglow Flex cuts in increments of <b>50mm (2")</b> in one section and <b>99mm (3.9")</b> in another, while the NFLT8/NFWB8 spec sheets, the dedicated Perimeter Strip Kit install manual, and PAL's in-field cut/reseal instructions all independently state a <b>1" (25mm)</b> cutting increment — four NFWB8/NFLT8-specific sources now agree on 1". The general Strip Installation Guide's differing figures likely describe a different strip variant, not this product family, but that guide hasn't been checked to confirm which variant it actually covers.</div>
+
+      <div class="section-label">Quick Spec Comparison</div>
+      <table style="width:100%; border-collapse:collapse; margin:6px 0; font-size:0.92em;">
+        <tr style="border-bottom:1px solid #ccc;"><td style="padding:2px 8px 2px 0;"><b>Spec</b></td><td style="padding:2px 8px;"><b>NFWB8 (Side View)</b></td><td style="padding:2px 0;"><b>NFLT8 (Top View)</b></td></tr>
+        <tr><td>Beam angle</td><td>238&deg;</td><td>112&deg;</td></tr>
+        <tr><td>Lumen output</td><td>35 lm/ft</td><td>45-46 lm/ft</td></tr>
+        <tr><td>Mounting styles</td><td>Recessed / Mitered Dropdown</td><td>Recessed / Surface Mount</td></tr>
+        <tr><td>Bending radius (RGB / SPI-DMX)</td><td>2&#8539;" / 3" min</td><td>2&#8539;" / 3" min</td></tr>
+        <tr><td>Mounting track SKU</td><td>64-PAL-NFWB2-MT-E-6</td><td>64-PAL-NFLT-MT-E-6</td></tr>
+        <tr><td>End cap SKU</td><td>64-PAL-NFWB2-ENDCAP</td><td>64-PAL-NFLT-ENDCAP</td></tr>
+      </table>
+
+      <div class="section-label">Ordering Guide — Stocked Lengths</div>
+      <div class="order-note">All stocked lengths below ship with an 80" power cable and straight cable entry only. Part number pattern: 64-PAL-[NFWB8/NFLT8]-RGB-STE-[length in inches, 4-digit].</div>
+      <table style="width:100%; border-collapse:collapse; margin:6px 0; font-size:0.92em;">
+        <tr style="border-bottom:1px solid #ccc;"><td style="padding:2px 8px 2px 0;"><b>Length</b></td><td style="padding:2px 8px;"><b>NFWB8 Wattage</b></td><td style="padding:2px 0;"><b>NFLT8 Wattage</b></td></tr>
+        <tr><td>4 ft</td><td>13W</td><td>13W</td></tr>
+        <tr><td>6 ft</td><td>19W</td><td>19W</td></tr>
+        <tr><td>9 ft</td><td>28W</td><td>28W</td></tr>
+        <tr><td>12 ft</td><td>37W</td><td>37W</td></tr>
+        <tr><td>18 ft</td><td>55W</td><td>55W</td></tr>
+        <tr><td>20 ft</td><td>61W</td><td>61W</td></tr>
+        <tr><td>24 ft</td><td>74W</td><td>74W</td></tr>
+        <tr><td>36 ft</td><td>110W</td><td>110W</td></tr>
+        <tr><td>40 ft</td><td>122W</td><td>122W</td></tr>
+        <tr><td>54 ft</td><td>165W</td><td>165W</td></tr>
+        <tr><td>60 ft</td><td>183W</td><td>183W</td></tr>
+      </table>
+
+      <div class="section-label">Compatible Remote Drivers</div>
+      <table style="width:100%; border-collapse:collapse; margin:6px 0; font-size:0.92em;">
+        <tr style="border-bottom:1px solid #ccc;"><td style="padding:2px 8px 2px 0;"><b>SKU</b></td><td style="padding:2px 0;"><b>Control</b></td></tr>
+        <tr><td>64-PCR-1Z-65</td><td>Remote control</td></tr>
+        <tr><td>64-PCR-1ZW-65</td><td>Wi-Fi / PAL Lighting app</td></tr>
+        <tr><td>64-PCR-3D-120</td><td>Remote control</td></tr>
+        <tr><td>64-PCR-3DW-120</td><td>Wi-Fi / PAL Lighting app</td></tr>
+        <tr><td>64-PCR-3D-500</td><td>Remote control</td></tr>
+        <tr><td>64-PCR-3DW-500</td><td>Wi-Fi / PAL Lighting app</td></tr>
+      </table>
+      <div class="order-note">See the <b>Drivers</b> card for PCZ-2 remote pairing/cloning steps — all PCR-1Z drivers ship with 1x PCZ-2 handheld transmitter and wall holder. See the <b>Perimeter Strip Kits</b> card for longer all-in-one 85'/100'/115' kits (same strip family) and the official field cut/reseal procedure referenced above.</div>
+    `
+  },
+  {
+    id: "perimeterstripkit",
+    backTo: "cat-lights",
+    title: "Perimeter Strip Kits (Evenglow Flex NFWB8/NFLT8)",
+    photo: "assets/image_135.jpg",
+    photoAlt: "Perimeter Strip Kit contents — LED strip on reel, mounting tracks, end caps, remote driver, glue",
+    tags: ["perimeter strip kit","strip lighting","evenglow flex","nflt8","nfwb8","led strip","linear lighting","pool perimeter","mounting track","reel","remote driver","cut to length","dark spot"],
+    facts: `<b>What it is:</b> PAL's all-in-one, longer-length tier of the Evenglow Strip/Track family (see also Quick-Ship Strip and Custom Strip) — a single kit containing everything needed for an 85', 100', or 115' pool-perimeter run: LED strip pre-installed on a reel dispenser, PC mounting track, end caps, end-cap glue, a remote driver (transformer + controller in one enclosure) with remote, and a 100' pre-installed 4-wire power cable (straight entry). Same two physical series as Quick-Ship and not interchangeable:<br>
+            &nbsp;&nbsp;• <b>NFWB8 — "Side View"</b> (side-bending): light exits the side of the track, 238&deg; beam angle, 35 lm/ft, mounts recessed (downward) or mitered dropdown.<br>
+            &nbsp;&nbsp;• <b>NFLT8 — "Top View"</b> (top-bending): light exits the top of the track, 112&deg; beam angle, 46 lm/ft, mounts recessed or surface-mount (outward).<br><br>
+            <b>Electrical:</b> 24V DC constant voltage, 3W/ft (this kit's sell sheet and its own per-length wattage table both corroborate 3W/ft — see the power-consumption flag on the Quick-Ship Strip card, where a separate brochure states an outlier 2.5W/ft).<br>
+            <b>Certifications:</b> UL-676 Pool &amp; Spa, IP68 (non-submersible) — do not install if the strip will be submerged at any time for longer than 15 sustained minutes. 3-year warranty (excludes water intrusion/submersion damage, and excludes a field-cut joint that wasn't sealed correctly).<br>
+            <b>Bending radius:</b> 2&#8539;" (60mm) minimum for the strip itself. At corners, the mounting track bends to a tighter 38.1mm (1&#189;") radius, but the coping/channel must allow a minimum 2" overhang for that bend to seat.<br>
+            <b>Track spacing on curves:</b> no more than 250mm (10") between mounting-track sections, no less than 100mm (4") per section.<br>
+            <b>Remote driver:</b> a dual-zone board (Z1 + Z2 terminal blocks) with universal 100-240V AC input on two loose leads (Brown = active/hot, Blue = neutral) and 24V DC 4-wire output per zone. Power-cable wire-color mapping: Red&rarr;Red, Blue&rarr;Blue, White&rarr;White, <b>Grey&rarr;Green</b> (Grey represents the green LED channel in the power cable — not obvious from the wire color alone).<br>
+            <b>Driver compatibility:</b> same PCR-1Z / PCR-3D driver family as the Quick-Ship Strip, Drivers, and PCR-3D-120/500 cards — but a full-length kit run (255-345W) needs the 400W-class driver (64-PCR-3D-500 / -3DW-500); the 55W and 100W-class drivers in that family are undersized for any of this kit's stocked lengths on their own.`,
+    steps: [
+      "Before starting install, connect the strip to the driver and power it on to confirm both are in working condition — cycle through colors and test dimming. Do this again after any field cut/reseal, before the 24-hour cure period, to catch a bad connection early.",
+      "Confirm which series is being installed — <b>NFWB8</b> (side-bending) or <b>NFLT8</b> (top-bending) — and the intended mounting style (recessed/mitered dropdown for NFWB8, recessed/surface-mount for NFLT8). The two use different mounting tracks and are not interchangeable.",
+      "Measure the full perimeter including the mounting-track channel (minimum 2\" overhang). For a full-perimeter run, plan for the start and end of the run to meet as close as possible to the conduit opening.<br><img class=\"zoomable\" src=\"assets/image_136.jpg\" alt=\"Pool perimeter channel and conduit planning diagram\" style=\"width:100%;border-radius:8px;margin-top:8px;border:1px solid #2a3b5c;cursor:zoom-in;\"><span style=\"display:block;font-size:11px;color:#9fb0c5;margin-top:4px;font-style:italic;\">Example pool — conduit-to-channel routing, channel opening, and LED strip path around the full perimeter (tap to zoom)</span>",
+      "Cut PC mounting track to length with pipe cutters rated for 1\"-1.5\" pipe — flat, clean cuts only (a sharp-angle or ragged cut can puncture the strip). On curves, space track sections no more than 10\" apart and no less than 4\" per section; hold a minimum 2\" corner radius. Secure track with a chlorine-resistant, waterproof adhesive rated safe for both PC (polycarbonate) plastic and the mounting surface material.<br><img class=\"zoomable\" src=\"assets/image_137.jpg\" alt=\"Mounting track corner bend radius and curve spacing diagram\" style=\"width:100%;border-radius:8px;margin-top:8px;border:1px solid #2a3b5c;cursor:zoom-in;\"><span style=\"display:block;font-size:11px;color:#9fb0c5;margin-top:4px;font-style:italic;\">Corner bend radius (38.1mm/1.5\") and curve section spacing (100mm/4\" min – 250mm/10\" max) (tap to zoom)</span>",
+      "Route the pre-installed 100' power cable through conduit installed during construction, through a junction box, to the equipment pad. The remote driver ships with rubber conduit-knockout plugs — remove only the ones needed and seal the conduit connection with PVC glue.",
+      "Install the strip: minimum 2-person job. One installer guides the strip unrolling off the reel; the second uses the palm of their hand to press-fit the strip into the mounting track. Never push the strip into the track with a screwdriver or other hard-edged tool — it will puncture the strip.<br><img class=\"zoomable\" src=\"assets/image_138.jpg\" alt=\"Two-person strip installation technique, do not push with screwdriver warning\" style=\"width:100%;border-radius:8px;margin-top:8px;border:1px solid #2a3b5c;cursor:zoom-in;\"><span style=\"display:block;font-size:11px;color:#9fb0c5;margin-top:4px;font-style:italic;\">2-person minimum install — press-fit by hand only, no screwdriver or similar tool (tap to zoom)</span>",
+      "At the end of the run: if the strip lands flush with the planned length, finish installing to that point. Otherwise, cut at the nearest marked safe-cut point — a solid line visible in the strip's \"window\" between two copper pads, in 1\" increments — then reseal: apply PAL sealant (<b>64-PAL-NF-GLUE only</b> — no substitute is approved) into the small hole on the cut end, fill the end cap at least 50% with sealant, seat it and seal around it, and let it cure a minimum 24 hours with zero water exposure before restoring power or testing.<br><img class=\"zoomable\" src=\"assets/image_139.jpg\" alt=\"Safe-to-cut point diagram on LED strip\" style=\"width:100%;border-radius:8px;margin-top:8px;border:1px solid #2a3b5c;cursor:zoom-in;\"><span style=\"display:block;font-size:11px;color:#9fb0c5;margin-top:4px;font-style:italic;\">Cut point — dark line between copper pads, side view and top view (tap to zoom)</span><br><img class=\"zoomable\" src=\"assets/image_140.jpg\" alt=\"Resealing the strip end cap with silicone sealant, step by step\" style=\"width:100%;border-radius:8px;margin-top:8px;border:1px solid #2a3b5c;cursor:zoom-in;\"><span style=\"display:block;font-size:11px;color:#9fb0c5;margin-top:4px;font-style:italic;\">Resealing sequence — sealant into the cut end, end cap filled and seated, excess smoothed out (tap to zoom)</span>",
+      "Wire the remote driver: line-in is two loose leads for 100-240V AC (Brown = active/hot, Blue = neutral) into code-compliant wire connectors — confirm power is OFF before doing this. Connect the 4-wire power cable to the Z1 (or Z2) output terminal block: Red-Red / Blue-Blue / White-White / Grey-Green.<br><img class=\"zoomable\" src=\"assets/image_141.jpg\" alt=\"Remote driver wiring diagram, AC line in and 24V DC out terminals\" style=\"width:100%;border-radius:8px;margin-top:8px;border:1px solid #2a3b5c;cursor:zoom-in;\"><span style=\"display:block;font-size:11px;color:#9fb0c5;margin-top:4px;font-style:italic;\">Remote driver — AC LINE IN (Brown/Blue) and 24V DC OUT (Z1/Z2 terminal blocks) (tap to zoom)</span>",
+      "Once all connections are made and any cut/sealed joint has had its full 24-hour cure, restore power to line-in. The strip should power on immediately with consistent color/glow/brightness across its full length. Confirm remote, app, automation, and/or DMX controls all operate as expected.",
+    ],
+    issues: [
+      ["Dark spot at a joint between two strip runs","Check the entry-point placement — an entry point cut right at the gap between two segments (rather than offset into one segment) leaves an unlit dead zone. This is a design/install-placement issue, not a defective strip — see the Quick-Ship Strip card's entry-point diagram (same strip family)"],
+      ["Strip cracked, kinked, or won't seat at a corner","Confirm the coping/channel actually has the minimum 2\" overhang clearance at that corner, and that track spacing on the curve doesn't exceed 10\" between sections — a channel built to straight-run dimensions won't leave room for even the minimum 38.1mm (1.5\") track bend radius"],
+      ["Section of strip dim or unlit, primaries otherwise fine","Same head/cable/driver logic as any other PAL LED product — see LED Light Diagnostics and the Probability-Based Diagnostic Framework. Confirm actual driver output wattage against the run's rated draw before assuming a bad strip segment — a full-length kit run needs the 400W-class driver, not the 55W or 100W-class units"],
+      ["A connected automation system (e.g. Pentair) is causing the strip to behave incorrectly","PAL's own install manual explicitly flags this as a real, expected support scenario — automation-compatibility issues can require back-and-forth with the automation vendor depending on project setup. See the Competitors card and, if the customer is running Poolside Tech's DMX \"Attendant\" integration, the Attendant card"],
+    ],
+    issuesNote: "PAL's own troubleshooting section for this kit is thin by design — no bulleted fault table exists in the source manual beyond \"call or email us.\" The issues above are inferred from the install manual's own warnings and this guide's shared diagnostic framework, not copied from a dedicated troubleshooting table.",
+    escalate: "Any submerged strip-light installation (below the waterline in the design) must have plans/design submitted to design@pallighting.com for PAL's design-spec approval before install — this isn't optional. Installing a submerged run without that sign-off is a warranty/liability risk, not just a best practice.",
+    extra: `
+      <div class="note-box"><b>Field-cutting is expected and documented for this product</b> — unlike a stocked-length Quick-Ship run, a Perimeter Strip Kit is sized to a specific pool perimeter, so cutting to fit is a normal, anticipated step (Step 6C in the source manual), not an edge case. It still carries the same risk/warranty language as any field cut: installer assumes all risk of cutting and resealing, and a joint that isn't sealed correctly per the reseal procedure is excluded from warranty coverage.</div>
+      <div class="note-box"><b>Automation clone-mode DIP switch table not included here:</b> the driver board photographed in this kit's manual is a dual-zone board with the same Cloning/Module DIP switch layout referenced on the Drivers card, but this kit's own manual doesn't reproduce that table — see the Drivers card for the actual Jandy/Pentair/Hayward/PAL/Astral switch positions if this kit is being cloned into a competitor automation system.</div>
+
+      <div class="section-label">Kit Contents</div>
+      <ul class="steps">
+        <li>LED Strip Light (85', 100', or 115') — pre-installed on spool/reel</li>
+        <li>PC Mounting Tracks</li>
+        <li>End Caps + End Cap Adhesive Glue Tube (64-PAL-NF-GLUE)</li>
+        <li>Remote Driver — 100-240V input / 24V output, transformer and lighting controller combined, with remote</li>
+        <li>100' pre-installed 4-wire RGB power cable (straight-entry connection)</li>
+      </ul>
+
+      <div class="section-label">Kit Options — Ordering Guide</div>
+      <div class="order-note">Part number pattern: 64-PAL-[NFWB8/NFLT8]-RGB-STE-[length]FT. All kits ship with a 100ft cable, straight cable entry.</div>
+      <table style="width:100%; border-collapse:collapse; margin:6px 0; font-size:0.92em;">
+        <tr style="border-bottom:1px solid #ccc;"><td style="padding:2px 8px 2px 0;"><b>SKU</b></td><td style="padding:2px 8px;"><b>Strip Length</b></td><td style="padding:2px 0;"><b>Wattage</b></td></tr>
+        <tr><td>64-PAL-NFWB8-RGB-STE-085FT</td><td>85 ft</td><td>255W</td></tr>
+        <tr><td>64-PAL-NFWB8-RGB-STE-100FT</td><td>100 ft</td><td>300W</td></tr>
+        <tr><td>64-PAL-NFWB8-RGB-STE-115FT</td><td>115 ft</td><td>345W</td></tr>
+        <tr><td>64-PAL-NFLT8-RGB-STE-085FT</td><td>85 ft</td><td>255W</td></tr>
+        <tr><td>64-PAL-NFLT8-RGB-STE-100FT</td><td>100 ft</td><td>300W</td></tr>
+        <tr><td>64-PAL-NFLT8-RGB-STE-115FT</td><td>115 ft</td><td>345W</td></tr>
+      </table>
+
+      <div class="section-label">Compatible Remote Drivers</div>
+      <div class="order-note">A full-length kit run (255-345W) requires the 400W-class driver below — the 55W and 100W-class units in this same family are sized for shorter runs (e.g. Quick-Ship stocked lengths), not a full Perimeter Kit.</div>
+      <table style="width:100%; border-collapse:collapse; margin:6px 0; font-size:0.92em;">
+        <tr style="border-bottom:1px solid #ccc;"><td style="padding:2px 8px 2px 0;"><b>SKU</b></td><td style="padding:2px 0;"><b>Control</b></td></tr>
+        <tr><td>64-PCR-3D-500</td><td>Remote control (400W)</td></tr>
+        <tr><td>64-PCR-3DW-500</td><td>Wi-Fi / PAL Lighting app (400W)</td></tr>
+      </table>
+
+      <div class="section-label">Accessories</div>
+      <table style="width:100%; border-collapse:collapse; margin:6px 0; font-size:0.92em;">
+        <tr><td>End Cap (NFWB8)</td><td>64-PAL-NFWB2-ENDCAP</td></tr>
+        <tr><td>End Cap (NFLT8)</td><td>64-PAL-NFLT-ENDCAP</td></tr>
+        <tr><td>Glue — Small Tube</td><td>64-PAL-NF-GLUE</td></tr>
+        <tr><td>Dropdown Mounting Bracket (NFWB8, 2ft)</td><td>64-NFWB8-MT-PVC-E-2</td></tr>
+        <tr><td>Strip Cutting Knife</td><td>64-PAL-NF-KNIFE</td></tr>
+      </table>
+      <div class="order-note">See the <b>Quick-Ship Strip</b> card for the shorter stocked-length tier of this same strip family, and the <b>Drivers</b> card for the Cloning DIP table and PCZ-2 remote pairing/cloning steps.</div>
+    `
+  },
+  {
+    id: "customstrip",
+    backTo: "cat-lights",
+    title: "Custom Strip Lighting (Design-Build)",
+    photo: "assets/image_142.jpg",
+    photoAlt: "Custom Strip LED lighting installed along a hardscape pool deck feature, glowing purple to blue",
+    tags: ["custom strip","evenglow flex","mini strip","underwater strip","submersible","hardscape","nfws8","nfls8","nfms2","nfus2","nflt8","nfmt8","nfut2","plo2-f","plo2-w","design consultation","led strip","linear lighting"],
+    facts: `<b>What it is:</b> PAL's design-build tier of the Evenglow Strip/Track family (see also Quick-Ship Strip and Perimeter Strip Kits) — <b>not</b> a stocked SKU or fixed-length kit. This is a project-scoped service: free consultation by PAL's lighting design team, a detailed lighting design/layout for the job, and strip built to that project's exact specifications rather than a stocked or kit length. PAL also offers photography/video credit for selected installed projects. A customer asking for an exact custom length or shape should be pointed to a PAL design consultation, not quoted a self-serve SKU the way Quick-Ship or Perimeter Kits are.<br><br>
+            <b>Nine physical variants across three mounting categories</b> — see the full comparison table below. This is a materially larger product line than Quick-Ship/Perimeter (which cover only NFWB8/NFLT8): Custom Strip also includes smaller "Mini" variants, fully submersible "Underwater" variants, and a rigid-track "Hardscape" line with mitred corners instead of a bendable track.<br><br>
+            <b>Electrical:</b> 24V DC constant voltage (same family baseline as Quick-Ship/Perimeter Kits). This sell sheet does not publish a per-length wattage table the way the other two tiers do — Custom Strip is project-quoted, so confirm actual wattage against the specific job's PAL quote rather than assuming the 3W/ft figure documented on the Quick-Ship/Perimeter cards applies uniformly, especially for the Mini, Underwater, or Hardscape variants (physically different products from NFWB8/NFLT8).<br>
+            <b>Certifications:</b> UL-676 Pool &amp; Spa, IP68, 3-year warranty. <b>Unlike every other strip card in this guide, IP68 here splits into two real categories</b> — most variants are non-submersible (same 15-sustained-minute rule as Quick-Ship/Perimeter), but two variants (NFUS2, NFUT2) are genuinely <b>submersible</b> — PAL's shared install guide's own "must read" warning explicitly carves out an exception for "underwater rated LED strip lights." Don't apply the non-submersible warning to a customer who has one of those two SKUs.`,
+    steps: [
+      "<b>Confirm the exact SKU with the customer's PAL quote/design paperwork before doing anything else</b> — do not assume from a verbal description. <b>NFLS8</b> (Side View) and <b>NFLT8</b> (Top View) differ by a single letter and are easy to misread on a work order; they are different products with different mounting tracks and light directions.<br><img class=\"zoomable\" src=\"assets/image_143.jpg\" alt=\"Custom Strip Side View product line — NFWB8, NFLS8, NFMS2, NFUS2 mounting track and spec diagrams\" style=\"width:100%;border-radius:8px;margin-top:8px;border:1px solid #2a3b5c;cursor:zoom-in;\"><span style=\"display:block;font-size:11px;color:#9fb0c5;margin-top:4px;font-style:italic;\">Side View family — Flex Wide Beam (NFWB8), Flex (NFLS8), Mini (NFMS2), Underwater (NFUS2) (tap to zoom)</span><br><img class=\"zoomable\" src=\"assets/image_144.jpg\" alt=\"Custom Strip Top View product line — NFLT8, NFMT8, NFUT2 mounting track and spec diagrams\" style=\"width:100%;border-radius:8px;margin-top:8px;border:1px solid #2a3b5c;cursor:zoom-in;\"><span style=\"display:block;font-size:11px;color:#9fb0c5;margin-top:4px;font-style:italic;\">Top View family — Flex (NFLT8), Mini (NFMT8), Underwater (NFUT2) (tap to zoom)</span>",
+      "<b>Confirm submersible vs. non-submersible for this specific SKU</b> — only NFUS2 and NFUT2 are rated for submerged installation. Every other variant on this card follows the same non-submersible rule as Quick-Ship/Perimeter Strip Kits: do not install if the strip will be submerged at any time for longer than 15 sustained minutes.",
+      "<b>For the seven flexible (non-rigid) variants</b> — NFWB8, NFLS8, NFMS2, NFUS2, NFLT8, NFMT8, NFUT2 — mounting mechanics are the same family technique documented on the Quick-Ship Strip and Perimeter Strip Kits cards: PC mounting track cut to length with a pipe cutter, spaced per the curve-spacing guidance on those cards, secured with a chlorine-resistant adhesive safe for PC plastic and the substrate, then the strip press-fit into the track by hand (2-person job, never with a screwdriver). Exact channel/track dimensions differ by variant — see the comparison table below — but the install technique doesn't change. See those two cards for the full step-by-step and diagrams rather than duplicating here.",
+      "<b>For the two rigid-track Hardscape variants</b> — PLO2-F, PLO2-W — the strip mounts in a <b>rigid</b> track with <b>mitred corners</b> for direction changes, not a bendable curve-spaced track. No PAL install manual is on file describing this mounting system's procedure specifically — treat as a coverage gap and do not carry over the flexible-strip bend-radius/curve-spacing guidance from the other cards to this product.<br><img class=\"zoomable\" src=\"assets/image_145.jpg\" alt=\"Custom Strip Hardscape product line — PLO2-F and PLO2-W rigid track diagrams with mitred corners\" style=\"width:100%;border-radius:8px;margin-top:8px;border:1px solid #2a3b5c;cursor:zoom-in;\"><span style=\"display:block;font-size:11px;color:#9fb0c5;margin-top:4px;font-style:italic;\">Hardscape family — Feature Side View, rigid track with mitred corners (PLO2-F, PLO2-W) (tap to zoom)</span>",
+      "Because Custom Strip is ordered through a PAL design consultation rather than a catalog SKU, there is no fixed ordering-guide/wattage table the way Quick-Ship and Perimeter Strip Kits have. Confirm the customer's actual layout, length, and wattage against PAL's design documentation for that specific job rather than assuming standard figures from a sibling card.",
+    ],
+    issues: [
+      ["Customer/work order doesn't clearly specify which of the 9 variants was installed","Check the actual SKU on the driver/strip packaging or the PAL design quote before troubleshooting further — IP rating (submersible vs. not), mounting mechanism (flexible track vs. rigid), and color temperature range all differ by variant. Don't assume NFWB8/NFLT8 defaults just because those are the most common SKUs elsewhere in this guide"],
+      ["Dark spot at a joint between two strip runs (flexible variants only)","Check the entry-point placement — an entry point cut right at the gap between two segments (rather than offset into one segment) leaves an unlit dead zone. This is a design/install-placement issue, not a defective strip — see the Quick-Ship Strip card's entry-point diagram (same strip family mechanics)"],
+      ["Strip cracked, kinked, or won't seat at a corner (flexible variants only)","Confirm the coping/channel has adequate overhang clearance for that variant's bend radius (see comparison table) — a channel built to straight-run dimensions won't leave room for the strip to turn. Does not apply to the rigid-track Hardscape variants, which use mitred corners instead of a bend"],
+      ["Section of strip dim or unlit, primaries otherwise fine","Same head/cable/driver logic as any other PAL LED product — see LED Light Diagnostics and the Probability-Based Diagnostic Framework. Confirm actual driver output against the run's actual quoted wattage before assuming a bad strip segment"],
+      ["A connected automation system is causing the strip to behave incorrectly","Same real, expected scenario documented on the Perimeter Strip Kits card for this same strip family. See the Competitors card and, if relevant, the Attendant card for DMX integrations"],
+    ],
+    issuesNote: "No dedicated troubleshooting section exists for Custom Strip specifically — the issues above are inferred from the shared diagnostic framework and the sibling Quick-Ship/Perimeter Strip Kits cards, not copied from a Custom Strip-specific fault table.",
+    escalate: "Any submerged strip-light installation using a non-submersible variant (below the waterline in the design) must have plans/design submitted to design@pallighting.com for PAL's design-spec approval before install — this isn't optional. This applies on top of the normal Custom Strip consultation process, not instead of it. For the two submersible variants (NFUS2, NFUT2), routing the job through PAL's design consultation is still the normal path since this whole product tier is project-quoted, not self-serve.",
+    extra: `
+      <div class="note-box"><b>Flag — SKU naming collision:</b> <b>NFLS8</b> (Side View, side-bending) and <b>NFLT8</b> (Top View, top-bending) differ by a single letter in the middle of the SKU. Both are otherwise similar-looking "Flex" strip products in the same family. Read the full SKU carefully off the customer's paperwork or packaging before assuming which one is installed.</div>
+      <div class="note-box"><b>Flag — submersible exception:</b> NFUS2 and NFUT2 are the only submersible strip products documented anywhere in this guide. Every other strip card (Quick-Ship, Perimeter Strip Kits, and the other 7 Custom Strip variants) carries an explicit non-submersible / 15-sustained-minute warning — that warning does not apply to these two SKUs. Confirm the actual SKU before repeating that warning to a customer who may have a submersible-rated product.</div>
+      <div class="note-box"><b>Flag — no confirmed per-length wattage:</b> unlike Quick-Ship and Perimeter Strip Kits, this sell sheet does not publish a wattage-per-length ordering table. Don't assume the 3W/ft figure documented on those two cards (itself resolved from a document conflict) applies uniformly across all 9 Custom Strip variants — confirm against the actual project quote, especially for the Mini, Underwater, and Hardscape lines.</div>
+
+      <div class="section-label">Custom Design Process</div>
+      <ul class="steps">
+        <li>Free consultation by PAL lighting design experts</li>
+        <li>Detailed lighting design &amp; layout for the specific project</li>
+        <li>Strip sized to the project's exact specifications (not a stocked or kit length)</li>
+        <li>Professional photography/video credit offered for selected projects</li>
+      </ul>
+
+      <div class="section-label">Product Line Comparison</div>
+      <div class="order-note">Ideal for: pool perimeter, under coping, floating step, hardscapes. All variants: 24V DC, UL-676 Pool &amp; Spa, 3-year warranty.</div>
+      <table style="width:100%; border-collapse:collapse; margin:6px 0; font-size:0.92em;">
+        <tr style="border-bottom:1px solid #ccc;"><td style="padding:2px 8px 2px 0;"><b>SKU</b></td><td style="padding:2px 8px;"><b>Name</b></td><td style="padding:2px 8px;"><b>Category</b></td><td style="padding:2px 8px;"><b>IP Rating</b></td><td style="padding:2px 0;"><b>Colors</b></td></tr>
+        <tr><td>NFWB8</td><td>Flex Side View — Wide Beam</td><td>Side View</td><td>Non-Submersible</td><td>RGB | 2200K-5000K</td></tr>
+        <tr><td>NFLS8</td><td>Flex Side View</td><td>Side View</td><td>Non-Submersible</td><td>RGB | 2300K-4000K</td></tr>
+        <tr><td>NFMS2</td><td>Mini Side View</td><td>Side View</td><td>Non-Submersible</td><td>RGB | 2700K-4000K</td></tr>
+        <tr><td>NFUS2</td><td>Flex Underwater — Side View</td><td>Side View</td><td><b>Submersible</b></td><td>RGB | 2700K-6500K</td></tr>
+        <tr><td>NFLT8</td><td>Flex Top View</td><td>Top View</td><td>Non-Submersible</td><td>RGB | 2700K-4000K</td></tr>
+        <tr><td>NFMT8</td><td>Mini Top View</td><td>Top View</td><td>Non-Submersible</td><td>RGB | 2200K-5000K</td></tr>
+        <tr><td>NFUT2</td><td>Flex Underwater — Top View</td><td>Top View</td><td><b>Submersible</b></td><td>RGB | 2700K-6500K</td></tr>
+        <tr><td>PLO2-F</td><td>Feature — Side View (rigid track)</td><td>Hardscape</td><td>Non-Submersible</td><td>RGB | 2300K-6000K</td></tr>
+        <tr><td>PLO2-W</td><td>Feature — Side View (rigid track)</td><td>Hardscape</td><td>Non-Submersible</td><td>RGB | 2300K-6000K</td></tr>
+      </table>
+      <div class="order-note">NFWB8 and NFLT8 are the same physical products documented on the Quick-Ship Strip card (stocked lengths) and the Perimeter Strip Kits card (85'/100'/115' all-in-one kits) — those two variants are available through three different purchase paths depending on the job. See those cards for cut/reseal procedure, driver compatibility, and DIP cloning tables (shared across the whole PCR-1Z/PCR-3D driver family).</div>
+    `
   },
   {
     id: "drivers",
@@ -1586,7 +1805,7 @@ function matches(item, q){
   return false;
 }
 
-const HIDDEN_BY_DEFAULT = new Set(['evenglow','evenglownicheless','treomax','treoretro','treomini','aqualumin','sonarretro','evenglowfiberglass','treomicro','canadianretro','drivers','pcr2dmx','pcr3d500','pcr3dmx8z','pcr2d','pcr300','pcr4','commander2','ledoptics2','pc2t','wifi','waterblade','watersphere','ledbubbler','evenglowflex','pathwaylight','bollardlight','gardenuplight','attendant','cat-lights','cat-drivers','cat-water','cat-wifi','cat-landscape','cat-automation']);
+const HIDDEN_BY_DEFAULT = new Set(['evenglow','evenglownicheless','treomax','treoretro','treomini','aqualumin','sonarretro','evenglowfiberglass','treomicro','canadianretro','quickshipstrip','perimeterstripkit','customstrip','drivers','pcr2dmx','pcr3d500','pcr3dmx8z','pcr2d','pcr300','pcr4','commander2','ledoptics2','pc2t','wifi','waterblade','watersphere','ledbubbler','evenglowflex','pathwaylight','bollardlight','gardenuplight','attendant','cat-lights','cat-drivers','cat-water','cat-wifi','cat-landscape','cat-automation']);
 
 function render(){
   const q = searchEl.value.trim();
