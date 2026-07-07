@@ -163,6 +163,7 @@
       <option value="pathwaylight">Path Way Light</option>
       <option value="bollardlight">Bollard Light</option>
       <option value="gardenuplight">Garden Up Light</option>
+      <option value="attendant">The Attendant (Poolside Tech) — DMX Integration</option>
     </select>
     <div class="chips" id="chips"></div>
   </header>
@@ -251,7 +252,7 @@ const DATA = [
   {
     id: "products",
     title: "Products",
-    tags: ["products","evenglow","evenglow nicheless","treo max","treo retro","treo mini","drivers","pcr-2dmx","pcr-3d","pcr-3dmx-8z","dmx","wifi","color touch","waterblade","watersphere","bubbler","evenglow flex","lights","water features","landscape lighting","path way light","bollard light","garden up light"],
+    tags: ["products","evenglow","evenglow nicheless","treo max","treo retro","treo mini","drivers","pcr-2dmx","pcr-3d","pcr-3dmx-8z","dmx","wifi","color touch","waterblade","watersphere","bubbler","evenglow flex","lights","water features","landscape lighting","path way light","bollard light","garden up light","automation","the attendant","poolside tech"],
     facts: "Choose a category below, then a product.",
     extra: `
       <div class="section-label">Select a Category</div>
@@ -260,6 +261,7 @@ const DATA = [
       <div class="product-link" onclick="jumpToProduct('cat-water')">Water Features</div>
       <div class="product-link" onclick="jumpToProduct('cat-wifi')">Wi-Fi &amp; App</div>
       <div class="product-link" onclick="jumpToProduct('cat-landscape')">Landscape Lighting</div>
+      <div class="product-link" onclick="jumpToProduct('cat-automation')">Automation</div>
     `
   },
   {
@@ -338,6 +340,17 @@ const DATA = [
       <div class="product-link" onclick="jumpToProduct('pathwaylight')">Path Way Light</div>
       <div class="product-link" onclick="jumpToProduct('bollardlight')">Bollard Light</div>
       <div class="product-link" onclick="jumpToProduct('gardenuplight')">Garden Up Light</div>
+    `
+  },
+  {
+    id: "cat-automation",
+    title: "Automation",
+    tags: ["automation","the attendant","poolside tech","dmx","third-party integration"],
+    facts: "Third-party pool automation platforms that integrate with PAL lighting. Tap a product to open its integration/troubleshooting notes.",
+    backTo: "products",
+    extra: `
+      <div class="section-label">Select a Product</div>
+      <div class="product-link" onclick="jumpToProduct('attendant')">The Attendant (Poolside Tech) — DMX Integration</div>
     `
   },
   {
@@ -1316,6 +1329,90 @@ const DATA = [
     `
   },
   {
+    id: "attendant",
+    backTo: "cat-automation",
+    title: "The Attendant (Poolside Tech) — DMX Lighting Integration",
+    tags: ["poolside tech","the attendant","automation","dmx","dmx512","bus port","address mapping","zone","integration","dip switch","pcr-2dmx","pcr-3dmx","third party"],
+    facts: `<b>What it is:</b> "The Attendant" is a pool automation/control platform made by Poolside Tech LLC (poolside.support) — a separate company from PAL. It controls PAL lighting over native <b>DMX512</b> addressing, not the Pentair/Hayward/Jandy protocol-cloning method used elsewhere in this guide — see the <b>Competitors</b> card for that separate path.<br><br>
+            <b>Driver compatibility — confirm this first on any Attendant lighting call:</b> only PAL driver models <b>PCR-2DMX</b> and <b>PCR-3DMX</b> communicate with The Attendant. Any other PAL driver (PCR-1Z/2Z family, PCR-3D, PCR-2D, etc.) is not DMX-capable and must instead be cloned into Pentair/Hayward/Jandy protocol mode per the Competitors card — it cannot be wired to The Attendant directly.<br><br>
+            <b>Wiring requirement:</b> PAL drivers must be wired directly from the power supply, never routed through a relay — The Attendant needs constant power to the driver to maintain DMX communication.<br><br>
+            <b>Cross-reference to driver cards in this guide:</b> the "PCR-3DMX (Old Style)" driver documented below (8 zones, DIP switches 9-1) appears to be the same physical product as this guide's <b>PCR-3DMX-8Z</b> card. The "64-PCR-3DMX V3" board pictured below — with its Module Config / Board Function switch banks (Cloner / Module / DMX / Strip modes) — also matches the newer V3 "High Powered" board flagged as not-yet-built-out on the <b>PCR-3D-120/500</b> and <b>PCR-3DMX-8Z</b> cards, pending review of its 4-mode dip-switch architecture. This article documents that board's DMX mode specifically from a working third-party integration — useful evidence for that pending review, but not merged into those cards' content here.`,
+    steps: [
+      "Wire the PAL driver directly from the power supply — not through a relay. Connect the driver's \"DMX In\" terminal block (SH / − / +) to a BUS port on The Attendant: driver − to the BUS port's D-, driver + to the BUS port's D+.<br><img class=\"zoomable\" src=\"assets/image_117.jpg\" alt=\"PAL driver DMX In to Attendant BUS port wiring diagram\" style=\"width:100%;border-radius:8px;margin-top:8px;border:1px solid #2a3b5c;cursor:zoom-in;\"><span style=\"display:block;font-size:11px;color:#9fb0c5;margin-top:4px;font-style:italic;\">Single-driver wiring: DMX In (SH/−/+) to BUS1-4 (+14V/D+/D-/GND) (tap to zoom)</span>",
+      "Each light zone wired to the driver becomes one light device in The Attendant, with its own Red/Green/Blue DMX address. Addresses are set by the driver's own DIP switches — see the per-model tables below for the exact switch combination.",
+      "Power must be disconnected before changing any DIP switch or connecting/disconnecting driver communication wiring — devices can be damaged if switched while powered.",
+    ],
+    extra: `
+      <div class="section-label">Troubleshooting — check in order</div>
+      <div class="order-note">The driver's "CPU" LED on the PCB doubles as the DMX signal indicator in DMX mode — lit during DMX packet transmission, flash rate depends on the DMX controller's refresh rate, and may appear solid at high refresh rates. That's expected, not a fault.</div>
+      <table>
+        <tr><td class="cause">No DMX signal reaching The Attendant</td><td class="action">Check connections at the green BUS terminals. Confirm the same wire colors land in the same terminal positions on both ends (e.g. blue positive on both the driver and the DMX transmitter). Confirm the driver has power. Confirm The Attendant is programmed for the correct channels.</td></tr>
+        <tr><td class="cause">DMX signal present but no lights respond</td><td class="action">Verify the starting channel programmed in The Attendant matches the driver's actual DIP switch address, and that the DIP switches are set to the intended configuration per the tables below.</td></tr>
+        <tr><td class="cause">Colors show but are wrong or swapped</td><td class="action">Check the channel coding in The Attendant and confirm no address numbers were skipped when mapping the driver's zones.</td></tr>
+        <tr><td class="cause">Lights dim or shut off with no apparent fault</td><td class="action">Two built-in protective behaviors, not faults: loss of DMX signal holds output for 60 seconds then turns it off (fan, if fitted, follows 60 seconds after that); thermal limiting automatically reduces output above ~60&deg;C internal temperature.</td></tr>
+      </table>
+
+      <div class="section-label">DIP Switch Addressing — PCR-2DMX (Old Style)</div>
+      <div class="order-note">Two switch banks (Module Config + Other Config) set the addresses for this driver's 2 zones. Dip switch positions: <b>UP is ON, DOWN is OFF.</b></div>
+      <img class="zoomable" src="assets/image_118.jpg" alt="PCR-2DMX Old Style driver board with Module Config and Other Config DIP banks" style="width:100%;border-radius:8px;margin-top:8px;border:1px solid #2a3b5c;cursor:zoom-in;">
+      <span style="display:block;font-size:11px;color:#9fb0c5;margin-top:4px;font-style:italic;">Module Config + Other Config DIP banks (tap to zoom)</span>
+      <div class="note-box">Two address schemas exist for this driver — <b>v1</b> and <b>v2 (12/15/2022)</b>. v2 is the current/recommended schema and is what the Basic Configuration Example below uses — confirm which schema the customer's Attendant app version expects before assuming v2 if addresses aren't lining up.</div>
+      <img class="zoomable" src="assets/image_119.jpg" alt="PCR-2DMX Old Style DIP switch address table, schema v1 and v2" style="width:100%;border-radius:8px;margin-top:8px;border:1px solid #2a3b5c;cursor:zoom-in;">
+      <span style="display:block;font-size:11px;color:#9fb0c5;margin-top:4px;font-style:italic;">Module/Other Config DIP settings mapped to Zone 1/2 Red/Green/Blue addresses, both schema versions (tap to zoom)</span>
+
+      <div class="section-label">DIP Switch Addressing — PCR-3DMX (Old Style, 8 Zone)</div>
+      <div class="order-note">DIP switches 9-1 set the addresses for this driver's 8 zones. Dip switch positions: <b>DOWN is ON, UP is OFF.</b></div>
+      <div class="note-box"><b>Flag — polarity is reversed from every other driver on this page.</b> PCR-2DMX (Old Style), PCR-2DMX V3, and 64-PCR-3DMX V3 below all read UP = ON / DOWN = OFF. Only this 8-zone PCR-3DMX (Old Style) reads the opposite. Confirm the polarity legend for the specific driver in hand before setting switches — don't carry the convention over from a different model.</div>
+      <img class="zoomable" src="assets/image_120.jpg" alt="PCR-3DMX Old Style 8-zone driver board with DIP switches 9-1 location" style="width:100%;border-radius:8px;margin-top:8px;border:1px solid #2a3b5c;cursor:zoom-in;">
+      <span style="display:block;font-size:11px;color:#9fb0c5;margin-top:4px;font-style:italic;">DIP switches 9-1 location on the 8-zone terminal board (tap to zoom)</span>
+      <img class="zoomable" src="assets/image_121.jpg" alt="PCR-3DMX Old Style 8-zone DIP switch address table" style="width:100%;border-radius:8px;margin-top:8px;border:1px solid #2a3b5c;cursor:zoom-in;">
+      <span style="display:block;font-size:11px;color:#9fb0c5;margin-top:4px;font-style:italic;">DIP settings mapped to Zone 1-8 Red/Green/Blue addresses (tap to zoom)</span>
+
+      <div class="section-label">DIP Switch Addressing — PCR-2DMX V3</div>
+      <div class="order-note">DIP switches 1-9 set the addresses for this driver's 2 zones. Dip switch positions: <b>DOWN is OFF, UP is ON.</b></div>
+      <img class="zoomable" src="assets/image_122.jpg" alt="PCR-2DMX V3 red driver board with DIP switch location" style="width:100%;border-radius:8px;margin-top:8px;border:1px solid #2a3b5c;cursor:zoom-in;">
+      <span style="display:block;font-size:11px;color:#9fb0c5;margin-top:4px;font-style:italic;">DIP switches 1-9 location on the V3 board (silkscreened 42PCR4DMX) (tap to zoom)</span>
+      <img class="zoomable" src="assets/image_123.jpg" alt="PCR-2DMX V3 DIP switch address table" style="width:100%;border-radius:8px;margin-top:8px;border:1px solid #2a3b5c;cursor:zoom-in;">
+      <span style="display:block;font-size:11px;color:#9fb0c5;margin-top:4px;font-style:italic;">DIP settings mapped to Zone 1/2 Red/Green/Blue addresses (tap to zoom)</span>
+
+      <div class="section-label">DIP Switch Addressing — 64-PCR-3DMX V3</div>
+      <div class="order-note">Uses Module Config, Other Config, and Set Option switch groups (outlined in orange) to assign addresses. Dip switch positions: <b>DOWN is OFF, UP is ON.</b> <b>Switch A</b> (outlined red) must be ON for proper operation. The <b>DMX termination shunt</b> (outlined blue) must be installed on the E pin to enable DMX communication — without it, the driver will not respond to DMX commands.</div>
+      <img class="zoomable" src="assets/image_124.jpg" alt="64-PCR-3DMX V3 board diagram with DIP switches, Switch A, and termination shunt outlined" style="width:100%;border-radius:8px;margin-top:8px;border:1px solid #2a3b5c;cursor:zoom-in;">
+      <span style="display:block;font-size:11px;color:#9fb0c5;margin-top:4px;font-style:italic;">Module Config, Other Config, and Set Option DIP switches; Switch A and DMX termination shunt outlined (tap to zoom)</span>
+      <div class="section-label">3-Channel Mode (Red, Green, Blue)</div>
+      <img class="zoomable" src="assets/image_125.jpg" alt="64-PCR-3DMX V3 3-channel DIP switch address table" style="width:100%;border-radius:8px;margin-top:8px;border:1px solid #2a3b5c;cursor:zoom-in;">
+      <span style="display:block;font-size:11px;color:#9fb0c5;margin-top:4px;font-style:italic;">3-channel DIP settings mapped to Zone 1/2 Red/Green/Blue addresses (tap to zoom)</span>
+      <div class="section-label">4-Channel Mode (Red, Green, Blue, White)</div>
+      <div class="order-note">When using 4-Channel Mode, set Brand to Generic and Expected Colors and Shows to DMX – RGBW in The Attendant's device config.</div>
+      <img class="zoomable" src="assets/image_126.jpg" alt="64-PCR-3DMX V3 4-channel DIP switch address table" style="width:100%;border-radius:8px;margin-top:8px;border:1px solid #2a3b5c;cursor:zoom-in;">
+      <span style="display:block;font-size:11px;color:#9fb0c5;margin-top:4px;font-style:italic;">4-channel DIP settings mapped to Zone 1/2 Red/Green/Blue/White addresses (tap to zoom)</span>
+
+      <div class="section-label">Basic Configuration Example</div>
+      <div class="order-note">Typical install: one PAL driver, two zones (pool + spa), latest driver model using schema v2 — addresses 1-6.</div>
+      <ul class="steps">
+        <li>Create a new light device in The Attendant app: Brand = <b>PAL</b>, Expected Colors and Shows = <b>DMX</b>, Off/On Timing = <b>DMX</b>.</li>
+        <li>Port Type = <b>BUS</b>. Port Number = the BUS port the driver is wired to.</li>
+        <li>Address Mapping, first zone: Red = 1, Green = 2, Blue = 3.</li>
+        <li>Address Mapping, second zone: Red = 4, Green = 5, Blue = 6.</li>
+      </ul>
+      <img class="zoomable" src="assets/image_127.jpg" alt="The Attendant mobile app light device configuration screen" style="width:100%;border-radius:8px;margin-top:8px;border:1px solid #2a3b5c;cursor:zoom-in;">
+      <span style="display:block;font-size:11px;color:#9fb0c5;margin-top:4px;font-style:italic;">Attendant app — Light device config: Brand, Expected Colors and Shows, Off/On Timing, Port, Address Mapping (tap to zoom)</span>
+
+      <div class="section-label">Advanced — Multiple Drivers in Series</div>
+      <div class="order-note">When more than one driver feeds additional zones, tie the drivers together using the In and Thru terminals on the communications board.</div>
+      <img class="zoomable" src="assets/image_128.jpg" alt="PAL driver communications board Thru and In terminal blocks with terminator jumper" style="width:100%;border-radius:8px;margin-top:8px;border:1px solid #2a3b5c;cursor:zoom-in;">
+      <span style="display:block;font-size:11px;color:#9fb0c5;margin-top:4px;font-style:italic;">Thru (to next driver) and In (from The Attendant) terminal blocks, with the Thru terminator jumper called out (tap to zoom)</span>
+      <ul class="steps">
+        <li>From driver 1, wire D+, D-, and Shield from the <b>Thru</b> output to the <b>In</b> input on driver 2.</li>
+        <li>Remove the Thru terminator jumper from driver 1. Keep it on driver 2 unless another driver follows it in the chain.</li>
+        <li>Set driver 2's first zone addresses to 7 (Red), 8 (Green), 9 (Blue); second zone to 10 (Red), 11 (Green), 12 (Blue) — continuing the sequence from driver 1's addresses 1-6.</li>
+        <li>Driver 2 must use different DIP switch settings than driver 1, or the zones won't be independently addressable.</li>
+      </ul>
+      <img class="zoomable" src="assets/image_129.jpg" alt="Multiple PAL drivers wired in series to The Attendant, DMX Line Terminate jumper diagram" style="width:100%;border-radius:8px;margin-top:8px;border:1px solid #2a3b5c;cursor:zoom-in;">
+      <span style="display:block;font-size:11px;color:#9fb0c5;margin-top:4px;font-style:italic;">3 drivers chained via Thru→In, terminator jumper kept only on the last driver in the chain, final driver's DMX In wired to the Attendant's BUS port (tap to zoom)</span>
+    `
+  },
+  {
     id: "quickship",
     title: "Quick Ship — Trigger Criteria",
     tags: ["quick ship","urgent","replacement","tier 1","tier 2","strike"],
@@ -1489,7 +1586,7 @@ function matches(item, q){
   return false;
 }
 
-const HIDDEN_BY_DEFAULT = new Set(['evenglow','evenglownicheless','treomax','treoretro','treomini','aqualumin','sonarretro','evenglowfiberglass','treomicro','canadianretro','drivers','pcr2dmx','pcr3d500','pcr3dmx8z','pcr2d','pcr300','pcr4','commander2','ledoptics2','pc2t','wifi','waterblade','watersphere','ledbubbler','evenglowflex','pathwaylight','bollardlight','gardenuplight','cat-lights','cat-drivers','cat-water','cat-wifi','cat-landscape']);
+const HIDDEN_BY_DEFAULT = new Set(['evenglow','evenglownicheless','treomax','treoretro','treomini','aqualumin','sonarretro','evenglowfiberglass','treomicro','canadianretro','drivers','pcr2dmx','pcr3d500','pcr3dmx8z','pcr2d','pcr300','pcr4','commander2','ledoptics2','pc2t','wifi','waterblade','watersphere','ledbubbler','evenglowflex','pathwaylight','bollardlight','gardenuplight','attendant','cat-lights','cat-drivers','cat-water','cat-wifi','cat-landscape','cat-automation']);
 
 function render(){
   const q = searchEl.value.trim();

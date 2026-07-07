@@ -40,6 +40,18 @@ console.log('DATA parsed OK. Entries:', DATA.length);
 "
 ```
 Don't use bare `eval()` — `const` declarations don't leak into the outer scope.
+If `node` isn't on PATH in the working environment, macOS's built-in JavaScriptCore works
+as a drop-in fallback for this same check: extract the `const DATA = [...]` block to a
+file, change `const` to `var` (so `eval` leaks it into scope), then
+`osascript -l JavaScript -e '...eval(fileContents); JSON.stringify({count: DATA.length})'`.
+
+## Local preview
+`.claude/launch.json` runs `ruby -run -e httpd` against a scratchpad copy of
+`index.html` + `assets/`, not the project directory directly — the sandboxed preview
+process doesn't have filesystem permission to read from `~/Documents/...` directly
+(`Errno::EPERM`). Before previewing, rsync `index.html` and `assets/` into the session's
+scratchpad dir and point `launch.json`'s `runtimeArgs` path at that copy; re-sync after
+each edit you want reflected in the preview.
 
 ## Key people
 - **Cory** — owner of this project, Roots CX.
@@ -381,6 +393,54 @@ Status as of 2026-07-07:
   and `HIDDEN_BY_DEFAULT` — same pattern as the rest of this batch. No live push has gone
   out for any of this batch yet, still holding per Cory's request.
 
+## Automation integrations
+New top-level category, separate from the Lights and Drivers/Controllers batches above —
+covers third-party pool automation platforms that integrate with PAL lighting directly
+(as opposed to the Pentair/Hayward/Jandy protocol-cloning path documented on the
+`competitors` card). Added a `cat-automation` hub (parallel to `cat-lights`/`cat-drivers`/
+etc.) under the `products` hub.
+
+- **The Attendant (Poolside Tech)** (`attendant`) — new card, built 2026-07-07. Source:
+  `source-manuals/Automation/Poolside Tech/` — a knowledge-base article ("Connecting PAL
+  Lighting to The Attendant") saved as both HTML and a 15-page print-to-PDF, from
+  poolside.support (Poolside Tech LLC, a separate company from PAL that makes a pool
+  automation platform called "The Attendant"). Unlike every other card in this guide,
+  this one documents controlling PAL lights over native **DMX512** addressing rather than
+  brand-protocol cloning — only PAL's DMX-capable drivers (PCR-2DMX, PCR-3DMX) work with
+  it; every other PAL driver still needs the Competitors card's cloning path instead.
+  Images: the print-to-PDF's embedded images were print-paginated/downsampled (some split
+  across a page break), so instead of extracting from the PDF, pulled the same images at
+  full original resolution directly from their poolside.support CDN URLs embedded in the
+  saved HTML file (`data-orig-file` attributes) — up to 3015×2319, much cleaner than the
+  PDF versions. 13 images total (`image_117`–`image_129`), resized to a 1600px max
+  dimension and saved as JPEG.
+  - **Cross-reference finding, not yet acted on:** the article's "PCR-3DMX (Old Style)"
+    section (8 zones, DIP switches 9-1) documents what appears to be the same physical
+    product as this guide's `pcr3dmx8z` card. More notably, the "64-PCR-3DMX V3" board
+    photo in the article — showing Module Config / Board Function switch banks with
+    Cloner / Module / DMX / Strip modes — matches the newer V3 "High Powered" board that's
+    flagged as not-yet-built-out on the `pcr3d500` and `pcr3dmx8z` cards, pending Jason's
+    review (see Pending Sign-off below). This article documents that V3 board's **DMX
+    mode** specifically, from a working third-party integration already in the field —
+    real supporting evidence for that pending review. Deliberately **not** merged into the
+    `pcr3d500`/`pcr3dmx8z` cards' content — flagged only, per the standing "structurally
+    new diagnostic content goes to Jason first" rule.
+  - **Flag — DIP polarity inconsistency within the source article itself:** of the four
+    driver variants documented (PCR-2DMX Old Style, PCR-3DMX Old Style, PCR-2DMX V3,
+    64-PCR-3DMX V3), three read UP=ON/DOWN=OFF and one — PCR-3DMX (Old Style), the 8-zone
+    variant — reads the opposite (DOWN=ON/UP=OFF). Not resolved either direction; flagged
+    in-card so a tech doesn't carry one driver's polarity convention over to another.
+  - The render logic's `issues` field always prints a hardcoded "Light Not Turning On —
+    check in order" section label (see `cardHTML()` in index.html) — accurate for the
+    light-product cards it was designed for, but wrong for this card's DMX-signal
+    troubleshooting content. Worked around by hand-authoring the troubleshooting table
+    inside `extra` with its own correctly-worded `section-label` instead of using the
+    `issues`/`issuesNote` fields. Pre-existing render behavior, not changed — same
+    workaround would apply to any future non-light-product card that needs a
+    cause/action table.
+  - Wired into `cat-automation`, the `productSelect` dropdown, and `HIDDEN_BY_DEFAULT` —
+    same pattern as the rest of the guide. No live push has gone out for this yet.
+
 ## Pending sign-off
 Decision-tree diagrams (Master Triage, Driver Power and Manual Test, Cloning and DIP
 Switch Check, White/Primary Color Test) were sent to Jason as a standalone PDF for review.
@@ -406,6 +466,14 @@ per the standing rule it has **not** been built into the HTML beyond a flag noti
 exists — Jason needs to review the 4-mode logic (mode-select semantics, and whether/how
 it should merge with or replace the existing Cloning/Zone tables) before it's built out
 as real card content.
+
+**New (2026-07-07):** the new `attendant` card (Automation category — see above) documents
+this same V3 "High Powered" board's **DMX mode** specifically, sourced from a third-party
+integration guide (Poolside Tech's "The Attendant") that's already live in the field. It's
+real-world evidence for the pending V3 review above, not a new question on its own —
+flagged on the `attendant` card and cross-referenced here, but not merged into the
+`pcr3d500`/`pcr3dmx8z` cards. When Jason reviews the V3 4-mode logic, the DMX-mode dip
+table on the `attendant` card is worth checking against whatever PAL's own source says.
 
 **New (2026-07-07):** the `pcr2d` card (built from PAL's current Color Touch Series 2 sell
 sheet) states 24V DC consistently for the PCR-2D driver — but the pre-existing `evenglow`
