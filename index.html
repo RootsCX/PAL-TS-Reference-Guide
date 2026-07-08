@@ -1961,12 +1961,84 @@ function cardHTML(item){
   `;
 }
 
-function matches(item, q){
-  if(!q) return true;
-  q = q.toLowerCase();
-  if(item.title.toLowerCase().includes(q)) return true;
-  if(item.tags.some(t => t.includes(q))) return true;
-  return false;
+// ---- Search engine ----
+// Tiered, multi-keyword scoring search. High priority: id / title / tags
+// (part numbers matched hyphen/space-insensitive). Medium priority: full-text
+// scan of facts/steps/note. Query is tokenized on whitespace so word order
+// doesn't matter, and cards matching more distinct keywords rank higher.
+
+function stripHtml(html){
+  return (html || '').toString().replace(/<[^>]+>/g, ' ');
+}
+function normText(s){
+  return (s || '').toString().toLowerCase();
+}
+// Removes hyphens/underscores/whitespace so "64-WIFI", "64 WIFI", and
+// "64WIFI" all normalize to the same string for part-number matching.
+function squashText(s){
+  return normText(s).replace(/[-_\s]+/g, '');
+}
+
+const TIER_ID = 100, TIER_TITLE = 90, TIER_TAG = 80, TIER_BODY = 20;
+
+const SEARCH_INDEX = DATA.map(item => {
+  const idText = normText(item.id || '');
+  const titleText = normText(item.title || '');
+  const tagsText = (item.tags || []).map(normText);
+  const tagsSquash = tagsText.map(squashText);
+  const bodyParts = [];
+  if(item.facts) bodyParts.push(stripHtml(item.facts));
+  if(item.steps) bodyParts.push(item.steps.map(stripHtml).join(' '));
+  if(item.note) bodyParts.push(stripHtml(item.note));
+  const bodyText = normText(bodyParts.join(' '));
+  return {
+    item,
+    idText, idSquash: squashText(idText),
+    titleText, titleSquash: squashText(titleText),
+    tagsText, tagsSquash,
+    bodyText, bodySquash: squashText(bodyText),
+  };
+});
+
+// Common short words excluded from the full-text body scan only — otherwise
+// e.g. "on" substring-matches inside "but-ton", "connecti-on", etc. and the
+// medium-priority tier stops being selective. Still fine for id/title/tags,
+// which are short curated strings where this noise doesn't happen.
+const BODY_STOPWORDS = new Set(['a','an','the','to','of','in','on','is','it','at','by','or','and','for','with','this','that','be','are','as','if','not','but','you','all','can','has','was','out']);
+
+// Highest-priority tier a single keyword hits on one item (0 = no match).
+function tokenTierForEntry(entry, token, tokenSquash){
+  if(entry.idText.includes(token) || (tokenSquash && entry.idSquash.includes(tokenSquash))) return TIER_ID;
+  if(entry.titleText.includes(token) || (tokenSquash && entry.titleSquash.includes(tokenSquash))) return TIER_TITLE;
+  for(let i=0; i<entry.tagsText.length; i++){
+    if(entry.tagsText[i].includes(token) || (tokenSquash && entry.tagsSquash[i].includes(tokenSquash))) return TIER_TAG;
+  }
+  const bodyEligible = token.length >= 3 && !BODY_STOPWORDS.has(token);
+  if(bodyEligible && (entry.bodyText.includes(token) || (tokenSquash && tokenSquash.length >= 3 && entry.bodySquash.includes(tokenSquash)))) return TIER_BODY;
+  return 0;
+}
+
+// Returns matching items sorted best-match-first. Multi-word queries are
+// OR'd (any keyword can match) but score additively, so cards matching more
+// keywords — and matching them in higher-priority fields — rank higher.
+function searchDATA(q){
+  const tokens = q.toLowerCase().split(/\s+/).filter(Boolean);
+  if(tokens.length === 0) return [];
+  const scored = [];
+  for(const entry of SEARCH_INDEX){
+    let score = 0, matchedCount = 0;
+    for(const token of tokens){
+      const tokenSquash = token.replace(/[-_\s]+/g, '');
+      const tier = tokenTierForEntry(entry, token, tokenSquash);
+      if(tier > 0){ score += tier; matchedCount++; }
+    }
+    if(matchedCount === 0) continue;
+    if(matchedCount === tokens.length) score += 15; // full-query-match bonus
+    score += matchedCount; // more distinct keyword hits edges out fewer at the same tier
+    scored.push({item: entry.item, score});
+  }
+  scored.sort((a, b) => b.score - a.score);
+  return scored.map(s => s.item);
 }
 
 const HIDDEN_BY_DEFAULT = new Set(['evenglow','evenglownicheless','treomax','treoretro','treomini','aqualumin','sonarretro','evenglowfiberglass','treomicro','canadianretro','quickshipstrip','perimeterstripkit','customstrip','drivers','pcr2dmx','pcr3d500','pcr3dmx8z','pcr2d','pcr300','pcr4','commander2','ledoptics2','pc2t','wifi','remotes','colortouchapp','waterblade','watersphere','ledbubbler','evenglowflex','pathwaylight','bollardlight','gardenuplight','attendant','cat-lights','cat-drivers','cat-water','cat-wifi','cat-landscape','cat-automation']);
@@ -1977,7 +2049,7 @@ function render(){
   if(directId){
     filtered = DATA.filter(item => item.id === directId);
   } else if(q){
-    filtered = DATA.filter(item => matches(item, q));
+    filtered = searchDATA(q);
   } else {
     filtered = DATA.filter(item => !HIDDEN_BY_DEFAULT.has(item.id));
   }
