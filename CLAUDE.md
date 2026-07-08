@@ -748,6 +748,59 @@ one product at a time, pausing for Cory after each.
   (`image_18`-`image_21`) — has not yet been checked against the newer
   `source-manuals/Water Features/Waterblade/` folder; still open for this batch.
 
+## WiFi / Remotes / Color Touch App restructure (2026-07-08)
+The `cat-wifi` hub (title now "WiFi, Remotes, Color Touch App", per Cory's explicit
+labeling request) now links three distinct cards instead of one combined card:
+
+- **Remotes** (`remotes`) — built earlier this batch, unchanged here. Side-by-side
+  reference for the PCZ-2, PCT-1, and two visually-different "Sonar" remotes, each
+  reusing diagrams already extracted for their product cards (`image_70`, `image_02`,
+  `image_62`, `image_95`) rather than new extractions. Every remote still lives on its
+  own product card too — this is additive, nothing was removed from those cards.
+- **Wi-Fi** (`wifi`) — narrowed to network/module hardware only (was previously titled
+  "Wi-Fi & Color Touch App" and mixed network setup with app content). Added a hero
+  photo of the physical module (`image_169.jpg`, Part No. 64-WIFI, isolated
+  alpha-masked cutout) documenting its three status LEDs (Power On / WiFi Not
+  Connected / WiFi Connected) and Reset button — this wasn't photographed anywhere in
+  the guide before. Confirmed the 2.4GHz-only requirement directly against the app's
+  own Router Connect screen text ("cannot support 5G router").
+- **Color Touch App** (`colortouchapp`) — new card, built from
+  `source-manuals/WiFi, Color Touch App, Remotes/ColorTouchApp.pdf` (18-page official
+  screenshot walkthrough). Covers account creation/login, connecting a new driver to
+  Wi-Fi, updating app/driver firmware, setting up a new driver, day-to-day operation
+  (zones, RGB, brightness, shows, music sync), renaming zones, and scheduling. Moved
+  the three existing YouTube videos here from the `wifi` card (they're about app
+  usage, not module hardware). Images `image_158`–`image_168`, one per workflow
+  section, direct crops of the source PDF's own slides (already full-bleed, no
+  cropping needed) — some single-page, some two-page composites where the source
+  splits one workflow across two slides.
+  - **Finding — pairing procedure discrepancy, not resolved:** the `wifi` card
+    previously documented linking a driver via "tap '+' → select '2.4g' → driver
+    appears, select it → in-app go to 'Touch 2' → tap 'Link' → on the transformer,
+    press Code Setting, then press Link (bottom-left) 3x." This new official guide's
+    own screens instead show holding the module's physical **Reset** button for 3
+    seconds until the light flashes, then finishing entirely in-app (WiFi password +
+    Start Configuration) — no Code Setting/Link button step appears anywhere in it.
+    Flagged on the `wifi` card rather than silently overwritten — could be an older
+    app/module version, or two different scenarios (first-time setup vs. re-linking
+    an already-configured driver). Leads with the Reset-button procedure as current.
+  - **Finding — Touch 5 / Touch 9 drivers surfaced, not documented anywhere in this
+    guide:** the app's own "Setting Up a New Driver" screen offers four driver types —
+    1ZW, 2ZW, Touch 5, Touch 9 (shown in-app as "Color Touch 1/2/5/9"). 1ZW/2ZW match
+    the existing PCR-1ZW/2ZW drivers on the `drivers` card. Touch 5 and Touch 9 are
+    new to this guide — `source-manuals/Automation/Pool Touch 5/` and
+    `.../Pool Touch 9/` folders exist but haven't been reviewed. Per the standing
+    "structurally new content goes to Jason first" rule, **not** built out here —
+    only flagged on the `colortouchapp` card so a tech isn't caught off guard if a
+    customer's app shows one of these two. See Pending Sign-off below.
+  - Confirmed the app's own zone/driver naming ("TOUCH-2") matches the existing
+    `wifi` card's older reference to going to "Touch 2" in-app — that part of the old
+    text wasn't wrong, just incomplete against the fuller picture this new source
+    gives.
+- Wired `colortouchapp` into `cat-wifi`, the `productSelect` dropdown, and
+  `HIDDEN_BY_DEFAULT`. Updated the top-level `products` hub's category link and tags
+  to match the new "WiFi, Remotes, Color Touch App" label.
+
 ## Pending sign-off
 Decision-tree diagrams (Master Triage, Driver Power and Manual Test, Cloning and DIP
 Switch Check, White/Primary Color Test) were sent to Jason as a standalone PDF for review.
@@ -811,6 +864,18 @@ resolved either direction — the card only carries an escalate-level flag telli
 confirm against the actual fibreglass nut hardware in hand rather than trusting either
 document blindly. Jason should confirm the correct hole diameter for this product before
 a tech relies on this card for a live first-time install.
+
+**New (2026-07-08):** the new `colortouchapp` card's official app guide surfaces two
+driver types never documented in this guide — "Touch 5" and "Touch 9" — selectable
+alongside the familiar 1ZW/2ZW in the app's own driver-setup screen. Source manuals exist
+on file (`source-manuals/Automation/Pool Touch 5/`, `.../Pool Touch 9/`) but haven't been
+reviewed or built out. Per the standing rule, structurally new product content goes to
+Jason before being built into the HTML — flagged only for now on the `colortouchapp`
+card. Also unresolved from the same card: the `wifi` card's older documented
+driver-linking procedure (Code Setting + Link button 3x) doesn't match the current app
+guide's own on-screen steps (hold Reset 3 seconds, then WiFi password + Start
+Configuration in-app) — Jason should confirm whether these are sequential steps for
+different scenarios, or the old text is simply stale.
 
 ## Handoff / IP considerations (background — not an active task)
 Cory needs a clean contract-exit path: PAL should be able to keep updating this guide

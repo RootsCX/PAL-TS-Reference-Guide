@@ -158,7 +158,9 @@
       <option value="commander2">Commander Series 2 (PC-2D)</option>
       <option value="ledoptics2">LED Optics Series 2 (PCR-200)</option>
       <option value="pc2t">Power Supply Series 2 (PC-2T)</option>
-      <option value="wifi">Wi-Fi &amp; Color Touch App</option>
+      <option value="wifi">WiFi</option>
+      <option value="remotes">Remotes</option>
+      <option value="colortouchapp">Color Touch App</option>
       <option value="waterblade">WaterBlade (incl. LIT / RAIN)</option>
       <option value="watersphere">WaterSphere</option>
       <option value="ledbubbler">LED Bubbler (Niche Bubbler)</option>
@@ -255,14 +257,14 @@ const DATA = [
   {
     id: "products",
     title: "Products",
-    tags: ["products","evenglow","evenglow nicheless","treo max","treo retro","treo mini","drivers","pcr-2dmx","pcr-3d","pcr-3dmx-8z","dmx","wifi","color touch","waterblade","watersphere","bubbler","evenglow flex","lights","water features","landscape lighting","path way light","bollard light","garden up light","automation","the attendant","poolside tech"],
+    tags: ["products","evenglow","evenglow nicheless","treo max","treo retro","treo mini","drivers","pcr-2dmx","pcr-3d","pcr-3dmx-8z","dmx","wifi","remotes","color touch","waterblade","watersphere","bubbler","evenglow flex","lights","water features","landscape lighting","path way light","bollard light","garden up light","automation","the attendant","poolside tech"],
     facts: "Choose a category below, then a product.",
     extra: `
       <div class="section-label">Select a Category</div>
       <div class="product-link" onclick="jumpToProduct('cat-lights')">Lights</div>
       <div class="product-link" onclick="jumpToProduct('cat-drivers')">Drivers &amp; Controllers</div>
       <div class="product-link" onclick="jumpToProduct('cat-water')">Water Features</div>
-      <div class="product-link" onclick="jumpToProduct('cat-wifi')">Wi-Fi &amp; App</div>
+      <div class="product-link" onclick="jumpToProduct('cat-wifi')">WiFi, Remotes, Color Touch App</div>
       <div class="product-link" onclick="jumpToProduct('cat-landscape')">Landscape Lighting</div>
       <div class="product-link" onclick="jumpToProduct('cat-automation')">Automation</div>
     `
@@ -326,13 +328,15 @@ const DATA = [
   },
   {
     id: "cat-wifi",
-    title: "Wi-Fi & App",
-    tags: ["wifi","app","color touch"],
-    facts: "Wi-Fi module and Color Touch app setup/pairing.",
+    title: "WiFi, Remotes, Color Touch App",
+    tags: ["wifi","app","color touch","remotes"],
+    facts: "Wi-Fi module, remotes, and Color Touch app setup/pairing.",
     backTo: "products",
     extra: `
       <div class="section-label">Select a Product</div>
-      <div class="product-link" onclick="jumpToProduct('wifi')">Wi-Fi &amp; Color Touch App</div>
+      <div class="product-link" onclick="jumpToProduct('wifi')">WiFi</div>
+      <div class="product-link" onclick="jumpToProduct('remotes')">Remotes</div>
+      <div class="product-link" onclick="jumpToProduct('colortouchapp')">Color Touch App</div>
     `
   },
   {
@@ -1339,20 +1343,101 @@ const DATA = [
   {
     id: "wifi",
     backTo: "cat-wifi",
-    title: "Wi-Fi & Color Touch App",
-    tags: ["wifi","app","color touch","pairing","won't connect","5g","router"],
+    title: "Wi-Fi",
+    photo: "assets/image_169.jpg",
+    photoAlt: "PAL Color Touch Wi-Fi Module (64-WIFI) with Power/WiFi Not Connected/WiFi Connected status LEDs and Reset button",
+    tags: ["wifi","app","color touch","pairing","won't connect","5g","router","module","64-wifi","reset","led"],
+    facts: `<b>Part No: 64-WIFI</b> — PAL Color Touch Wi-Fi Module. Three status LEDs plus a Reset button: <b>Power On</b> (module is receiving power), <b>WiFi Not Connected</b> (module is up but not yet joined to a network/app), <b>WiFi Connected</b> (fully online). Check these LEDs first on any "app won't connect" call before assuming a pairing failure — if Power On isn't lit, this is a wiring/driver-power issue, not a Wi-Fi issue.<br>
+            App is <b>PAL Color Touch</b> (rainbow icon) — Android + Apple. Full account setup, driver setup, and day-to-day app operation (zones, scheduling, music sync) are covered on the <b>Color Touch App</b> card — not repeated here.<br>
+            Wi-Fi module only works with Color Touch series drivers. Older boards (e.g. PCR-4-UCL) need a full driver upgrade, not just a module swap.`,
+    steps: [
+      "Router needs to be dual-band with 5GHz support, but the setup step itself requires connecting on the <b>2.4GHz band</b> — confirmed directly in the app's own Router Connect screen ('cannot support 5G router'). This is the #1 setup failure point — ask first if the customer's trying to connect on 5GHz.",
+      "Current official pairing procedure (per the app's own on-screen instructions): hold the module's <b>Reset</b> button for 3 seconds until the pilot lamp starts flashing, then in the app enter the Wi-Fi password and select <b>Start Configuration</b>. See the <b>Color Touch App</b> card for the full screen-by-screen walkthrough.",
+    ],
+    note: "Brightness only adjustable in PAL mode — not when cloned/synced to Hayward/Jandy/Pentair. Set this expectation before troubleshooting 'brightness won't change' as a fault.",
+    extra: `
+      <div class="note-box"><b>Flag — older documented pairing procedure differs from the current app's own on-screen steps:</b> this card previously described a different sequence for linking a driver ("tap '+' → select '2.4g' → driver appears, select it → in-app go to 'Touch 2' → tap 'Link' → on the transformer, press Code Setting, then press Link (bottom-left) 3x"). The current Color Touch App guide's own screens instead show holding the module's physical <b>Reset</b> button for 3 seconds until the light flashes, then completing setup entirely in-app (WiFi password + Start Configuration) — no "Code Setting"/"Link" button-press step is shown anywhere in that guide. Not silently resolved: this may reflect an older app/module version, or the two procedures may cover different scenarios (first-time network setup vs. re-linking an already-configured driver to the app). Lead with the Reset-button procedure as current; fall back to the older steps if that doesn't work.</div>
+    `
+  },
+  {
+    id: "remotes",
+    backTo: "cat-wifi",
+    title: "Remotes",
+    tags: ["remote","remotes","pcz-2","pct-1","sonar remote","handheld remote","transmitter","color wheel","pairing","cloning","matching code","clearing code","zone","channel"],
+    facts: `PAL products pair with one of three physical remote families, or the Color Touch app on Wi-Fi-equipped drivers — never assume one remote's button layout or pairing steps carry over to another family. This page is a side-by-side quick reference; full pairing/cloning steps and troubleshooting for each remote stay on the product cards that use it (linked below), not duplicated here.`,
+    extra: `
+      <div class="section-label">PCZ-2 Handheld Remote</div>
+      <div class="order-note">Current-generation remote for the 64-PCR-1Z / PCR-2Z / PCR-1ZW / PCR-2ZW driver family (24V DC). Color wheel, brightness, zone, and 7 preset modes. Matching Code: apply power, press Z1 once within 5 seconds. Clearing Code: hold Z1 for 3 seconds. 1 transmitter pairs to unlimited receivers; 1 receiver max 4 transmitters. <b>PCR-1Z-SM (switch mode) does not operate with the PCZ-2</b> — board buttons only.</div>
+      <img class="zoomable" src="assets/image_70.jpg" alt="PCZ-2 handheld remote button layout and Matching/Clearing Code procedures" style="width:100%;border-radius:8px;margin-top:8px;border:1px solid #2a3b5c;cursor:zoom-in;"><span style="display:block;font-size:11px;color:#9fb0c5;margin-top:4px;font-style:italic;">PCZ-2 remote — full button layout, mode list, and pairing procedures (tap to zoom)</span>
+      <div class="order-note" style="margin-top:10px;"><b>Used by:</b> Drivers (PCR-1Z/2Z family), PCR-3D-120/500, Treo Max+ (V2), Treo Retro, Treo Mini+ (V2), Treo Micro, LED Bubbler, WaterSphere (via the Bubbler underneath it), Evenglow Flex, Quick-Ship Strip, Perimeter Strip Kits, Path Way Light, Bollard Light, Garden Up Light.</div>
+
+      <div class="section-label">PCT-1 Handheld Remote</div>
+      <div class="order-note">Older-generation remote for the 12V PCR-4 / PCR-2D driver family. Color wheel plus B (brightness) / S (speed) / M (mode) buttons. No dedicated button-layout diagram on file — see the driver photo below and each linked card's own coding videos.</div>
+      <img class="zoomable" src="assets/image_02.jpg" alt="PCT-1 transmitter shown between the PCR-4 and PCR-2D drivers it pairs with" style="width:100%;border-radius:8px;margin-top:8px;border:1px solid #2a3b5c;cursor:zoom-in;"><span style="display:block;font-size:11px;color:#9fb0c5;margin-top:4px;font-style:italic;">PCT-1 transmitter with the PCR-4 and PCR-2D drivers it pairs to (tap to zoom)</span>
+      <div class="order-note" style="margin-top:10px;"><b>Used by:</b> Evenglow (Niche), Evenglow (Nicheless), Evenglow Fiberglass, PCR-2D Driver.</div>
+      <div class="note-box">The Evenglow (Niche/Nicheless/Fiberglass) cards also document a newer 24V PCR-1Z/2Z driver generation appearing in current PAL sell sheets for the same products — if the driver on-site is a PCZ-2-paired board rather than the black-box PCR-4/PCR-2D shown here, use the PCZ-2 section above instead.</div>
+
+      <div class="section-label">Sonar Remote — rounded style (Aqualumin)</div>
+      <div class="order-note">Channel-button pairing/cloning, no DIP switches on the driven product. Pairing: press the channel's power button 3x within 3 seconds of power-on. Cloning: hold the channel's power button (1=PAL, 2=Jandy, 3=Hayward, 4=Pentair). Unpairing: press the linked channel's button 5x.</div>
+      <img class="zoomable" src="assets/image_62.jpg" alt="Aqualumin Sonar remote — rounded style, 4 channels" style="width:100%;border-radius:8px;margin-top:8px;border:1px solid #2a3b5c;cursor:zoom-in;"><span style="display:block;font-size:11px;color:#9fb0c5;margin-top:4px;font-style:italic;">Sonar remote (rounded style) — color wheel, saturation/brightness sliders, 4 channel buttons (tap to zoom)</span>
+      <div class="order-note" style="margin-top:10px;"><b>Used by:</b> Aqualumin Replacement.</div>
+
+      <div class="section-label">Sonar Remote — wand style (Sonar Retro Bulb)</div>
+      <div class="order-note">Same pairing/cloning/unpairing procedure shape as the rounded Sonar remote above (3x to link, hold to clone, 5x to unlink), but a 5th cloning channel (Astral) and a visibly different physical form factor.</div>
+      <img class="zoomable" src="assets/image_95.jpg" alt="Sonar Retro Bulb remote — wand style, 8 channel buttons, 5 cloning channels including Astral" style="width:100%;border-radius:8px;margin-top:8px;border:1px solid #2a3b5c;cursor:zoom-in;"><span style="display:block;font-size:11px;color:#9fb0c5;margin-top:4px;font-style:italic;">Sonar remote (wand style) — color wheel, warm/cool white slider, 8 channel buttons, 5 cloning channels incl. Astral (tap to zoom)</span>
+      <div class="note-box"><b>Flag:</b> despite both being "Sonar"-branded with the same pairing/cloning/unpairing procedure shape, this wand-style remote and the rounded Aqualumin remote above are visibly different physical hardware, and this one supports a 5th (Astral) cloning channel the rounded one's reference doesn't show. Don't assume the two are interchangeable — confirm the physical remote in hand against the correct diagram before walking a customer through pairing.</div>
+      <div class="order-note" style="margin-top:10px;"><b>Used by:</b> Sonar Retro Bulb.</div>
+      <div class="note-box">Canadian Retro (Sonar) is confirmed to use the same general "Sonar" remote family (Hayward/Jandy/Pentair cloning per its sell sheet), but no button-sequence steps or a remote photo are documented for that specific product — don't assume it matches either diagram above without checking the physical remote in hand.</div>
+
+      <div class="section-label">Color Touch App (Wi-Fi, no physical remote)</div>
+      <div class="order-note">Software control for Wi-Fi-equipped ("W") drivers over the PAL Color Touch app — network/module pairing is covered on the Wi-Fi card, and full app setup/operation is covered on the Color Touch App card, not repeated here.</div>
+      <div class="order-note" style="margin-top:10px;"><b>See:</b> Wi-Fi card, Color Touch App card.</div>
+    `
+  },
+  {
+    id: "colortouchapp",
+    backTo: "cat-wifi",
+    title: "Color Touch App",
+    tags: ["color touch","app","wifi","account","login","register","driver setup","zone","schedule","timer","music sync","firmware update","1zw","2zw","touch 5","touch 9"],
     videos: [
       {title:"PAL APP Setup and Network", url:"https://youtu.be/Faomey2YMcY"},
       {title:"PAL Color Touch", url:"https://youtu.be/flc9xZYUdqw"},
       {title:"PAL APP Timing Operation", url:"https://youtu.be/84HXlESbDjs"},
     ],
-    steps: [
-      "App is <b>PAL Color Touch</b> (rainbow icon) — Android + Apple.",
-      "Router needs to be dual-band with 5GHz support, but the setup step itself requires connecting on the <b>2.4GHz band</b> — the app explicitly can't complete configuration on 5GHz. This is the #1 setup failure point — ask first if the customer's trying to connect on 5GHz.",
-      "Wi-Fi module only works with Color Touch series drivers. Older boards (e.g. PCR-4-UCL) need a full driver upgrade, not just a module swap.",
-      "Standalone module setup: connect module to driver → download Color Touch app → connect phone to Wi-Fi → tap '+' → select '2.4g' → driver appears, select it → in-app go to 'Touch 2' → tap 'Link' → on the transformer, press Code Setting, then press Link (bottom-left) 3x.",
-    ],
-    note: "Brightness only adjustable in PAL mode — not when cloned/synced to Hayward/Jandy/Pentair. Set this expectation before troubleshooting 'brightness won't change' as a fault."
+    facts: `Full walkthrough for the PAL Color Touch app (Android + Apple) — account creation, connecting a driver to Wi-Fi, day-to-day operation, scheduling, and music sync. Network-level Wi-Fi module troubleshooting (status LEDs, 2.4GHz requirement, Reset button) is covered on the <b>Wi-Fi</b> card, not repeated here.<br>
+            <b>Driver types selectable in-app:</b> 1ZW Driver, 2ZW Driver, Touch 5 Driver, Touch 9 Driver (shown in-app as "Color Touch 1/2/5/9"). 1ZW and 2ZW match the single/dual-zone PCR-1ZW/2ZW drivers already documented on the <b>Drivers</b> card. <b>Touch 5 and Touch 9 are not yet documented anywhere in this guide</b> — source manuals for both exist on file but haven't been reviewed/built out yet; if a customer's app shows one of those two, don't assume PCR-1Z/2Z driver behavior carries over.`,
+    extra: `
+      <div class="section-label">Creating a New Login</div>
+      <div class="order-note">New Account Setup: select Register → enter homeowner's email → select Get (sends a verification code) → enter the verification code → Next → select Country → set a password → Done → agree to terms → Register.</div>
+      <img class="zoomable" src="assets/image_158.jpg" alt="Color Touch App creating a new login and new account setup screens" style="width:100%;border-radius:8px;margin-top:8px;border:1px solid #2a3b5c;cursor:zoom-in;"><span style="display:block;font-size:11px;color:#9fb0c5;margin-top:4px;font-style:italic;">New account setup — register, email verification code, password (tap to zoom)</span>
+      <img class="zoomable" src="assets/image_159.jpg" alt="Color Touch App selecting country and logging in" style="width:100%;border-radius:8px;margin-top:8px;border:1px solid #2a3b5c;cursor:zoom-in;"><span style="display:block;font-size:11px;color:#9fb0c5;margin-top:4px;font-style:italic;">Select country, enter password, log in (tap to zoom)</span>
+
+      <div class="section-label">Connecting a New Driver to Wi-Fi</div>
+      <div class="order-note">In the Device List, tap '+' to add a device and allow the requested permissions.</div>
+      <img class="zoomable" src="assets/image_160.jpg" alt="Color Touch App connecting to a new driver, allow permissions and add device" style="width:100%;border-radius:8px;margin-top:8px;border:1px solid #2a3b5c;cursor:zoom-in;"><span style="display:block;font-size:11px;color:#9fb0c5;margin-top:4px;font-style:italic;">Starting the add-device flow (tap to zoom)</span>
+      <div class="order-note" style="margin-top:10px;">On the Wi-Fi module itself: select Allow for location access, then hold the module's <b>Reset</b> button for 3 seconds until the pilot lamp starts flashing. Back in the app: select Allow, enter the <b>2.4GHz</b> Wi-Fi password (the app explicitly rejects 5GHz networks), then select <b>Start Configuration</b>.</div>
+      <img class="zoomable" src="assets/image_161.jpg" alt="Color Touch App connecting to the driver, reset button and wifi password screens" style="width:100%;border-radius:8px;margin-top:8px;border:1px solid #2a3b5c;cursor:zoom-in;"><span style="display:block;font-size:11px;color:#9fb0c5;margin-top:4px;font-style:italic;">Reset button (module photo, Part No. 64-WIFI) and Router Connect / Start Configuration screens (tap to zoom)</span>
+      <img class="zoomable" src="assets/image_162.jpg" alt="Color Touch App configuring the device, being configured and added successfully screens" style="width:100%;border-radius:8px;margin-top:8px;border:1px solid #2a3b5c;cursor:zoom-in;"><span style="display:block;font-size:11px;color:#9fb0c5;margin-top:4px;font-style:italic;">Being configured (~60 sec) → Configuring Done → device appears in Device List (tap to zoom)</span>
+
+      <div class="section-label">Updating the App &amp; Driver Firmware</div>
+      <img class="zoomable" src="assets/image_163.jpg" alt="Color Touch App updating the app and driver firmware screens" style="width:100%;border-radius:8px;margin-top:8px;border:1px solid #2a3b5c;cursor:zoom-in;"><span style="display:block;font-size:11px;color:#9fb0c5;margin-top:4px;font-style:italic;">Selecting a driver and updating its firmware (e.g. MCU module update to add music-rhythm function) if prompted (tap to zoom)</span>
+
+      <div class="section-label">Setting Up a New Driver</div>
+      <div class="note-box">This screen is also where the Touch 5 / Touch 9 driver types surface — see the coverage-gap flag in Facts above. Only 1ZW/2ZW are documented elsewhere in this guide.</div>
+      <img class="zoomable" src="assets/image_164.jpg" alt="Color Touch App selecting driver type — 1ZW, 2ZW, Touch 5, Touch 9" style="width:100%;border-radius:8px;margin-top:8px;border:1px solid #2a3b5c;cursor:zoom-in;"><span style="display:block;font-size:11px;color:#9fb0c5;margin-top:4px;font-style:italic;">Driver type selection: Color Touch 1 = 1ZW, Color Touch 2 = 2ZW, Color Touch 5 = Touch 5, Color Touch 9 = Touch 9 (tap to zoom)</span>
+
+      <div class="section-label">Operating the App</div>
+      <img class="zoomable" src="assets/image_165.jpg" alt="Color Touch App operating screen — on/off, zone control, RGB color wheel, music sync, brightness, show selection, scheduling" style="width:100%;border-radius:8px;margin-top:8px;border:1px solid #2a3b5c;cursor:zoom-in;"><span style="display:block;font-size:11px;color:#9fb0c5;margin-top:4px;font-style:italic;">On/Off, per-zone control (e.g. Pool/Spa), fully selectable RGB color wheel, integrated music sync, brightness, show selection, and scheduling — all from one screen (tap to zoom)</span>
+
+      <div class="section-label">Changing Zone Names</div>
+      <img class="zoomable" src="assets/image_166.jpg" alt="Color Touch App renaming a zone" style="width:100%;border-radius:8px;margin-top:8px;border:1px solid #2a3b5c;cursor:zoom-in;"><span style="display:block;font-size:11px;color:#9fb0c5;margin-top:4px;font-style:italic;">Select Rename → select the zone to rename → enter new name → OK (tap to zoom)</span>
+
+      <div class="section-label">Creating Schedules</div>
+      <img class="zoomable" src="assets/image_167.jpg" alt="Color Touch App creating turn-on and turn-off schedules" style="width:100%;border-radius:8px;margin-top:8px;border:1px solid #2a3b5c;cursor:zoom-in;"><span style="display:block;font-size:11px;color:#9fb0c5;margin-top:4px;font-style:italic;">Add a timer → ON or OFF → select repeat days → select time — same flow for both turn-on and turn-off schedules (tap to zoom)</span>
+
+      <div class="section-label">Using Music Sync</div>
+      <img class="zoomable" src="assets/image_168.jpg" alt="Color Touch App using music sync" style="width:100%;border-radius:8px;margin-top:8px;border:1px solid #2a3b5c;cursor:zoom-in;"><span style="display:block;font-size:11px;color:#9fb0c5;margin-top:4px;font-style:italic;">Select the Music Sync icon at the center of the color wheel, then play music on the phone — lights react to the audio (tap to zoom)</span>
+    `
   },
   {
     id: "waterblade",
@@ -1884,7 +1969,7 @@ function matches(item, q){
   return false;
 }
 
-const HIDDEN_BY_DEFAULT = new Set(['evenglow','evenglownicheless','treomax','treoretro','treomini','aqualumin','sonarretro','evenglowfiberglass','treomicro','canadianretro','quickshipstrip','perimeterstripkit','customstrip','drivers','pcr2dmx','pcr3d500','pcr3dmx8z','pcr2d','pcr300','pcr4','commander2','ledoptics2','pc2t','wifi','waterblade','watersphere','ledbubbler','evenglowflex','pathwaylight','bollardlight','gardenuplight','attendant','cat-lights','cat-drivers','cat-water','cat-wifi','cat-landscape','cat-automation']);
+const HIDDEN_BY_DEFAULT = new Set(['evenglow','evenglownicheless','treomax','treoretro','treomini','aqualumin','sonarretro','evenglowfiberglass','treomicro','canadianretro','quickshipstrip','perimeterstripkit','customstrip','drivers','pcr2dmx','pcr3d500','pcr3dmx8z','pcr2d','pcr300','pcr4','commander2','ledoptics2','pc2t','wifi','remotes','colortouchapp','waterblade','watersphere','ledbubbler','evenglowflex','pathwaylight','bollardlight','gardenuplight','attendant','cat-lights','cat-drivers','cat-water','cat-wifi','cat-landscape','cat-automation']);
 
 function render(){
   const q = searchEl.value.trim();
