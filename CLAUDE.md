@@ -61,8 +61,13 @@ each edit you want reflected in the preview.
   diagnostic decision logic — goes to Jason before being built into the HTML.
 
 ## Working principles (don't deviate from these)
-- **Preview before commit.** Never push directly to `main` without Cory reviewing first,
-  unless Cory explicitly says to just commit.
+- **Work autonomously; the only hard gate is push/commit (corrected 2026-07-09).**
+  Don't pause to check in on routine work — crops, image analysis, validation
+  commands, edits, preview verification — just do it and move on. The one rule that
+  doesn't bend: never run `git commit` or `git push` without Cory reviewing the
+  changes first, unless he explicitly says to just commit/push. End a turn that has
+  reached that point with the checkpoint phrase "Time to review before pushing and
+  committing" rather than asking permission earlier in the process.
 - **Don't silently resolve ambiguous logic.** If a troubleshooting/decision branch has
   defensible alternatives, flag it explicitly rather than picking one.
 - **Concise over verbose.** Short subtitles/box text in any diagrams; don't over-explain
@@ -82,6 +87,23 @@ each edit you want reflected in the preview.
   part of the actual support workflow or a note about the guide's own construction.
   Technical flags (e.g. "this manual contradicts itself, X is more reliable") also stay,
   reworded to drop any reference to a person or to CLAUDE.md/the build process.
+- **Every nesting category must have a way back to the front page (corrected
+  2026-07-09).** Any card that acts as a category/hub (has a "Select a Product" or
+  "Select a Part Number" list of `product-link`s drilling into other cards) must be
+  reachable from a dead end — if a user lands on it directly (search result,
+  `productSelect` dropdown, or a jump from elsewhere) rather than by clicking down
+  from Products, there must still be a working "back" link, not a card with no way
+  out. This bit in practice when `cat-strip` (Strip Lighting) was promoted to a
+  top-level front-page card (see Strip Lighting section below): the old `render()`
+  logic only special-cased `directId === 'products'` for the "&larr; Back to Home"
+  link, so any *other* non-hidden top-level card landed via direct jump with no back
+  link at all. Fixed in `index.html`'s `render()` function (search for `Back to
+  Home`) by generalizing the condition from `directId === 'products'` to
+  `directId && !HIDDEN_BY_DEFAULT.has(directId)` — now *any* directly-jumped-to
+  top-level (non-hidden) card gets "Back to Home", and any hidden/nested card still
+  gets its normal "Back to {parent}" via `backTo`. When adding a new top-level
+  category hub in the future, this now works automatically — no per-card fix needed,
+  just don't add the new hub's id to `HIDDEN_BY_DEFAULT`.
 
 ## Known technical facts about PAL products (don't re-derive, just use)
 - All PAL light heads are LED regardless of housing style — different housings serve
@@ -629,6 +651,339 @@ come from each tier's own spec sheets/brochure instead.
   positioned directly after `perimeterstripkit`.
 - **Strip Lighting batch complete.** Quick-Ship, Perimeter Strip Kits, and Custom Strip
   are all built and pushed live (commit 8517844).
+
+## Custom Strip SKU-first restructuring (complete, 2026-07-09)
+Cory asked to convert `customstrip` from one combined 9-variant card into a real
+sub-hub — same "hub links to individual product cards" pattern already used for
+`cat-drivers` and `cat-water` (as opposed to a single card covering every SKU). Pilot
+case before doing the same to Remotes/Drivers/Lights per Kazi's whiteboard "Guide
+List" (see prior open thread). **All 9 SKU cards are now built and wired in** — see
+the "Remaining 6 SKU cards built in one continuous pass" entry below for the final
+batch and the open items still pending Cory's input.
+
+- **`customstrip`** — converted to a thin hub (matches `cat-drivers`/`cat-water`:
+  no `photo`, no `steps`/`issues`/`escalate`). First pass kept the NFLS8/NFLT8
+  naming-collision and NFUS2/NFUT2 submersible-exception flags at hub level, plus a
+  "Custom Design Process" list — **Cory corrected this as too cluttered/confusing**:
+  removed both flag note-boxes and the Design Process list entirely, and reordered
+  so the Product Line Comparison table sits directly under the intro paragraph, with
+  "Select a Part Number" directly below the table (was previously flags → part-number
+  list → table → design process). Final hub shape: intro facts → comparison table →
+  reference links → part-number list. **Feedback captured:** this user finds stacked
+  amber note-boxes/flags on a routing-only hub page cluttering rather than helpful —
+  keep hub pages to comparison data + navigation, put flags on the product card where
+  the tech is actually working the call, not on the router page.
+  Added a **Wattage column** to the comparison table (see wattage correction below)
+  and a **Reference** line linking PAL's live-hosted PDFs: the Strip Lighting
+  Installation Guide (`https://pallighting.com/manuals/strips/INSTALLATION_GUIDE.pdf`)
+  and the NFWB8 Spec Sheet (`https://pallighting.com/wp-content/uploads/2026/02/
+  PAL-NFWB8-Spec-Sheet.V26.2.pdf`) — both provided directly by Cory, placed on the hub
+  per his explicit instruction (not duplicated onto the NFWB8 card itself).
+  **Still a judgment call, not yet confirmed with Cory:** the 8 SKUs other than NFWB8
+  have no dedicated card yet and are only reachable via the comparison table — only
+  add a link to "Select a Part Number" once a SKU actually has a card.
+- **`customstrip-nfwb8`** — first SKU card built, pilot for the new per-SKU template.
+  Source: `Custom-Strip-Sales-Sheet-USA-Jan-29-2026.pdf` +  `INSTALLATION_GUIDE.pdf`
+  (shared 30-page masonry guide, byte-identical to Quick-Ship's/Perimeter's copies,
+  no NFWB8-specific content). Confirmed NFWB8 here is the **same physical strip** as
+  the Quick-Ship Strip and Perimeter Strip Kits cards' NFWB8, bought through the
+  design-build/project-quoted path instead — install technique, DIP cloning table,
+  and driver options are cross-referenced to those two cards rather than duplicated.
+  Reused 4 existing diagram assets instead of re-extracting: `image_133.jpg`/
+  `image_134.jpg` (entry-point dark spot, corner bend radius — from `quickshipstrip`)
+  and `image_139.jpg`/`image_140.jpg` (safe-cut-point, resealing sequence — from
+  `perimeterstripkit`).
+  **Corrected after Cory's review (photo + content placement):** hero `photo` went
+  through two rounds — first swapped from the small isolated glow-icon
+  (`image_175.jpg`) to the full spec-box crop (`image_176.jpg`, matching Cory's
+  reference screenshot), then swapped again to a new side-by-side composite
+  (`image_177.jpg`, see below) once Cory pointed at richer per-SKU source assets he'd
+  added. `image_176.jpg` is still used, now as a zoomable step-1 reference image
+  rather than the hero. Removed the `issuesNote` field ("No dedicated troubleshooting
+  section exists...") — flagged by Cory as build-process/meta commentary that
+  shouldn't appear in the guide (same standing "no build-process talk inside
+  index.html" rule, apply it to `issuesNote` fields too, not just `note`/`extra`).
+  Moved the "NFWB8 Quick Specs" table from the bottom (`extra`) up into `facts`,
+  directly under "Driver compatibility" — pushes "Light Not Turning On"
+  troubleshooting further down the card, which was the intent.
+  **Wattage/cutting-increment correction (2026-07-09, confirmed by Cory):** initial
+  build stated 3W/ft, 1" (matching the figure already resolved across 4 PAL
+  documents on the Quick-Ship/Perimeter cards). Cory then relayed 6 wattage figures
+  from Jason including two labels absent from any Custom Strip source file —
+  "NFWB2" (4W/ft, 2") and "NFLT2" (4W/ft, 2"). Asked Cory directly whether these were
+  shorthand for NFWB8/NFLT8 or separate products; **he confirmed via explicit
+  multiple-choice: NFWB2/NFLT2 = Jason's shorthand for NFWB8/NFLT8, and the 4W/ft
+  (2") figures should overwrite the previous 3W/ft (1") ones.** Updated this card's
+  facts, Quick Specs table, driver-sizing math, and the field-cut step to 4W/ft / 2"
+  (50mm) throughout.
+  **Flag box removed per Cory's direction — see [[feedback_no_incard_flags]]:** the
+  initial correction added an in-card amber note-box explaining the conflict between
+  this new 4W/ft figure and PAL's own printed NFWB8 spec sheet (3W/ft, 1") and the
+  still-unchanged Quick-Ship/Perimeter cards. Cory said to stop putting flags like
+  that in front of the team entirely — "that all stays in the background for you and
+  I" — so the box was removed and the facts/step text now states 4W/ft, 2" plainly
+  with no caveat visible to a tech. **The underlying conflict is NOT resolved, only
+  hidden from the card** — full detail stays here: PAL's own NFWB8 spec sheet/install
+  guide and the `quickshipstrip`/`perimeterstripkit` cards (documenting this same
+  physical SKU) still say 3W/ft, 1"; this card now says 4W/ft, 2" on Jason's
+  authority via Cory. Whether to update `quickshipstrip`/`perimeterstripkit` to match
+  — and whether that reopens the 4-source "resolved" conclusion already documented on
+  `quickshipstrip` — still needs a decision from Cory; flagged to him, not actioned.
+  **New source-manuals structure found, use for remaining 8 SKU cards:** Cory added
+  `source-manuals/Strip/Custom Strip/<Family>/<SKU>/`, one subfolder per mounting
+  family exactly matching the hub's 3 categories — `Downward Facing_Side Bending`
+  (NFWB8, NFLS8, NFMS2, NFUS2 = Side View), `Outward Facing_Top Bending` (NFLT8,
+  NFMT8, NFUT2 = Top View), `Hardscape_Outward Facing` (PLO2-F, PLO2-W = Hardscape).
+  Each SKU folder has a clean transparent product render (`*-Prod.png`), a dimension
+  diagram with both inch and mm values (`*-Dim.png`/`*-DIMS.png`), and — new, richer
+  than what was used to build the original 9-variant combined card — an
+  **individual per-SKU spec sheet PDF** (e.g. `PAL-NFWB8-Spec-Sheet.V26.2.pdf`,
+  `PAL-NFMS2-Spec-Sheet.V26.2.pdf`; PLO2-F and PLO2-W share one `PAL-PLO2-Spec-
+  Sheet.V26.2.pdf`). This is what Cory meant by "the PAL-TS-Reference Guide as I've
+  structured it" — use this per-family/per-SKU folder layout (not the old combined
+  sell sheet) as the source for each of the remaining 8 SKU cards.
+  **New hero-photo pattern for this batch:** composited each SKU's `*-Prod.png` +
+  `*-Dim.png` side by side (white background, thin gray divider, no captions — same
+  technique as the `drivers` card's two-enclosure composite) rather than using a
+  sell-sheet crop or a single image. NFWB8's is `image_177.jpg`. Use this same
+  composite pattern for the remaining 8 SKU cards, sourced from each one's own
+  `Prod.png`/`Dim.png` pair.
+  **Wired** into the hub's part-number list, the `productSelect` dropdown, and
+  `HIDDEN_BY_DEFAULT`.
+  **Corrected again (2026-07-09):** removed the NFWB8 Spec Sheet link from the hub's
+  Reference line — Cory wants only the general Strip Lighting Installation Guide
+  linked there for now; he'll provide the correct per-SKU spec sheet link for each
+  part number once that SKU's card actually exists, rather than linking NFWB8's spec
+  sheet on the hub where it doesn't clearly belong to one product. The NFWB8 spec
+  sheet link belongs on the `customstrip-nfwb8` card itself instead — added directly
+  under the "Driver compatibility" bullet, right before "NFWB8 Quick Specs" (his
+  explicit placement). **Pattern for the remaining 8 SKU cards:** each one's own spec
+  sheet link (from its `source-manuals/Strip/Custom Strip/<Family>/<SKU>/PAL-<SKU>-
+  Spec-Sheet*.pdf` folder — Cory will provide the live pallighting.com URL per SKU)
+  goes in that same spot on its own card — Driver compatibility bullet → spec sheet
+  link → Quick Specs table. Also made hero
+  `photo` images zoomable guide-wide: added the `zoomable` class + `cursor:zoom-in`
+  to the shared `photo` rendering in `cardHTML()` (index.html, the `if(item.photo)`
+  line) — this was a global render-logic change, not a data change, so it applies to
+  every card's hero photo automatically, not just `customstrip-nfwb8`. Cory asked for
+  this specifically because `image_177.jpg` carries real dimension text that's hard
+  to read at the 260px card width; tapping now opens the same lightbox already used
+  for every other diagram in the guide.
+- **`customstrip-nflt8`** — second SKU card built (2026-07-09), pilot confirmation
+  that the individual per-SKU spec sheets are materially richer than what built the
+  original combined 9-variant card and richer than what was available for NFWB8 at
+  build time. Source: `Outward Facing_Top Bending/NFLT8/PAL-NFLT8-Spec-Sheet.V26.2.pdf`
+  — a single well-organized page (vs. the old cramped 9-per-page combined sheet) with
+  sections the old source never had: Lifespan (L70 &gt;84,000 hrs @ 25&deg;C),
+  Operating temp (-40&deg;F to 122&deg;F), Max length (115'/35m), an **IK08 impact
+  rating** alongside IP68 (not previously documented on any strip card), a full
+  RGB + DMX remote driver compatibility table (64-PCR-1ZW-65, -2ZW-65, -3DW-120,
+  -3DW-500 / 64-PCR-2DMX-65, -3DMX-120, -3DMX-500, -3DMX-500-8Z), and — genuinely
+  new troubleshooting-relevant content — a **5-option Cable Entry diagram** (rear,
+  straight, side-left, side-right, front) governing how the driver cable physically
+  connects to the strip/track. Added a new issue row for this ("driver cable won't
+  seat cleanly — confirm which of the 5 entry configurations was ordered") since nothing
+  like it existed on `customstrip-nfwb8`.
+  **Wattage:** 4W/ft, 2" (50mm) — same Jason-confirmed figure already on the hub's
+  comparison table for NFLT8, applied the same way as NFWB8 (no in-card flag; this
+  SKU's own printed spec sheet states 3W/ft, 1" instead, same recurring conflict,
+  tracked here only per [[feedback_no_incard_flags]]).
+  **Bending radius reported differently than NFWB8:** this individual sheet gives one
+  figure (&gt;2.36"/60mm) rather than NFWB8's two-figure RGB/SPI-DMX split — used
+  as-is rather than forcing NFWB8's format onto it, since this source doesn't make
+  that distinction.
+  **Not yet done:** spec sheet link intentionally omitted from this card — Cory
+  hasn't provided the live pallighting.com URL for NFLT8 yet (same placement slot as
+  NFWB8's, once available: Driver compatibility bullet → spec sheet link → Quick
+  Specs table).
+  Images: `image_178.jpg` (hero — NFLT-Prod.png + NFLT-DIMS.png composite, same
+  technique as NFWB8's `image_177.jpg`) and `image_179.jpg` (new — Cable Entry
+  Options diagram, cropped from the individual spec sheet's own page render at
+  300dpi). Reused `image_133.jpg`/`image_134.jpg` (entry-point/corner diagrams) and
+  `image_139.jpg`/`image_140.jpg` (cut-point/resealing diagrams) from the sibling
+  Quick-Ship/Perimeter cards, same as NFWB8.
+  Wired into the hub's part-number list, `productSelect`, and `HIDDEN_BY_DEFAULT`.
+  **Open follow-up, flagged to Cory, not yet actioned:** NFWB8's own individual spec
+  sheet (`Downward Facing_Side Bending/NFWB8/PAL-NFWB8-Spec-Sheet.V26.2.pdf`) almost
+  certainly has this same richer Lifespan/Operating-temp/IK-rating/driver-table/cable-
+  entry content — `customstrip-nfwb8` was built before this was discovered and only
+  used the older combined 9-variant sheet for its facts text (the individual sheet
+  was used solely for the hero composite photo). Worth a pass to backfill NFWB8 to
+  the same depth once the remaining SKUs are done, if Cory wants parity.
+- **`customstrip-nflt8` spec sheet link added (2026-07-09):** Cory provided
+  `https://pallighting.com/wp-content/uploads/2026/02/PAL-NFLT8-Spec-Sheet.V26.2.pdf`
+  — added directly under the "Driver compatibility" bullet, right before "NFLT8
+  Quick Specs" (same slot as NFWB8's).
+  **Build order specified by Cory (SKU-card sequence, not build-session order):**
+  NFWB8 → NFLS8 → NFMS2 → NFUS2 → NFLT8 → NFMT8 → NFUT2 → PLO2-F → PLO2-W — this is
+  the order the hub's "Select a Part Number" list should read in once everything is
+  built (matches the Product Line Comparison table's row order, which was already in
+  this sequence). NFWB8 and NFLT8 were already built out of this order (NFWB8 first,
+  NFLT8 second) — their relative order on the hub list is still correct as-is (1st
+  and 5th), nothing to fix yet; just means the remaining 7 need to slot into their
+  correct relative positions as each is built, not simply appended after NFLT8.
+  **All 7 remaining spec sheet links, provided by Cory in this same message —
+  use each one on its own card in the same slot (Driver compatibility bullet → spec
+  sheet link → Quick Specs table) as that card gets built:**
+  - NFLS8: `https://pallighting.com/wp-content/uploads/2026/02/PAL-NFLS8-Spec-Sheet-V26.2.pdf`
+  - NFMS2: `https://pallighting.com/wp-content/uploads/2026/02/PAL-NFMS2-Spec-Sheet.V26.2.pdf`
+  - NFUS2: `https://pallighting.com/wp-content/uploads/2026/05/PAL-NFUS-V2-Spec-Sheet-5-26.pdf`
+  - NFMT8: `https://pallighting.com/wp-content/uploads/2026/02/PAL-NFMT8-Spec-Sheet.V26.2.pdf`
+  - NFUT2: `https://pallighting.com/wp-content/uploads/2026/05/PAL-NFUT-V2-Spec-Sheet-5-26.pdf`
+  - PLO2-F: `https://pallighting.com/wp-content/uploads/2026/02/PAL-PLO2-Spec-Sheet.V26.2.pdf`
+  - PLO2-W: `https://pallighting.com/wp-content/uploads/2026/02/PAL-PLO2-Spec-Sheet.V26.2.pdf`
+    (PLO2-F and PLO2-W share the identical URL — one combined spec sheet PDF covers
+    both SKUs, consistent with them sharing one source file in `source-manuals/Strip/
+    Custom Strip/Hardscape_Outward Facing/` too.)
+- **`customstrip-nfls8`** — third SKU card built (2026-07-09), inserted into the
+  `DATA` array between `customstrip-nfwb8` and `customstrip-nflt8` (not appended at
+  the end) to match Cory's specified final order — same treatment applied to the
+  hub's part-number list and the `productSelect` dropdown. Source:
+  `Downward Facing_Side Bending/NFLS8/PAL-NFLS8-Spec-Sheet-V26.2.pdf`. Key facts:
+  113&deg; beam / 37 lm/ft — genuinely narrow compared to NFWB8's 238&deg; "Wide
+  Beam," which is the real distinguishing feature behind the NFWB8/NFLS8 naming
+  collision already flagged on the hub; called this out explicitly in facts and
+  step 1 so a tech isn't just told "different SKU" without knowing *how* different.
+  **No Jason wattage override applies here** — Jason's 6 relayed figures only covered
+  NFWB8/NFLT8/NFUS2/NFUT2 (after the NFWB2&rarr;NFWB8/NFLT2&rarr;NFLT8 shorthand
+  resolution), not NFLS8, so this card uses its own printed spec as-is: 3W/ft, 1"
+  (25mm) — no conflict, nothing to override.
+  **Cross-reference corrected, not copy-pasted from NFWB8/NFLT8:** those two cards
+  can truthfully say "same physical strip as Quick-Ship/Perimeter" because NFWB8 and
+  NFLT8 are also sold through those other two tiers. **NFLS8 has no Quick-Ship or
+  Perimeter Strip Kit equivalent — Custom Strip is its only purchase path** — said so
+  explicitly rather than reusing the sibling cards' cross-reference language
+  unchanged, which would have overclaimed a stocked/kit option that doesn't exist
+  for this SKU. The mounting *technique* cross-reference to Quick-Ship/Perimeter
+  still stands (same strip family mechanics), just not a SKU-identity claim.
+  **Cable entry options differ from NFLT8 — only 4, not 5:** this spec sheet's own
+  Cable Entry Options section shows Rear/Straight/Side-Left/Side-Right only, no
+  Front entry (NFLT8 has all 5). Cropped and used as its own diagram rather than
+  assuming NFLT8's set carried over. **No end cap SKU found** for this specific SKU
+  in any source on file (unlike NFWB8/NFLT8, which have one via the Quick-Ship/
+  Perimeter cards' own accessories tables) — left out of the Quick Specs table
+  rather than guessing one by pattern-matching the `64-PAL-NFLS-MT-E-6` track SKU
+  naming, and flagged in an order-note so a tech doesn't assume it's just missing
+  from this card.
+  Images: `image_181.jpg` (hero — NFLS-Prod.png + NFLS-DIMS.png composite) and
+  `image_180.jpg` (Cable Entry Options diagram, cropped from this SKU's own spec
+  sheet at 300dpi, confirmed only 4 options before cropping). Reused
+  `image_133.jpg`/`image_134.jpg`/`image_139.jpg`/`image_140.jpg` from the sibling
+  cards, same as NFWB8/NFLT8.
+  Wired into the hub's part-number list (correct position, between NFWB8 and
+  NFLT8), `productSelect`, and `HIDDEN_BY_DEFAULT`.
+- **Remaining 6 SKU cards built in one continuous pass (2026-07-09), no per-card
+  pause.** Cory said to keep going through the rest of the batch autonomously
+  ("build the rest of the SKU cards in the exact same way? Keep going") rather than
+  stopping after each — consistent with [[feedback_autonomy_gate_at_push]]. All 9
+  Custom Strip SKU cards now exist: NFWB8, NFLS8, NFMS2, NFUS2, NFLT8, NFMT8, NFUT2,
+  PLO2-F, PLO2-W — Custom Strip is fully built out. Each inserted at its correct
+  position in the `DATA` array, the hub's part-number list, and `productSelect`
+  (verified in preview: hub lists all 9 in the exact specified order). Validated
+  after each insertion; full browser check at the end (console clean, no failed
+  network requests, all 16 new image assets verified non-corrupt).
+  - **`customstrip-nfms2`** (Mini Side View) — `Downward Facing_Side Bending/NFMS2/
+    PAL-NFMS2-Spec-Sheet.V26.2.pdf`. Notably smaller cross-section (5/16"&times;1/2")
+    than NFWB8/NFLS8. No Jason wattage override (not in his 6-item list) — own
+    printed spec used as-is: 3.5W/ft, 2" (50mm). Two real oddities in this specific
+    document, presented as printed without inventing a flag (per
+    [[feedback_no_incard_flags]]) but worth knowing about: (1) Lifespan L70 &gt;
+    60,000 hrs @ 25&deg;C — lower than the Series 8 strips' 84,000 hrs, a real
+    Mini/Series-2-vs-Series-8 family difference, not an error; (2) Operating temp
+    printed as -40&deg;C to <b>110&deg;C</b> (-40&deg;F to 230&deg;F) — unusually
+    high vs. every other card's ~50&deg;C ceiling, but the C&harr;F conversion is
+    internally consistent (not a garbled-digit typo), so used as printed rather than
+    second-guessed. No end cap SKU published — omitted rather than guessed.
+  - **`customstrip-nfus2`** (Underwater Side View) — `Downward Facing_Side Bending/
+    NFUS2/PAL-NFUS-V2-Spec-Sheet-5-26.pdf`. One of only two genuinely submersible
+    Custom Strip SKUs. **No wattage conflict at all** — this document's own printed
+    spec (2W/ft, 2"/50mm) matches Jason's figure exactly, unlike the NFWB8/NFLT8
+    case. New real fact worth flagging: mounting track ships in 3' sections
+    (`64-PAL-NFUS2-MT-E-3`), not the standard 6' used everywhere else — noted
+    plainly in facts/steps. IK10 impact rating carries a real installation
+    precondition (custom track must be PAL-design-team-approved before install) —
+    kept in the card since it's actionable, not a discrepancy narration. Escalate
+    box rewritten from scratch (not just SKU-swapped from the non-submersible
+    template) since this SKU's logic is the exception, not the rule.
+  - **`customstrip-nfmt8`** (Mini Top View) — `Outward Facing_Top Bending/NFMT8/
+    PAL-NFMT8-Spec-Sheet.V26.2.pdf`. No Jason override; own printed spec used:
+    3W/ft, 1" (25mm). Mounting track SKU is `64-PAL-NFMT2-MT-E-6` — uses "NFMT2" in
+    the track code, not "NFMT8" — third confirmed instance of a track SKU using a
+    different number than its strip (after NFWB2/NFWB8 and the earlier
+    hypothesis about Jason's NFWB2/NFLT2 shorthand). Additional supporting evidence
+    for that still-open theory, not yet confirmed with Jason. 5 cable entry options
+    (matches NFLT8's Top View pattern, incl. Front entry).
+  - **`customstrip-nfut2`** (Underwater Top View) — `Outward Facing_Top Bending/
+    NFUT2/PAL-NFUT-V2-Spec-Sheet-5-26.pdf`. **Confirmed copy-paste artifact**: this
+    document's own Ordering Guide / Accessories sections (SERIES/LUMINAIRE TYPE box,
+    mounting track SKU `64-PAL-NFUS2-MT-E-3`) are copy-pasted from the NFUS2 sheet
+    wholesale — say "NFUS2 / LED Strip - Submersible - Side bending" even though
+    this document's own title/header/hero photo are unambiguously NFUT2 (top-bending,
+    outward-facing). Confirmed by direct visual inspection of the rendered page, not
+    just text extraction. **Mounting track SKU omitted from this card** rather than
+    reproducing the wrong SKU or guessing the correct one. **New unresolved wattage
+    question, flagged to Cory, not yet confirmed:** this SKU's own printed spec says
+    1.7W/ft, 1" (25mm) — doesn't match Jason's 2W/ft, 2" figure for NFUT2 (unlike
+    NFUS2, which matched exactly). Used Jason's figure anyway, applying the same
+    precedent Cory already confirmed for NFWB8/NFLT8 (field figure overrides printed
+    spec when they conflict) — but Cory hasn't explicitly re-confirmed this
+    extension for NFUT2 specifically, since his original confirmation was about the
+    NFWB2/NFLT2 naming question, not this. Worth a direct check with him.
+  - **`customstrip-plo2f`** and **`customstrip-plo2w`** (rigid Hardscape "Feature
+    Strip" line) — both share one spec sheet,
+    `Hardscape_Outward Facing/PLO2-F(or W)/PAL-PLO2-Spec-Sheet.V26.2.pdf` (confirmed
+    byte-identical earlier this session). Genuinely different product mechanism from
+    every flexible SKU on this hub: rigid track, mitred corners, no bend-radius
+    concept. Real distinguishing spec: **IP65, not IP68** — a lower ingress rating
+    than every flexible variant, reflecting the rigid encapsulated design (not a
+    copy-paste artifact, confirmed consistent within this document). Cable entry is
+    **Straight entry only** — no rear/side/front alternative. No cut-point/reseal
+    diagram or install manual exists for this rigid mounting system in any source on
+    file — flagged as a coverage gap in both cards' steps rather than assuming the
+    flexible-strip cut/reseal procedure applies. F vs. W is purely a track
+    cross-section difference (4/5"&times;3/4" vs. 7/16"&times;3/4") — identical
+    strip/electronics otherwise; steps/issues call out the naming collision risk
+    explicitly since "PLO2-F" and "PLO2-W" are visually easy to transpose.
+  - Images: `image_182`–`image_187` (hero composites, same Prod+Dim technique as
+    NFWB8/NFLT8/NFLS8) and `image_188`–`image_191` (Cable Entry Options diagrams for
+    NFMS2/NFMT8/NFUS2/NFUT2, cropped from each SKU's own spec sheet at 300dpi — NFUS2
+    and NFUT2 required different crop coordinates since their document layout places
+    Cable Entry Options in the left column rather than the lower-right like the
+    Series 8 sheets). PLO2-F/PLO2-W have no cable-entry diagram (Straight-entry-only,
+    nothing to illustrate) and reuse no corner/entry-point/cut-point diagrams either,
+    since none of that flexible-strip content applies to a rigid track.
+- **Custom Strip hub is now fully built out — all 9 SKU cards exist.** Only open
+  items: (1) confirm the NFUT2 wattage question with Cory (see above); (2) decide
+  whether to propagate the NFWB8/NFLT8 4W/ft correction to the still-unchanged
+  `quickshipstrip`/`perimeterstripkit` cards (open since the NFWB8 card was built,
+  still not actioned); (3) whether to backfill `customstrip-nfwb8` with the same
+  Lifespan/Operating-temp/driver-table depth its own individual spec sheet has,
+  now that every other SKU card uses that richer sourcing (open since the NFLT8
+  card was built, still not actioned).
+- **Strip Lighting promoted to the true front page, not nested under Products
+  (2026-07-09, two-step correction).** Was nested under `cat-lights` (Quick-Ship,
+  Perimeter Strip Kits, and Custom Strip all showed as three of the ten links on the
+  Lights hub). First pass moved it to a new `cat-strip` hub listed as a category
+  inside the `products` hub (same level as Lights/Drivers/Water Features in that
+  hub's own list) — **Cory corrected this**: "It should not be nested under
+  Products" — he wanted it out of the category-picker entirely and shown directly on
+  the actual home/landing view, alongside `framework`/`competitors`/`led-diagnostics`/
+  `products` themselves, not one click deeper. Final state: removed the "Strip
+  Lighting" link from `products`'s own list; removed `backTo: "products"` from
+  `cat-strip` (top-level cards like `products`/`framework`/`competitors` don't carry
+  a `backTo`); removed `cat-strip` from `HIDDEN_BY_DEFAULT` so it renders on the
+  default (no-search) view like any other top-level card — its position in the
+  `DATA` array (right after `products`, before the now-hidden `cat-drivers`) means it
+  naturally lands as the 5th card on the home page, directly under Products, with no
+  array reordering needed. `quickshipstrip`/`perimeterstripkit`/`customstrip` still
+  point `backTo: "cat-strip"`, and that back-link resolves correctly regardless of
+  `cat-strip`'s own hidden/visible status — `HIDDEN_BY_DEFAULT` only gates whether a
+  card shows on first load, not whether it can be a valid `backTo` target. Tapping
+  "Strip Lighting" on the home page now expands it in place (same accordion behavior
+  as `products`) to reveal the three tiers; Strip → Custom Strip → SKU nesting below
+  it is unchanged. Verified in preview: home page shows Strip Lighting as its own
+  card (not nested), expands correctly, and the full Custom Strip → NFWB8 back-link
+  chain still resolves.
 
 ## Water Features refresh batch (in progress)
 New source manuals under `source-manuals/Water Features/<Product>/` — Bubblers,
