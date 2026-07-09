@@ -852,9 +852,15 @@ way as every other hero photo in this guide.
 No changes to `productSelect`, hub links, or `HIDDEN_BY_DEFAULT` — `remotes` already
 existed and was already wired in.
 
-**Still open, not resolved by this pass:** 64-PAL-SR2 has no source manual. Whether the
-rounded Aqualumin remote is actually SR2 is tracked here, not in the HTML (see
-"Corrected 2026-07-09" below) — if Cory confirms it, relabel that card section then.
+**Resolved 2026-07-09:** Cory confirmed via a screenshot of the exact same "Section 4.
+REMOTE PROGRAMMING" diagram (already on file as `image_62.jpg`) that the rounded
+Aqualumin remote **is** the 64-PAL-SR2 — same image, so no new extraction needed, just
+relabeling. Updated the `remotes` card: section renamed "Sonar Remote — SR2 style
+(64-PAL-SR2)," part number field filled in (was "not confirmed"), and added that it
+operates the same way as the 64-PAL-SR (same pairing/cloning/unpairing procedure shape,
+just 4 channels instead of 8, no Astral) per Cory's explicit ask. Cross-referenced from
+the SR (discontinued) section too, so the "replaced by" relationship reads correctly in
+both directions.
 
 **Corrected 2026-07-09** — two follow-up fixes from Cory after reviewing the first pass:
 1. **Removed the in-card "open question" note-box** about the SR2/rounded-remote identity
