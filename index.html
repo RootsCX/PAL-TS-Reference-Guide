@@ -1306,9 +1306,9 @@ const DATA = [
     title: "Commander Series 2 (PC-2D)",
     photo: "assets/image_91.jpg",
     photoAlt: "PAL Commander PC-2D driver enclosure",
-    tags: ["commander","pc-2d","2 wire","transformer"],
+    tags: ["commander","pc-2d","2 wire","transformer","pct-3","commander touch"],
     facts: `<b>Part number:</b> PC-2D (per enclosure label; no manual on file to confirm sub-SKU suffixes)<br>
-            <b>What it is:</b> a "Commander"-branded receiver/driver for PAL <b>2-wire</b> LED lights — an older/simpler wiring generation than the 4-wire RGB family documented elsewhere in this guide (Drivers, PCR-2DMX, PCR-3D, PCR-2D, PCR-300 cards). Not yet seen cross-referenced by name in any other card in this guide.<br><br>
+            <b>What it is:</b> a "Commander"-branded receiver/driver for PAL <b>2-wire</b> LED lights — an older/simpler wiring generation than the 4-wire RGB family documented elsewhere in this guide (Drivers, PCR-2DMX, PCR-3D, PCR-2D, PCR-300 cards). Paired remote: <b>42-PCT-3T</b> ("Commander Touch," CH1/CH2 + mode buttons) — see the <b>Remotes</b> card.<br><br>
             Read directly off the enclosure label pictured (this card's hero photo) — no install/spec manual has been provided, so nothing below is inferred beyond what the label states:<br>
             Supply voltage 100–240V (50/60Hz) &nbsp; Supply power 23 Watts &nbsp; <b>Output voltage 12V D/C &nbsp; Output power 16 Watts</b><br>
             IP65, suitable for wet locations &nbsp; UL Listed &nbsp; SELV`
@@ -1363,35 +1363,53 @@ const DATA = [
     id: "remotes",
     backTo: "cat-wifi",
     title: "Remotes",
-    tags: ["remote","remotes","pcz-2","pct-1","sonar remote","handheld remote","transmitter","color wheel","pairing","cloning","matching code","clearing code","zone","channel"],
-    facts: `PAL products pair with one of three physical remote families, or the Color Touch app on Wi-Fi-equipped drivers — never assume one remote's button layout or pairing steps carry over to another family. This page is a side-by-side quick reference; full pairing/cloning steps and troubleshooting for each remote stay on the product cards that use it (linked below), not duplicated here.`,
+    tags: ["remote","remotes","pcz-2","pct-1","pct-3","pct-5","commander","touch 5","touch-5","pool touch 5","sonar remote","handheld remote","transmitter","color wheel","pairing","cloning","matching code","clearing code","zone","channel","discontinued","spare part"],
+    facts: `PAL's own site lists 6 remote handset SKUs across four driver-connection families (current-gen 4-wire PCZ-2, older 4-wire PCT-1, 2-wire Commander PCT-3, Pool Touch 5 automation PCT-5, and the Sonar family) — never assume one remote's button layout or pairing steps carry over to another family. This page is a side-by-side quick reference; full pairing/cloning steps and troubleshooting for each remote stay on the product cards that use it (linked below), not duplicated here.<br><br>
+            <b>Discontinued vs. spare-parts-only:</b> several remotes below are flagged internally as discontinued/legacy — meaning don't spec them for a new job — but PAL's own site still lists most of them under "Remote Handsets, Spare Parts," so they remain orderable to replace a remote on an existing install. Don't confuse "discontinued" with "unavailable."`,
     extra: `
-      <div class="section-label">PCZ-2 Handheld Remote</div>
-      <div class="order-note">Current-generation remote for the 64-PCR-1Z / PCR-2Z / PCR-1ZW / PCR-2ZW driver family (24V DC). Color wheel, brightness, zone, and 7 preset modes. Matching Code: apply power, press Z1 once within 5 seconds. Clearing Code: hold Z1 for 3 seconds. 1 transmitter pairs to unlimited receivers; 1 receiver max 4 transmitters. <b>PCR-1Z-SM (switch mode) does not operate with the PCZ-2</b> — board buttons only.</div>
+      <div class="section-label">PCZ-2 Handheld Remote (64-PCZ-2)</div>
+      <img class="zoomable" src="assets/image_174.jpg" alt="PCZ-2 handheld remote product photo" style="width:100%;max-width:260px;display:block;margin:8px auto;border-radius:8px;background:#fff;padding:8px;border:1px solid #2a3b5c;cursor:zoom-in;">
+      <div class="order-note"><b>Part number:</b> 64-PCZ-2. <b>What it is:</b> current-generation 4-wire handheld remote ("Remote Handset for Color Touch Series 2Z Controllers"), color wheel + brightness + zone + 7 preset modes. <b>Pairs with:</b> the 64-PCR-1Z / PCR-2Z / PCR-1ZW / PCR-2ZW driver family (24V DC).</div>
+      <div class="order-note" style="margin-top:6px;">Matching Code: apply power, press Z1 once within 5 seconds. Clearing Code: hold Z1 for 3 seconds. 1 transmitter pairs to unlimited receivers; 1 receiver max 4 transmitters. <b>PCR-1Z-SM (switch mode) does not operate with the PCZ-2</b> — board buttons only.</div>
       <img class="zoomable" src="assets/image_70.jpg" alt="PCZ-2 handheld remote button layout and Matching/Clearing Code procedures" style="width:100%;border-radius:8px;margin-top:8px;border:1px solid #2a3b5c;cursor:zoom-in;"><span style="display:block;font-size:11px;color:#9fb0c5;margin-top:4px;font-style:italic;">PCZ-2 remote — full button layout, mode list, and pairing procedures (tap to zoom)</span>
       <div class="order-note" style="margin-top:10px;"><b>Used by:</b> Drivers (PCR-1Z/2Z family), PCR-3D-120/500, Treo Max+ (V2), Treo Retro, Treo Mini+ (V2), Treo Micro, LED Bubbler, WaterSphere (via the Bubbler underneath it), Evenglow Flex, Quick-Ship Strip, Perimeter Strip Kits, Path Way Light, Bollard Light, Garden Up Light.</div>
 
-      <div class="section-label">PCT-1 Handheld Remote</div>
-      <div class="order-note">Older-generation remote for the 12V PCR-4 / PCR-2D driver family. Color wheel plus B (brightness) / S (speed) / M (mode) buttons. No dedicated button-layout diagram on file — see the driver photo below and each linked card's own coding videos.</div>
-      <img class="zoomable" src="assets/image_02.jpg" alt="PCT-1 transmitter shown between the PCR-4 and PCR-2D drivers it pairs with" style="width:100%;border-radius:8px;margin-top:8px;border:1px solid #2a3b5c;cursor:zoom-in;"><span style="display:block;font-size:11px;color:#9fb0c5;margin-top:4px;font-style:italic;">PCT-1 transmitter with the PCR-4 and PCR-2D drivers it pairs to (tap to zoom)</span>
-      <div class="order-note" style="margin-top:10px;"><b>Used by:</b> Evenglow (Niche), Evenglow (Nicheless), Evenglow Fiberglass, PCR-2D Driver.</div>
-      <div class="note-box">The Evenglow (Niche/Nicheless/Fiberglass) cards also document a newer 24V PCR-1Z/2Z driver generation appearing in current PAL sell sheets for the same products — if the driver on-site is a PCZ-2-paired board rather than the black-box PCR-4/PCR-2D shown here, use the PCZ-2 section above instead.</div>
-
       <div class="section-label">Sonar Remote — rounded style (Aqualumin)</div>
-      <div class="order-note">Channel-button pairing/cloning, no DIP switches on the driven product. Pairing: press the channel's power button 3x within 3 seconds of power-on. Cloning: hold the channel's power button (1=PAL, 2=Jandy, 3=Hayward, 4=Pentair). Unpairing: press the linked channel's button 5x.</div>
-      <img class="zoomable" src="assets/image_62.jpg" alt="Aqualumin Sonar remote — rounded style, 4 channels" style="width:100%;border-radius:8px;margin-top:8px;border:1px solid #2a3b5c;cursor:zoom-in;"><span style="display:block;font-size:11px;color:#9fb0c5;margin-top:4px;font-style:italic;">Sonar remote (rounded style) — color wheel, saturation/brightness sliders, 4 channel buttons (tap to zoom)</span>
+      <img class="zoomable" src="assets/image_62.jpg" alt="Aqualumin Sonar remote — rounded style, 4 channels" style="width:100%;max-width:260px;display:block;margin:8px auto;border-radius:8px;background:#fff;padding:8px;border:1px solid #2a3b5c;cursor:zoom-in;">
+      <div class="order-note"><b>Part number:</b> not confirmed in current sources. <b>What it is:</b> rounded 4-channel Sonar handheld remote — color wheel, saturation/brightness sliders. <b>Pairs with:</b> Aqualumin Replacement.</div>
+      <div class="order-note" style="margin-top:6px;">Channel-button pairing/cloning, no DIP switches on the driven product. Pairing: press the channel's power button 3x within 3 seconds of power-on. Cloning: hold the channel's power button (1=PAL, 2=Jandy, 3=Hayward, 4=Pentair). Unpairing: press the linked channel's button 5x.</div>
       <div class="order-note" style="margin-top:10px;"><b>Used by:</b> Aqualumin Replacement.</div>
-
-      <div class="section-label">Sonar Remote — wand style (Sonar Retro Bulb)</div>
-      <div class="order-note">Same pairing/cloning/unpairing procedure shape as the rounded Sonar remote above (3x to link, hold to clone, 5x to unlink), but a 5th cloning channel (Astral) and a visibly different physical form factor.</div>
-      <img class="zoomable" src="assets/image_95.jpg" alt="Sonar Retro Bulb remote — wand style, 8 channel buttons, 5 cloning channels including Astral" style="width:100%;border-radius:8px;margin-top:8px;border:1px solid #2a3b5c;cursor:zoom-in;"><span style="display:block;font-size:11px;color:#9fb0c5;margin-top:4px;font-style:italic;">Sonar remote (wand style) — color wheel, warm/cool white slider, 8 channel buttons, 5 cloning channels incl. Astral (tap to zoom)</span>
-      <div class="note-box"><b>Flag:</b> despite both being "Sonar"-branded with the same pairing/cloning/unpairing procedure shape, this wand-style remote and the rounded Aqualumin remote above are visibly different physical hardware, and this one supports a 5th (Astral) cloning channel the rounded one's reference doesn't show. Don't assume the two are interchangeable — confirm the physical remote in hand against the correct diagram before walking a customer through pairing.</div>
-      <div class="order-note" style="margin-top:10px;"><b>Used by:</b> Sonar Retro Bulb.</div>
-      <div class="note-box">Canadian Retro (Sonar) is confirmed to use the same general "Sonar" remote family (Hayward/Jandy/Pentair cloning per its sell sheet), but no button-sequence steps or a remote photo are documented for that specific product — don't assume it matches either diagram above without checking the physical remote in hand.</div>
 
       <div class="section-label">Color Touch App (Wi-Fi, no physical remote)</div>
       <div class="order-note">Software control for Wi-Fi-equipped ("W") drivers over the PAL Color Touch app — network/module pairing is covered on the Wi-Fi card, and full app setup/operation is covered on the Color Touch App card, not repeated here.</div>
       <div class="order-note" style="margin-top:10px;"><b>See:</b> Wi-Fi card, Color Touch App card.</div>
+
+      <div class="section-label" style="color:var(--escalate);">PCT-1 Handheld Remote (42-PCT-1T) — Discontinued</div>
+      <img class="zoomable" src="assets/image_170.jpg" alt="PCT-1 handheld remote product photo" style="width:100%;max-width:260px;display:block;margin:8px auto;border-radius:8px;background:#fff;padding:8px;border:1px solid #2a3b5c;cursor:zoom-in;">
+      <div class="order-note"><b>Part number:</b> 42-PCT-1T. <b>What it is:</b> older-generation 4-wire remote ("Remote Handset for Color Touch Series 1 / 2 / 3 / 4 Controllers" — one remote spans four controller generations). Color wheel plus B (brightness) / S (speed) / M (mode) buttons. <b>Pairs with:</b> the 12V PCR-4 / PCR-2D driver family.</div>
+      <div class="order-note" style="margin-top:6px;">No dedicated pairing-steps document on file — see each linked card's own coding videos.</div>
+      <img class="zoomable" src="assets/image_02.jpg" alt="PCT-1 transmitter shown between the PCR-4 and PCR-2D drivers it pairs with" style="width:100%;border-radius:8px;margin-top:8px;border:1px solid #2a3b5c;cursor:zoom-in;"><span style="display:block;font-size:11px;color:#9fb0c5;margin-top:4px;font-style:italic;">PCT-1 transmitter with the PCR-4 and PCR-2D drivers it pairs to (tap to zoom)</span>
+      <div class="order-note" style="margin-top:10px;"><b>Used by:</b> Evenglow (Niche), Evenglow (Nicheless), Evenglow Fiberglass, PCR-2D Driver.</div>
+      <div class="note-box">The Evenglow (Niche/Nicheless/Fiberglass) cards also document a newer 24V PCR-1Z/2Z driver generation appearing in current PAL sell sheets for the same products — if the driver on-site is a PCZ-2-paired board rather than the black-box PCR-4/PCR-2D shown here, use the PCZ-2 section above instead.</div>
+
+      <div class="section-label" style="color:var(--escalate);">PCT-3 Handheld Remote (42-PCT-3T) — Discontinued</div>
+      <img class="zoomable" src="assets/image_171.jpg" alt="PCT-3 Commander Touch handheld remote product photo" style="width:100%;max-width:260px;display:block;margin:8px auto;border-radius:8px;background:#fff;padding:8px;border:1px solid #2a3b5c;cursor:zoom-in;">
+      <div class="order-note"><b>Part number:</b> 42-PCT-3T. <b>What it is:</b> "Commander Touch"-branded remote, CH1 / CH2 on-off buttons plus a shared M (mode) +/- button. <b>Pairs with:</b> the <b>2-wire</b> Commander Series 2 (PC-2D) driver — a different wiring generation from every other remote on this page.</div>
+      <div class="order-note" style="margin-top:6px;">No pairing/cloning steps document on file — coverage gap, don't invent a button sequence.</div>
+      <div class="order-note" style="margin-top:10px;"><b>Used by:</b> Commander Series 2 (PC-2D).</div>
+
+      <div class="section-label" style="color:var(--escalate);">PCT-5 Handheld Remote (42-PCT-5T) — Discontinued</div>
+      <img class="zoomable" src="assets/image_172.jpg" alt="PCT-5 Touch-5 handheld remote product photo" style="width:100%;max-width:260px;display:block;margin:8px auto;border-radius:8px;background:#fff;padding:8px;border:1px solid #2a3b5c;cursor:zoom-in;">
+      <div class="order-note"><b>Part number:</b> 42-PCT-5T. <b>What it is:</b> "Touch-5"-branded remote, CH1-CH4 individual on/off buttons plus a CH5 master color wheel, and Bright/Speed/Mode up-down controls. <b>Pairs with:</b> the Pool Touch 5 automation system — a separate PAL platform from the standard PCR-1Z/2Z driver family (see Color Touch App card). Don't assume PCR-1Z/2Z pairing/DIP behavior applies.</div>
+      <div class="order-note" style="margin-top:6px;">No pairing/cloning steps document on file — coverage gap.</div>
+
+      <div class="section-label" style="color:var(--escalate);">Sonar Remote — wand style (64-PAL-SR) — Discontinued</div>
+      <img class="zoomable" src="assets/image_173.jpg" alt="64-PAL-SR wand-style Sonar remote product photo" style="width:100%;max-width:180px;display:block;margin:8px auto;border-radius:8px;background:#fff;padding:8px;border:1px solid #2a3b5c;cursor:zoom-in;">
+      <div class="order-note"><b>Part number:</b> 64-PAL-SR. <b>What it is:</b> 8-channel Sonar handheld remote ("Remote Handset for PAL Sonar Lighting Systems") — color wheel, warm/cool white slider, brightness slider. <b>Pairs with:</b> Sonar Retro Bulb.</div>
+      <div class="order-note" style="margin-top:6px;">Same pairing/cloning/unpairing procedure shape as the rounded Sonar remote above (3x to link, hold to clone, 5x to unlink), but a 5th cloning channel (Astral) and a visibly different physical form factor.</div>
+      <img class="zoomable" src="assets/image_95.jpg" alt="Sonar Retro Bulb remote — wand style, 8 channel buttons, 5 cloning channels including Astral" style="width:100%;border-radius:8px;margin-top:8px;border:1px solid #2a3b5c;cursor:zoom-in;"><span style="display:block;font-size:11px;color:#9fb0c5;margin-top:4px;font-style:italic;">Sonar remote (wand style) — color wheel, warm/cool white slider, 8 channel buttons, 5 cloning channels incl. Astral (tap to zoom)</span>
+      <div class="order-note" style="margin-top:10px;"><b>Used by:</b> Sonar Retro Bulb.</div>
+      <div class="note-box">Canadian Retro (Sonar) is confirmed to use the same general "Sonar" remote family (Hayward/Jandy/Pentair cloning per its sell sheet), but no button-sequence steps or a remote photo are documented for that specific product — don't assume it matches either Sonar diagram on this page without checking the physical remote in hand.</div>
     `
   },
   {
@@ -1405,7 +1423,7 @@ const DATA = [
       {title:"PAL APP Timing Operation", url:"https://youtu.be/84HXlESbDjs"},
     ],
     facts: `Full walkthrough for the PAL Color Touch app (Android + Apple) — account creation, connecting a driver to Wi-Fi, day-to-day operation, scheduling, and music sync. Network-level Wi-Fi module troubleshooting (status LEDs, 2.4GHz requirement, Reset button) is covered on the <b>Wi-Fi</b> card, not repeated here.<br>
-            <b>Driver types selectable in-app:</b> 1ZW Driver, 2ZW Driver, Touch 5 Driver, Touch 9 Driver (shown in-app as "Color Touch 1/2/5/9"). 1ZW and 2ZW match the single/dual-zone PCR-1ZW/2ZW drivers already documented on the <b>Drivers</b> card. <b>Touch 5 and Touch 9 are not yet documented anywhere in this guide</b> — source manuals for both exist on file but haven't been reviewed/built out yet; if a customer's app shows one of those two, don't assume PCR-1Z/2Z driver behavior carries over.`,
+            <b>Driver types selectable in-app:</b> 1ZW Driver, 2ZW Driver, Touch 5 Driver, Touch 9 Driver (shown in-app as "Color Touch 1/2/5/9"). 1ZW and 2ZW match the single/dual-zone PCR-1ZW/2ZW drivers already documented on the <b>Drivers</b> card. <b>Touch 5 and Touch 9 are not yet documented anywhere in this guide</b> — source manuals for both exist on file but haven't been reviewed/built out yet; if a customer's app shows one of those two, don't assume PCR-1Z/2Z driver behavior carries over. A dedicated 42-PCT-5T "Touch-5" remote handset does exist and is pictured on the <b>Remotes</b> card — confirms Pool Touch 5 is a real, separate automation product, but the driver/automation logic itself is still not built out here.`,
     extra: `
       <div class="section-label">Creating a New Login</div>
       <div class="order-note">New Account Setup: select Register → enter homeowner's email → select Get (sends a verification code) → enter the verification code → Next → select Country → set a password → Done → agree to terms → Register.</div>

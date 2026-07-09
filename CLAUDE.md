@@ -801,6 +801,77 @@ labeling request) now links three distinct cards instead of one combined card:
   `HIDDEN_BY_DEFAULT`. Updated the top-level `products` hub's category link and tags
   to match the new "WiFi, Remotes, Color Touch App" label.
 
+## Remotes card expansion (2026-07-09)
+Cory found `source-manuals/WiFi, Color Touch App, Remotes/Remotes/` — a folder with a
+subfolder per remote SKU (product page PDF + isolated product photo, occasionally a
+manual), one folder per SKU Kazi's team whiteboard-audited. This confirmed PAL lists
+**6 remote handset SKUs** total, matching the whiteboard almost exactly: 42-PCT-1T,
+42-PCT-3T, 42-PCT-5T (all flagged "Disc." on the whiteboard), 64-PCZ-2, 64-PAL-SR (also
+"Disc." on the whiteboard), and 64-PAL-SR2 ("newest"/4-channel per the whiteboard) — the
+one SKU with **no folder on file**, confirming the whiteboard's "not in guide" note isn't
+just a documentation gap, there's no source material for it at all yet.
+
+Rebuilt the `remotes` card from 4 sections to 7, one per confirmed SKU:
+- **PCZ-2 (64-PCZ-2)** and **PCT-1 (42-PCT-1T)** — already documented; added each one's
+  new clean isolated product photo (`image_174.jpg`, `image_170.jpg`) alongside the
+  existing labeled diagrams. Confirmed 42-PCT-1T's official title covers "Color Touch
+  Series 1/2/3/4 Controllers" — one remote spans four controller generations, not
+  previously called out.
+- **PCT-3 (42-PCT-3T)** — new section, new product. "Remote Handset for Commander Series
+  2 Controllers," branded "Commander Touch" on the unit (`image_171.jpg`). Pairs with the
+  2-wire Commander Series 2 (PC-2D) driver — this is the first confirmed remote
+  cross-reference for that card, which previously stated "not yet seen cross-referenced
+  by name in any other card in this guide." Updated `commander2`'s facts to name it.
+  CH1/CH2 + mode buttons visible on the unit, but no pairing/cloning steps document was
+  provided — flagged as a coverage gap rather than guessing a button sequence.
+- **PCT-5 (42-PCT-5T)** — new section, new product. "Remote Handset for Pool Touch – 5
+  Automation System," branded "Touch-5" (`image_172.jpg`). This is real, physical
+  evidence that Pool Touch 5 is a genuine PAL product — cross-referenced from the
+  `colortouchapp` card's existing Touch 5/Touch 9 flag as supporting evidence. Per the
+  standing "structurally new goes to Jason first" rule, the Touch 5 automation/driver
+  logic itself is still **not** built out — only the remote handset is documented here.
+  Same coverage-gap flag as PCT-3 (no pairing steps on file).
+- **Sonar wand-style (64-PAL-SR)** — already documented; added its own clean product
+  photo (`image_173.jpg`) alongside the existing diagram, confirmed official title.
+- **Sonar rounded-style (Aqualumin)** — unchanged content, but added an explicit
+  open-question note: this 4-channel, no-Astral remote may actually **be** the missing
+  64-PAL-SR2 (whiteboard describes SR2 as "newest," 4-channel, replacing the 8-channel
+  SR) — plausible given the channel-count match, but **not confirmed** against a real
+  part number or physical label, so it wasn't renamed. Flagged for confirmation rather
+  than assumed.
+- Added a **"discontinued vs. spare-parts-only" note** to the card's facts: the
+  whiteboard marks 42-PCT-1T/3T/5T and 64-PAL-SR as "Disc.," but PAL's own site (product
+  pages captured 2026-07-09) still lists all of them live under "Remote Handsets, Spare
+  Parts" — worded so a tech doesn't read "discontinued" as "can't be ordered," since
+  these are still legitimate replacement parts for an existing install, just not what
+  you'd spec for a new job.
+Images `image_170`–`image_174`: each is an isolated-alpha PNG already provided (not
+extracted from a PDF render this time — PAL's own product folders included clean
+transparent-background photos directly), composited onto white and autocropped the same
+way as every other hero photo in this guide.
+No changes to `productSelect`, hub links, or `HIDDEN_BY_DEFAULT` — `remotes` already
+existed and was already wired in.
+
+**Still open, not resolved by this pass:** 64-PAL-SR2 has no source manual. Whether the
+rounded Aqualumin remote is actually SR2 is tracked here, not in the HTML (see
+"Corrected 2026-07-09" below) — if Cory confirms it, relabel that card section then.
+
+**Corrected 2026-07-09** — two follow-up fixes from Cory after reviewing the first pass:
+1. **Removed the in-card "open question" note-box** about the SR2/rounded-remote identity
+   match. Per the standing "no build-process talk inside index.html" rule, internal
+   tracking language ("the team tracks a 6th SKU," "no source manual... has been provided
+   yet") doesn't belong in front of a tech on a live call — it's tracked here in CLAUDE.md
+   only (see above), not duplicated in the guide itself.
+2. **Standardized every remote section to one template**: photo first, then a short
+   Part Number / What It Is / Pairs With line, then any unique facts/issues — replacing
+   the previous free-form paragraph-first layout. Also **reordered the whole card**:
+   active remotes (PCZ-2, the rounded Sonar remote, Color Touch App) now come first,
+   followed by all four discontinued remotes (PCT-1, PCT-3, PCT-5, Sonar wand-style SR),
+   each with its section-label styled in the existing `--escalate` red (`#e3556b`) and an
+   explicit "— Discontinued" suffix so it reads correctly even without color (e.g. on
+   print or for colorblind accessibility). Reused the site's existing escalate-box red
+   rather than inventing a new color.
+
 ## Pending sign-off
 Decision-tree diagrams (Master Triage, Driver Power and Manual Test, Cloning and DIP
 Switch Check, White/Primary Color Test) were sent to Jason as a standalone PDF for review.
