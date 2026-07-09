@@ -1233,6 +1233,189 @@ both directions.
    print or for colorblind accessibility). Reused the site's existing escalate-box red
    rather than inventing a new color.
 
+## Drivers & Controllers SKU-first restructuring (active SKUs complete, 2026-07-09)
+Cory's direction: **Custom Strip's hub+SKU-card pattern is now the gold standard** for
+every product category in the guide, not just Strip Lighting. Drivers & Controllers is
+the pilot case for applying it elsewhere. Real motivation, not just consistency-for-its-
+own-sake: the team fields a lot of calls on **discontinued** drivers with very little
+documentation behind them — Cory wants an eventual "Discontinued" branch under Drivers
+once the active-SKU restructuring is done. Kazi supplied two whiteboard photos
+(2026-07-09) with a full driver/remote SKU audit — same effort as the Remotes card
+expansion audit above, this time covering Active Drivers, 2-Wire Drivers, and
+Discontinued Drivers.
+
+Built one pilot SKU card (`pcr1z65`) first and paused for review, per
+[[feedback_autonomy_gate_at_push]]. Cory reviewed it and said to continue through the
+rest of the active-SKU batch in one pass — same "keep going" pattern as the Custom Strip
+SKU batch — with one explicit instruction: **break up the bundled "driver family" cards
+completely; every SKU gets its own card**, not just the pilot.
+
+**`cat-drivers` promoted to the front page** — same mechanical treatment as the
+`cat-strip` promotion: removed the "Drivers & Controllers" link from the `products` hub's
+own category list, removed `backTo: "products"` from `cat-drivers`, removed `cat-drivers`
+from `HIDDEN_BY_DEFAULT`. Lands naturally as the 6th top-level card (right after Strip
+Lighting), no array reordering needed.
+
+**Every active SKU from the whiteboard's 13-item list now has (or already had) its own
+card.** The two bundled family cards — `drivers` (5 SKUs: 1Z-65/1ZW-65/1Z-SM-65/2Z-65/
+2ZW-65) and the old `pcr3d500` (4 SKUs: 3D-120/3DW-120/3D-500/3DW-500) — were split:
+- **`drivers`** kept its id but was **retitled and trimmed into a shared reference page**:
+  "PCR-1Z / PCR-2Z Family — Cloning, Pairing & Zone Reference." Removed the SKU-bundling
+  "Part numbers:" facts line (that content now lives on each SKU's own card); kept
+  everything genuinely shared — both Cloning DIP tables (V2 4-switch, V3 3-switch), the
+  Matching/Clearing Code pairing procedure with board/remote diagrams, the Zone/Color-
+  Temperature "Other Config" bank, the Automation Clone Mode relay note, and the videos —
+  completely unchanged, so no real content was lost. No longer listed under "Select a
+  Part Number" on the `cat-drivers` hub (it isn't a SKU); moved to a new "Shared
+  Reference" section instead.
+- **4 new leaf cards built:** `pcr1zw65` (Wi-Fi), `pcr1zsm65` (switch mode — called out
+  its V3 3-switch cloning table as a real differentiator from its remote-capable
+  siblings' 4-switch table, since that's an easy mix-up), `pcr2z65` (dual-zone — kept the
+  "double-tap Z1/Z2 to sync zone colors" field-confirmed tip inline since it's the single
+  most common call on this SKU, not just cross-referenced), `pcr2zw65` (dual-zone Wi-Fi).
+  Each cross-references the reference card for the DIP/pairing detail rather than
+  duplicating it, same convention as `customstrip-nfwb8` → `quickshipstrip`.
+- **Old `pcr3d500` id freed and reused**: the bundled 4-SKU card was renamed to id
+  `pcr3dref` / title "PCR-3D Family — Mounting, Cloning & Configuration Reference" (same
+  trim-not-delete treatment — mounting/wiring diagrams, Cloning DIP table, Zone/Color-Temp
+  table, Automation relay note, V3-board flag, and fan-filter maintenance all kept
+  unchanged). The freed `pcr3d500` id was then given to the actual new leaf card for
+  64-PCR-3D-500, so cleaner-looking ids didn't require inventing awkward suffixes.
+- **4 new PCR-3D leaf cards built:** `pcr3d120`, `pcr3dw120`, `pcr3d500` (now the actual
+  500W remote SKU, not the family), `pcr3dw500`. Each is intentionally short — mounting/
+  wiring/DIP content is byte-identical across the whole PCR-3D family in the source
+  manual, so every leaf card cross-references `pcr3dref` rather than re-embedding the
+  same diagrams four times. Carried the existing wattage/SKU-naming-mismatch flag forward
+  onto the 500W and 3DW-500 cards specifically, since it's most relevant there (the
+  original source manual never confirmed a "-500" suffix, only "-300" — the whiteboard is
+  the only source confirming 64-PCR-3D-500/64-PCR-3DW-500 as currently active).
+- **`cat-drivers` hub's "Select a Part Number" list rebuilt fully flat** — all 9 new SKU
+  cards plus the two still-single-SKU-equivalent cards (`pcr2dmx`, `pcr3dmx8z`) plus the
+  unrelated single-SKU-ish cards (`pcr2d`, `pcr300`, `pcr4`, `commander2`, `ledoptics2`,
+  `pc2t`, untouched, out of this batch's scope — see below), plus a new **Shared
+  Reference** section linking the two reference cards. Comparison table's "Documented on"
+  column updated to point at the correct individual card for every one of the 13 active
+  SKUs.
+- **Hero photos:** all 9 new leaf cards reuse the existing family photos
+  (`assets/image_65.jpg` for the PCR-1Z/2Z family, `assets/image_77.jpg` for PCR-3D) since
+  this batch's only new source material was a whiteboard photo, not new manual PDFs — no
+  dedicated per-SKU photography exists yet, unlike the Custom Strip SKU cards which had
+  dedicated Prod/Dim PNGs per SKU from Cory. Worth a dedicated photo pass later if Cory
+  wants per-SKU imagery here too.
+- **Verified in preview:** DATA parses (66 entries, no duplicate ids, no missing ids),
+  hub expands showing the rebuilt comparison table and full flat SKU list, every one of
+  the 11 driver-related cards (5 PCR-1Z/2Z + 1 reference + 4 PCR-3D + 1 reference) resolves
+  with a working "← Back to Drivers & Controllers" link, all 52 `productSelect` dropdown
+  entries resolve to real content, all referenced images return 200 OK, no console errors.
+
+**Not touched, out of scope for this pass:** `pcr2dmx` and `pcr3dmx8z` already map 1:1 to
+a single active SKU family each (the whiteboard's wattage-tier SKUs under `pcr2dmx`, and
+the single 8-zone SKU under `pcr3dmx8z`) — no bundling to break up. `pcr2d`, `pcr300`,
+`pcr4`, `commander2`, `ledoptics2`, `pc2t` don't appear on the whiteboard's Active Drivers
+list at all (they're older/Color-Touch-Series platforms outside this audit's scope) —
+left exactly as they were.
+
+**Known follow-up, not urgent:** roughly 15 other cards across the guide (Strip Lighting
+tiers, Custom Strip SKUs, WaterSphere, PCR-300, the Attendant, cloning-competitor card,
+etc.) contain **prose** references to "the Drivers card" or "the PCR-3D-120/500 card" by
+name — these are plain text, not `jumpToProduct()` links, so nothing is broken, but
+they're now slightly imprecise (the content they're pointing at is now split across a
+reference card and several SKU cards). Not worth a mass-edit pass on its own; fine to
+touch up opportunistically whenever one of those cards is next edited for another reason.
+
+**Whiteboard data captured verbatim (source of truth for what still needs a card):**
+- **Active Drivers (13, all cloning-capable):** 64-PCR-1Z-65, 64-PCR-1ZW-65,
+  64-PCR-1Z-SM-65, 64-PCR-2Z-65, 64-PCR-2ZW-65, 64-PCR-3D-120, 64-PCR-3DW-120,
+  64-PCR-3D-500, 64-PCR-3DW-500, 64-PCR-2DMX-65, 64-PCR-3DMX-120, 64-PCR-3DMX-500,
+  64-PCR-3DMX-500-8Z. Whiteboard notes a search-tuning observation, not a content fact:
+  "1Z"/"2Z" only surfaces these in search under certain terms — not acted on, just
+  recorded in case search weighting is revisited later.
+- **2-Wire Drivers (3, separate from the 13):** 64-PCR-2T-65 (no remote, white light
+  only — in guide only via the Aqualumin retrofit page), 64-PCR-3T-120 (not in guide),
+  64-PCR-3T-500 (not in guide) — two genuine, confirmed content gaps.
+- **Discontinued Drivers (5), per Kazi's second whiteboard:** 4-wire — 42-PCR-2D (in
+  guide as `pcr2d`), 42-PCR-4 (whiteboard marks "NO"), 42-PCR-200 (whiteboard marks
+  "NO"). 2-wire — 42-PC-2D (whiteboard marks "NO"), 42-PCR-8A "Commander" (whiteboard
+  marks "NO").
+- **Generic discontinued-driver troubleshooting** (whiteboard, for "12VDC output"
+  discontinued drivers): 1) check for power, 2) press/release the S1 button on the board
+  (manual override), 3) if neither restores the light, find the replacement part number —
+  treated as non-serviceable once discontinued. Also noted: "most common lights = Treo
+  2T → replace w/ Treo Max" — see open question below, not resolved.
+
+**Open discrepancies flagged, not resolved:**
+1. Whiteboard marks 42-PCR-4 and 42-PCR-200 as "NO" (not in guide), but minimal stub
+   cards already exist for both (`pcr4`, `ledoptics2` — "LED Optics Series 2 (PCR-200)").
+   Likely the whiteboard audit only counted cards with real troubleshooting depth, not
+   photo-only stubs — worth clarifying with Kazi/Cory whether stub-level coverage should
+   count as "in guide" going forward, since it affects how the discontinued-drivers phase
+   gets scoped.
+2. **Three-way (possibly four-way) SKU-naming confusion around 2-wire transformers,**
+   compounding an already-open question: the existing `pc2t` card's own enclosure label
+   reads "PC-2T" (no "R"); the Aqualumin Replacement card requires "PCR-2T-65"; the
+   existing `commander2` card's title references "PC-2D"; the whiteboard's discontinued
+   list separately lists "42-PC-2D" and "42-PCR-8A 'Commander'" as two distinct rows, both
+   marked "NO." Nothing on file confirms how many actual distinct products are tangled
+   under PC-2T / PCR-2T-65 / PC-2D / PCR-8A naming — not resolved, needs Cory/Jason before
+   any of this is built into discontinued-driver content.
+3. 64-PCR-3DMX-120 / 64-PCR-3DMX-500 (no "-8Z" suffix) are confirmed active part numbers
+   per the whiteboard, but the only existing card in that family (`pcr3dmx8z`) is
+   explicitly 8-zone-specific throughout (channel map, board diagrams). Flagged on the new
+   `cat-drivers` comparison table as "not yet documented" rather than assumed covered.
+4. "Treo 2T" (from the discontinued-drivers whiteboard's troubleshooting notes) doesn't
+   match any product name anywhere else in this guide or in PAL's source manuals reviewed
+   so far (closest names: Treo Max+, Treo Retro, Treo Mini+, Treo Micro) — flagged, not
+   guessed at.
+
+**Active-SKU restructuring is done.** All 11 SKUs from the whiteboard that had existing
+content now have their own individual card (`pcr1z65`, `pcr1zw65`, `pcr1zsm65`, `pcr2z65`,
+`pcr2zw65`, `pcr3d120`, `pcr3dw120`, `pcr3d500`, `pcr3dw500`, plus the already-1:1
+`pcr2dmx` and `pcr3dmx8z`), backed by two shared reference cards (`drivers`, `pcr3dref`).
+
+**Next steps (not started):**
+- Build the two confirmed-but-undocumented active SKUs (64-PCR-3DMX-120/500 non-8Z,
+  64-PCR-3T-120/500) once their content is sourced — real content gaps, not a
+  restructuring task.
+- Discontinued-drivers phase: a "Discontinued" dropdown/branch under Drivers &
+  Controllers, covering the 5 SKUs from the second whiteboard plus the generic 12VDC
+  troubleshooting sequence (check power → press/release S1 manual-override button → find
+  replacement part number) — deliberately deferred until Cory resolves the PC-2T/PCR-2T-65/
+  PC-2D/PCR-8A naming confusion flagged above, since building discontinued content on top
+  of an unresolved SKU-identity question would risk documenting the wrong product.
+- Decide whether the same full SKU-split treatment should extend to `pcr2d` (6 bundled
+  SKUs) and `pcr300` (4 bundled SKUs) — both still bundle multiple part numbers into one
+  card the same way `drivers`/`pcr3d500` used to, but neither is on the whiteboard's
+  Active Drivers list, so they were left alone this pass. Worth asking Cory whether "every
+  SKU gets its own card" should extend to these too, or whether it's scoped to
+  whiteboard-confirmed-active SKUs only.
+- Extend the same hub+SKU-card treatment to other categories per Cory's stated long-term
+  goal ("the way we built custom strip will now be the gold standard" for every category)
+  — Drivers was the second pilot after Custom Strip itself; Lights, Water Features, and
+  WiFi/Remotes/Color Touch App haven't been evaluated for the same restructuring yet.
+
+## Front-page navigation grouping (2026-07-09)
+Two new top-level hub cards, same `cat-*` hub pattern as `cat-strip`/`cat-drivers` (no
+photo, no steps/issues — just an intro line and a "Select a Resource" link list):
+- **`cat-troubleshooting`** ("Troubleshooting") nests `framework` (Probability-Based
+  Diagnostic Framework), `led-diagnostics` (LED Light Diagnostics), and `morevideos`
+  (Other PAL Videos) — all three previously sat as their own top-level cards.
+- **`cat-process`** ("Process") nests `quickship` (Quick Ship — Trigger Criteria) and
+  `escalation` (Escalation Quick Reference).
+All 5 nested cards got `backTo` pointing at their new hub and were added to
+`HIDDEN_BY_DEFAULT`; the two new hub ids were not, so they render on the default home
+view in place of the 5 cards they absorbed. `cat-troubleshooting` was inserted at the very
+front of the `DATA` array (where `framework` used to be first) and `cat-process` right
+before `quickship` — front page is now 6 top-level cards instead of 9: Troubleshooting,
+Cloning to Competitor Systems (untouched, not part of this request), Products, Strip
+Lighting, Drivers & Controllers, Process.
+**Confirmed the "Quick Ship"/"Escalation" quick-search chips still work** after hiding
+those two cards — the chips just populate the search box and run the normal full-text
+search (`searchDATA`), which scans all of `DATA` regardless of `HIDDEN_BY_DEFAULT` (only
+the no-search default view filters on that set) — no chip logic needed to change.
+Verified in preview: DATA parses (68 entries, no dupes), both hubs expand and list their
+resources, all 5 nested cards resolve with a working "← Back to Troubleshooting"/"← Back
+to Process" link, both quick-search chips still return results, no console errors.
+
 ## Pending sign-off
 Decision-tree diagrams (Master Triage, Driver Power and Manual Test, Cloning and DIP
 Switch Check, White/Primary Color Test) were sent to Jason as a standalone PDF for review.
