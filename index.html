@@ -101,6 +101,8 @@
   .product-link:hover{border-color:var(--teal);}
   .product-link:last-child{margin-bottom:0;}
   .back-link{color:var(--teal); font-size:13px; cursor:pointer; margin:0 0 10px 2px; display:inline-block;}
+  .inline-link{color:var(--teal); cursor:pointer; text-decoration:underline;}
+  .inline-link:hover{color:var(--teal-dim);}
   footer{text-align:center; font-size:11px; color:var(--ink-dim); margin-top:30px;}
   .lightbox-overlay{
     display:none; position:fixed; top:0; left:0; width:100%; height:100%;
@@ -162,12 +164,12 @@
       <option value="pcr1zsm65">PCR-1Z-SM-65 (Single-Zone Driver, Switch Mode)</option>
       <option value="pcr2z65">PCR-2Z-65 (Dual-Zone Driver)</option>
       <option value="pcr2zw65">PCR-2ZW-65 (Dual-Zone Driver, Wi-Fi)</option>
-      <option value="drivers">PCR-1Z/2Z Family Reference (Cloning, Pairing &amp; Zone Configuration)</option>
+      <option value="drivers">PCR-1Z/2Z Cloning, Pairing &amp; Zone Reference</option>
       <option value="pcr3d120">PCR-3D-120 (High-Power Driver, 120W)</option>
       <option value="pcr3dw120">PCR-3DW-120 (High-Power Driver, 120W, Wi-Fi)</option>
       <option value="pcr3d500">PCR-3D-500 (High-Power Driver, 500W)</option>
       <option value="pcr3dw500">PCR-3DW-500 (High-Power Driver, 500W, Wi-Fi)</option>
-      <option value="pcr3dref">PCR-3D Family Reference (Mounting, Cloning &amp; Configuration)</option>
+      <option value="pcr3dref">PCR-3D Mounting, Cloning &amp; Configuration Reference</option>
       <option value="pcr2dmx">PCR-2DMX Driver (2-Zone DMX)</option>
       <option value="pcr3dmx8z">PCR-3DMX-8Z (8-Zone DMX)</option>
       <option value="pcr2d">PCR-2D Driver (Color Touch Series 2)</option>
@@ -177,7 +179,13 @@
       <option value="ledoptics2">LED Optics Series 2 (PCR-200)</option>
       <option value="pc2t">Power Supply Series 2 (PC-2T)</option>
       <option value="wifi">WiFi</option>
-      <option value="remotes">Remotes</option>
+      <option value="pcz2">PCZ-2 (Handheld Remote)</option>
+      <option value="palsr2">Sonar SR2 (Handheld Remote)</option>
+      <option value="pct1">PCT-1 (Handheld Remote)</option>
+      <option value="pct3">PCT-3 (Handheld Remote)</option>
+      <option value="pct5">PCT-5 (Handheld Remote)</option>
+      <option value="palsr">Sonar SR (Handheld Remote)</option>
+      <option value="remotes">Remotes — General Troubleshooting &amp; Pairing Reference</option>
       <option value="colortouchapp">Color Touch App</option>
       <option value="waterblade">WaterBlade (incl. LIT / RAIN)</option>
       <option value="watersphere">WaterSphere</option>
@@ -187,6 +195,8 @@
       <option value="bollardlight">Bollard Light</option>
       <option value="gardenuplight">Garden Up Light</option>
       <option value="attendant">The Attendant (Poolside Tech) — DMX Integration</option>
+      <option value="pcr5cu">PCR-5CU / PAL Touch 5 (Relay &amp; Light Controller)</option>
+      <option value="pcr2vcu">PCR-2-VCU / PCR-5V (Motorised Valve Control)</option>
     </select>
     <div class="chips" id="chips"></div>
   </header>
@@ -202,6 +212,37 @@
 
 <script>
 const DATA = [
+  {
+    id: "cat-remotes",
+    title: "Remotes",
+    tags: ["remotes","remote","pcz-2","pct-1","pct-3","pct-5","commander","touch 5","touch-5","pool touch 5","sonar remote","sonar sr","sonar sr2","handheld remote","transmitter","color wheel","color touch app"],
+    facts: "PAL's own site lists 6 remote handset SKUs across four driver-connection groups (current-gen 4-wire PCZ-2, older 4-wire PCT-1, 2-wire Commander PCT-3, Pool Touch 5 automation PCT-5, and the Sonar remotes). Select a part number below to open its own troubleshooting card.",
+    extra: `
+      <div class="section-label">Remote Comparison</div>
+      <table style="width:100%; border-collapse:collapse; margin:6px 0; font-size:0.92em;">
+        <tr style="border-bottom:1px solid #ccc;"><td style="padding:2px 8px 2px 0;"><b>SKU</b></td><td style="padding:2px 8px;"><b>What It Is</b></td><td style="padding:2px 8px;"><b>Pairs With</b></td><td style="padding:2px 0;"><b>Status</b></td></tr>
+        <tr><td>64-PCZ-2</td><td>4-wire handheld, color wheel</td><td>PCR-1Z/2Z driver platform</td><td>Active</td></tr>
+        <tr><td>64-PAL-SR2</td><td>Sonar handheld, rounded, 4-channel</td><td>Aqualumin Replacement</td><td>Active</td></tr>
+        <tr><td>42-PCT-1T</td><td>4-wire handheld (older gen)</td><td>PCR-4 / PCR-2D driver platform</td><td>Discontinued (spare parts)</td></tr>
+        <tr><td>42-PCT-3T</td><td>2-wire "Commander Touch" handheld</td><td>Commander Series 2 (PC-2D)</td><td>Discontinued (spare parts)</td></tr>
+        <tr><td>42-PCT-5T</td><td>"Touch-5" handheld, CH1-CH5</td><td>Pool Touch 5 automation</td><td>Discontinued (spare parts)</td></tr>
+        <tr><td>64-PAL-SR</td><td>Sonar handheld, wand-style, 8-channel</td><td>Sonar Retro Bulb</td><td>Discontinued (spare parts)</td></tr>
+      </table>
+      <div class="order-note">"Discontinued" means don't spec it for a new job — PAL's own site still lists most of these under "Remote Handsets, Spare Parts," so they remain orderable to replace a remote on an existing install. For a customer who just needs a replacement, the Color Touch App (Wi-Fi-equipped drivers only) is often the faster fix — see the Remotes reference card below.</div>
+
+      <div class="section-label">Select a Part Number</div>
+      <div class="product-link" onclick="jumpToProduct('pcz2')">PCZ-2 — Handheld Remote (64-PCZ-2)</div>
+      <div class="product-link" onclick="jumpToProduct('palsr2')">Sonar SR2 — Handheld Remote (64-PAL-SR2)</div>
+      <div class="product-link" onclick="jumpToProduct('pct1')">PCT-1 — Handheld Remote (42-PCT-1T)</div>
+      <div class="product-link" onclick="jumpToProduct('pct3')">PCT-3 — Handheld Remote (42-PCT-3T)</div>
+      <div class="product-link" onclick="jumpToProduct('pct5')">PCT-5 — Handheld Remote (42-PCT-5T)</div>
+      <div class="product-link" onclick="jumpToProduct('palsr')">Sonar SR — Handheld Remote (64-PAL-SR)</div>
+
+      <div class="section-label">Shared Reference</div>
+      <div class="product-link" onclick="jumpToProduct('remotes')">Remotes — General Troubleshooting &amp; Pairing Reference</div>
+      <div class="product-link" onclick="jumpToProduct('colortouchapp')">Color Touch App (Wi-Fi, no physical remote)</div>
+    `
+  },
   {
     id: "cat-troubleshooting",
     title: "Troubleshooting",
@@ -312,7 +353,7 @@ const DATA = [
       <div class="section-label">Select a Category</div>
       <div class="product-link" onclick="jumpToProduct('cat-lights')">Lights</div>
       <div class="product-link" onclick="jumpToProduct('cat-water')">Water Features</div>
-      <div class="product-link" onclick="jumpToProduct('cat-wifi')">WiFi, Remotes, Color Touch App</div>
+      <div class="product-link" onclick="jumpToProduct('cat-wifi')">WiFi, Color Touch App</div>
       <div class="product-link" onclick="jumpToProduct('cat-landscape')">Landscape Lighting</div>
       <div class="product-link" onclick="jumpToProduct('cat-automation')">Automation</div>
     `
@@ -372,7 +413,7 @@ const DATA = [
         <tr><td>64-PCR-3DMX-500</td><td>DMX</td><td>—</td><td>No</td><td>Not yet documented as its own card — see note</td></tr>
         <tr><td>64-PCR-3DMX-500-8Z</td><td>DMX</td><td>8</td><td>No</td><td>PCR-3DMX-8Z</td></tr>
       </table>
-      <div class="order-note">64-PCR-3DMX-120/500 (no "-8Z" suffix) are confirmed active part numbers but aren't yet built out as their own troubleshooting content — don't assume the 8-zone PCR-3DMX-8Z card's channel map applies to them. Shared DIP/pairing/mounting reference content for the PCR-1Z/2Z and PCR-3D families lives on their own Family Reference cards, linked below.</div>
+      <div class="order-note">64-PCR-3DMX-120/500 (no "-8Z" suffix) are confirmed active part numbers but aren't yet built out as their own troubleshooting content — don't assume the 8-zone PCR-3DMX-8Z card's channel map applies to them. Shared DIP/pairing/mounting reference content for the PCR-1Z/2Z and PCR-3D families lives on their own reference cards, linked below.</div>
 
       <div class="section-label">2-Wire Drivers</div>
       <table style="width:100%; border-collapse:collapse; margin:6px 0; font-size:0.92em;">
@@ -402,8 +443,8 @@ const DATA = [
       <div class="product-link" onclick="jumpToProduct('pc2t')">Power Supply Series 2 (PC-2T)</div>
 
       <div class="section-label">Shared Reference</div>
-      <div class="product-link" onclick="jumpToProduct('drivers')">PCR-1Z/2Z Family Reference — Cloning, Pairing &amp; Zone Configuration</div>
-      <div class="product-link" onclick="jumpToProduct('pcr3dref')">PCR-3D Family Reference — Mounting, Cloning &amp; Configuration</div>
+      <div class="product-link" onclick="jumpToProduct('drivers')">PCR-1Z/2Z Cloning, Pairing &amp; Zone Reference</div>
+      <div class="product-link" onclick="jumpToProduct('pcr3dref')">PCR-3D Mounting, Cloning &amp; Configuration Reference</div>
     `
   },
   {
@@ -422,14 +463,13 @@ const DATA = [
   },
   {
     id: "cat-wifi",
-    title: "WiFi, Remotes, Color Touch App",
-    tags: ["wifi","app","color touch","remotes"],
-    facts: "Wi-Fi module, remotes, and Color Touch app setup/pairing.",
+    title: "WiFi, Color Touch App",
+    tags: ["wifi","app","color touch"],
+    facts: "Wi-Fi module and Color Touch app setup/pairing. See the Remotes hub (front page) for handheld remotes.",
     backTo: "products",
     extra: `
       <div class="section-label">Select a Product</div>
       <div class="product-link" onclick="jumpToProduct('wifi')">WiFi</div>
-      <div class="product-link" onclick="jumpToProduct('remotes')">Remotes</div>
       <div class="product-link" onclick="jumpToProduct('colortouchapp')">Color Touch App</div>
     `
   },
@@ -449,12 +489,14 @@ const DATA = [
   {
     id: "cat-automation",
     title: "Automation",
-    tags: ["automation","the attendant","poolside tech","dmx","third-party integration"],
-    facts: "Third-party pool automation platforms that integrate with PAL lighting. Tap a product to open its integration/troubleshooting notes.",
+    tags: ["automation","the attendant","poolside tech","dmx","third-party integration","pool touch","pcr-5cu","pcr-2-vcu"],
+    facts: "Third-party pool automation platforms that integrate with PAL lighting, plus PAL's own Pool Touch equipment-automation hardware (relay/pump/valve control, not just lighting). Tap a product to open its integration/troubleshooting notes.",
     backTo: "products",
     extra: `
       <div class="section-label">Select a Product</div>
       <div class="product-link" onclick="jumpToProduct('attendant')">The Attendant (Poolside Tech) — DMX Integration</div>
+      <div class="product-link" onclick="jumpToProduct('pcr5cu')">PCR-5CU / PAL Touch 5 — 5-Channel Relay &amp; Light Controller</div>
+      <div class="product-link" onclick="jumpToProduct('pcr2vcu')">PCR-2-VCU / PCR-5V — Motorised Valve Control Unit</div>
     `
   },
   {
@@ -499,7 +541,7 @@ const DATA = [
       <span style="display:block;font-size:11px;color:#9fb0c5;margin-top:4px;font-style:italic;">Standard niche depth, conduit height, and water-line clearances (tap to zoom)</span>
 
       <div class="section-label">Newer Generation — 24V Remote Driver</div>
-      <div class="note-box">PAL's current EvenGlow spec sheet documents a newer 24V driver generation (PCR-1Z/2Z remote driver family, 3-switch cloning DIP incl. Astral) — distinct from the 12V PCR-4/PCR-2D + PCT-1 setup covered in the Facts and troubleshooting steps above. If the driver on-site matches the board below rather than the black-box PCR-4/PCR-2D pictured in Facts, you're on this newer generation — check its own DIP/wiring against this diagram instead of the one above.<br><br><b>Also see the PCR-2D card:</b> PAL's dedicated PCR-2D sell sheet states 24V DC for that driver, conflicting with the 12V DC documented here — an unresolved cross-manual conflict, not a reason to change either card. Confirm actual voltage on site.</div>
+      <div class="note-box">PAL's current EvenGlow spec sheet documents a newer 24V driver generation (PCR-1Z/2Z remote driver platform, 3-switch cloning DIP incl. Astral) — distinct from the 12V PCR-4/PCR-2D + PCT-1 setup covered in the Facts and troubleshooting steps above. If the driver on-site matches the board below rather than the black-box PCR-4/PCR-2D pictured in Facts, you're on this newer generation — check its own DIP/wiring against this diagram instead of the one above.<br><br><b>Also see the PCR-2D card:</b> PAL's dedicated PCR-2D sell sheet states 24V DC for that driver, conflicting with the 12V DC documented here — an unresolved cross-manual conflict, not a reason to change either card. Confirm actual voltage on site.</div>
       <img class="zoomable" src="assets/image_31.jpg" alt="Evenglow 24V PCR-1Z wiring overview diagram" style="width:100%;border-radius:8px;margin-top:8px;border:1px solid #2a3b5c;cursor:zoom-in;">
       <span style="display:block;font-size:11px;color:#9fb0c5;margin-top:4px;font-style:italic;">24V PCR-1Z driver wiring overview — Blue/Grey/Red/White light leads, E/A/N power terminals, 3-switch cloning DIP (tap to zoom)</span>
     `
@@ -518,8 +560,8 @@ const DATA = [
       {title:"PAL PCR2D PCT1 Coding", url:"https://youtu.be/TUDnVlOdwjU"},
       {title:"PAL PCR2D PCT1 Manual Check", url:"https://youtu.be/K9zOumkBbEA"},
     ],
-    facts: "<b>Power/driver:</b> PCR-4 (50W) or PCR-2D (16/35/55W) · PCT-1 remote — same driver family as Evenglow (Niche), per this product's own install guide<br><b>Voltage:</b> 12V DC — do not connect to 120V<br><img class='zoomable' src='assets/image_02.jpg' alt='Evenglow PCR-4/PCR-2D driver and cloning DIP table' style='width:100%;border-radius:8px;margin-top:8px;border:1px solid #2a3b5c;cursor:zoom-in;'><span style='display:block;font-size:11px;color:#9fb0c5;margin-top:4px;font-style:italic;'>PCR-4/PCR-2D drivers and cloning DIP table (tap to zoom)</span>",
-    issuesNote: "Work this in order — \"faulty globe\" is a conclusion you arrive at, not something you test for directly. You confirm it by ruling out everything upstream first.<br><br><b>Note:</b> this product's own install guide contradicts itself — page 2 specifies 12V DC / PCR-4 &amp; PCR-2D, but the page 7 driver diagram and page 8 troubleshooting table reference the 24V PCR-1Z/PCR-2Z family (24V DC readings) and even mislabel the product as \"the Bubbler\" — almost certainly a boilerplate page reused across PAL manuals without being fully edited. Issues below follow the 12V page 2 spec as the more reliable source; confirm actual driver/voltage on site before assuming a reading is wrong.",
+    facts: "<b>Power/driver:</b> PCR-4 (50W) or PCR-2D (16/35/55W) · PCT-1 remote — same driver platform as Evenglow (Niche), per this product's own install guide<br><b>Voltage:</b> 12V DC — do not connect to 120V<br><img class='zoomable' src='assets/image_02.jpg' alt='Evenglow PCR-4/PCR-2D driver and cloning DIP table' style='width:100%;border-radius:8px;margin-top:8px;border:1px solid #2a3b5c;cursor:zoom-in;'><span style='display:block;font-size:11px;color:#9fb0c5;margin-top:4px;font-style:italic;'>PCR-4/PCR-2D drivers and cloning DIP table (tap to zoom)</span>",
+    issuesNote: "Work this in order — \"faulty globe\" is a conclusion you arrive at, not something you test for directly. You confirm it by ruling out everything upstream first.<br><br><b>Note:</b> this product's own install guide contradicts itself — page 2 specifies 12V DC / PCR-4 &amp; PCR-2D, but the page 7 driver diagram and page 8 troubleshooting table reference the 24V PCR-1Z/PCR-2Z platform (24V DC readings) and even mislabel the product as \"the Bubbler\" — almost certainly a boilerplate page reused across PAL manuals without being fully edited. Issues below follow the 12V page 2 spec as the more reliable source; confirm actual driver/voltage on site before assuming a reading is wrong.",
     issues: [
       ["Driver not connected to power","Confirm driver plugged in, power LED lit. No LED → driver goes back to PAL"],
       ["Faulty driver","Check driver output under load — should read 12V DC"],
@@ -552,7 +594,7 @@ const DATA = [
       <span style="display:block;font-size:11px;color:#9fb0c5;margin-top:4px;font-style:italic;">Final installation — light seated in the wall fitting (tap to zoom)</span>
 
       <div class="section-label">Newer Generation — 24V Remote Driver</div>
-      <div class="note-box">Same caveat as Evenglow (Niche): PAL's current sell sheet for this product documents a newer 24V driver generation (PCR-1Z/2Z remote driver family) — distinct from the 12V PCR-4/PCR-2D setup covered above. If the driver on-site matches the board below rather than the black-box PCR-4/PCR-2D pictured in Facts, check its own DIP/wiring against this diagram instead.<br><br><b>Also see the PCR-2D card:</b> PAL's dedicated PCR-2D sell sheet states 24V DC for that driver, conflicting with the 12V DC documented here — an unresolved cross-manual conflict, not a reason to change either card. Confirm actual voltage on site.</div>
+      <div class="note-box">Same caveat as Evenglow (Niche): PAL's current sell sheet for this product documents a newer 24V driver generation (PCR-1Z/2Z remote driver platform) — distinct from the 12V PCR-4/PCR-2D setup covered above. If the driver on-site matches the board below rather than the black-box PCR-4/PCR-2D pictured in Facts, check its own DIP/wiring against this diagram instead.<br><br><b>Also see the PCR-2D card:</b> PAL's dedicated PCR-2D sell sheet states 24V DC for that driver, conflicting with the 12V DC documented here — an unresolved cross-manual conflict, not a reason to change either card. Confirm actual voltage on site.</div>
       <img class="zoomable" src="assets/image_31.jpg" alt="Evenglow 24V PCR-1Z wiring overview diagram" style="width:100%;border-radius:8px;margin-top:8px;border:1px solid #2a3b5c;cursor:zoom-in;">
       <span style="display:block;font-size:11px;color:#9fb0c5;margin-top:4px;font-style:italic;">24V PCR-1Z driver wiring overview — Blue/Grey/Red/White light leads, E/A/N power terminals, 3-switch cloning DIP (tap to zoom)</span>
     `
@@ -566,7 +608,7 @@ const DATA = [
     tags: ["treo max","24v","light won't turn on","out of sync","gunite","nicheless","pcr-1z","pcr-2z","drill","hole saw","wall fitting"],
     videos: [{title:"PAL Concrete Treo Max Light", url:"https://youtu.be/z7e21HO3RFg"}],
     videoNote: "Note: \"PAL Treo Max Wet Niche Animation\" and the two \"Treo Max XL\" videos exist but reference a different niche fitting / XL variant — not linked here to avoid attaching the wrong product's install steps.",
-    facts: "<b>Power:</b> requires PAL remote driver (PCR-1Z/2Z family), 24VAC, sold separately — do not connect to 120V<br><b>Note:</b> legacy Treo Max replaced by Treo Max+ (V2) — 33% brighter, black/white body, 7W. Confirm customer has V2.<br><img class='zoomable' src='assets/image_31.jpg' alt='Treo Max+ 24V PCR-1Z wiring overview diagram' style='width:100%;border-radius:8px;margin-top:8px;border:1px solid #2a3b5c;cursor:zoom-in;'><span style='display:block;font-size:11px;color:#9fb0c5;margin-top:4px;font-style:italic;'>Same 24V PCR-1Z remote driver family used across current-gen PAL lights (tap to zoom)</span>",
+    facts: "<b>Power:</b> requires PAL remote driver (PCR-1Z/2Z platform), 24VAC, sold separately — do not connect to 120V<br><b>Note:</b> legacy Treo Max replaced by Treo Max+ (V2) — 33% brighter, black/white body, 7W. Confirm customer has V2.<br><img class='zoomable' src='assets/image_31.jpg' alt='Treo Max+ 24V PCR-1Z wiring overview diagram' style='width:100%;border-radius:8px;margin-top:8px;border:1px solid #2a3b5c;cursor:zoom-in;'><span style='display:block;font-size:11px;color:#9fb0c5;margin-top:4px;font-style:italic;'>Same 24V PCR-1Z remote driver platform used across current-gen PAL lights (tap to zoom)</span>",
     issuesNote: "Work this in order — \"faulty light head\" is a conclusion you arrive at, not something you test for directly. You confirm it by ruling out everything upstream first.",
     issues: [
       ["No power to driver","Confirm power connection + indicator LED. No LED → return to PAL"],
@@ -696,7 +738,7 @@ const DATA = [
     photoAlt: "Aqualumin Sonar Retro replacement light, remote, and mounting bracket",
     tags: ["aqualumin","aqualumin replacement","sonar retro","sonar","pentair aqualumin","nicheless replacement","pcr-2t-65","gel pack"],
     facts: `<b>Purpose:</b> full retrofit replacement for an old Pentair AquaLumin nicheless light — new bracket + new light head bolt into the existing niche/wall fitting, which stays in place<br>
-            <b>Power/driver:</b> 24V DC only, and this product's own spec sheet says it's <b>only compatible with the PAL PCR-2T-65 transformer</b> — do not assume the PCR-1Z/2Z family drivers used elsewhere in this guide will work here. One PCR-2T-65 powers up to 4 lights.<br>
+            <b>Power/driver:</b> 24V DC only, and this product's own spec sheet says it's <b>only compatible with the PAL PCR-2T-65 transformer</b> — do not assume the PCR-1Z/2Z platform drivers used elsewhere in this guide will work here. One PCR-2T-65 powers up to 4 lights.<br>
             <b>Control:</b> "Sonar" handheld remote (channel buttons 1–4, not Z1/Z2 zones) + optional Wi-Fi module (64-PAL-SW, sold separately) for app control<br>
             <b>Color:</b> 16 million colors, adjustable white 2700K–6500K<br>
             <b>SKUs:</b> 64-PAL-RAL (remote, no transformer) / -80 / -150 (cable lengths) / -T, -80-T, -150-T (bundled with the PCR-2T-65 transformer)`,
@@ -770,7 +812,7 @@ const DATA = [
     photo: "assets/image_99.jpg",
     photoAlt: "Evenglow Fiberglass RGB pool light, lit",
     tags: ["evenglow fiberglass","fiberglass wet niche","egf","12v","24v","light won't turn on","out of sync","drill","hole saw","fibreglass nut","wall fitting","pcr-4","pcr-2d","pcr-1z","pcr-2z"],
-    facts: "<b>Power/driver:</b> PCR-4 (50W) or PCR-2D (16/35/55W) · PCT-1 remote — same driver family as Evenglow (Niche) and Evenglow (Nicheless)<br><b>Voltage:</b> 12V DC — do not connect to 120V (consistent throughout this manual, no internal contradiction)<br><img class='zoomable' src='assets/image_103.jpg' alt='Evenglow Fiberglass PCR-4/PCR-2D driver, PCT-1 transmitter, and cloning DIP table' style='width:100%;border-radius:8px;margin-top:8px;border:1px solid #2a3b5c;cursor:zoom-in;'><span style='display:block;font-size:11px;color:#9fb0c5;margin-top:4px;font-style:italic;'>PCR-4/PCR-2D drivers, PCT-1 transmitter, and 2-switch cloning DIP table — no Astral option on this older table (tap to zoom)</span>",
+    facts: "<b>Power/driver:</b> PCR-4 (50W) or PCR-2D (16/35/55W) · PCT-1 remote — same driver platform as Evenglow (Niche) and Evenglow (Nicheless)<br><b>Voltage:</b> 12V DC — do not connect to 120V (consistent throughout this manual, no internal contradiction)<br><img class='zoomable' src='assets/image_103.jpg' alt='Evenglow Fiberglass PCR-4/PCR-2D driver, PCT-1 transmitter, and cloning DIP table' style='width:100%;border-radius:8px;margin-top:8px;border:1px solid #2a3b5c;cursor:zoom-in;'><span style='display:block;font-size:11px;color:#9fb0c5;margin-top:4px;font-style:italic;'>PCR-4/PCR-2D drivers, PCT-1 transmitter, and 2-switch cloning DIP table — no Astral option on this older table (tap to zoom)</span>",
     issuesNote: "Work this in order — \"faulty globe\" is a conclusion you arrive at, not something you test for directly. You confirm it by ruling out everything upstream first.",
     issues: [
       ["Driver not connected to power","Confirm driver plugged in, power LED lit. No LED → driver goes back to PAL"],
@@ -802,7 +844,7 @@ const DATA = [
       <div class="note-box">Minor — this manual's own Table of Contents lists page 3 as "Nicheless Installation," but the actual page 3 heading reads "Wet Niche Installation." Same reused-ToC-template pattern seen on other PAL manuals; doesn't change any actual instructions.</div>
 
       <div class="section-label">Newer Generation — 24V Remote Driver</div>
-      <div class="note-box">PAL's current sell sheet for this product documents a newer 24V driver generation (PCR-1Z/2Z remote driver family, part no. 64-PCR-1Z/2Z) — distinct from the 12V PCR-4/PCR-2D setup covered in the Facts and steps above. If the driver on-site matches the board on the Drivers card rather than the black-box PCR-4/PCR-2D pictured in Facts, you're on this newer generation — check its own DIP/wiring against that card's diagrams instead of the one above.<br><br><b>Notable data point for the PCR-2D voltage question:</b> this same sell sheet's "Design &amp; Features" bullet list reads "Low Power / 12/24V DC" — both voltages in one line, on the same sheet whose driver-spec box elsewhere states "24V DC" specifically for the PCR-1Z/2Z. Could mean the light body itself is agnostic to either driver generation, or could just be another instance of the recurring 12V/24V copy-paste artifact. Not resolved — see the <b>PCR-2D</b> card and Pending Sign-off in CLAUDE.md.</div>
+      <div class="note-box">PAL's current sell sheet for this product documents a newer 24V driver generation (PCR-1Z/2Z remote driver platform, part no. 64-PCR-1Z/2Z) — distinct from the 12V PCR-4/PCR-2D setup covered in the Facts and steps above. If the driver on-site matches the board on the Drivers card rather than the black-box PCR-4/PCR-2D pictured in Facts, you're on this newer generation — check its own DIP/wiring against that card's diagrams instead of the one above.<br><br><b>Notable data point for the PCR-2D voltage question:</b> this same sell sheet's "Design &amp; Features" bullet list reads "Low Power / 12/24V DC" — both voltages in one line, on the same sheet whose driver-spec box elsewhere states "24V DC" specifically for the PCR-1Z/2Z. Could mean the light body itself is agnostic to either driver generation, or could just be another instance of the recurring 12V/24V copy-paste artifact. Not resolved — see the <b>PCR-2D</b> card and Pending Sign-off in CLAUDE.md.</div>
       <img class="zoomable" src="assets/image_31.jpg" alt="Evenglow 24V PCR-1Z wiring overview diagram" style="width:100%;border-radius:8px;margin-top:8px;border:1px solid #2a3b5c;cursor:zoom-in;">
       <span style="display:block;font-size:11px;color:#9fb0c5;margin-top:4px;font-style:italic;">24V PCR-1Z driver wiring overview — Blue/Grey/Red/White light leads, E/A/N power terminals, 3-switch cloning DIP (tap to zoom)</span>
     `
@@ -870,7 +912,7 @@ const DATA = [
             <b>Control:</b> Color Touch remote with OEM cloning (Hayward/Jandy/Pentair), optional Wi-Fi/app control per the sell sheet — exact pairing/cloning button steps aren't documented in either source on file for this specific product (see note below).<br>
             <b>SKU:</b> 64-EGM2-CA (PAL Evenglow Multi Color Sonar Canadian Retro Light with Remote) — only one SKU listed, no separate cool-white/warm-white or wattage variants shown.<br><br>
             <b>Flag — minor cross-document inconsistency, not the recurring artifact:</b> the install manual describes this product as compatible with 12V AC <b>or</b> 12/24V DC drivers — but the sell sheet's "Design &amp; Features" bullet narrows it to "Works on standard 12V AC Transformer" only, not mentioning the DC options. Likely the sell sheet is just describing the most common configuration rather than contradicting the manual, but confirm the actual transformer/driver in place on-site rather than assuming from either document alone.<br>
-            <b>Note — remote steps not documented:</b> the sell sheet confirms this product uses a Color Touch remote with Hayward/Jandy/Pentair cloning, the same general "Sonar" remote family as the <b>Aqualumin Replacement</b> and <b>Sonar Retro Bulb</b> cards — but no button-sequence steps for pairing or cloning are shown in either source here. Don't assume the button layout is identical to those other cards without checking the physical remote in hand.`,
+            <b>Note — remote steps not documented:</b> the sell sheet confirms this product uses a Color Touch remote with Hayward/Jandy/Pentair cloning, the same general "Sonar" remote used on the <b>Aqualumin Replacement</b> and <b>Sonar Retro Bulb</b> cards — but no button-sequence steps for pairing or cloning are shown in either source here. Don't assume the button layout is identical to those other cards without checking the physical remote in hand.`,
     steps: [
       "Turn off power to the pool lights — confirm the system is safely isolated for the entire replacement. If in doubt, get an electrician to assist; failure to isolate power can result in severe injury or death.",
       "Check the transformer: confirm it matches the light's rating (12V AC or 12/24V DC), isn't damaged, is rated for swimming pool lights, and is <b>not</b> a switch-mode transformer. Each light draws about 10W.",
@@ -1493,7 +1535,7 @@ const DATA = [
   {
     id: "drivers",
     backTo: "cat-drivers",
-    title: "PCR-1Z / PCR-2Z Family — Cloning, Pairing & Zone Reference",
+    title: "PCR-1Z/2Z Cloning, Pairing & Zone Reference",
     photo: "assets/image_65.jpg",
     photoAlt: "PCR-1Z/PCR-1Z-SM single-zone driver and PCR-2Z dual-zone driver enclosures side by side",
     tags: ["driver","pcr-1z","pcr-2z","pcr-1z-sm","wifi","remote pairing","dip switch","cloning","jandy","pentair","hayward","astral","all lights out","won't sync","matching code","clearing code"],
@@ -1504,7 +1546,7 @@ const DATA = [
       {title:"PAL App and Handset Coding", url:"https://youtu.be/lmNrurKlMJM"},
     ],
     videoNote: "Note: PAL has two videos both titled \"PAL PCR 1Z USA Setup\" with different links (listed in the Other PAL Videos card) — confirm which is current before sharing either with a customer.",
-    facts: `<b>What this card covers:</b> the shared Cloning DIP switch tables, remote-pairing procedure, and Zone/Color-Temperature configuration used across the whole PCR-1Z/2Z driver family — 64-PCR-1Z-65/-16, 64-PCR-1ZW-65/-16, 64-PCR-1Z-SM-65/-16, 64-PCR-2Z-65, and 64-PCR-2ZW-65. For part numbers, wattage, and SKU-specific facts, open the individual SKU card from the Drivers &amp; Controllers hub.<br><br>
+    facts: `<b>What this card covers:</b> the shared Cloning DIP switch tables, remote-pairing procedure, and Zone/Color-Temperature configuration used across the whole PCR-1Z/2Z driver platform — 64-PCR-1Z-65/-16, 64-PCR-1ZW-65/-16, 64-PCR-1Z-SM-65/-16, 64-PCR-2Z-65, and 64-PCR-2ZW-65. For part numbers, wattage, and SKU-specific facts, open the individual SKU card from the Drivers &amp; Controllers hub.<br><br>
             <b>How it operates:</b> converts mains power down to 24V DC for the lights, then reads color/mode commands from the paired PCZ-2 remote (or Wi-Fi/app on "W" models) over its own short-range wireless link — it is not DMX and does not need a separate controller. DIP switches on the board let it instead accept commands from a Jandy, Pentair, Hayward, or Astral automation system ("cloning"), in place of the PAL remote.<br><br>
             All 24V DC, UL676 Pool &amp; Spa Lighting Class 2 LED Driver.<br>
             1 transmitter (PCZ-2) pairs to unlimited receivers &middot; 1 receiver max 4 transmitters`,
@@ -1518,9 +1560,10 @@ const DATA = [
       "<b>If LED is lit but lights still won't respond:</b> press the manual operation button once. Lights come on with that button but not remote/app → driver is fine, it's a pairing or automation issue, not hardware.",
       "<b>Pairing the remote (Matching Code, per the current official manual):</b> apply power to the receiver, then within 5 seconds press Z1 once on the remote — the light flashes white 3 times if matching succeeded.<br><b>If that doesn't work:</b> try the older procedure instead — Code Setting button inside the box, then press Z1 three times. This may apply on older board revisions.<br><img class='zoomable' src='assets/image_70.jpg' alt='PCZ-2 transmitter labeled remote diagram' style='width:100%;border-radius:8px;margin-top:8px;border:1px solid #2a3b5c;cursor:zoom-in;'><span style='display:block;font-size:11px;color:#9fb0c5;margin-top:4px;font-style:italic;'>PCZ-2 remote — button layout, functions, Matching/Clearing Code procedures (tap to zoom)</span>",
       "<b>Remote paired to the wrong receiver, or a spare remote needs disconnecting:</b> Clearing Code — apply power to the receiver, then hold Z1 down for 3 seconds. Light flashes 6 times if clearing succeeded. A new code then has to be applied via the Matching Code steps above.",
+      "<b>Soft reset (faster than waiting out the capacitors):</b> a full driver reset normally means killing power and waiting 15-30 minutes for the internal capacitors to fully discharge before it powers back up clean. To skip the wait, with power still on, hold both the Manual Operation button and the Code Setting button together for about 10 seconds — this drains the capacitors immediately and resets the driver right away.",
       "<b>Still no response after the manual button test:</b> this points to a faulty driver. Don't have the customer attempt board-level repair — move to replacement/warranty path.",
     ],
-    note: "Multimeter check (PCR-1Z/2Z family, expecting 24V DC at output terminals) should only be walked through with an actual pool tech comfortable working inside a live enclosure — for homeowners, stop at the manual-button test.",
+    note: "Multimeter check (PCR-1Z/2Z platform, expecting 24V DC at output terminals) should only be walked through with an actual pool tech comfortable working inside a live enclosure — for homeowners, stop at the manual-button test.",
     extra: `
       <div class="section-label">Cloning DIP (V2/automation boards, SW1–4)</div>
       <table class="dip-table">
@@ -1565,21 +1608,21 @@ const DATA = [
     photoAlt: "PCR-1Z single-zone driver enclosure (left) next to the PCR-2Z dual-zone enclosure for reference",
     tags: ["pcr-1z-65","pcr-1z","single zone","driver","64-pcr-1z-65","remote control","cloning","dip switch","pcz-2","matching code"],
     facts: `<b>Part number:</b> 64-PCR-1Z-65 (also available as 64-PCR-1Z-16 at a lower wattage rating)<br>
-            <b>What it is:</b> the base single-zone member of the PCR-1Z/2Z driver family — an outdoor-rated transformer/driver that powers PAL 4-wire RGB LED pool lights and pairs to a handheld PCZ-2 remote.<br>
+            <b>What it is:</b> the base single-zone member of the PCR-1Z/2Z driver platform — an outdoor-rated transformer/driver that powers PAL 4-wire RGB LED pool lights and pairs to a handheld PCZ-2 remote.<br>
             <b>Zones:</b> 1 &nbsp; <b>Wi-Fi:</b> none built in — for app/Wi-Fi control on this same platform, see PCR-1ZW-65 instead &nbsp; <b>Switch mode:</b> no — for a remote-free, board-button-only version see PCR-1Z-SM-65<br>
             <b>Pairs with:</b> PCZ-2 handheld remote (see the Remotes card) — 1 receiver accepts up to 4 paired transmitters.<br>
             24V DC, UL676 Pool &amp; Spa Lighting Class 2 LED Driver. Capable of OEM cloning into Jandy/Pentair/Hayward/Astral automation systems via its onboard DIP switch bank.<br><br>
-            <div class="order-note">Same physical driver family as PCR-1ZW-65 (Wi-Fi), PCR-1Z-SM-65 (switch mode), PCR-2Z-65 (dual-zone), and PCR-2ZW-65 (dual-zone Wi-Fi) — see the <b>PCR-1Z/2Z Family Reference</b> card for the full family reference, including the Cloning DIP switch table, the Matching/Clearing Code remote-pairing procedure, and the Zone/Color-Temperature "Other Config" switch bank. Not duplicated here to avoid the two cards drifting out of sync.</div>`,
+            <div class="order-note">Same physical driver platform as PCR-1ZW-65 (Wi-Fi), PCR-1Z-SM-65 (switch mode), PCR-2Z-65 (dual-zone), and PCR-2ZW-65 (dual-zone Wi-Fi) — see the <span class='inline-link' onclick='jumpToProduct(&quot;drivers&quot;)'>PCR-1Z/2Z Cloning &amp; Pairing Reference card</span> for the complete reference, including the Cloning DIP switch table, the Matching/Clearing Code remote-pairing procedure, and the Zone/Color-Temperature "Other Config" switch bank. Not duplicated here to avoid the two cards drifting out of sync.</div>`,
     steps: [
       "Switch off power to the driver at the breaker before opening the enclosure.",
       "Driver box is usually wall-mounted within ~5 ft of the pool, above the waterline. Open the cover (screws around the edge) to see the circuit board.",
       "<b>Confirm power first:</b> with power restored, is the LED lit? No LED → problem is the breaker, incoming wiring, or a dead driver — not the light.",
       "<b>If LED is lit but lights still won't respond:</b> press the manual operation button once. Lights come on with that button but not remote → driver is fine, it's a pairing or automation issue, not hardware.",
-      "<b>Pairing or cloning the remote:</b> see the PCR-1Z/2Z Family Reference card for the current Matching/Clearing Code procedure and the Cloning DIP switch table (Jandy/Pentair/Hayward/PAL/Astral) — identical procedure and switch layout on this SKU.",
+      "<b>Pairing or cloning the remote:</b> see the <span class='inline-link' onclick='jumpToProduct(&quot;drivers&quot;)'>PCR-1Z/2Z Cloning &amp; Pairing Reference card</span> for the current Matching/Clearing Code procedure and the Cloning DIP switch table (Jandy/Pentair/Hayward/PAL/Astral) — identical procedure and switch layout on this SKU.",
       "<b>Still no response after the manual button test:</b> this points to a faulty driver. Don't have the customer attempt board-level repair — move to replacement/warranty path.",
     ],
     issues: [
-      ["Light won't respond to remote, manual button works","Pairing or cloning issue, not a hardware fault — see the PCR-1Z/2Z Family Reference card's Matching/Clearing Code procedure"],
+      ["Light won't respond to remote, manual button works","Pairing or cloning issue, not a hardware fault — see the <span class='inline-link' onclick='jumpToProduct(&quot;drivers&quot;)'>PCR-1Z/2Z Cloning &amp; Pairing Reference card</span>'s Matching/Clearing Code procedure"],
       ["No LED, no response to manual button","Confirm power at the breaker and incoming wiring before assuming a dead driver"],
       ["Customer describes zone-switching or 2-zone behavior","Wrong card — PCR-1Z-65 is single-zone only. Confirm the actual SKU on the driver label; PCR-2Z-65 is documented on its own card"],
     ],
@@ -1592,22 +1635,22 @@ const DATA = [
     photoAlt: "PCR-1Z single-zone driver enclosure (left) next to the PCR-2Z dual-zone enclosure for reference",
     tags: ["pcr-1zw-65","pcr-1zw","single zone","wifi","driver","64-pcr-1zw-65","remote control","cloning","dip switch","pcz-2","color touch app"],
     facts: `<b>Part number:</b> 64-PCR-1ZW-65 (also available as 64-PCR-1ZW-16 at a lower wattage rating)<br>
-            <b>What it is:</b> the Wi-Fi-enabled single-zone member of the PCR-1Z/2Z driver family — same base driver as PCR-1Z-65 with a built-in Wi-Fi module added, controllable from the PAL Lighting Color Touch app in addition to the handheld PCZ-2 remote.<br>
+            <b>What it is:</b> the Wi-Fi-enabled single-zone member of the PCR-1Z/2Z driver platform — same base driver as PCR-1Z-65 with a built-in Wi-Fi module added, controllable from the PAL Lighting Color Touch app in addition to the handheld PCZ-2 remote.<br>
             <b>Zones:</b> 1 &nbsp; <b>Wi-Fi:</b> built in &nbsp; <b>Switch mode:</b> no<br>
             <b>Pairs with:</b> PCZ-2 handheld remote (see the Remotes card) and the PAL Lighting Color Touch app over Wi-Fi (see the Wi-Fi and Color Touch App cards for network setup and app-linking steps) — 1 receiver accepts up to 4 paired remote transmitters.<br>
             24V DC, UL676 Pool &amp; Spa Lighting Class 2 LED Driver. Capable of OEM cloning into Jandy/Pentair/Hayward/Astral automation systems via its onboard DIP switch bank.<br><br>
-            <div class="order-note">Same physical driver family as PCR-1Z-65 (no Wi-Fi), PCR-1Z-SM-65 (switch mode), PCR-2Z-65 (dual-zone), and PCR-2ZW-65 (dual-zone Wi-Fi) — see the <b>PCR-1Z/2Z Family Reference</b> card for the Cloning DIP switch table, the Matching/Clearing Code remote-pairing procedure, and the Zone/Color-Temperature "Other Config" switch bank.</div>`,
+            <div class="order-note">Same physical driver platform as PCR-1Z-65 (no Wi-Fi), PCR-1Z-SM-65 (switch mode), PCR-2Z-65 (dual-zone), and PCR-2ZW-65 (dual-zone Wi-Fi) — see the <span class='inline-link' onclick='jumpToProduct(&quot;drivers&quot;)'>PCR-1Z/2Z Cloning &amp; Pairing Reference card</span> for the Cloning DIP switch table, the Matching/Clearing Code remote-pairing procedure, and the Zone/Color-Temperature "Other Config" switch bank.</div>`,
     steps: [
       "Switch off power to the driver at the breaker before opening the enclosure.",
       "Driver box is usually wall-mounted within ~5 ft of the pool, above the waterline. Open the cover (screws around the edge) to see the circuit board.",
       "<b>Confirm power first:</b> with power restored, is the LED lit? No LED → problem is the breaker, incoming wiring, or a dead driver — not the light.",
       "<b>If LED is lit but lights still won't respond to remote or app:</b> press the manual operation button once. Lights come on with that button but not remote/app → driver is fine, it's a pairing/Wi-Fi or automation issue, not hardware.",
-      "<b>Remote pairing or cloning:</b> see the PCR-1Z/2Z Family Reference card for the current Matching/Clearing Code procedure and the Cloning DIP switch table — identical procedure and switch layout on this SKU.",
+      "<b>Remote pairing or cloning:</b> see the <span class='inline-link' onclick='jumpToProduct(&quot;drivers&quot;)'>PCR-1Z/2Z Cloning &amp; Pairing Reference card</span> for the current Matching/Clearing Code procedure and the Cloning DIP switch table — identical procedure and switch layout on this SKU.",
       "<b>App/Wi-Fi not connecting:</b> see the Wi-Fi card for the physical module's status LEDs and the Color Touch App card for the in-app driver-linking steps — this SKU's Wi-Fi module is the same one documented there.",
       "<b>Still no response after the manual button test:</b> this points to a faulty driver. Don't have the customer attempt board-level repair — move to replacement/warranty path.",
     ],
     issues: [
-      ["Light won't respond to remote, manual button works","Pairing or cloning issue, not a hardware fault — see the PCR-1Z/2Z Family Reference card's Matching/Clearing Code procedure"],
+      ["Light won't respond to remote, manual button works","Pairing or cloning issue, not a hardware fault — see the <span class='inline-link' onclick='jumpToProduct(&quot;drivers&quot;)'>PCR-1Z/2Z Cloning &amp; Pairing Reference card</span>'s Matching/Clearing Code procedure"],
       ["App shows driver offline / won't link","Wi-Fi/app issue, not a hardware fault — see the Wi-Fi and Color Touch App cards"],
       ["No LED, no response to manual button","Confirm power at the breaker and incoming wiring before assuming a dead driver"],
       ["Customer describes zone-switching or 2-zone behavior","Wrong card — PCR-1ZW-65 is single-zone only. Confirm the actual SKU on the driver label; PCR-2ZW-65 is documented on its own card"],
@@ -1621,17 +1664,17 @@ const DATA = [
     photoAlt: "PCR-1Z single-zone driver enclosure (left) next to the PCR-2Z dual-zone enclosure for reference",
     tags: ["pcr-1z-sm-65","pcr-1z-sm","switch mode","single zone","driver","64-pcr-1z-sm-65","no remote","cloning","dip switch","v3"],
     facts: `<b>Part number:</b> 64-PCR-1Z-SM-65 (also available as 64-PCR-1Z-SM-16 at a lower wattage rating)<br>
-            <b>What it is:</b> the switch-mode-only member of the PCR-1Z/2Z driver family — <b>no remote, app, or Wi-Fi control at all.</b> Color is set with 8 preset modes via a button on the board itself.<br>
+            <b>What it is:</b> the switch-mode-only member of the PCR-1Z/2Z driver platform — <b>no remote, app, or Wi-Fi control at all.</b> Color is set with 8 preset modes via a button on the board itself.<br>
             <b>Zones:</b> 1 &nbsp; <b>Wi-Fi:</b> no &nbsp; <b>Switch mode:</b> yes — this is the defining feature of this SKU<br>
             <b>Cannot be upgraded</b> to remote/Wi-Fi control without swapping the entire driver for a PCR-1Z-65 or PCR-1ZW-65 — there's no field upgrade path on this board.<br>
             24V DC, UL676 Pool &amp; Spa Lighting Class 2 LED Driver. Still capable of OEM cloning into Jandy/Pentair/Hayward/Astral automation systems via its onboard DIP switch bank — cloning doesn't require the remote.<br><br>
-            <div class="order-note"><b>Board revision note:</b> the V3 revision of this SKU uses a <b>3-switch</b> Cloning DIP table (Jandy/Pentair/Hayward/PAL/Astral), different from the <b>4-switch</b> table used by the remote-capable PCR-1Z-65/1ZW-65/2Z-65/2ZW-65 siblings — see the "V3 PCR-1Z-SM Cloning (3-switch)" table on the <b>PCR-1Z/2Z Family Reference</b> card. Don't apply the 4-switch table to this SKU by habit.</div>`,
+            <div class="order-note"><b>Board revision note:</b> the V3 revision of this SKU uses a <b>3-switch</b> Cloning DIP table (Jandy/Pentair/Hayward/PAL/Astral), different from the <b>4-switch</b> table used by the remote-capable PCR-1Z-65/1ZW-65/2Z-65/2ZW-65 siblings — see the "V3 PCR-1Z-SM Cloning (3-switch)" table on the <span class='inline-link' onclick='jumpToProduct(&quot;drivers&quot;)'>PCR-1Z/2Z Cloning &amp; Pairing Reference card</span>. Don't apply the 4-switch table to this SKU by habit.</div>`,
     steps: [
       "Switch off power to the driver at the breaker before opening the enclosure.",
       "Driver box is usually wall-mounted within ~5 ft of the pool, above the waterline. Open the cover (screws around the edge) to see the circuit board.",
       "<b>Confirm power first:</b> with power restored, is the LED lit? No LED → problem is the breaker, incoming wiring, or a dead driver — not the light.",
       "<b>Color/mode changes:</b> this SKU has no remote or app — color/mode is cycled via the manual operation button on the board itself (8 preset modes). If a customer expects remote control, confirm they don't actually have a PCR-1Z-65/1ZW-65 instead — this is the most common mix-up on this SKU.",
-      "<b>Cloning to a competitor automation system:</b> see the PCR-1Z/2Z Family Reference card's V3 3-switch Cloning DIP table — not the standard 4-switch table used elsewhere in this family.",
+      "<b>Cloning to a competitor automation system:</b> see the <span class='inline-link' onclick='jumpToProduct(&quot;drivers&quot;)'>PCR-1Z/2Z Cloning &amp; Pairing Reference card</span>'s V3 3-switch Cloning DIP table — not the standard 4-switch table used elsewhere in this platform.",
       "<b>No response to the manual button at all:</b> this points to a faulty driver. Don't have the customer attempt board-level repair — move to replacement/warranty path.",
     ],
     issues: [
@@ -1648,11 +1691,11 @@ const DATA = [
     photoAlt: "PCR-1Z single-zone driver enclosure (left) next to the PCR-2Z dual-zone enclosure for reference",
     tags: ["pcr-2z-65","pcr-2z","dual zone","driver","64-pcr-2z-65","remote control","cloning","dip switch","pcz-2","zones different colors","out of sync"],
     facts: `<b>Part number:</b> 64-PCR-2Z-65<br>
-            <b>What it is:</b> the dual-zone member of the PCR-1Z/2Z driver family — one physical driver with two independently-controlled zone outputs (e.g. pool on one zone, spa on the other), pairs to a handheld PCZ-2 remote.<br>
+            <b>What it is:</b> the dual-zone member of the PCR-1Z/2Z driver platform — one physical driver with two independently-controlled zone outputs (e.g. pool on one zone, spa on the other), pairs to a handheld PCZ-2 remote.<br>
             <b>Zones:</b> 2 (Z1 + Z2 terminal blocks) &nbsp; <b>Wi-Fi:</b> none built in — for app/Wi-Fi control on this same platform, see PCR-2ZW-65 instead &nbsp; <b>Wattage:</b> 60/120W<br>
             <b>Pairs with:</b> PCZ-2 handheld remote (see the Remotes card) — 1 receiver accepts up to 4 paired transmitters.<br>
-            24V DC, UL676 Pool &amp; Spa Lighting Class 2 LED Driver. Capable of OEM cloning into Jandy/Pentair/Hayward/Astral automation systems via its onboard DIP switch bank. Also has a separate "Other Config" DIP bank (see the PCR-1Z/2Z Family Reference card) that sets which zone the driver operates as and approximate white color temperature.<br><br>
-            <div class="order-note">Same physical driver family as PCR-1Z-65 (single-zone), PCR-1ZW-65 (single-zone Wi-Fi), PCR-1Z-SM-65 (switch mode), and PCR-2ZW-65 (dual-zone Wi-Fi) — see the <b>PCR-1Z/2Z Family Reference</b> card for the Cloning DIP switch table and Matching/Clearing Code remote-pairing procedure.</div>`,
+            24V DC, UL676 Pool &amp; Spa Lighting Class 2 LED Driver. Capable of OEM cloning into Jandy/Pentair/Hayward/Astral automation systems via its onboard DIP switch bank. Also has a separate "Other Config" DIP bank (see the <span class='inline-link' onclick='jumpToProduct(&quot;drivers&quot;)'>PCR-1Z/2Z Cloning &amp; Pairing Reference card</span>) that sets which zone the driver operates as and approximate white color temperature.<br><br>
+            <div class="order-note">Same physical driver platform as PCR-1Z-65 (single-zone), PCR-1ZW-65 (single-zone Wi-Fi), PCR-1Z-SM-65 (switch mode), and PCR-2ZW-65 (dual-zone Wi-Fi) — see the <span class='inline-link' onclick='jumpToProduct(&quot;drivers&quot;)'>PCR-1Z/2Z Cloning &amp; Pairing Reference card</span> for the Cloning DIP switch table and Matching/Clearing Code remote-pairing procedure.</div>`,
     syncIssues: [
       ["Zones showing different colors","Not a fault — PCR-2Z lets each zone be set independently (e.g. spa on red, pool on green). To bring both zones back to the same color, double-tap Z1 or Z2 on the remote to sync them together. Not documented in PAL's manual — confirmed in the field."],
     ],
@@ -1662,12 +1705,12 @@ const DATA = [
       "<b>Confirm power first:</b> with power restored, is the LED lit? No LED → problem is the breaker, incoming wiring, or a dead driver — not the light. If only one zone is affected, confirm power at that zone's specific terminal block.",
       "<b>If LED is lit but lights still won't respond:</b> press the manual operation button once. Lights come on with that button but not remote → driver is fine, it's a pairing or automation issue, not hardware.",
       "<b>Zones showing different colors:</b> not a fault — double-tap Z1 or Z2 on the remote to sync both zones to the same color.",
-      "<b>Remote pairing or cloning:</b> see the PCR-1Z/2Z Family Reference card for the current Matching/Clearing Code procedure and the Cloning DIP switch table — identical procedure and switch layout on this SKU.",
+      "<b>Remote pairing or cloning:</b> see the <span class='inline-link' onclick='jumpToProduct(&quot;drivers&quot;)'>PCR-1Z/2Z Cloning &amp; Pairing Reference card</span> for the current Matching/Clearing Code procedure and the Cloning DIP switch table — identical procedure and switch layout on this SKU.",
       "<b>Still no response after the manual button test:</b> this points to a faulty driver. Don't have the customer attempt board-level repair — move to replacement/warranty path.",
     ],
     issues: [
       ["Zones showing different colors","Not a fault — double-tap Z1 or Z2 on the remote to sync both zones to the same color"],
-      ["Light won't respond to remote, manual button works","Pairing or cloning issue, not a hardware fault — see the PCR-1Z/2Z Family Reference card's Matching/Clearing Code procedure"],
+      ["Light won't respond to remote, manual button works","Pairing or cloning issue, not a hardware fault — see the <span class='inline-link' onclick='jumpToProduct(&quot;drivers&quot;)'>PCR-1Z/2Z Cloning &amp; Pairing Reference card</span>'s Matching/Clearing Code procedure"],
       ["No LED, no response to manual button","Confirm power at the breaker and incoming wiring before assuming a dead driver"],
       ["Customer describes single-zone behavior only","Confirm the actual SKU on the driver label — PCR-1Z-65 is documented on its own card"],
     ],
@@ -1680,11 +1723,11 @@ const DATA = [
     photoAlt: "PCR-1Z single-zone driver enclosure (left) next to the PCR-2Z dual-zone enclosure for reference",
     tags: ["pcr-2zw-65","pcr-2zw","dual zone","wifi","driver","64-pcr-2zw-65","remote control","cloning","dip switch","pcz-2","color touch app","zones different colors","out of sync"],
     facts: `<b>Part number:</b> 64-PCR-2ZW-65<br>
-            <b>What it is:</b> the Wi-Fi-enabled dual-zone member of the PCR-1Z/2Z driver family — same dual-zone driver as PCR-2Z-65 with a built-in Wi-Fi module added, controllable from the PAL Lighting Color Touch app in addition to the handheld PCZ-2 remote.<br>
+            <b>What it is:</b> the Wi-Fi-enabled dual-zone member of the PCR-1Z/2Z driver platform — same dual-zone driver as PCR-2Z-65 with a built-in Wi-Fi module added, controllable from the PAL Lighting Color Touch app in addition to the handheld PCZ-2 remote.<br>
             <b>Zones:</b> 2 (Z1 + Z2 terminal blocks) &nbsp; <b>Wi-Fi:</b> built in<br>
             <b>Pairs with:</b> PCZ-2 handheld remote (see the Remotes card) and the PAL Lighting Color Touch app over Wi-Fi (see the Wi-Fi and Color Touch App cards for network setup and app-linking steps).<br>
             24V DC, UL676 Pool &amp; Spa Lighting Class 2 LED Driver. Capable of OEM cloning into Jandy/Pentair/Hayward/Astral automation systems via its onboard DIP switch bank.<br><br>
-            <div class="order-note">Same physical driver family as PCR-1Z-65, PCR-1ZW-65, PCR-1Z-SM-65, and PCR-2Z-65 (no Wi-Fi) — see the <b>PCR-1Z/2Z Family Reference</b> card for the Cloning DIP switch table and Matching/Clearing Code remote-pairing procedure.</div>`,
+            <div class="order-note">Same physical driver platform as PCR-1Z-65, PCR-1ZW-65, PCR-1Z-SM-65, and PCR-2Z-65 (no Wi-Fi) — see the <span class='inline-link' onclick='jumpToProduct(&quot;drivers&quot;)'>PCR-1Z/2Z Cloning &amp; Pairing Reference card</span> for the Cloning DIP switch table and Matching/Clearing Code remote-pairing procedure.</div>`,
     syncIssues: [
       ["Zones showing different colors (remote or app)","Not a fault — PCR-2ZW lets each zone be set independently. To bring both zones back to the same color via remote, double-tap Z1 or Z2. Not documented in PAL's manual — confirmed in the field."],
     ],
@@ -1694,13 +1737,13 @@ const DATA = [
       "<b>Confirm power first:</b> with power restored, is the LED lit? No LED → problem is the breaker, incoming wiring, or a dead driver — not the light.",
       "<b>If LED is lit but lights still won't respond to remote or app:</b> press the manual operation button once. Lights come on with that button but not remote/app → driver is fine, it's a pairing/Wi-Fi or automation issue, not hardware.",
       "<b>Zones showing different colors:</b> not a fault — double-tap Z1 or Z2 on the remote to sync both zones to the same color.",
-      "<b>Remote pairing or cloning:</b> see the PCR-1Z/2Z Family Reference card for the current Matching/Clearing Code procedure and the Cloning DIP switch table — identical procedure and switch layout on this SKU.",
+      "<b>Remote pairing or cloning:</b> see the <span class='inline-link' onclick='jumpToProduct(&quot;drivers&quot;)'>PCR-1Z/2Z Cloning &amp; Pairing Reference card</span> for the current Matching/Clearing Code procedure and the Cloning DIP switch table — identical procedure and switch layout on this SKU.",
       "<b>App/Wi-Fi not connecting:</b> see the Wi-Fi card for the physical module's status LEDs and the Color Touch App card for the in-app driver-linking steps.",
       "<b>Still no response after the manual button test:</b> this points to a faulty driver. Don't have the customer attempt board-level repair — move to replacement/warranty path.",
     ],
     issues: [
       ["Zones showing different colors","Not a fault — double-tap Z1 or Z2 on the remote to sync both zones to the same color"],
-      ["Light won't respond to remote, manual button works","Pairing or cloning issue, not a hardware fault — see the PCR-1Z/2Z Family Reference card's Matching/Clearing Code procedure"],
+      ["Light won't respond to remote, manual button works","Pairing or cloning issue, not a hardware fault — see the <span class='inline-link' onclick='jumpToProduct(&quot;drivers&quot;)'>PCR-1Z/2Z Cloning &amp; Pairing Reference card</span>'s Matching/Clearing Code procedure"],
       ["App shows driver offline / won't link","Wi-Fi/app issue, not a hardware fault — see the Wi-Fi and Color Touch App cards"],
       ["No LED, no response to manual button","Confirm power at the breaker and incoming wiring before assuming a dead driver"],
     ],
@@ -1749,30 +1792,30 @@ const DATA = [
       <ul class="steps">
         <li>Temperature limiting: if the driver's internal temperature exceeds ~60°C, output levels are automatically reduced. This is protective, not a fault.</li>
         <li>The PCR DMX input does not support RDM.</li>
-        <li>Cloning DIP (Jandy/Pentair/Hayward/PAL/Astral) follows the same 3-switch pattern as the PCR-1Z/2Z family — see the Drivers card for the table, or the labeled board diagram above (confirmed to match exactly, no longer a garbled scan).</li>
+        <li>Cloning DIP (Jandy/Pentair/Hayward/PAL/Astral) follows the same 3-switch pattern as the PCR-1Z/2Z platform — see the Drivers card for the table, or the labeled board diagram above (confirmed to match exactly, no longer a garbled scan).</li>
       </ul>
     `
   },
   {
     id: "pcr3dref",
     backTo: "cat-drivers",
-    title: "PCR-3D Family — Mounting, Cloning & Configuration Reference",
+    title: "PCR-3D Mounting, Cloning & Configuration Reference",
     photo: "assets/image_77.jpg",
     photoAlt: "PCR-3D driver enclosure",
     tags: ["pcr-3d","500w","300w","120w","remote only","pcz-2","cloning","zone","64-pcr-3d-120-500"],
-    facts: `<b>What this card covers:</b> the shared mounting, wiring, Cloning DIP switch table, Zone/Color-Temperature configuration, and maintenance procedure used across the PCR-3D high-power driver family — 64-PCR-3D-120, 64-PCR-3DW-120, 64-PCR-3D-500, and 64-PCR-3DW-500. For part numbers and wattage-specific facts, open the individual SKU card from the Drivers &amp; Controllers hub.<br><br>
-            <b>What it is:</b> a higher-wattage outdoor transformer/driver for larger PAL 4-wire RGB LED light runs than the 1Z/2Z family supports, controlled by the same PCZ-2 handheld remote family used across PAL's other drivers.<br>
-            <b>How it operates:</b> converts mains power down to 24V DC, then reads color/zone commands from the paired PCZ-2 remote over its own short-range wireless link (not DMX, no separate controller needed) — same operating principle as the PCR-1Z/2Z Family Reference card, just packaged as a single higher-wattage physical unit with Z1+Z2 terminal blocks. DIP switches let it instead be cloned into a Jandy/Pentair/Hayward/Astral automation system in place of the PAL remote.<br><br>
+    facts: `<b>What this card covers:</b> the shared mounting, wiring, Cloning DIP switch table, Zone/Color-Temperature configuration, and maintenance procedure used across the PCR-3D high-power driver platform — 64-PCR-3D-120, 64-PCR-3DW-120, 64-PCR-3D-500, and 64-PCR-3DW-500. For part numbers and wattage-specific facts, open the individual SKU card from the Drivers &amp; Controllers hub.<br><br>
+            <b>What it is:</b> a higher-wattage outdoor transformer/driver for larger PAL 4-wire RGB LED light runs than the 1Z/2Z platform supports, controlled by the same PCZ-2 handheld remote used across PAL's other drivers.<br>
+            <b>How it operates:</b> converts mains power down to 24V DC, then reads color/zone commands from the paired PCZ-2 remote over its own short-range wireless link (not DMX, no separate controller needed) — same operating principle as the <span class='inline-link' onclick='jumpToProduct(&quot;drivers&quot;)'>PCR-1Z/2Z Cloning &amp; Pairing Reference card</span>, just packaged as a single higher-wattage physical unit with Z1+Z2 terminal blocks. DIP switches let it instead be cloned into a Jandy/Pentair/Hayward/Astral automation system in place of the PAL remote.<br><br>
             Single Class 2 driver, IP65, UL Listed Swimming Pool and Spa Transformer (WDGV) — 11½&quot; x 4¾&quot; x 6⅝&quot; (293 x 119 x 173mm)<br>
             Factory-paired to the included <b>PCZ-2</b> handheld remote — fit its 2 batteries and it's ready to pair<br>
             Has Z1 + Z2 terminal blocks (2 zones) despite being a single physical unit<br>
-            <b>Flag — wattage/SKU naming mismatch, still unresolved:</b> the original source manual for this family's own title is "PCR-3D-120/500," but PAL's sell sheet on file at the time this card was first built listed the PCR-3D as 300W/24V only (SKU 64-PCR-3D-300, WiFi version 64-PCR-3DW-300). Kazi's separate whiteboard SKU audit instead confirms 64-PCR-3D-120/64-PCR-3DW-120 and 64-PCR-3D-500/64-PCR-3DW-500 as the real active part numbers today — treat those as current, but confirm the actual nameplate rating on the unit in front of you rather than assuming from any single document<br>
+            <b>Flag — wattage/SKU naming mismatch, still unresolved:</b> the original source manual for this platform's own title is "PCR-3D-120/500," but PAL's sell sheet on file at the time this card was first built listed the PCR-3D as 300W/24V only (SKU 64-PCR-3D-300, WiFi version 64-PCR-3DW-300). Kazi's separate whiteboard SKU audit instead confirms 64-PCR-3D-120/64-PCR-3DW-120 and 64-PCR-3D-500/64-PCR-3DW-500 as the real active part numbers today — treat those as current, but confirm the actual nameplate rating on the unit in front of you rather than assuming from any single document<br>
             <b>Note:</b> this manual's cover/title also lists 12V DC but the installation notes state 24V DC output — matches the same recurring copy-paste artifact confirmed across other PAL manuals; 24V DC is correct`,
     steps: [
       "Mount on a flat surface using the enclosure's mounting legs — minimum 5 ft horizontally from the inner pool wall, no lower than 1 ft above max pool water level (measured to top of enclosure).<br><img class=\"zoomable\" src=\"assets/image_78.jpg\" alt=\"PCR-3D dimension diagram\" style=\"width:100%;border-radius:8px;margin-top:8px;border:1px solid #2a3b5c;cursor:zoom-in;\"><span style=\"display:block;font-size:11px;color:#9fb0c5;margin-top:4px;font-style:italic;\">11½\" x 4¾\" x 6⅝\" (293 x 119 x 173mm) (tap to zoom)</span>",
       "Remove conduit plugs as required, leaving plugs in unused conduit adapters — do not use the side knock-outs. Feed the mains power cable through the center-front conduit entry; using a twist-on wire nut, join the mains wires to the 2 loose wires from the PCB, matching colors — connect to NEC code requirements.<br><img class=\"zoomable\" src=\"assets/image_79.jpg\" alt=\"PCR-3D conduit removal and internal wiring diagram\" style=\"width:100%;border-radius:8px;margin-top:8px;border:1px solid #2a3b5c;cursor:zoom-in;\"><span style=\"display:block;font-size:11px;color:#9fb0c5;margin-top:4px;font-style:italic;\">Conduit removal, mains wire-nut splice, and Z1/Z2 terminal block wiring (tap to zoom)</span>",
       "Use the remaining conduit entries for the 4-core wire from the PAL 4-wire lights — 2 output conduit entries are provided per zone for up to 2 PAL-LED 4-wire lights (shown in the diagram above).",
-      "Driver is factory set to operate with the included PCZ-2 transmitter — just fit its 2 batteries. See the PCR-1Z/2Z Family Reference card for full PCZ-2 remote button layout, pairing steps, and mode list.",
+      "Driver is factory set to operate with the included PCZ-2 transmitter — just fit its 2 batteries. See the <span class='inline-link' onclick='jumpToProduct(&quot;drivers&quot;)'>PCR-1Z/2Z Cloning &amp; Pairing Reference card</span> for full PCZ-2 remote button layout, pairing steps, and mode list.",
     ],
     extra: `
       <div class="note-box"><b>Newer V3 board exists — not yet covered below:</b> PAL's Aug–Sept 2025 update addendum describes a "3D and 3DMX High Powered" V3 board (SKUs 64-PCR-3D / 64-PCR-3DW / 64-PCR-3DMX — <b>not</b> the 8Z variant) that is mode-selected via dip switches A/B into 4 distinct operating modes (Cloner / Module / PCR8-legacy / DMX), each with its own dip-switch meanings — a genuine architecture change, not a copy-paste artifact. The Cloning/Zone tables below apply to the standard board only. Check which board is installed before applying the V3 mode scheme from memory — its dip-switch behavior is not documented here yet.</div>
@@ -1826,20 +1869,20 @@ const DATA = [
     photoAlt: "PCR-3D driver enclosure",
     tags: ["pcr-3d-120","120w","high power","remote only","pcz-2","cloning","zone","64-pcr-3d-120"],
     facts: `<b>Part number:</b> 64-PCR-3D-120<br>
-            <b>What it is:</b> the 120W tier of PAL's high-power PCR-3D driver family — for larger PAL 4-wire RGB LED light runs than the 1Z/2Z family supports. Factory-paired to the included PCZ-2 handheld remote.<br>
+            <b>What it is:</b> the 120W tier of PAL's high-power PCR-3D driver platform — for larger PAL 4-wire RGB LED light runs than the 1Z/2Z platform supports. Factory-paired to the included PCZ-2 handheld remote.<br>
             <b>Zones:</b> 2 (Z1 + Z2 terminal blocks, despite being one physical unit) &nbsp; <b>Wi-Fi:</b> none built in — for app/Wi-Fi control on this same wattage tier, see PCR-3DW-120 instead<br>
             IP65, UL Listed Swimming Pool and Spa Transformer (WDGV), 11½&quot; x 4¾&quot; x 6⅝&quot; (293 x 119 x 173mm).<br><br>
-            <div class="order-note">Same physical driver family as PCR-3DW-120 (Wi-Fi), PCR-3D-500, and PCR-3DW-500 — see the <b>PCR-3D Family Reference</b> card for mounting/wiring diagrams, the Cloning DIP switch table, the Zone/Color-Temperature "Other Config" bank, and fan-filter maintenance. Confirm the actual nameplate wattage on the unit in front of you — see the naming-mismatch flag on the reference card.</div>`,
+            <div class="order-note">Same physical driver platform as PCR-3DW-120 (Wi-Fi), PCR-3D-500, and PCR-3DW-500 — see the <span class='inline-link' onclick='jumpToProduct(&quot;pcr3dref&quot;)'>PCR-3D Mounting &amp; Cloning Reference card</span> for mounting/wiring diagrams, the Cloning DIP switch table, the Zone/Color-Temperature "Other Config" bank, and fan-filter maintenance. Confirm the actual nameplate wattage on the unit in front of you — see the naming-mismatch flag on the reference card.</div>`,
     steps: [
-      "Confirm the actual nameplate rating on the physical unit before assuming 120W from the part number alone — see the naming-mismatch flag on the PCR-3D Family Reference card.",
-      "Mounting, wiring, and conduit entry steps are identical across the whole PCR-3D family regardless of wattage — see the PCR-3D Family Reference card for the full mounting/wiring diagrams.",
-      "Driver is factory set to operate with the included PCZ-2 transmitter — just fit its 2 batteries. See the PCR-1Z/2Z Family Reference card for the full PCZ-2 remote button layout, pairing steps, and mode list.",
-      "<b>Cloning or zone/color-temperature configuration:</b> see the PCR-3D Family Reference card for the DIP switch tables — identical layout across this whole family.",
+      "Confirm the actual nameplate rating on the physical unit before assuming 120W from the part number alone — see the naming-mismatch flag on the <span class='inline-link' onclick='jumpToProduct(&quot;pcr3dref&quot;)'>PCR-3D Mounting &amp; Cloning Reference card</span>.",
+      "Mounting, wiring, and conduit entry steps are identical across the whole PCR-3D platform regardless of wattage — see the <span class='inline-link' onclick='jumpToProduct(&quot;pcr3dref&quot;)'>PCR-3D Mounting &amp; Cloning Reference card</span> for the full mounting/wiring diagrams.",
+      "Driver is factory set to operate with the included PCZ-2 transmitter — just fit its 2 batteries. See the <span class='inline-link' onclick='jumpToProduct(&quot;drivers&quot;)'>PCR-1Z/2Z Cloning &amp; Pairing Reference card</span> for the full PCZ-2 remote button layout, pairing steps, and mode list.",
+      "<b>Cloning or zone/color-temperature configuration:</b> see the <span class='inline-link' onclick='jumpToProduct(&quot;pcr3dref&quot;)'>PCR-3D Mounting &amp; Cloning Reference card</span> for the DIP switch tables — identical layout across this whole platform.",
       "<b>No response from remote after confirming power:</b> this points to a faulty driver. Don't have the customer attempt board-level repair — move to replacement/warranty path.",
     ],
     issues: [
-      ["No response to remote","Confirm power first, then see the PCR-1Z/2Z Family Reference card's Matching/Clearing Code procedure (same pairing method) before assuming a hardware fault"],
-      ["Wrong/no response after cloning to a competitor system","See the PCR-3D Family Reference card's Cloning DIP switch table"],
+      ["No response to remote","Confirm power first, then see the <span class='inline-link' onclick='jumpToProduct(&quot;drivers&quot;)'>PCR-1Z/2Z Cloning &amp; Pairing Reference card</span>'s Matching/Clearing Code procedure (same pairing method) before assuming a hardware fault"],
+      ["Wrong/no response after cloning to a competitor system","See the <span class='inline-link' onclick='jumpToProduct(&quot;pcr3dref&quot;)'>PCR-3D Mounting &amp; Cloning Reference card</span>'s Cloning DIP switch table"],
       ["Customer describes Wi-Fi/app control","Wrong card — PCR-3D-120 has no built-in Wi-Fi. Confirm the actual SKU on the driver label; PCR-3DW-120 is documented on its own card"],
     ],
   },
@@ -1851,22 +1894,22 @@ const DATA = [
     photoAlt: "PCR-3D driver enclosure",
     tags: ["pcr-3dw-120","120w","high power","wifi","pcz-2","cloning","zone","64-pcr-3dw-120","color touch app"],
     facts: `<b>Part number:</b> 64-PCR-3DW-120<br>
-            <b>What it is:</b> the Wi-Fi-enabled 120W tier of PAL's high-power PCR-3D driver family — same base driver as PCR-3D-120 with a built-in Wi-Fi module added, controllable from the PAL Lighting Color Touch app in addition to the handheld PCZ-2 remote.<br>
+            <b>What it is:</b> the Wi-Fi-enabled 120W tier of PAL's high-power PCR-3D driver platform — same base driver as PCR-3D-120 with a built-in Wi-Fi module added, controllable from the PAL Lighting Color Touch app in addition to the handheld PCZ-2 remote.<br>
             <b>Zones:</b> 2 (Z1 + Z2 terminal blocks) &nbsp; <b>Wi-Fi:</b> built in<br>
             IP65, UL Listed Swimming Pool and Spa Transformer (WDGV), 11½&quot; x 4¾&quot; x 6⅝&quot; (293 x 119 x 173mm).<br><br>
-            <div class="order-note">Same physical driver family as PCR-3D-120 (no Wi-Fi), PCR-3D-500, and PCR-3DW-500 — see the <b>PCR-3D Family Reference</b> card for mounting/wiring diagrams, the Cloning DIP switch table, the Zone/Color-Temperature "Other Config" bank, and fan-filter maintenance. See the Wi-Fi and Color Touch App cards for network setup and app-linking steps.</div>`,
+            <div class="order-note">Same physical driver platform as PCR-3D-120 (no Wi-Fi), PCR-3D-500, and PCR-3DW-500 — see the <span class='inline-link' onclick='jumpToProduct(&quot;pcr3dref&quot;)'>PCR-3D Mounting &amp; Cloning Reference card</span> for mounting/wiring diagrams, the Cloning DIP switch table, the Zone/Color-Temperature "Other Config" bank, and fan-filter maintenance. See the Wi-Fi and Color Touch App cards for network setup and app-linking steps.</div>`,
     steps: [
-      "Confirm the actual nameplate rating on the physical unit before assuming 120W from the part number alone — see the naming-mismatch flag on the PCR-3D Family Reference card.",
-      "Mounting, wiring, and conduit entry steps are identical across the whole PCR-3D family regardless of wattage — see the PCR-3D Family Reference card for the full mounting/wiring diagrams.",
-      "Driver is factory set to operate with the included PCZ-2 transmitter — just fit its 2 batteries. See the PCR-1Z/2Z Family Reference card for the full PCZ-2 remote button layout, pairing steps, and mode list.",
+      "Confirm the actual nameplate rating on the physical unit before assuming 120W from the part number alone — see the naming-mismatch flag on the <span class='inline-link' onclick='jumpToProduct(&quot;pcr3dref&quot;)'>PCR-3D Mounting &amp; Cloning Reference card</span>.",
+      "Mounting, wiring, and conduit entry steps are identical across the whole PCR-3D platform regardless of wattage — see the <span class='inline-link' onclick='jumpToProduct(&quot;pcr3dref&quot;)'>PCR-3D Mounting &amp; Cloning Reference card</span> for the full mounting/wiring diagrams.",
+      "Driver is factory set to operate with the included PCZ-2 transmitter — just fit its 2 batteries. See the <span class='inline-link' onclick='jumpToProduct(&quot;drivers&quot;)'>PCR-1Z/2Z Cloning &amp; Pairing Reference card</span> for the full PCZ-2 remote button layout, pairing steps, and mode list.",
       "<b>App/Wi-Fi not connecting:</b> see the Wi-Fi card for the physical module's status LEDs and the Color Touch App card for the in-app driver-linking steps.",
-      "<b>Cloning or zone/color-temperature configuration:</b> see the PCR-3D Family Reference card for the DIP switch tables — identical layout across this whole family.",
+      "<b>Cloning or zone/color-temperature configuration:</b> see the <span class='inline-link' onclick='jumpToProduct(&quot;pcr3dref&quot;)'>PCR-3D Mounting &amp; Cloning Reference card</span> for the DIP switch tables — identical layout across this whole platform.",
       "<b>No response from remote or app after confirming power:</b> this points to a faulty driver. Don't have the customer attempt board-level repair — move to replacement/warranty path.",
     ],
     issues: [
-      ["No response to remote","Confirm power first, then see the PCR-1Z/2Z Family Reference card's Matching/Clearing Code procedure before assuming a hardware fault"],
+      ["No response to remote","Confirm power first, then see the <span class='inline-link' onclick='jumpToProduct(&quot;drivers&quot;)'>PCR-1Z/2Z Cloning &amp; Pairing Reference card</span>'s Matching/Clearing Code procedure before assuming a hardware fault"],
       ["App shows driver offline / won't link","Wi-Fi/app issue, not a hardware fault — see the Wi-Fi and Color Touch App cards"],
-      ["Wrong/no response after cloning to a competitor system","See the PCR-3D Family Reference card's Cloning DIP switch table"],
+      ["Wrong/no response after cloning to a competitor system","See the <span class='inline-link' onclick='jumpToProduct(&quot;pcr3dref&quot;)'>PCR-3D Mounting &amp; Cloning Reference card</span>'s Cloning DIP switch table"],
     ],
   },
   {
@@ -1876,21 +1919,21 @@ const DATA = [
     photo: "assets/image_77.jpg",
     photoAlt: "PCR-3D driver enclosure",
     tags: ["pcr-3d-500","500w","300w","high power","remote only","pcz-2","cloning","zone","64-pcr-3d-500"],
-    facts: `<b>Part number:</b> 64-PCR-3D-500 — <b>flag:</b> the original source manual for this driver family only documents a 300W-rated "-300" suffix SKU, not "-500"; Kazi's separate whiteboard SKU audit confirms 64-PCR-3D-500 as a currently active part number. Not resolved which wattage figure/suffix is current — confirm the actual nameplate rating on the unit in front of you.<br>
-            <b>What it is:</b> the highest documented wattage tier of PAL's high-power PCR-3D driver family — for the largest PAL 4-wire RGB LED light runs (e.g. full-length Perimeter Strip Kit runs). Factory-paired to the included PCZ-2 handheld remote.<br>
+    facts: `<b>Part number:</b> 64-PCR-3D-500 — <b>flag:</b> the original source manual for this driver platform only documents a 300W-rated "-300" suffix SKU, not "-500"; Kazi's separate whiteboard SKU audit confirms 64-PCR-3D-500 as a currently active part number. Not resolved which wattage figure/suffix is current — confirm the actual nameplate rating on the unit in front of you.<br>
+            <b>What it is:</b> the highest documented wattage tier of PAL's high-power PCR-3D driver platform — for the largest PAL 4-wire RGB LED light runs (e.g. full-length Perimeter Strip Kit runs). Factory-paired to the included PCZ-2 handheld remote.<br>
             <b>Zones:</b> 2 (Z1 + Z2 terminal blocks, despite being one physical unit) &nbsp; <b>Wi-Fi:</b> none built in — for app/Wi-Fi control on this same wattage tier, see PCR-3DW-500 instead<br>
             IP65, UL Listed Swimming Pool and Spa Transformer (WDGV), 11½&quot; x 4¾&quot; x 6⅝&quot; (293 x 119 x 173mm).<br><br>
-            <div class="order-note">Same physical driver family as PCR-3DW-500 (Wi-Fi), PCR-3D-120, and PCR-3DW-120 — see the <b>PCR-3D Family Reference</b> card for mounting/wiring diagrams, the Cloning DIP switch table, the Zone/Color-Temperature "Other Config" bank, and fan-filter maintenance.</div>`,
+            <div class="order-note">Same physical driver platform as PCR-3DW-500 (Wi-Fi), PCR-3D-120, and PCR-3DW-120 — see the <span class='inline-link' onclick='jumpToProduct(&quot;pcr3dref&quot;)'>PCR-3D Mounting &amp; Cloning Reference card</span> for mounting/wiring diagrams, the Cloning DIP switch table, the Zone/Color-Temperature "Other Config" bank, and fan-filter maintenance.</div>`,
     steps: [
-      "Confirm the actual nameplate rating on the physical unit before assuming 500W from the part number alone — see the naming-mismatch flag above and on the PCR-3D Family Reference card.",
-      "Mounting, wiring, and conduit entry steps are identical across the whole PCR-3D family regardless of wattage — see the PCR-3D Family Reference card for the full mounting/wiring diagrams.",
-      "Driver is factory set to operate with the included PCZ-2 transmitter — just fit its 2 batteries. See the PCR-1Z/2Z Family Reference card for the full PCZ-2 remote button layout, pairing steps, and mode list.",
-      "<b>Cloning or zone/color-temperature configuration:</b> see the PCR-3D Family Reference card for the DIP switch tables — identical layout across this whole family.",
+      "Confirm the actual nameplate rating on the physical unit before assuming 500W from the part number alone — see the naming-mismatch flag above and on the <span class='inline-link' onclick='jumpToProduct(&quot;pcr3dref&quot;)'>PCR-3D Mounting &amp; Cloning Reference card</span>.",
+      "Mounting, wiring, and conduit entry steps are identical across the whole PCR-3D platform regardless of wattage — see the <span class='inline-link' onclick='jumpToProduct(&quot;pcr3dref&quot;)'>PCR-3D Mounting &amp; Cloning Reference card</span> for the full mounting/wiring diagrams.",
+      "Driver is factory set to operate with the included PCZ-2 transmitter — just fit its 2 batteries. See the <span class='inline-link' onclick='jumpToProduct(&quot;drivers&quot;)'>PCR-1Z/2Z Cloning &amp; Pairing Reference card</span> for the full PCZ-2 remote button layout, pairing steps, and mode list.",
+      "<b>Cloning or zone/color-temperature configuration:</b> see the <span class='inline-link' onclick='jumpToProduct(&quot;pcr3dref&quot;)'>PCR-3D Mounting &amp; Cloning Reference card</span> for the DIP switch tables — identical layout across this whole platform.",
       "<b>No response from remote after confirming power:</b> this points to a faulty driver. Don't have the customer attempt board-level repair — move to replacement/warranty path.",
     ],
     issues: [
-      ["No response to remote","Confirm power first, then see the PCR-1Z/2Z Family Reference card's Matching/Clearing Code procedure before assuming a hardware fault"],
-      ["Wrong/no response after cloning to a competitor system","See the PCR-3D Family Reference card's Cloning DIP switch table"],
+      ["No response to remote","Confirm power first, then see the <span class='inline-link' onclick='jumpToProduct(&quot;drivers&quot;)'>PCR-1Z/2Z Cloning &amp; Pairing Reference card</span>'s Matching/Clearing Code procedure before assuming a hardware fault"],
+      ["Wrong/no response after cloning to a competitor system","See the <span class='inline-link' onclick='jumpToProduct(&quot;pcr3dref&quot;)'>PCR-3D Mounting &amp; Cloning Reference card</span>'s Cloning DIP switch table"],
       ["Customer describes Wi-Fi/app control","Wrong card — PCR-3D-500 has no built-in Wi-Fi. Confirm the actual SKU on the driver label; PCR-3DW-500 is documented on its own card"],
     ],
   },
@@ -1901,23 +1944,23 @@ const DATA = [
     photo: "assets/image_77.jpg",
     photoAlt: "PCR-3D driver enclosure",
     tags: ["pcr-3dw-500","500w","300w","high power","wifi","pcz-2","cloning","zone","64-pcr-3dw-500","color touch app"],
-    facts: `<b>Part number:</b> 64-PCR-3DW-500 — <b>flag:</b> the original source manual for this driver family only documents a 300W-rated "-300W" suffix SKU, not "-500"; Kazi's separate whiteboard SKU audit confirms 64-PCR-3DW-500 as a currently active part number. Not resolved which wattage figure/suffix is current — confirm the actual nameplate rating on the unit in front of you.<br>
-            <b>What it is:</b> the Wi-Fi-enabled, highest documented wattage tier of PAL's high-power PCR-3D driver family — same base driver as PCR-3D-500 with a built-in Wi-Fi module added, controllable from the PAL Lighting Color Touch app in addition to the handheld PCZ-2 remote. This is the driver called out by name on the Perimeter Strip Kits card as required for a full-length (255-345W) kit run.<br>
+    facts: `<b>Part number:</b> 64-PCR-3DW-500 — <b>flag:</b> the original source manual for this driver platform only documents a 300W-rated "-300W" suffix SKU, not "-500"; Kazi's separate whiteboard SKU audit confirms 64-PCR-3DW-500 as a currently active part number. Not resolved which wattage figure/suffix is current — confirm the actual nameplate rating on the unit in front of you.<br>
+            <b>What it is:</b> the Wi-Fi-enabled, highest documented wattage tier of PAL's high-power PCR-3D driver platform — same base driver as PCR-3D-500 with a built-in Wi-Fi module added, controllable from the PAL Lighting Color Touch app in addition to the handheld PCZ-2 remote. This is the driver called out by name on the Perimeter Strip Kits card as required for a full-length (255-345W) kit run.<br>
             <b>Zones:</b> 2 (Z1 + Z2 terminal blocks) &nbsp; <b>Wi-Fi:</b> built in<br>
             IP65, UL Listed Swimming Pool and Spa Transformer (WDGV), 11½&quot; x 4¾&quot; x 6⅝&quot; (293 x 119 x 173mm).<br><br>
-            <div class="order-note">Same physical driver family as PCR-3D-500 (no Wi-Fi), PCR-3D-120, and PCR-3DW-120 — see the <b>PCR-3D Family Reference</b> card for mounting/wiring diagrams, the Cloning DIP switch table, the Zone/Color-Temperature "Other Config" bank, and fan-filter maintenance. See the Wi-Fi and Color Touch App cards for network setup and app-linking steps.</div>`,
+            <div class="order-note">Same physical driver platform as PCR-3D-500 (no Wi-Fi), PCR-3D-120, and PCR-3DW-120 — see the <span class='inline-link' onclick='jumpToProduct(&quot;pcr3dref&quot;)'>PCR-3D Mounting &amp; Cloning Reference card</span> for mounting/wiring diagrams, the Cloning DIP switch table, the Zone/Color-Temperature "Other Config" bank, and fan-filter maintenance. See the Wi-Fi and Color Touch App cards for network setup and app-linking steps.</div>`,
     steps: [
-      "Confirm the actual nameplate rating on the physical unit before assuming 500W from the part number alone — see the naming-mismatch flag above and on the PCR-3D Family Reference card.",
-      "Mounting, wiring, and conduit entry steps are identical across the whole PCR-3D family regardless of wattage — see the PCR-3D Family Reference card for the full mounting/wiring diagrams.",
-      "Driver is factory set to operate with the included PCZ-2 transmitter — just fit its 2 batteries. See the PCR-1Z/2Z Family Reference card for the full PCZ-2 remote button layout, pairing steps, and mode list.",
+      "Confirm the actual nameplate rating on the physical unit before assuming 500W from the part number alone — see the naming-mismatch flag above and on the <span class='inline-link' onclick='jumpToProduct(&quot;pcr3dref&quot;)'>PCR-3D Mounting &amp; Cloning Reference card</span>.",
+      "Mounting, wiring, and conduit entry steps are identical across the whole PCR-3D platform regardless of wattage — see the <span class='inline-link' onclick='jumpToProduct(&quot;pcr3dref&quot;)'>PCR-3D Mounting &amp; Cloning Reference card</span> for the full mounting/wiring diagrams.",
+      "Driver is factory set to operate with the included PCZ-2 transmitter — just fit its 2 batteries. See the <span class='inline-link' onclick='jumpToProduct(&quot;drivers&quot;)'>PCR-1Z/2Z Cloning &amp; Pairing Reference card</span> for the full PCZ-2 remote button layout, pairing steps, and mode list.",
       "<b>App/Wi-Fi not connecting:</b> see the Wi-Fi card for the physical module's status LEDs and the Color Touch App card for the in-app driver-linking steps.",
-      "<b>Cloning or zone/color-temperature configuration:</b> see the PCR-3D Family Reference card for the DIP switch tables — identical layout across this whole family.",
+      "<b>Cloning or zone/color-temperature configuration:</b> see the <span class='inline-link' onclick='jumpToProduct(&quot;pcr3dref&quot;)'>PCR-3D Mounting &amp; Cloning Reference card</span> for the DIP switch tables — identical layout across this whole platform.",
       "<b>No response from remote or app after confirming power:</b> this points to a faulty driver. Don't have the customer attempt board-level repair — move to replacement/warranty path.",
     ],
     issues: [
-      ["No response to remote","Confirm power first, then see the PCR-1Z/2Z Family Reference card's Matching/Clearing Code procedure before assuming a hardware fault"],
+      ["No response to remote","Confirm power first, then see the <span class='inline-link' onclick='jumpToProduct(&quot;drivers&quot;)'>PCR-1Z/2Z Cloning &amp; Pairing Reference card</span>'s Matching/Clearing Code procedure before assuming a hardware fault"],
       ["App shows driver offline / won't link","Wi-Fi/app issue, not a hardware fault — see the Wi-Fi and Color Touch App cards"],
-      ["Wrong/no response after cloning to a competitor system","See the PCR-3D Family Reference card's Cloning DIP switch table"],
+      ["Wrong/no response after cloning to a competitor system","See the <span class='inline-link' onclick='jumpToProduct(&quot;pcr3dref&quot;)'>PCR-3D Mounting &amp; Cloning Reference card</span>'s Cloning DIP switch table"],
     ],
   },
   {
@@ -1980,9 +2023,20 @@ const DATA = [
     facts: `<b>Part numbers:</b> 42-PCR-2D-16-24 / -35-24 / -60-24 (remote only) &nbsp; 42-PCR-2DW-16-24 / -35-24 / -60-24 (built-in Wi-Fi)<br>
             <b>What the number means:</b> <b>2D</b> = Color Touch Series 2 driver platform &nbsp; <b>-16/-35/-60</b> = wattage rating &nbsp; <b>W</b> = built-in Wi-Fi module &nbsp; <b>-24</b> suffix = 24V DC output<br>
             <b>What it is:</b> an outdoor Color Touch remote-control transformer/driver for PAL 4-wire RGB LED lights (marketed under PAL's EvenGlow banner), with OEM cloning to Hayward/Jandy/Pentair automation systems.<br>
-            <b>How it operates:</b> converts mains power down to DC output for the lights (see voltage flag below), then reads color/brightness/mode commands from the paired PCT-1 handheld remote, or the Color Touch app over Wi-Fi on "W" models — same color-wheel/cloning concept as the PCR-1Z/2Z family on the Drivers card, though this is a separate SKU platform (42- prefix vs 64-) with no install manual on file to confirm whether that card's pairing/DIP steps carry over directly.<br><br>
+            <b>How it operates:</b> converts mains power down to DC output for the lights (see voltage flag below), then reads color/brightness/mode commands from the paired PCT-1 handheld remote, or the Color Touch app over Wi-Fi on "W" models — same color-wheel/cloning concept as the PCR-1Z/2Z platform on the Drivers card, though this is a separate SKU platform (42- prefix vs 64-) with no install manual on file to confirm whether that card's pairing/DIP steps carry over directly.<br><br>
             IP65, UL Listed to UL379 Swimming Pool, Spa &amp; Fountain Transformer Class 2 LED Driver, AS/NZ approved &nbsp; Enclosure 9&#8534;&quot; x 3&#8533;&quot; (239 x 80mm), plus 2&#8531;&quot; (59mm) deep for Wi-Fi models / 1&frac12;&quot; (41mm) for non-Wi-Fi<br><br>
-            <b>Flag — voltage conflict across two PAL sources, not yet resolved:</b> this product's current sell sheet states 24V DC consistently (spec bullets and the full SKU table below — every part number carries the "-24" suffix) — but the same sell sheet's own product photography (this card's hero image) shows the physical enclosure sticker printed "OUTPUT VOLTAGE = 12V D/C" on every wattage variant pictured. That part matches the recurring 12V/24V label copy-paste artifact seen across PAL's manuals (8th confirmed instance). Separately — and not the same issue — the <b>Evenglow (Niche)</b> and <b>Evenglow (Nicheless)</b> cards in this guide, sourced from Evenglow's own install manual, document the PCR-4/PCR-2D driver combo as genuinely <b>12V DC</b> for older Evenglow installs, a conclusion reached before this sell sheet was on file. Given PAL's known 12V&rarr;24V driver evolution over time, "PCR-2D" may span an older 12V-era board and a newer 24V-era board under the same name. Don't assume either source is wrong — confirm actual output voltage at the driver before wiring anything downstream.`,
+            <b>Flag — voltage conflict across two PAL sources, still not fully resolved:</b> this product's current sell sheet states 24V DC consistently (spec bullets and the full SKU table below — every part number carries the "-24" suffix) — but the same sell sheet's own product photography (this card's hero image) shows the physical enclosure sticker printed "OUTPUT VOLTAGE = 12V D/C" on every wattage variant pictured. That part matches the recurring 12V/24V label copy-paste artifact seen across PAL's manuals. Separately — and not the same issue — the <b>Evenglow (Niche)</b> and <b>Evenglow (Nicheless)</b> cards in this guide, sourced from Evenglow's own install manual, document the PCR-4/PCR-2D driver combo as genuinely <b>12V DC</b> for older Evenglow installs. <b>New evidence:</b> a dedicated PCR-2D install/maintenance manual (published by Bellson Electric Pty Ltd, Australia — a different manufacturer entity than PAL's current US sell sheets) is internally consistent and unambiguous throughout: title, features, and IMPORTANT INFORMATION section all state 12V DC with no self-contradiction. This strengthens the case that older/Bellson-made PCR-2D boards are genuinely 12V DC (not a copy-paste artifact on that side), while current US sell sheets describe a newer 24V-era board under the same model name — but this still isn't confirmed as the full explanation. Don't assume either source is wrong — confirm actual output voltage at the driver before wiring anything downstream.`,
+    steps: [
+      "Mount the PCR-2D on a flat surface (weatherproof, IP65) at least 1 ft above ground level and preferably out of direct sunlight — per the Bellson install manual, a different distance rule than the 5 ft from pool wall used elsewhere in this guide, so confirm which spec sheet the customer's unit actually shipped with.",
+      "Connect the 4-core wire from the PAL 4-wire lights to the terminals labeled B / G / W / R (Blue/Green/White/Red) — 2 output conduit entries are provided for up to 2 PAL 4-wire lights fitted with LAU-4C lamps per the base unit (see wattage table below for larger variants).",
+      "Driver ships factory-set to pair with the included PCT-1 transmitter — just fit its 2 batteries. See the PCT-1 card for the full Matching/Clearing Code procedure.",
+      "Wire mains power to the E / A / N (Earth/Active/Neutral) terminal block per NEC code requirements.",
+    ],
+    issues: [
+      ["No response to remote","Confirm power (LED lit?) before assuming a pairing or hardware fault. See the PCT-1 card for the Matching/Clearing Code procedure"],
+      ["Wrong/no response after cloning to a competitor system","This board uses a 2-switch DIP scheme, not the 3/4-switch tables used elsewhere in this guide — see the Cloning DIP table below"],
+      ["Automation won't turn the light on/off, driver has power","Press the S1 (Manual Test/Operation) button once to turn the driver on manually — see the note below the Cloning DIP table"],
+    ],
     extra: `
       <div class="section-label">Model / SKU Reference</div>
       <table style="width:100%; border-collapse:collapse; margin:6px 0; font-size:0.92em;">
@@ -1995,6 +2049,25 @@ const DATA = [
         <tr><td>42-PCR-2DW-60-24</td><td>60 Watt Remote Control Transformer with Wi-Fi</td><td>24V / 60W</td></tr>
       </table>
       <div class="note-box">See the <b>Evenglow (Niche)</b> and <b>Evenglow (Nicheless)</b> cards for PCT-1 remote coding videos (PAL PCR2D PCT1 Coding / Manual Check) — those are cross-referenced there rather than duplicated here.</div>
+
+      <div class="section-label">Max Lights by Wattage (per the Bellson install manual)</div>
+      <div class="note-box">This manual's own wattage labels don't match the SKU table above (55W here vs. this card's 60W SKUs; a wiring-diagram label also reads "20 Watt" where the spec box says 16W) — flagged, not resolved. Use the physical unit's own enclosure label to confirm actual rating before sizing a light count.</div>
+      <table style="width:100%; border-collapse:collapse; margin:6px 0; font-size:0.92em;">
+        <tr style="border-bottom:1px solid #ccc;"><td style="padding:2px 8px 2px 0;"><b>Version</b></td><td style="padding:2px 0;"><b>Max Lights</b></td></tr>
+        <tr><td>16 watt</td><td>1 to 2 lights</td></tr>
+        <tr><td>35 watt</td><td>1 to 6 lights</td></tr>
+        <tr><td>55 watt (labeled "60W" on this card's SKU table)</td><td>1 to 10 lights</td></tr>
+      </table>
+
+      <div class="section-label">Cloning DIP (DIP1/DIP2)</div>
+      <div class="note-box">Simpler 2-switch scheme than the PCR-1Z/2Z platform's 3- or 4-switch tables — no Astral option on this board.</div>
+      <table class="dip-table">
+        <tr><td>OFF ON</td><td class="action">Jandy</td></tr>
+        <tr><td>OFF OFF</td><td class="action">Pentair</td></tr>
+        <tr><td>ON OFF</td><td class="action">Hayward</td></tr>
+        <tr><td>ON ON</td><td class="action">PAL</td></tr>
+      </table>
+      <div class="order-note">Must power off before changing the DIP switch. If cloned to automation and the automation doesn't turn the light on/off with power present, press the S1 (Manual Test/Operation) button once to turn the driver on manually. Same "Automation Dedicated Light Output Relay" wiring pattern as the other driver families if the automation needs to switch the light on/off directly while cloned — see the <span class='inline-link' onclick='jumpToProduct(&quot;drivers&quot;)'>PCR-1Z/2Z Cloning &amp; Pairing Reference card</span> for the diagram (identical relay wiring).</div>
     `
   },
   {
@@ -2028,13 +2101,41 @@ const DATA = [
     title: "PCR-4 Driver (Color Touch Series 4)",
     photo: "assets/image_90.jpg",
     photoAlt: "PCR-4 driver enclosure with Color Touch EvenGlow label",
-    tags: ["pcr-4","color touch","evenglow driver","2 wire","pct-1"],
-    facts: `<b>Part number:</b> PCR-4 (per enclosure label; no full manual on file to confirm sub-SKU suffixes)<br>
-            <b>What it is:</b> a Color Touch/EvenGlow-branded remote-control transformer, already cross-referenced throughout the <b>Evenglow (Niche)</b> and <b>Evenglow (Nicheless)</b> cards as one of the two drivers used with those lights (alongside PCR-2D).<br><br>
-            Read directly off the enclosure label pictured (this card's hero photo) — no install/spec manual has been provided for this product, so nothing below is inferred beyond what the label states:<br>
-            Supply voltage 100–240V (47–63Hz) &nbsp; Supply current (typ.) 0.7A/115VAC, 0.3A/240VAC &nbsp; <b>Output voltage 12V D/C &nbsp; Output power 50 Watts</b><br>
+    tags: ["pcr-4","color touch","evenglow driver","2 wire","pct-1","cloning","dip switch","wifi","touch 5","42-pctwf1","42-pctwf5"],
+    facts: `<b>Part number:</b> PCR-4 (per enclosure label and its own Bellson Electric install manual — no sub-SKU suffixes confirmed)<br>
+            <b>What it is:</b> a Color Touch/EvenGlow-branded remote-control transformer, cross-referenced throughout the <b>Evenglow (Niche)</b> and <b>Evenglow (Nicheless)</b> cards as one of the two drivers used with those lights (alongside PCR-2D). Pairs to a PCT-1 handheld remote, with optional Wi-Fi control.<br><br>
+            Supply voltage 100–240V (47–63Hz) &nbsp; Supply current (typ.) 0.7A/115VAC, 0.3A/240VAC &nbsp; <b>Output voltage 12V D/C &nbsp; Output power 50 Watts</b> (4 outputs &times; 12V/15W each)<br>
             IP65, suitable for wet locations &nbsp; UL Listed (UL 8750) &nbsp; Approved to IEC/AS/NZS 61347 (TUV15577EA)<br>
-            This label's 12V DC / 50W reading is independent, direct-label confirmation of the same figures already used in the Evenglow cards' facts (PCR-4 = 50W, 12V DC) — no conflict here, unlike the ongoing PCR-2D voltage question.`
+            This 12V DC / 50W reading is confirmed independently by both the enclosure label and this product's own dedicated Bellson Electric install manual — no conflict here, unlike the ongoing PCR-2D voltage question (see that card).<br><br>
+            <b>8 x output conduit entries</b> — suitable for PAL 4-wire lights fitted with up to 8 x LAU-4C LED lamps.<br>
+            <b>Wi-Fi module part number confusion, not resolved:</b> two different PAL documents show this driver fitted with a Wi-Fi module labeled two different part numbers — "42-PCTWF1" (in a general Wi-Fi install guide) and "42-PCTWF5" (in the dedicated PCR-4 install/maintenance manual, which is also the module pictured as "Touch 5"-branded — see the Color Touch App card). Likely two different module hardware revisions, not a typo — confirm the actual part number printed on the module in hand before ordering a replacement.`,
+    steps: [
+      "Mount on a flat surface (weatherproof, IP65) at least 5 ft horizontally from the inside pool wall and at least 1 ft above max pool water level, using the 4x mounting feet and stainless screw set supplied (star plugs included for concrete/block walls).",
+      "Connect mains power via the top-right conduit entry to the E / A / N (Earth/Active/Neutral) terminal block per NEC code requirements.",
+      "Connect the 4-core wire from up to 8 PAL 4-wire lights (LAU-4C lamps) to the BLUE/GREY/RED/COMMON/WHITE output terminals — 8 output conduit entries provided.",
+      "Driver ships factory-set to pair with the included PCT-1 transmitter — just fit its 2 batteries. See the PCT-1 card for the full Matching/Clearing Code procedure.",
+      "For remote on/off from a home automation system: the driver accepts a momentary volt-free dry contact toggle at the \"Remote Start/Stop\" connector (a connection kit is available, Part No. 42-PCTWFA) — separate from the Wi-Fi module and separate from cloning.",
+    ],
+    issues: [
+      ["No response to remote","Confirm power (Power On LED lit?) before assuming a pairing or hardware fault. See the PCT-1 card for the Matching/Clearing Code procedure"],
+      ["Wrong/no response after cloning to a competitor system","This board uses a 2-switch DIP scheme, not the 3/4-switch tables used elsewhere in this guide — see the Cloning DIP table below"],
+      ["Automation won't turn the light on/off, driver has power","Press the Manual Operation Button once to turn the driver on manually"],
+      ["App/Wi-Fi shows driver offline","Confirm which Wi-Fi module part number is actually fitted (42-PCTWF1 vs 42-PCTWF5/\"Touch 5\") — see the flag above and the Color Touch App card"],
+    ],
+    extra: `
+      <div class="section-label">Cloning DIP (DIP1/DIP2)</div>
+      <div class="note-box">Same simple 2-switch scheme as the PCR-2D card — no Astral option on this board.</div>
+      <table class="dip-table">
+        <tr><td>OFF ON</td><td class="action">Jandy</td></tr>
+        <tr><td>OFF OFF</td><td class="action">Pentair</td></tr>
+        <tr><td>ON OFF</td><td class="action">Hayward</td></tr>
+        <tr><td>ON ON</td><td class="action">PAL</td></tr>
+      </table>
+      <div class="order-note">Must power off before changing the DIP switch. If cloned to automation, disconnect the Wi-Fi module if fitted and don't use the handheld remote. Same "Automation Dedicated Light Output Relay" wiring pattern as the other driver families — see the <span class='inline-link' onclick='jumpToProduct(&quot;drivers&quot;)'>PCR-1Z/2Z Cloning &amp; Pairing Reference card</span> for the diagram (identical relay wiring).</div>
+
+      <div class="section-label">Wi-Fi / App Control</div>
+      <div class="order-note">A Wi-Fi module (42-PCTWF1 or 42-PCTWF5, see flag above) plugs into the board's Wi-Fi connector, alongside a separate PCT-2 connector/socket referenced in one manual — that PCT-2 reference is unconfirmed against any other product in this guide and not built out here. See the <b>Color Touch App</b> card for the app-side pairing and the Touch-5-specific channel/naming workflow that applies when the "Touch 5" Wi-Fi module variant is fitted.</div>
+    `
   },
   {
     id: "commander2",
@@ -2044,7 +2145,7 @@ const DATA = [
     photoAlt: "PAL Commander PC-2D driver enclosure",
     tags: ["commander","pc-2d","2 wire","transformer","pct-3","commander touch"],
     facts: `<b>Part number:</b> PC-2D (per enclosure label; no manual on file to confirm sub-SKU suffixes)<br>
-            <b>What it is:</b> a "Commander"-branded receiver/driver for PAL <b>2-wire</b> LED lights — an older/simpler wiring generation than the 4-wire RGB family documented elsewhere in this guide (Drivers, PCR-2DMX, PCR-3D, PCR-2D, PCR-300 cards). Paired remote: <b>42-PCT-3T</b> ("Commander Touch," CH1/CH2 + mode buttons) — see the <b>Remotes</b> card.<br><br>
+            <b>What it is:</b> a "Commander"-branded receiver/driver for PAL <b>2-wire</b> LED lights — an older/simpler wiring generation than the 4-wire RGB drivers documented elsewhere in this guide (Drivers, PCR-2DMX, PCR-3D, PCR-2D, PCR-300 cards). Paired remote: <b>42-PCT-3T</b> ("Commander Touch," CH1/CH2 + mode buttons) — see the <b>Remotes</b> card.<br><br>
             Read directly off the enclosure label pictured (this card's hero photo) — no install/spec manual has been provided, so nothing below is inferred beyond what the label states:<br>
             Supply voltage 100–240V (50/60Hz) &nbsp; Supply power 23 Watts &nbsp; <b>Output voltage 12V D/C &nbsp; Output power 16 Watts</b><br>
             IP65, suitable for wet locations &nbsp; UL Listed &nbsp; SELV`
@@ -2057,7 +2158,7 @@ const DATA = [
     photoAlt: "PAL LED Optics PCR-200 driver enclosure",
     tags: ["led optics","pcr-200","optic fiber","strip lights","transformer"],
     facts: `<b>Part number:</b> PCR-200 (per enclosure label; no manual on file to confirm sub-SKU suffixes)<br>
-            <b>What it is:</b> an LED Optics-branded receiver/driver for PAL 4-wire RGB LED Optic strip lights — same product category as the PCR-300 card (LED Optics Series 3) but an earlier/lower-wattage platform in that same family, per the enclosure label branding.<br><br>
+            <b>What it is:</b> an LED Optics-branded receiver/driver for PAL 4-wire RGB LED Optic strip lights — same product category as the PCR-300 card (LED Optics Series 3) but an earlier/lower-wattage tier of the same LED Optics line, per the enclosure label branding.<br><br>
             Read directly off the enclosure label pictured (this card's hero photo) — no install/spec manual has been provided, so nothing below is inferred beyond what the label states:<br>
             Supply voltage 100–240V (47–63Hz) &nbsp; Supply current (typ.) 2.2A/115VAC, 1.2A/240VAC &nbsp; <b>Output voltage 12V D/C &nbsp; Output power 200 Watts</b><br>
             IP65, suitable for wet locations &nbsp; UL Listed`
@@ -2074,7 +2175,7 @@ const DATA = [
             Read directly off the enclosure label pictured (this card's hero photo) — no install/spec manual has been provided, so nothing below is inferred beyond what the label states:<br>
             Supply voltage 100–240V (50/60Hz) &nbsp; Supply power 23 Watts &nbsp; <b>Output voltage 12V D/C &nbsp; Output power 16 Watts</b><br>
             IP65, suitable for wet locations &nbsp; UL Listed &nbsp; SELV<br><br>
-            <b>Flag — do not confuse with the Aqualumin Replacement card's PCR-2T-65 transformer:</b> the name is similar but the label on this unit reads "PC-2T" (no R), 12V DC, 16W, for 2-wire lights — the <b>Aqualumin Replacement</b> card requires the <b>PCR-2T-65</b> transformer specifically (64- SKU family, 24V DC, higher wattage, powers up to 4 lights). Nothing on file confirms these are the same physical product under two naming conventions, or two genuinely different transformers — treat them as unconfirmed-different until a manual says otherwise, and don't substitute one for the other on an Aqualumin job.`
+            <b>Flag — do not confuse with the Aqualumin Replacement card's PCR-2T-65 transformer:</b> the name is similar but the label on this unit reads "PC-2T" (no R), 12V DC, 16W, for 2-wire lights — the <b>Aqualumin Replacement</b> card requires the <b>PCR-2T-65</b> transformer specifically (64-prefix SKU, 24V DC, higher wattage, powers up to 4 lights). Nothing on file confirms these are the same physical product under two naming conventions, or two genuinely different transformers — treat them as unconfirmed-different until a manual says otherwise, and don't substitute one for the other on an Aqualumin job.`
   },
   {
     id: "wifi",
@@ -2093,73 +2194,219 @@ const DATA = [
     note: "Brightness only adjustable in PAL mode — not when cloned/synced to Hayward/Jandy/Pentair. Set this expectation before troubleshooting 'brightness won't change' as a fault.",
     extra: `
       <div class="note-box"><b>Flag — older documented pairing procedure differs from the current app's own on-screen steps:</b> this card previously described a different sequence for linking a driver ("tap '+' → select '2.4g' → driver appears, select it → in-app go to 'Touch 2' → tap 'Link' → on the transformer, press Code Setting, then press Link (bottom-left) 3x"). The current Color Touch App guide's own screens instead show holding the module's physical <b>Reset</b> button for 3 seconds until the light flashes, then completing setup entirely in-app (WiFi password + Start Configuration) — no "Code Setting"/"Link" button-press step is shown anywhere in that guide. Not silently resolved: this may reflect an older app/module version, or the two procedures may cover different scenarios (first-time network setup vs. re-linking an already-configured driver to the app). Lead with the Reset-button procedure as current; fall back to the older steps if that doesn't work.</div>
+
+      <div class="note-box"><b>Flag — this is not the only Wi-Fi module part number.</b> New product photos confirm at least four other Wi-Fi module SKUs beyond 64-WIFI: <b>64-PAL-SW</b> ("Sonar Wi-Fi" — DMX512 input, Amazon Alexa/Google Assistant compatible, used with the Sonar-branded remotes), <b>64-PCTWF03</b> (same 3-LED + Reset layout as 64-WIFI but a different part number — possibly a renumbering of the same physical module, not confirmed), <b>42-PCTWF00</b> (42-prefix version, likely for older 42-prefix drivers like PCR-4/PCR-2D), and <b>42-PCTWF5</b> ("Touch 5"-branded, confirmed fitted to the PCR-4 — see the <b>PCR-4</b> and <b>Color Touch App</b> cards). Only product photos exist for the first three — no install manuals on file yet to confirm how they differ functionally or which driver each actually pairs with. Don't assume 64-WIFI's LED/Reset behavior documented above carries over to these without confirming against the physical module in hand.</div>
     `
   },
   {
     id: "remotes",
-    backTo: "cat-wifi",
-    title: "Remotes",
-    tags: ["remote","remotes","pcz-2","pct-1","pct-3","pct-5","commander","touch 5","touch-5","pool touch 5","sonar remote","handheld remote","transmitter","color wheel","pairing","cloning","matching code","clearing code","zone","channel","discontinued","spare part"],
-    facts: `PAL's own site lists 6 remote handset SKUs across four driver-connection families (current-gen 4-wire PCZ-2, older 4-wire PCT-1, 2-wire Commander PCT-3, Pool Touch 5 automation PCT-5, and the Sonar family) — never assume one remote's button layout or pairing steps carry over to another family. This page is a side-by-side quick reference; full pairing/cloning steps and troubleshooting for each remote stay on the product cards that use it (linked below), not duplicated here.<br><br>
-            <b>Discontinued vs. spare-parts-only:</b> several remotes below are flagged internally as discontinued/legacy — meaning don't spec them for a new job — but PAL's own site still lists most of them under "Remote Handsets, Spare Parts," so they remain orderable to replace a remote on an existing install. Don't confuse "discontinued" with "unavailable."`,
+    backTo: "cat-remotes",
+    title: "Remotes — General Troubleshooting & Pairing Reference",
+    tags: ["remote","remotes","color wheel","white dot","indicator light","battery","factory battery","pairing","matching code","clearing code","color touch app","list price","replacement remote","discontinued","spare part"],
+    facts: `The shared first-line checks and framing that apply across the whole remote lineup — part numbers, button layouts, and per-remote pairing/cloning steps stay on each remote's own card (see the Remotes hub).<br><br>
+            <b>Discontinued vs. spare-parts-only:</b> several remotes are flagged internally as discontinued/legacy — meaning don't spec them for a new job — but PAL's own site still lists most of them under "Remote Handsets, Spare Parts," so they remain orderable to replace a remote on an existing install. Don't confuse "discontinued" with "unavailable."`,
     extra: `
-      <div class="section-label">PCZ-2 Handheld Remote (64-PCZ-2)</div>
-      <img class="zoomable" src="assets/image_174.jpg" alt="PCZ-2 handheld remote product photo" style="width:100%;max-width:260px;display:block;margin:8px auto;border-radius:8px;background:#fff;padding:8px;border:1px solid #2a3b5c;cursor:zoom-in;">
-      <div class="order-note"><b>Part number:</b> 64-PCZ-2. <b>What it is:</b> current-generation 4-wire handheld remote ("Remote Handset for Color Touch Series 2Z Controllers"), color wheel + brightness + zone + 7 preset modes. <b>Pairs with:</b> the 64-PCR-1Z / PCR-2Z / PCR-1ZW / PCR-2ZW driver family (24V DC).</div>
-      <div class="order-note" style="margin-top:6px;">Matching Code: apply power, press Z1 once within 5 seconds. Clearing Code: hold Z1 for 3 seconds. 1 transmitter pairs to unlimited receivers; 1 receiver max 4 transmitters. <b>PCR-1Z-SM (switch mode) does not operate with the PCZ-2</b> — board buttons only.</div>
-      <img class="zoomable" src="assets/image_70.jpg" alt="PCZ-2 handheld remote button layout and Matching/Clearing Code procedures" style="width:100%;border-radius:8px;margin-top:8px;border:1px solid #2a3b5c;cursor:zoom-in;"><span style="display:block;font-size:11px;color:#9fb0c5;margin-top:4px;font-style:italic;">PCZ-2 remote — full button layout, mode list, and pairing procedures (tap to zoom)</span>
-      <div class="order-note" style="margin-top:10px;"><b>Used by:</b> Drivers (PCR-1Z/2Z family), PCR-3D-120/500, Treo Max+ (V2), Treo Retro, Treo Mini+ (V2), Treo Micro, LED Bubbler, WaterSphere (via the Bubbler underneath it), Evenglow Flex, Quick-Ship Strip, Perimeter Strip Kits, Path Way Light, Bollard Light, Garden Up Light.</div>
+      <div class="section-label">Color Wheel / Indicator Check — first-line diagnostic</div>
+      <div class="order-note">If a remote isn't working, first confirm the color wheel — or the white dot in the center of the wheel, on the remotes that have one — is actually lighting up. This can be hard to see in direct sunlight; covering it with your hand makes it easier to tell. If it's not lit, check the batteries before assuming anything else is wrong: the batteries PAL installs at the factory are occasionally bad out of the box, so this is a real first-line cause, not just a formality.</div>
 
-      <div class="section-label">Sonar Remote — SR2 style (64-PAL-SR2)</div>
-      <img class="zoomable" src="assets/image_62.jpg" alt="64-PAL-SR2 Sonar remote — rounded style, 4 channels" style="width:100%;max-width:260px;display:block;margin:8px auto;border-radius:8px;background:#fff;padding:8px;border:1px solid #2a3b5c;cursor:zoom-in;">
-      <div class="order-note"><b>Part number:</b> 64-PAL-SR2. <b>What it is:</b> rounded 4-channel Sonar handheld remote — color wheel, saturation/brightness sliders. Newest Sonar remote, replaces the 8-channel 64-PAL-SR below. <b>Pairs with:</b> Aqualumin Replacement.</div>
-      <div class="order-note" style="margin-top:6px;">Operates the same way as the 64-PAL-SR (wand-style, below) — same pairing/cloning/unpairing procedure shape, just 4 channels instead of 8 (no Astral). Pairing: press the channel's power button 3x within 3 seconds of power-on. Cloning: hold the channel's power button (1=PAL, 2=Jandy, 3=Hayward, 4=Pentair). Unpairing: press the linked channel's button 5x.</div>
-      <div class="order-note" style="margin-top:10px;"><b>Used by:</b> Aqualumin Replacement.</div>
+      <div class="section-label">Pairing</div>
+      <div class="order-note">Every remote (and Wi-Fi module) should already be paired to its driver from the factory — don't assume a remote needs pairing just because a customer says it isn't working; work the Color Wheel/battery check above first. If a remote genuinely does need pairing (replacement remote, new driver, etc.), pull that remote's own card for its manual/pairing steps rather than guessing — the procedure differs by remote model. For Wi-Fi-equipped drivers, the main thing the customer actually has to do themselves is connect everything to their home Wi-Fi network — the rest should already come paired.</div>
 
-      <div class="section-label">Color Touch App (Wi-Fi, no physical remote)</div>
-      <div class="order-note">Software control for Wi-Fi-equipped ("W") drivers over the PAL Color Touch app — network/module pairing is covered on the Wi-Fi card, and full app setup/operation is covered on the Color Touch App card, not repeated here.</div>
-      <div class="order-note" style="margin-top:10px;"><b>See:</b> Wi-Fi card, Color Touch App card.</div>
-
-      <div class="section-label" style="color:var(--escalate);">PCT-1 Handheld Remote (42-PCT-1T) — Discontinued</div>
-      <img class="zoomable" src="assets/image_170.jpg" alt="PCT-1 handheld remote product photo" style="width:100%;max-width:260px;display:block;margin:8px auto;border-radius:8px;background:#fff;padding:8px;border:1px solid #2a3b5c;cursor:zoom-in;">
-      <div class="order-note"><b>Part number:</b> 42-PCT-1T. <b>What it is:</b> older-generation 4-wire remote ("Remote Handset for Color Touch Series 1 / 2 / 3 / 4 Controllers" — one remote spans four controller generations). Color wheel plus B (brightness) / S (speed) / M (mode) buttons. <b>Pairs with:</b> the 12V PCR-4 / PCR-2D driver family.</div>
-      <div class="order-note" style="margin-top:6px;">No dedicated pairing-steps document on file — see each linked card's own coding videos.</div>
-      <img class="zoomable" src="assets/image_02.jpg" alt="PCT-1 transmitter shown between the PCR-4 and PCR-2D drivers it pairs with" style="width:100%;border-radius:8px;margin-top:8px;border:1px solid #2a3b5c;cursor:zoom-in;"><span style="display:block;font-size:11px;color:#9fb0c5;margin-top:4px;font-style:italic;">PCT-1 transmitter with the PCR-4 and PCR-2D drivers it pairs to (tap to zoom)</span>
-      <div class="order-note" style="margin-top:10px;"><b>Used by:</b> Evenglow (Niche), Evenglow (Nicheless), Evenglow Fiberglass, PCR-2D Driver.</div>
-      <div class="note-box">The Evenglow (Niche/Nicheless/Fiberglass) cards also document a newer 24V PCR-1Z/2Z driver generation appearing in current PAL sell sheets for the same products — if the driver on-site is a PCZ-2-paired board rather than the black-box PCR-4/PCR-2D shown here, use the PCZ-2 section above instead.</div>
-
-      <div class="section-label" style="color:var(--escalate);">PCT-3 Handheld Remote (42-PCT-3T) — Discontinued</div>
-      <img class="zoomable" src="assets/image_171.jpg" alt="PCT-3 Commander Touch handheld remote product photo" style="width:100%;max-width:260px;display:block;margin:8px auto;border-radius:8px;background:#fff;padding:8px;border:1px solid #2a3b5c;cursor:zoom-in;">
-      <div class="order-note"><b>Part number:</b> 42-PCT-3T. <b>What it is:</b> "Commander Touch"-branded remote, CH1 / CH2 on-off buttons plus a shared M (mode) +/- button. <b>Pairs with:</b> the <b>2-wire</b> Commander Series 2 (PC-2D) driver — a different wiring generation from every other remote on this page.</div>
-      <div class="order-note" style="margin-top:6px;">No pairing/cloning steps document on file — coverage gap, don't invent a button sequence.</div>
-      <div class="order-note" style="margin-top:10px;"><b>Used by:</b> Commander Series 2 (PC-2D).</div>
-
-      <div class="section-label" style="color:var(--escalate);">PCT-5 Handheld Remote (42-PCT-5T) — Discontinued</div>
-      <img class="zoomable" src="assets/image_172.jpg" alt="PCT-5 Touch-5 handheld remote product photo" style="width:100%;max-width:260px;display:block;margin:8px auto;border-radius:8px;background:#fff;padding:8px;border:1px solid #2a3b5c;cursor:zoom-in;">
-      <div class="order-note"><b>Part number:</b> 42-PCT-5T. <b>What it is:</b> "Touch-5"-branded remote, CH1-CH4 individual on/off buttons plus a CH5 master color wheel, and Bright/Speed/Mode up-down controls. <b>Pairs with:</b> the Pool Touch 5 automation system — a separate PAL platform from the standard PCR-1Z/2Z driver family (see Color Touch App card). Don't assume PCR-1Z/2Z pairing/DIP behavior applies.</div>
-      <div class="order-note" style="margin-top:6px;">No pairing/cloning steps document on file — coverage gap.</div>
-
-      <div class="section-label" style="color:var(--escalate);">Sonar Remote — wand style (64-PAL-SR) — Discontinued</div>
-      <img class="zoomable" src="assets/image_173.jpg" alt="64-PAL-SR wand-style Sonar remote product photo" style="width:100%;max-width:180px;display:block;margin:8px auto;border-radius:8px;background:#fff;padding:8px;border:1px solid #2a3b5c;cursor:zoom-in;">
-      <div class="order-note"><b>Part number:</b> 64-PAL-SR. <b>What it is:</b> 8-channel Sonar handheld remote ("Remote Handset for PAL Sonar Lighting Systems") — color wheel, warm/cool white slider, brightness slider. <b>Pairs with:</b> Sonar Retro Bulb.</div>
-      <div class="order-note" style="margin-top:6px;">Replaced by the 64-PAL-SR2 above — same pairing/cloning/unpairing procedure shape (3x to link, hold to clone, 5x to unlink), but this older unit has a 5th cloning channel (Astral) and a visibly different physical form factor than the SR2.</div>
-      <img class="zoomable" src="assets/image_95.jpg" alt="Sonar Retro Bulb remote — wand style, 8 channel buttons, 5 cloning channels including Astral" style="width:100%;border-radius:8px;margin-top:8px;border:1px solid #2a3b5c;cursor:zoom-in;"><span style="display:block;font-size:11px;color:#9fb0c5;margin-top:4px;font-style:italic;">Sonar remote (wand style) — color wheel, warm/cool white slider, 8 channel buttons, 5 cloning channels incl. Astral (tap to zoom)</span>
-      <div class="order-note" style="margin-top:10px;"><b>Used by:</b> Sonar Retro Bulb.</div>
-      <div class="note-box">Canadian Retro (Sonar) is confirmed to use the same general "Sonar" remote family (Hayward/Jandy/Pentair cloning per its sell sheet), but no button-sequence steps or a remote photo are documented for that specific product — don't assume it matches either Sonar diagram on this page without checking the physical remote in hand.</div>
+      <div class="section-label">Recommend the Color Touch App</div>
+      <div class="note-box">For a customer who needs a new or replacement remote on a Wi-Fi-equipped driver, pushing them to the Color Touch App is usually the better move — it's a free download, requires no remote hardware, and gets them back in control immediately. A physical replacement remote is still available to sell at List price if they specifically want one, but the app is quicker and easier for most customers.</div>
+    `
+  },
+  {
+    id: "pcz2",
+    backTo: "cat-remotes",
+    title: "PCZ-2 — Handheld Remote (64-PCZ-2)",
+    photo: "assets/image_174.jpg",
+    photoAlt: "PCZ-2 handheld remote product photo",
+    tags: ["pcz-2","remote","color wheel","handheld","64-pcz-2","zone","matching code","clearing code","pcr-1z","pcr-2z"],
+    facts: `<b>Part number:</b> 64-PCZ-2<br>
+            <b>What it is:</b> current-generation 4-wire handheld remote ("Remote Handset for Color Touch Series 2Z Controllers") — color wheel, brightness, zone, and 7 preset modes.<br>
+            <b>Pairs with:</b> the 64-PCR-1Z / PCR-2Z / PCR-1ZW / PCR-2ZW driver platform (24V DC). <b>PCR-1Z-SM (switch mode) does not operate with the PCZ-2</b> — board buttons only.<br>
+            <b>Status:</b> Active — current PAL remote for the PCR-1Z/2Z driver platform.<br><br>
+            <div class="order-note">1 transmitter pairs to unlimited receivers; 1 receiver max 4 transmitters. See the <b>Remotes</b> reference card for the color-wheel/battery first-line check and the Color Touch App alternative.</div>`,
+    steps: [
+      "If the remote isn't responding, first confirm the color wheel is lighting up (hard to see in direct sunlight — cover it with your hand). If it's not lit, check the batteries before assuming anything else — factory-installed batteries are occasionally bad out of the box.",
+      "<img class=\"zoomable\" src=\"assets/image_70.jpg\" alt=\"PCZ-2 handheld remote button layout and Matching/Clearing Code procedures\" style=\"width:100%;border-radius:8px;margin-top:8px;border:1px solid #2a3b5c;cursor:zoom-in;\"><span style=\"display:block;font-size:11px;color:#9fb0c5;margin-top:4px;font-style:italic;\">PCZ-2 remote — full button layout, mode list, and pairing procedures (tap to zoom)</span>",
+      "Matching Code (pairing): apply power to the receiver, then press Z1 once within 5 seconds — light flashes white 3 times if successful.",
+      "Clearing Code (if paired to the wrong receiver): apply power, then hold Z1 for 3 seconds — light flashes 6 times if successful.",
+      "Still unresponsive after confirming the wheel is lit and pairing is correct: this points to a faulty driver, not the remote — see the <span class='inline-link' onclick='jumpToProduct(&quot;drivers&quot;)'>PCR-1Z/2Z Cloning &amp; Pairing Reference card</span>.",
+    ],
+    issues: [
+      ["Remote unresponsive, wheel not lit","Check batteries first — factory-installed batteries are occasionally bad. See the Remotes reference card"],
+      ["Remote unresponsive, wheel lit","Pairing issue, not hardware — walk the Matching/Clearing Code steps above"],
+      ["Customer needs a replacement remote","Consider recommending the free Color Touch App instead (Wi-Fi-equipped drivers only) — see the Remotes reference card"],
+    ],
+    extra: `
+      <div class="order-note"><b>Used by:</b> Drivers (PCR-1Z/2Z platform), PCR-3D-120/500 platform, Treo Max+ (V2), Treo Retro, Treo Mini+ (V2), Treo Micro, LED Bubbler, WaterSphere (via the Bubbler underneath it), Evenglow Flex, Quick-Ship Strip, Perimeter Strip Kits, Path Way Light, Bollard Light, Garden Up Light.</div>
+    `
+  },
+  {
+    id: "palsr2",
+    backTo: "cat-remotes",
+    title: "Sonar SR2 — Handheld Remote (64-PAL-SR2)",
+    photo: "assets/image_62.jpg",
+    photoAlt: "64-PAL-SR2 Sonar remote — rounded style, 4 channels",
+    tags: ["pal-sr2","sonar","remote","color wheel","64-pal-sr2","aqualumin","channel","cloning"],
+    facts: `<b>Part number:</b> 64-PAL-SR2<br>
+            <b>What it is:</b> rounded 4-channel Sonar handheld remote — color wheel, saturation/brightness sliders. Newest Sonar remote, replaces the 8-channel 64-PAL-SR.<br>
+            <b>Pairs with:</b> Aqualumin Replacement.<br>
+            <b>Status:</b> Active — current Sonar-family remote.<br><br>
+            <div class="order-note">Operates the same way as the 64-PAL-SR (wand-style) — same pairing/cloning/unpairing procedure shape, just 4 channels instead of 8 (no Astral). See the Remotes reference card for the color-wheel/battery first-line check.</div>`,
+    steps: [
+      "If the remote isn't responding, first confirm the color wheel is lighting up (hard to see in direct sunlight — cover it with your hand). If it's not lit, check the batteries before assuming anything else — factory-installed batteries are occasionally bad out of the box.",
+      "Pairing: press the channel's power button 3x within 3 seconds of power-on.",
+      "Cloning to a competitor automation system: hold the channel's power button (1 = PAL, 2 = Jandy, 3 = Hayward, 4 = Pentair).",
+      "Unpairing: press the linked channel's button 5x.",
+    ],
+    issues: [
+      ["Remote unresponsive, wheel not lit","Check batteries first — factory-installed batteries are occasionally bad. See the Remotes reference card"],
+      ["Remote unresponsive, wheel lit","Pairing issue, not hardware — walk the pairing steps above"],
+      ["Customer needs a replacement remote","This SKU has no Wi-Fi/app alternative (Aqualumin doesn't use the Color Touch App) — a physical replacement remote is the only option here"],
+    ],
+    extra: `
+      <div class="order-note"><b>Used by:</b> Aqualumin Replacement.</div>
+    `
+  },
+  {
+    id: "pct1",
+    backTo: "cat-remotes",
+    title: "PCT-1 — Handheld Remote (42-PCT-1T)",
+    photo: "assets/image_170.jpg",
+    photoAlt: "PCT-1 handheld remote product photo",
+    tags: ["pct-1","remote","color wheel","handheld","42-pct-1t","pcr-4","pcr-2d","discontinued"],
+    note: "Discontinued — PAL no longer specs this remote for new installs, but it remains orderable under \"Remote Handsets, Spare Parts\" to replace an existing unit. Don't confuse discontinued with unavailable.",
+    facts: `<b>Part number:</b> 42-PCT-1T<br>
+            <b>What it is:</b> older-generation 4-wire remote ("Remote Handset for Color Touch Series 1 / 2 / 3 / 4 Controllers" — one remote spans four controller generations). Color wheel plus B (brightness) / S (speed) / M (mode) buttons, ON/OFF, and a red operational LED in the wheel's center.<br>
+            <b>Pairs with:</b> the 12V PCR-4 / PCR-2D driver platform.<br>
+            <b>Status:</b> Discontinued (spare parts only).<br><br>
+            <div class="order-note">7 modes: White (default), Color Change, Disco, and 4 Gradual Change variants (White/Blue/Green/Red) — each mode's brightness/speed adjustability differs, see Modes table below. See the Remotes reference card for the color-wheel/battery first-line check.</div>`,
+    steps: [
+      "If the remote isn't responding, first confirm the color wheel — with the red operational LED in its center — is lighting up (hard to see in direct sunlight — cover it with your hand). If it's not lit, check the batteries before assuming anything else — factory-installed batteries are occasionally bad out of the box.",
+      "<img class=\"zoomable\" src=\"assets/image_02.jpg\" alt=\"PCT-1 transmitter shown between the PCR-4 and PCR-2D drivers it pairs with\" style=\"width:100%;border-radius:8px;margin-top:8px;border:1px solid #2a3b5c;cursor:zoom-in;\"><span style=\"display:block;font-size:11px;color:#9fb0c5;margin-top:4px;font-style:italic;\">PCT-1 transmitter with the PCR-4 and PCR-2D drivers it pairs to (tap to zoom)</span>",
+      "Matching Code (pairing): apply power to the receiver, then press Speed (S) + once within 5 seconds — output light flashes white 3 times if successful.",
+      "Clearing Code (if paired to the wrong receiver): apply power, then hold Speed (S) + for 3 seconds — output light flashes 6 times if successful. A new code then has to be applied via Matching Code.",
+      "Touching the color wheel resets any Mode selection back to White. The receiver has a Memory Feature — it remembers the last color/mode after being switched off, and remembers its paired code even after a power loss.",
+    ],
+    issues: [
+      ["Remote unresponsive, wheel not lit","Check batteries first — factory-installed batteries are occasionally bad. See the Remotes reference card"],
+      ["Remote unresponsive, wheel lit","Pairing issue, not hardware — walk the Matching/Clearing Code steps above"],
+      ["Customer needs a replacement remote","This SKU has no Wi-Fi/app alternative — a physical replacement remote is the only option (spare parts only, see note above)"],
+    ],
+    extra: `
+      <div class="section-label">Mode Selection</div>
+      <table style="width:100%; border-collapse:collapse; margin:6px 0; font-size:0.92em;">
+        <tr style="border-bottom:1px solid #ccc;"><td style="padding:2px 8px 2px 0;"><b>Mode</b></td><td style="padding:2px 0;"><b>Adjustable</b></td></tr>
+        <tr><td>1. White (default)</td><td>Brightness only</td></tr>
+        <tr><td>2. Color Change (Red/Amber/Green/Aqua/Blue/Purple/White)</td><td>Brightness &amp; Speed (2/4/6/8/10 sec delay)</td></tr>
+        <tr><td>3. Disco</td><td>Brightness only</td></tr>
+        <tr><td>4. White Gradual Change</td><td>Brightness &amp; Speed</td></tr>
+        <tr><td>5. Blue Gradual Change</td><td>Brightness &amp; Speed</td></tr>
+        <tr><td>6. Green Gradual Change</td><td>Brightness &amp; Speed</td></tr>
+        <tr><td>7. Red Gradual Change</td><td>Brightness &amp; Speed</td></tr>
+      </table>
+      <div class="order-note">1 transmitter (PCT-1) can operate an unlimited number of receivers (PCR-4/PCR-2D). 1 receiver can be controlled by a maximum of 4 transmitters. 5 brightness settings (100/80/60/40/20%).</div>
+      <div class="order-note"><b>Used by:</b> Evenglow (Niche), Evenglow (Nicheless), Evenglow Fiberglass, PCR-2D Driver, PCR-4 Driver.</div>
+      <div class="note-box">The Evenglow (Niche/Nicheless/Fiberglass) cards also document a newer 24V PCR-1Z/2Z driver generation appearing in current PAL sell sheets for the same products — if the driver on-site is a PCZ-2-paired board rather than the black-box PCR-4/PCR-2D shown here, use the PCZ-2 card instead.</div>
+    `
+  },
+  {
+    id: "pct3",
+    backTo: "cat-remotes",
+    title: "PCT-3 — Handheld Remote (42-PCT-3T)",
+    photo: "assets/image_171.jpg",
+    photoAlt: "PCT-3 Commander Touch handheld remote product photo",
+    tags: ["pct-3","commander touch","remote","handheld","42-pct-3t","commander series 2","pc-2d","2-wire","discontinued"],
+    note: "Discontinued — PAL no longer specs this remote for new installs, but it remains orderable under \"Remote Handsets, Spare Parts\" to replace an existing unit. Don't confuse discontinued with unavailable.",
+    facts: `<b>Part number:</b> 42-PCT-3T<br>
+            <b>What it is:</b> "Commander Touch"-branded remote — CH1 / CH2 on-off buttons plus a shared M (mode) +/- button. <b>No color wheel on this SKU</b> — unlike every other remote in this guide.<br>
+            <b>Pairs with:</b> the <b>2-wire</b> Commander Series 2 (PC-2D) driver — a different wiring generation from every other remote in this guide.<br>
+            <b>Status:</b> Discontinued (spare parts only).<br><br>
+            <div class="order-note">No pairing/cloning steps document on file — coverage gap, don't invent a button sequence.</div>`,
+    steps: [
+      "If the remote isn't responding, check the batteries first — factory-installed batteries are occasionally bad out of the box. This SKU has no color wheel/indicator light, so the wheel check on the Remotes reference card doesn't apply here.",
+      "No documented pairing-button sequence on file for this remote or the Commander Series 2 (PC-2D) driver it pairs with — don't invent one.",
+    ],
+    issues: [
+      ["Remote unresponsive","Check batteries first — factory-installed batteries are occasionally bad. No color wheel on this SKU to visually check"],
+      ["Customer needs a replacement remote","This SKU has no Wi-Fi/app alternative — a physical replacement remote is the only option (spare parts only, see note above)"],
+    ],
+    extra: `
+      <div class="order-note"><b>Used by:</b> Commander Series 2 (PC-2D).</div>
+    `
+  },
+  {
+    id: "pct5",
+    backTo: "cat-remotes",
+    title: "PCT-5 — Handheld Remote (42-PCT-5T)",
+    photo: "assets/image_172.jpg",
+    photoAlt: "PCT-5 Touch-5 handheld remote product photo",
+    tags: ["pct-5","touch-5","touch 5","pool touch 5","remote","handheld","42-pct-5t","color wheel","discontinued"],
+    note: "Discontinued — PAL no longer specs this remote for new installs, but it remains orderable under \"Remote Handsets, Spare Parts\" to replace an existing unit. Don't confuse discontinued with unavailable.",
+    facts: `<b>Part number:</b> 42-PCT-5T<br>
+            <b>What it is:</b> "Touch-5"-branded remote — CH1-CH4 individual on/off buttons plus a CH5 master color wheel, and Bright/Speed/Mode up-down controls.<br>
+            <b>Pairs with two different pieces of hardware, confirm which the customer has:</b> (1) a standard <b>PCR-4</b> driver fitted with the "Touch 5" Wi-Fi module (Part No. 42-PCTWF5) — see the PCR-4 card; or (2) a standalone <b>PCR-5CU / PAL Touch 5</b> 5-channel relay controller, factory-paired to this remote out of the box — see that card. Both use identical "Touch 5" branding and near-identical app UI, but are physically different equipment.<br>
+            <b>Status:</b> Discontinued (spare parts only).<br><br>
+            <div class="order-note">Matching Code: apply power to the receiver, momentarily press its Code Setting Button, then press Speed (SPEED) UP once within 2 seconds — output flashes white 5 times if successful. Clearing Code: hold Speed (SPEED) UP for 5 seconds — flashes 5 times if successful. 1 transmitter (PCT-5) operates unlimited receivers; 1 receiver accepts up to 4 transmitters (PCT-1 or PCT-5 interchangeably on a PCR-4). See the Remotes reference card for the color-wheel/battery first-line check.</div>`,
+    steps: [
+      "If the remote isn't responding, first confirm the CH5 master color wheel is lighting up (hard to see in direct sunlight — cover it with your hand). If it's not lit, check the batteries before assuming anything else — factory-installed batteries are occasionally bad out of the box.",
+      "Confirm which hardware this remote is actually paired to — a PCR-4 with a Touch-5 Wi-Fi module, or a standalone PCR-5CU relay controller (see facts above) — before troubleshooting further, since the two drive different equipment.",
+      "Matching Code (pairing): apply power to the receiver, momentarily press its Code Setting Button, then press Speed (SPEED) UP once within 2 seconds — output flashes white 5 times if successful.",
+      "Clearing Code (if paired to the wrong receiver): apply power, hold Speed (SPEED) UP for 5 seconds — flashes 5 times if successful. Reapply Matching Code afterward.",
+    ],
+    issues: [
+      ["Remote unresponsive, wheel not lit","Check batteries first — factory-installed batteries are occasionally bad. See the Remotes reference card"],
+      ["Remote unresponsive, wheel lit","Pairing issue, not hardware — walk the Matching/Clearing Code steps above"],
+      ["Customer needs a replacement remote","Confirm which underlying hardware (PCR-4+module vs. PCR-5CU) before ordering — see facts above. The PAL Lighting app's TOUCH-5 screen is a free alternative either way (see the Color Touch App card)"],
+    ],
+  },
+  {
+    id: "palsr",
+    backTo: "cat-remotes",
+    title: "Sonar SR — Handheld Remote (64-PAL-SR)",
+    photo: "assets/image_173.jpg",
+    photoAlt: "64-PAL-SR wand-style Sonar remote product photo",
+    tags: ["pal-sr","sonar","remote","wand","color wheel","64-pal-sr","astral","sonar retro bulb","discontinued"],
+    note: "Discontinued — PAL no longer specs this remote for new installs, but it remains orderable under \"Remote Handsets, Spare Parts\" to replace an existing unit. Don't confuse discontinued with unavailable. Replaced by the 64-PAL-SR2.",
+    facts: `<b>Part number:</b> 64-PAL-SR<br>
+            <b>What it is:</b> 8-channel Sonar handheld remote ("Remote Handset for PAL Sonar Lighting Systems") — color wheel, warm/cool white slider, brightness slider.<br>
+            <b>Pairs with:</b> Sonar Retro Bulb.<br>
+            <b>Status:</b> Discontinued (spare parts only) — replaced by the 64-PAL-SR2.<br><br>
+            <div class="order-note">Same pairing/cloning/unpairing procedure shape as the 64-PAL-SR2 (3x to link, hold to clone, 5x to unlink), but this older unit has a 5th cloning channel (Astral) and a visibly different physical form factor.</div>`,
+    steps: [
+      "If the remote isn't responding, first confirm the color wheel is lighting up (hard to see in direct sunlight — cover it with your hand). If it's not lit, check the batteries before assuming anything else — factory-installed batteries are occasionally bad out of the box.",
+      "<img class=\"zoomable\" src=\"assets/image_95.jpg\" alt=\"Sonar Retro Bulb remote — wand style, 8 channel buttons, 5 cloning channels including Astral\" style=\"width:100%;border-radius:8px;margin-top:8px;border:1px solid #2a3b5c;cursor:zoom-in;\"><span style=\"display:block;font-size:11px;color:#9fb0c5;margin-top:4px;font-style:italic;\">Sonar remote (wand style) — color wheel, warm/cool white slider, 8 channel buttons, 5 cloning channels incl. Astral (tap to zoom)</span>",
+      "Pairing: press the channel's power button 3x within 3 seconds of power-on.",
+      "Cloning to a competitor automation system: hold the channel's power button (1 = PAL, 2 = Jandy, 3 = Hayward, 4 = Pentair, 5 = Astral).",
+      "Unpairing: press the linked channel's button 5x.",
+    ],
+    issues: [
+      ["Remote unresponsive, wheel not lit","Check batteries first — factory-installed batteries are occasionally bad. See the Remotes reference card"],
+      ["Remote unresponsive, wheel lit","Pairing issue, not hardware — walk the pairing steps above"],
+      ["Customer needs a replacement remote","This SKU is spare-parts only and has no Wi-Fi/app alternative — the 64-PAL-SR2 is the current equivalent if a full remote swap is on the table"],
+    ],
+    extra: `
+      <div class="order-note"><b>Used by:</b> Sonar Retro Bulb.</div>
+      <div class="note-box">Canadian Retro (Sonar) is confirmed to use the same general "Sonar" remote (Hayward/Jandy/Pentair cloning per its sell sheet), but no button-sequence steps or a remote photo are documented for that specific product — don't assume it matches this diagram without checking the physical remote in hand.</div>
     `
   },
   {
     id: "colortouchapp",
     backTo: "cat-wifi",
     title: "Color Touch App",
-    tags: ["color touch","app","wifi","account","login","register","driver setup","zone","schedule","timer","music sync","firmware update","1zw","2zw","touch 5","touch 9"],
+    tags: ["color touch","app","wifi","account","login","register","driver setup","zone","schedule","timer","music sync","firmware update","1zw","2zw","touch 5","touch 9","pct-3d","42-pctwf5","pcr-5cu","pcr-9cu"],
     videos: [
       {title:"PAL APP Setup and Network", url:"https://youtu.be/Faomey2YMcY"},
       {title:"PAL Color Touch", url:"https://youtu.be/flc9xZYUdqw"},
       {title:"PAL APP Timing Operation", url:"https://youtu.be/84HXlESbDjs"},
     ],
     facts: `Full walkthrough for the PAL Color Touch app (Android + Apple) — account creation, connecting a driver to Wi-Fi, day-to-day operation, scheduling, and music sync. Network-level Wi-Fi module troubleshooting (status LEDs, 2.4GHz requirement, Reset button) is covered on the <b>Wi-Fi</b> card, not repeated here.<br>
-            <b>Driver types selectable in-app:</b> 1ZW Driver, 2ZW Driver, Touch 5 Driver, Touch 9 Driver (shown in-app as "Color Touch 1/2/5/9"). 1ZW and 2ZW match the single/dual-zone PCR-1ZW/2ZW drivers already documented on the <b>Drivers</b> card. <b>Touch 5 and Touch 9 are not yet documented anywhere in this guide</b> — source manuals for both exist on file but haven't been reviewed/built out yet; if a customer's app shows one of those two, don't assume PCR-1Z/2Z driver behavior carries over. A dedicated 42-PCT-5T "Touch-5" remote handset does exist and is pictured on the <b>Remotes</b> card — confirms Pool Touch 5 is a real, separate automation product, but the driver/automation logic itself is still not built out here.`,
+            <b>Driver types selectable in-app:</b> 1ZW Driver, 2ZW Driver, Touch 5 Driver, Touch 9 Driver (shown in-app as "Color Touch 1/2/5/9"). 1ZW and 2ZW match the single/dual-zone PCR-1ZW/2ZW drivers already documented on the <b>Drivers</b> card.<br><br>
+            <b>Touch 5 — partially resolved:</b> a dedicated PAL manual confirms "Touch 5" is a Wi-Fi module (Part No. 42-PCTWF5, physically labeled "TOUCH 5") that fits a standard <b>PCR-4</b> driver, exposed in-app as a "TOUCH-5" sub-app with 4 individually-nameable channel on/off buttons (Ch.1-4) plus a master CH5 color wheel/brightness/speed/mode control — this matches the PCT-5 handheld remote's own physical button layout. <b>Important — "Touch 5" branding is used on two different pieces of hardware:</b> this PCR-4 + Wi-Fi-module combo is a simpler retrofit of an existing lighting driver, genuinely different from the standalone <b>PCR-5CU ("PAL Touch 5") 5-channel relay/equipment controller</b> documented separately in this guide's Automation section, which controls pumps/valves/motors on 4 relay channels plus one RGB light zone. Both use the same "Touch 5" app icon and near-identical color-wheel UI — confirm which physical hardware the customer actually has (a modified PCR-4, or a dedicated PCR-5CU enclosure) before assuming which one applies.<br><br>
+            <b>Touch 9 and "PCT-3D" — still unconfirmed, not built out.</b> The app's own "PAL Lighting Apps" screen (in the Touch-5 module manual) shows five sub-app icons: TOUCH-1, PCT-3D, PCT-3, TOUCH-9, TOUCH-5. TOUCH-1/TOUCH-5 are now explained above; PCT-3 likely corresponds to the existing <b>PCT-3</b> Commander Touch remote card, but "PCT-3D" is a distinct icon with no confirmed product behind it yet — don't assume it's a typo for PCT-3. Touch 9 has no manual on file at all — likely the 9-channel counterpart to the PCR-5CU relay controller (a "PCR-9CU" is referenced by name on the PCR-2-VCU card as a compatible driver), but this is not confirmed. Per the standing rule, none of this open territory is built into decision logic here — flagged only.`,
     extra: `
       <div class="section-label">Creating a New Login</div>
       <div class="order-note">New Account Setup: select Register → enter homeowner's email → select Get (sends a verification code) → enter the verification code → Next → select Country → set a password → Done → agree to terms → Register.</div>
@@ -2177,7 +2424,7 @@ const DATA = [
       <img class="zoomable" src="assets/image_163.jpg" alt="Color Touch App updating the app and driver firmware screens" style="width:100%;border-radius:8px;margin-top:8px;border:1px solid #2a3b5c;cursor:zoom-in;"><span style="display:block;font-size:11px;color:#9fb0c5;margin-top:4px;font-style:italic;">Selecting a driver and updating its firmware (e.g. MCU module update to add music-rhythm function) if prompted (tap to zoom)</span>
 
       <div class="section-label">Setting Up a New Driver</div>
-      <div class="note-box">This screen is also where the Touch 5 / Touch 9 driver types surface — see the coverage-gap flag in Facts above. Only 1ZW/2ZW are documented elsewhere in this guide.</div>
+      <div class="note-box">This screen is also where the Touch 5 / Touch 9 driver types surface — see the Facts above for what's now confirmed about Touch 5 (a PCR-4 + Wi-Fi-module retrofit, distinct from the standalone PCR-5CU relay controller) and what's still unconfirmed (Touch 9, "PCT-3D").</div>
       <img class="zoomable" src="assets/image_164.jpg" alt="Color Touch App selecting driver type — 1ZW, 2ZW, Touch 5, Touch 9" style="width:100%;border-radius:8px;margin-top:8px;border:1px solid #2a3b5c;cursor:zoom-in;"><span style="display:block;font-size:11px;color:#9fb0c5;margin-top:4px;font-style:italic;">Driver type selection: Color Touch 1 = 1ZW, Color Touch 2 = 2ZW, Color Touch 5 = Touch 5, Color Touch 9 = Touch 9 (tap to zoom)</span>
 
       <div class="section-label">Operating the App</div>
@@ -2272,7 +2519,7 @@ const DATA = [
       ["Uneven water effect across multiple spheres","Confirm the plumbing layout matches the spheres' spacing — equal-distance spheres should use looped plumbing with one shared ball valve; spheres at different distances need individual flow control valves per sphere plus a three-way valve, not a shared loop"],
       ["Sphere popped off / won't seat, or damage at first startup","Confirm the pump's automatic self-priming was disengaged before startup — the manual explicitly warns self-priming can cause personal injury or damage to the WaterSphere. Also confirm the O-ring was in place in the collar and the sphere was fully twisted to lock via the bayonet fitting, not just set on top."],
     ],
-    note: "This is a 24V product and requires a compatible 24V transformer (64-PCR Series Drivers) — same driver family as the Bubbler underneath it, see <b>Drivers</b> card for DIP-switch/cloning setup (not duplicated here). No bonding terminal is required on the forming shell since the fixture is all-plastic construction and complies with NEC article 680.",
+    note: "This is a 24V product and requires a compatible 24V transformer (64-PCR Series Drivers) — same driver platform as the Bubbler underneath it, see <b>Drivers</b> card for DIP-switch/cloning setup (not duplicated here). No bonding terminal is required on the forming shell since the fixture is all-plastic construction and complies with NEC article 680.",
     extra: `
       <div class="note-box"><b>SKU / kit-contents flag, not resolved:</b> three different sources disagree on WaterSphere part numbers and what's actually in the box. The install manual's own cover page lists <b>64-EGBSP-24</b> / <b>64-EGBSP-32</b> ("with Concrete Mounting Bracket"), with no cord-length variants. The current sell sheet instead lists <b>64-EGBSP-CGS-080-24/-32</b> and <b>64-EGBSP-CGS-150-24/-32</b>, described as "PAL Water Sphere <b>with light</b> and cable and Plug" — implying the Bubbler light and cable are bundled in. But the install manual's own Package Contents (Sphere + Adapter + 6 screws only) and Replacement Parts section both explicitly list "PAL Evenglow Bubbler — Sold Separately" with its own part number (64-EGB-CGS-XXX). Confirm against the actual packing slip/order what's included before a job — don't assume a customer's Sphere order included a Bubbler light, or vice versa.</div>
       <div class="note-box"><b>Cross-reference to the LED Bubbler card:</b> the Bubbler's own install manual repeats this manual's IMPORTANT NOTICE paragraph verbatim, including a sun-shelf warning that's specifically about the WaterSphere — confirmed here as the original source of that text, so treat it as reused boilerplate in the Bubbler manual, not a Bubbler-specific instruction. The Bubbler manual's "Optional lens (only available for 600mm and 800mm Spheres)" callout, on the other hand, is accurate and intentional, not an error — this manual's own Replacement Parts diagram shows the same optional Lens Adapter as part of the Sphere-to-Bubbler stack, since the two products share physical hardware.</div>
@@ -2308,7 +2555,7 @@ const DATA = [
             <b>Gunite/Concrete:</b> 64-EGB-CGS-80 (80ft cable), 64-EGB-CGS-150 (150ft cable). Lens must sit no less than 1" (25mm) below normal water level.<br>
             <b>Vinyl Liner/Fiberglass:</b> 64-EGB-FVS-80, 64-EGB-FVS-150 (80/150ft supply cable). New-hole install uses a 6-1/2" holesaw. Lens must sit no less than <b>18" (457mm)</b> below normal water level — a materially deeper minimum than the Concrete version's 1" figure. Don't carry one product's depth minimum over to the other.<br>
             Two spout lens sizes included (¾" and 1.2") to adjust plume height/shape. Deeper lens placement underwater = less lighting effect visible above water. Plume height chart below is reference only — actual height varies with plumbing and water conditions.<br>
-            Driver: 64-PCR-1Z/2Z (single & dual zone), 24V DC, Wi-Fi and RF — same driver family, remote, and DIP-switch cloning table already documented on the <b>Drivers</b> card; not duplicated here.`,
+            Driver: 64-PCR-1Z/2Z (single & dual zone), 24V DC, Wi-Fi and RF — same driver platform, remote, and DIP-switch cloning table already documented on the <b>Drivers</b> card; not duplicated here.`,
     issuesNote: "This product has its own official troubleshooting section in the manual — work it in order before escalating.",
     issues: [
       ["Remote is unresponsive — bubbler not reacting to commands","Check for red light in center of color wheel when pressing buttons (fresh batteries if not). Then resync: verify DIP switches 1, 2, 4 are UP, press Code Setting (LED 3 blinks once), tap Z1 on remote 3x — LED blinks 3x if successful. (This manual's own separate 'Matching Code' reference elsewhere describes a single press of Z1 within 5 seconds instead of 3 taps — see voltage/procedure flags below, same open question as the Drivers card's pairing-procedure sign-off.)"],
@@ -2376,7 +2623,7 @@ const DATA = [
     tags: ["evenglow flex","flex","waterfall strip","retrofit","nfsb","waterfall light strip"],
     facts: `Flexible multi-color LED strip designed to retrofit into any brand of existing waterfall (waterfall itself sold separately) — not the same product as WaterBlade, which is the spillway unit itself. UL Listed to UL 676 for pool zone use, low voltage 12V DC.<br>
             Models 64-PAL-NFSB-RGB-12-R-1 through -8, in 1' increments from 1' to 8' (300mm–2400mm), power ranging 4.5W to 36.0W. All lights ship with 80' of cable.<br>
-            Receiver/Driver: 64-PCR-1Z/2Z, single & dual zone, 24V DC, Wi-Fi and RF, IP65, UL Listed & AS/NZ Class 2 LED Driver — same driver family as other PAL Color Touch products.<br>
+            Receiver/Driver: 64-PCR-1Z/2Z, single & dual zone, 24V DC, Wi-Fi and RF, IP65, UL Listed & AS/NZ Class 2 LED Driver — same driver platform as other PAL Color Touch products.<br>
             Control: Color Touch technology with OEM cloning via Hayward, Jandy & Pentair Automation systems; remote handset or app control; color wheel; memory recall; auto sync.`,
     issues: [
       ["Light not turning on","Same head/cable/driver framework as other PAL lights — see Probability-Based Diagnostic Framework and Drivers cards"],
@@ -2476,7 +2723,7 @@ const DATA = [
     tags: ["poolside tech","the attendant","automation","dmx","dmx512","bus port","address mapping","zone","integration","dip switch","pcr-2dmx","pcr-3dmx","third party"],
     facts: `<b>What it is:</b> "The Attendant" is a pool automation/control platform made by Poolside Tech LLC (poolside.support) — a separate company from PAL. It controls PAL lighting over native <b>DMX512</b> addressing, not the Pentair/Hayward/Jandy protocol-cloning method used elsewhere in this guide — see the <b>Competitors</b> card for that separate path.<br><br>
             <b>Scope of support — hardware vs. software:</b> on any DMX call, PAL support covers the <b>hardware</b> side only — confirming the lights, cables, and driver(s) are wired correctly and DIP-addressed to spec. Programming the DMX controller or automation platform itself (channel mapping, scenes, zones inside that platform's own software) is the home automation integrator's responsibility, not PAL's. If the driver's hardware checks out (CPU LED responding to DMX packets, starting-channel dipswitches set correctly) but lights still don't behave as expected in the automation software, that's a controller-side programming issue — hand off to the customer's automation installer rather than continuing to troubleshoot the platform's configuration.<br><br>
-            <b>Driver compatibility — confirm this first on any Attendant lighting call:</b> only PAL driver models <b>PCR-2DMX</b> and <b>PCR-3DMX</b> communicate with The Attendant. Any other PAL driver (PCR-1Z/2Z family, PCR-3D, PCR-2D, etc.) is not DMX-capable and must instead be cloned into Pentair/Hayward/Jandy protocol mode per the Competitors card — it cannot be wired to The Attendant directly.<br><br>
+            <b>Driver compatibility — confirm this first on any Attendant lighting call:</b> only PAL driver models <b>PCR-2DMX</b> and <b>PCR-3DMX</b> communicate with The Attendant. Any other PAL driver (PCR-1Z/2Z platform, PCR-3D, PCR-2D, etc.) is not DMX-capable and must instead be cloned into Pentair/Hayward/Jandy protocol mode per the Competitors card — it cannot be wired to The Attendant directly.<br><br>
             <b>Wiring requirement:</b> PAL drivers must be wired directly from the power supply, never routed through a relay — The Attendant needs constant power to the driver to maintain DMX communication.<br><br>
             <b>Cross-reference to driver cards in this guide:</b> the "PCR-3DMX (Old Style)" driver documented below (8 zones, DIP switches 9-1) appears to be the same physical product as this guide's <b>PCR-3DMX-8Z</b> card. The "64-PCR-3DMX V3" board pictured below — with its Module Config / Board Function switch banks (Cloner / Module / DMX / Strip modes) — also matches the newer V3 "High Powered" board flagged as not-yet-built-out on the <b>PCR-3D-120/500</b> and <b>PCR-3DMX-8Z</b> cards, pending review of its 4-mode dip-switch architecture. This article documents that board's DMX mode specifically from a working third-party integration — useful evidence for that pending review, but not merged into those cards' content here.`,
     steps: [
@@ -2553,6 +2800,53 @@ const DATA = [
       <img class="zoomable" src="assets/image_129.jpg" alt="Multiple PAL drivers wired in series to The Attendant, DMX Line Terminate jumper diagram" style="width:100%;border-radius:8px;margin-top:8px;border:1px solid #2a3b5c;cursor:zoom-in;">
       <span style="display:block;font-size:11px;color:#9fb0c5;margin-top:4px;font-style:italic;">3 drivers chained via Thru→In, terminator jumper kept only on the last driver in the chain, final driver's DMX In wired to the Attendant's BUS port (tap to zoom)</span>
     `
+  },
+  {
+    id: "pcr5cu",
+    backTo: "cat-automation",
+    title: "PCR-5CU / PAL Touch 5 — 5-Channel Relay & Light Controller",
+    photo: "assets/image_192.jpg",
+    photoAlt: "PCR-5S / PAL Touch 5 enclosure, 10 conduit knockouts",
+    tags: ["pcr-5cu","pcr-5s","pcr-5sw","touch 5","pal touch","relay controller","2 speed motor","pump control","valve control","automation","pool touch"],
+    facts: `<b>Naming — three names found for what appears to be one product, not resolved:</b> the source folder/SKU is labeled <b>42-PCR-5S</b> (and "5SW" for the Wi-Fi version), the install manual's own text calls the driver <b>PCR-5CU</b> throughout, and the document is titled "TOUCH 5 INSTRUCTIONS." Techs may hear any of these names from a customer or on a work order — treat them as the same product until confirmed otherwise.<br><br>
+            <b>What it is:</b> a genuinely different product from every other card in this guide — not just a lighting driver. It's a <b>5-channel controller</b>: 3 general-purpose relay outputs (CH1-3, for pumps/equipment), 1 relay output wired for a 120V or 240V <b>2-speed motor</b> (CH4/CH4A), and 1 standard PAL RGB 4-wire light output (CH5) — all controlled from a single enclosure via the PCT-5 handheld remote and/or the PAL Lighting app's "TOUCH-5" screen (see the Color Touch App card). Approved to UL1563 &amp; CSA C22.2 No.218-1-13 (pending, per this manual).<br>
+            <b>Recurring 12V/24V artifact confirmed again:</b> this manual's own title says "...FOR 12V D/C PAL 4 WIRE LED LIGHTS" but its Important Information section says "specifically designed to supply 24V DC" — same copy-paste pattern seen across many other PAL manuals; 24V DC is the one stated inside Important Information, treat that as more likely correct but confirm on site.<br>
+            <b>Compatible with the PCR-2-VCU / PCR-5V valve control accessory</b> (see that card) for adding motorized pool valve control to the same Touch 5 ecosystem.`,
+    steps: [
+      "Mount on a flat surface (weatherproof, IP65) using the enclosure's mounting legs with fixtures appropriate to the substrate — same 5 ft horizontal / 1 ft above max water level clearance used across PAL's other outdoor drivers.",
+      "Connect 100-120V mains power via the right-front conduit entry. 10 total conduit knockouts on the enclosure — remove only what's needed, leave the rest capped (drill or flat-blade-screwdriver-and-hammer to open).",
+      "CH1, CH2, CH3: simple relay outputs — each has its own relay (R1/R2/R3), wired FROM SUPPLY through the relay TO the channel's load. Suitable for general pool equipment, not motor-speed-specific.",
+      "CH4/CH4A: wired specifically for a 2-speed pump/motor — CH4 relay (R4) switches Low Speed, a second relay (R4A) switches High Speed, wired to the motor's COM/Low/High terminals. Separate wiring diagrams exist for 120V vs. 240V 2-speed motors — confirm which before wiring.",
+      "CH5: standard PAL 4-wire RGB light output, factory-paired to the included PCT-5 Touch 5 transmitter — fit its 2 batteries. See the PCT-5 card for remote button layout and the Matching/Clearing Code procedure.",
+      "Optional Wi-Fi control: install the PAL Lighting app, connect to the module's own network, then select the \"TOUCH-5\" sub-app. CH5's app screen mirrors the PCT-5 remote layout exactly (color wheel, Bright/Speed/Mode up-down, 4 channel on/off buttons) — see the Color Touch App card for the full screen-by-screen app walkthrough.",
+    ],
+    issues: [
+      ["CH1-3 equipment not switching","These are plain relay outputs — confirm the relay itself and load wiring before assuming a controller fault. Not lighting-related, so LED Light Diagnostics doesn't apply here"],
+      ["2-speed motor only runs on one speed or not at all","Confirm CH4 (Low) and CH4A (High) relay wiring matches the correct 120V or 240V motor diagram — the two are not interchangeable"],
+      ["CH5 light not responding","Same driver-family logic as any other PAL 4-wire light — see LED Light Diagnostics and the Probability-Based Diagnostic Framework"],
+      ["Customer or work order references \"PCR-5S\" and you can't find it","Same product as this card — see the naming flag above"],
+    ],
+  },
+  {
+    id: "pcr2vcu",
+    backTo: "cat-automation",
+    title: "PCR-2-VCU / PCR-5V — Motorised Valve Control Unit",
+    photo: "assets/image_193.jpg",
+    photoAlt: "PCR-2-VCU valve control unit, two angles, Pool Touch branding, nameplate reads PCR-5V",
+    tags: ["pcr-2-vcu","pcr-vca","pcr-5v","valve control","motorised valve","pool touch","automation","pcr-5cu","pcr-9cu"],
+    facts: `<b>Naming — three names for the same product, not resolved:</b> the source folder is labeled <b>PCR-2-VCU</b>, the install manual's own text calls it <b>PCR-VCA</b> throughout, and the physical nameplate pictured on the unit itself reads <b>PCR-5V</b>. All three clearly refer to the same physical accessory (same manual, same photos) — flagged rather than silently picking one name. Branded "Pool Touch" (a fingerprint logo, distinct branding from "PAL Lighting").<br><br>
+            <b>What it is:</b> an accessory relay box that adds motorized pool valve control to the Touch 5/9 ecosystem — <b>not a lighting product</b>. Controls up to 3 x 24V motorized valves simultaneously, wired to and powered from a <b>PCR-5CU</b> or <b>PCR-9CU</b> ("PCR-5C/9C") remote control unit — see the <b>PCR-5CU / PAL Touch 5</b> card for the light/relay controller this plugs into. UL Approved (E500635) as a Pool Valve Controller. IP65 (nameplate) / IP55 (manual text) — another minor inconsistency within the same document, not resolved.<br>
+            <b>PCR-9CU is referenced but not documented anywhere else in this guide</b> — presumed to be a 9-channel counterpart to the PCR-5CU, unconfirmed.`,
+    steps: [
+      "Mount on a flat surface using the 4x mounting feet and stainless screw set supplied (star plugs included for concrete/block walls) — same 5 ft horizontal / 1 ft above max water level clearance used across PAL's other outdoor equipment.",
+      "Connect 100-120V mains power via the top-right conduit entry per NEC code requirements.",
+      "Wire the low-voltage control connection from the PCR-5CU/9CU driver to this unit's own \"To PCR-5C/9C Driver\" terminal — this unit is powered and commanded from that controller, not independently.",
+      "Wire each of the 3 motorized valve connections (NC/NO/COM per valve, White common wire) to the 3 output terminals at the bottom of the enclosure.",
+    ],
+    issues: [
+      ["Valve not responding","Confirm this unit has power and its low-voltage link to the PCR-5CU/9CU driver is intact before assuming a valve or wiring fault"],
+      ["Customer or work order references \"PCR-VCA\" or \"PCR-5V\"","Same product as this card — see the naming flag above"],
+    ],
   },
   {
     id: "cat-process",
@@ -2810,7 +3104,7 @@ function searchDATA(q){
   return scored.map(s => s.item);
 }
 
-const HIDDEN_BY_DEFAULT = new Set(['evenglow','evenglownicheless','treomax','treoretro','treomini','aqualumin','sonarretro','evenglowfiberglass','treomicro','canadianretro','quickshipstrip','perimeterstripkit','customstrip','customstrip-nfwb8','customstrip-nfls8','customstrip-nfms2','customstrip-nfus2','customstrip-nflt8','customstrip-nfmt8','customstrip-nfut2','customstrip-plo2f','customstrip-plo2w','drivers','pcr1z65','pcr1zw65','pcr1zsm65','pcr2z65','pcr2zw65','pcr2dmx','pcr3dref','pcr3d120','pcr3dw120','pcr3d500','pcr3dw500','pcr3dmx8z','pcr2d','pcr300','pcr4','commander2','ledoptics2','pc2t','wifi','remotes','colortouchapp','waterblade','watersphere','ledbubbler','evenglowflex','pathwaylight','bollardlight','gardenuplight','attendant','cat-lights','cat-water','cat-wifi','cat-landscape','cat-automation','framework','led-diagnostics','morevideos','quickship','escalation']);
+const HIDDEN_BY_DEFAULT = new Set(['evenglow','evenglownicheless','treomax','treoretro','treomini','aqualumin','sonarretro','evenglowfiberglass','treomicro','canadianretro','quickshipstrip','perimeterstripkit','customstrip','customstrip-nfwb8','customstrip-nfls8','customstrip-nfms2','customstrip-nfus2','customstrip-nflt8','customstrip-nfmt8','customstrip-nfut2','customstrip-plo2f','customstrip-plo2w','drivers','pcr1z65','pcr1zw65','pcr1zsm65','pcr2z65','pcr2zw65','pcr2dmx','pcr3dref','pcr3d120','pcr3dw120','pcr3d500','pcr3dw500','pcr3dmx8z','pcr2d','pcr300','pcr4','commander2','ledoptics2','pc2t','wifi','remotes','pcz2','palsr2','pct1','pct3','pct5','palsr','colortouchapp','waterblade','watersphere','ledbubbler','evenglowflex','pathwaylight','bollardlight','gardenuplight','attendant','pcr5cu','pcr2vcu','cat-lights','cat-water','cat-wifi','cat-landscape','cat-automation','framework','led-diagnostics','morevideos','quickship','escalation']);
 
 function render(){
   const q = searchEl.value.trim();

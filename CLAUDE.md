@@ -143,9 +143,8 @@ each edit you want reflected in the preview.
   the official PCR-1Z/2Z/1Z-SM manual.
 
 ## Open content gaps (known, not yet built)
-- **PCR-5S** (5-channel relay controller) — entirely undocumented in the guide. The only
-  remaining known gap — the Lights refresh/new-card batch (Evenglow through Canadian
-  Retro) is now complete, see "Image refresh / new-card batch" below.
+- **PCR-5S / PCR-5CU built (2026-07-10)** — see "Automation equipment batch" below. No
+  longer an open gap.
 
 Note: the LED Bubbler (Niche Bubbler) troubleshooting card now exists in `DATA`
 (id: `ledbubbler`) — no longer an open gap, and as of the Water Features refresh batch
@@ -1468,6 +1467,266 @@ unless noted:
 All five changes verified in preview: DATA parses clean (68 entries, no dupes), each
 edited card renders the new content, no console errors.
 
+## Remotes promoted to front page, restructured SKU-first (2026-07-10)
+Third category to get the Custom-Strip-style hub+SKU-card treatment (after Custom Strip
+and Drivers), and the first one Cory asked to put at the very top of the front page
+rather than in its existing array position.
+
+- **`cat-remotes` inserted as the very first item in `DATA`** — new top-level hub, no
+  `backTo`, not in `HIDDEN_BY_DEFAULT`. Home page order is now: Remotes, Troubleshooting,
+  Cloning to Competitor Systems, Products, Strip Lighting, Drivers & Controllers, Process.
+  Contains a Remote Comparison table (all 6 SKUs: part number, what it is, pairs-with
+  driver, active/discontinued status) and a flat "Select a Part Number" list, plus a
+  "Shared Reference" section linking the reference card (below) and the existing
+  `colortouchapp` card.
+- **The old combined `remotes` card was split**, same pattern as `drivers`/`pcr3dref`:
+  kept its id, retitled to "Remotes — General Troubleshooting & Pairing Reference," and
+  trimmed to hold only genuinely cross-SKU content — the three new notes from Cory (below)
+  plus the existing "discontinued vs. spare-parts-only" framing. The six per-SKU sections
+  that used to live inside its `extra` (PCZ-2, SR2, PCT-1, PCT-3, PCT-5, SR) each became
+  their own leaf card — `pcz2`, `palsr2`, `pct1`, `pct3`, `pct5`, `palsr` — carrying
+  forward their existing facts/photos/pairing steps/"Used by" lists unchanged, now in the
+  standard photo → facts → steps → issues card shape instead of a `div`-per-section block.
+  Each leaf card cross-references the reference card for the three new checks rather than
+  repeating them six times.
+- **`cat-wifi` retitled** from "WiFi, Remotes, Color Touch App" to "WiFi, Color Touch
+  App" and its Remotes link removed, since Remotes no longer nests under it — same
+  treatment `cat-strip`/`cat-drivers` got when they were promoted out of `products`.
+  Updated the matching link text on the `products` hub too.
+- **New remote-troubleshooting content from Cory, added to the `remotes` reference card:**
+  1. **Color Wheel / Indicator Check** — first-line diagnostic for any "remote isn't
+     working" call: confirm the color wheel (or the white dot in its center, on the
+     remotes that have one) is actually lit — hard to see in direct sunlight, covering it
+     with a hand helps. If it's not lit, check batteries before assuming anything else —
+     the batteries PAL installs at the factory are occasionally bad out of the box.
+     Deliberately didn't attribute "white dot" to a specific SKU since nothing on file
+     confirms which remotes have the plain-wheel vs. white-dot-center variant — phrased
+     generically per Cory's own wording rather than guessing. Also didn't apply this
+     wheel-specific step to `pct3` (Commander Touch), whose own existing facts describe
+     CH1/CH2 + mode buttons only, no color wheel — flagged explicitly on that card instead
+     of overclaiming a wheel exists there.
+  2. **Pairing** — every remote/Wi-Fi module should already come paired from the factory;
+     don't assume a remote needs re-pairing just because a customer reports it "isn't
+     working" — work the Color Wheel/battery check first. If pairing genuinely is needed,
+     pull that remote's own card rather than guessing a button sequence. For Wi-Fi drivers,
+     the one thing a customer actually has to do themselves is connect to their home Wi-Fi
+     network.
+  3. **Recommend the Color Touch App** — for a customer needing a new/replacement remote
+     on a Wi-Fi-equipped driver, the app (free download, no remote hardware needed) is
+     usually the faster fix; a physical replacement remote is still sellable at List price
+     if they want one specifically. Added as a `note-box` on the reference card, and
+     referenced from each leaf card's own "customer needs a replacement remote" issue row
+     — except `palsr2`/`pct1`/`pct3`/`palsr`, whose paired products/drivers don't have a
+     Color Touch App path, so those cards say so explicitly instead of pointing to the app.
+- **Not resolved, just observed:** the existing `ledbubbler` card's own remote
+  troubleshooting text refers to a "red light in center of color wheel," while Cory's new
+  note says "white dot" — likely genuine variation across different remotes' indicator
+  colors (not a contradiction to fix), but nothing on file maps which SKU shows which
+  color. Left both as-is rather than forcing one wording onto the other.
+- Updated `productSelect` (6 new SKU options + relabeled reference-card option, in the
+  same order as the hub's part-number list) and `HIDDEN_BY_DEFAULT` (added `pcz2`,
+  `palsr2`, `pct1`, `pct3`, `pct5`, `palsr`; `remotes` was already hidden).
+- Verified in preview: DATA parses (75 entries, no dupes), `cat-remotes` is the first
+  `DATA` entry and renders first on the home page, all 8 remote-related cards (hub +
+  reference + 6 SKUs) resolve with working back-links, all images 200 OK, all 58
+  `productSelect` entries resolve, `cat-wifi` still renders correctly with just WiFi/Color
+  Touch App, no console errors.
+
+## Automation / Drivers / Remotes / WiFi document review batch (2026-07-10)
+Cory added several new source files across `source-manuals/Automation/`,
+`source-manuals/Drivers and Controllers/`, and `source-manuals/WiFi, Color Touch App,
+Remotes/` and asked for a full re-review. All 9 new PDFs plus 6 new product photos were
+read in full. Built out real content where the new material fills existing gaps or
+documents genuinely new equipment; flagged rather than resolved several naming
+inconsistencies (a now-familiar pattern in PAL's own source material).
+
+**Gap-fills on existing cards:**
+- **`pct1`** — was flagged "no dedicated pairing-steps document on file." A real PCT-1
+  manual now confirms the full Matching/Clearing Code procedure (Speed+ within 5 sec /
+  hold 3 sec), the 7-mode list (White/Color Change/Disco/4× Gradual Change), memory
+  feature, and the 1:unlimited / 4:1 transmitter:receiver relationship — same shape as
+  PCZ-2's, different button names. Also newly confirmed: PCT-1's operational LED is
+  **red**, not the white dot some other remotes show — a real, product-specific
+  difference, not a contradiction to resolve (see the existing `ledbubbler` "red light"
+  vs. Cory's "white dot" note from the Remotes restructuring session).
+- **`pcr2d`** — was a 2-page-sell-sheet-only card, no install/DIP content. A dedicated
+  Bellson Electric (Australia) install/maintenance manual adds real mounting steps, the
+  E/A/N + B/G/W/R terminal layout, a max-lights-by-wattage table, and a 2-switch Cloning
+  DIP table (no Astral option — simpler than the PCR-1Z/2Z family's tables). Two new
+  internal inconsistencies found in this one manual and flagged, not resolved: (1) it
+  calls the top wattage tier "55 watt" where this card's existing SKU table (from the
+  current US sell sheet) says "60W"; (2) its own wiring diagram labels the output "12V
+  20Watt DC" while its spec box says "16 WATTS" — yet another instance of PAL source
+  material disagreeing with itself. **Strengthened evidence for the pending 12V/24V
+  sign-off question** (see below): this manual is internally consistent at 12V DC
+  throughout, independent corroboration alongside the PCR-4 manual (also Bellson,
+  also clean 12V DC) — see Pending Sign-off for the updated framing.
+- **`pcr4`** — was a photo-only stub ("no install/spec manual has been provided"). Now
+  fully built out: mounting/wiring steps, 8-output capacity (up to 8 LAU-4C lamps),
+  the same 2-switch Cloning DIP table as PCR-2D, the dry-contact remote on/off connector
+  (Part No. 42-PCTWFA kit) separate from cloning and separate from Wi-Fi, and a new flag
+  that two different PAL documents show two different Wi-Fi module part numbers fitted
+  to this same driver (42-PCTWF1 in one guide, 42-PCTWF5/"Touch 5" in the dedicated PCR-4
+  manual) — not resolved, likely different hardware revisions.
+- **`pct5`** — was flagged "no pairing/cloning steps document on file." The Touch-5
+  Wi-Fi module manual documents PCT-5's real Matching/Clearing Code procedure (different
+  button timing than PCT-1's: Code Setting Button + Speed-UP within 2 sec / hold 5 sec).
+  Also added a load-bearing clarification: PCT-5 pairs to **two different pieces of
+  hardware** that both use "Touch 5" branding — a PCR-4 fitted with the Touch-5 Wi-Fi
+  module (a lighting-only retrofit), or a standalone PCR-5CU relay controller (see new
+  card below, factory-paired to a PCT-5 out of the box). A tech needs to confirm which
+  one a customer actually has before troubleshooting further.
+- **`colortouchapp`** — the Touch 5 / Touch 9 coverage-gap flag is now **partially
+  resolved for Touch 5**: a dedicated manual confirms it's a Wi-Fi module (42-PCTWF5)
+  that retrofits a PCR-4 into a 4-zone-plus-master "TOUCH-5" app profile, matching the
+  PCT-5 remote's own layout. Also surfaced a genuinely confusing point worth remembering:
+  the same "Touch 5" app icon/branding is shared between that PCR-4 retrofit and the
+  entirely separate standalone PCR-5CU 5-channel relay/equipment controller (below) —
+  same UI, different underlying hardware. Touch 9 is still completely undocumented.
+  New, still-unconfirmed finding: the app's own "PAL Lighting Apps" screen shows a
+  fifth icon, **"PCT-3D"**, alongside TOUCH-1/PCT-3/TOUCH-9/TOUCH-5 — unclear whether
+  this is a variant of the existing `pct3` Commander Touch remote or a separate product;
+  flagged only, not built.
+- **`wifi`** — flagged that 64-WIFI (the only module documented on this card) is not the
+  only Wi-Fi module PAL makes. New product photos confirm four more part numbers:
+  64-PAL-SW ("Sonar Wi-Fi," DMX512 input, Alexa/Google Assistant compatible — used with
+  the Sonar remote family), 64-PCTWF03, 42-PCTWF00, and 42-PCTWF5 ("Touch 5," see above).
+  Only product photos exist for the first three — no install manuals yet to confirm
+  functional differences. This is a real candidate for a future SKU-first split (same
+  pattern as Drivers/Remotes) once manuals exist; not attempted this session since there's
+  nothing beyond photos to build from for 3 of the 4.
+
+**Two new cards built, both under `cat-automation`** (not promoted to the front page —
+`cat-automation` itself stays nested under `products` for now):
+- **`pcr5cu`** ("PCR-5CU / PAL Touch 5 — 5-Channel Relay & Light Controller")** — real
+  find: this is genuinely not a lighting driver, it's a 5-channel equipment controller.
+  3 general-purpose relay channels (CH1-3, for pumps/equipment), 1 channel wired
+  specifically for a 120V or 240V 2-speed motor (CH4/CH4A, two relays for low/high
+  speed), and 1 standard PAL RGB light channel (CH5) — all from one enclosure,
+  controlled via PCT-5 remote and/or the app's TOUCH-5 screen. **Naming flag:** three
+  different names found for what appears to be one product across one set of source
+  files — folder/SKU "42-PCR-5S" (and "5SW" for Wi-Fi), the manual's own body text calls
+  it "PCR-5CU," and the document title says "TOUCH 5 INSTRUCTIONS." Also the (by now
+  expected) 12V/24V copy-paste artifact: title says 12V D/C, Important Information says
+  24V DC. Built from a real install manual (mounting, wiring diagrams for all 5
+  channels) — this is equipment documentation, not ambiguous diagnostic logic, so it
+  didn't need the "goes to Jason first" gate; that gate is for contested/ambiguous
+  troubleshooting branches, not for onboarding a new product with a clear manual (same
+  bar as every other card in this guide). Hero photo: the clean product PNG Cory
+  provided (`42-PCR-5S.png`), composited onto white per the standard hero-photo
+  treatment, saved as `assets/image_192.jpg`.
+- **`pcr2vcu`** ("PCR-2-VCU / PCR-5V — Motorised Valve Control Unit")** — an accessory
+  relay box, not a lighting product, that adds motorized 24V pool valve control (up to 3
+  valves) to the same Touch 5/9 ecosystem, wired to and powered from a PCR-5CU or
+  "PCR-9CU" driver. **Naming flag, worse than PCR-5CU's:** three different names for the
+  same physical unit — source folder "PCR-2-VCU," the manual's own body text calls it
+  "PCR-VCA," and the actual nameplate pictured on the unit reads "PCR-5V." Also a minor
+  IP65 (nameplate) vs. IP55 (manual text) mismatch. Branded "Pool Touch" (fingerprint
+  logo) — visibly different branding from "PAL Lighting," worth knowing if a customer
+  mentions the name. **PCR-9CU is referenced here and on the `pcr5cu` card as a
+  compatible driver but is not documented anywhere in this guide** — presumed to be a
+  9-channel counterpart, unconfirmed, no manual on file. Hero photo: `valvecontrol-2.png`
+  (two-angle product shot), composited onto white as `assets/image_193.jpg`.
+- `cat-automation`'s own intro facts updated to mention PAL's own Pool Touch
+  equipment-automation hardware alongside the existing third-party (Poolside Tech)
+  integration framing, and both new cards added to its "Select a Product" list,
+  `productSelect`, and `HIDDEN_BY_DEFAULT`.
+
+**Not built, flagged as open questions for Cory/Jason:**
+1. Whether the "Pool Touch" equipment-automation product line (valve/pump/motor control,
+   not lighting) belongs in a guide scoped to "PAL Lighting Tech Support" — built it in
+   this pass since the precedent (`attendant`) already accepts automation-adjacent
+   content under `cat-automation`, but this is a bigger step in that direction (general
+   pool equipment, not just a lighting integration) and worth Cory's explicit sign-off
+   that it should stay.
+2. The PCR-5S/PCR-5CU and PCR-2-VCU/PCR-VCA/PCR-5V naming inconsistencies above — worth
+   asking Cory/PAL directly which name techs should actually use on a call, rather than
+   leaving three names live in the guide indefinitely.
+3. Touch 9 / PCR-9CU — still no manual on file anywhere. Presumed to be the 9-channel
+   counterpart to PCR-5CU/Touch 5, unconfirmed.
+4. "PCT-3D" app icon — unconfirmed relationship to the existing PCT-3 remote.
+5. Wi-Fi module SKU multiplicity (64-PAL-SW, 64-PCTWF03, 42-PCTWF00, 42-PCTWF1,
+   42-PCTWF5) — worth a dedicated SKU-first pass like Drivers/Remotes once install
+   manuals exist for the ones that currently only have product photos.
+
+Verified in preview: DATA parses (77 entries, no dupes), all 9 new/edited cards resolve
+with working back-links, both new hero images (192/193) load 200 OK, all 60
+`productSelect` entries resolve, no console errors.
+
+## Reference-card rename + clickable links, soft reset procedure (2026-07-10)
+Cory flagged two mechanical problems with the `drivers`/`pcr3dref` reference cards
+introduced during the SKU-first restructuring: (1) every mention of them across the 9
+SKU cards and the `cat-drivers` hub was plain bold text, not an actual link — even Cory
+couldn't jump to the card from a mention; (2) "Family Reference" was jargon coined this
+session, not a name PAL or the guide's own card titles actually use.
+- **All 53 prose mentions are now real links.** Added a small `.inline-link` CSS class
+  (teal, underlined, `cursor:pointer`) and wrapped every mention in a `<span
+  onclick="jumpToProduct(...)">` the same way `back-link`/`product-link` already drive
+  navigation elsewhere — tapping any mention now jumps straight to the card. HTML
+  attribute quoting uses single quotes + `&quot;` entities for the `jumpToProduct(...)`
+  argument specifically so the same replacement text drops safely into both
+  backtick-template fields and double-quoted JS string arrays (`steps`/`issues`) without
+  clashing with either's own quoting.
+- **Renamed away from "Family Reference" everywhere** (dropdown options, the
+  `cat-drivers` hub's part-number links, and all 53 inline mentions) — now reads
+  "PCR-1Z/2Z Cloning & Pairing Reference card" and "PCR-3D Mounting & Cloning Reference
+  card" respectively. The `cat-drivers` hub's own note box ("...lives on their own Family
+  Reference cards, linked below") was reworded to "their own reference cards" since it
+  refers to both cards collectively and can't carry a single link itself — the actual
+  links sit right below it on the two `product-link` divs, already fixed.
+- **Soft reset procedure added** to the `drivers` card's pairing steps, right after the
+  Matching Code / Clearing Code steps: holding both the Manual Operation button and the
+  Code Setting button together for ~10 seconds drains the capacitors immediately, instead
+  of powering off and waiting 15-30 minutes for them to discharge on their own before a
+  clean reset. New content — wasn't documented anywhere in the guide before.
+- Strip Lighting and the SR2 remote (`palsr2`) were explicitly out of scope for this pass
+  and were not touched.
+- Verified: DATA still parses (77 entries), all replacements land inside valid HTML/JS
+  (spot-checked both backtick-field and double-quoted-string contexts).
+
+**Follow-up fix, same session:** Cory caught that the first pass above missed the actual
+`title:` fields of both cards — they still read "PCR-1Z / PCR-2Z **Family** — Cloning,
+Pairing & Zone Reference" / "PCR-3D **Family** — Mounting, Cloning & Configuration
+Reference," which didn't match the renamed dropdown/link text and was exactly the kind
+of mismatch this pass was supposed to fix (tap a link, land on a card whose header uses
+a name you can't find anywhere else). Fixed both `title:` fields to drop "Family" and
+match the link text exactly: "PCR-1Z/2Z Cloning, Pairing & Zone Reference" / "PCR-3D
+Mounting, Cloning & Configuration Reference."
+- **Also rewrote every generic lowercase "driver family" / standalone "PCR-1Z/2Z family"
+  / "PCR-3D family" / "remote family" mention outside Strip Lighting** (~47 "driver
+  family" instances plus ~24 standalone "family" mentions) to "driver platform" or a
+  case-by-case plain rewrite (e.g. "same general Sonar remote as..." instead of "...remote
+  family as...", "one product" instead of "one product family" on the `pcr5cu` naming
+  flag) — Cory confirmed he wanted this widened beyond just the capitalized "Family
+  Reference" jargon once he saw the same word still causing confusion elsewhere.
+  **Caught and reverted one mistake mid-pass:** a first blind find/replace of "driver
+  family" → "driver platform" hit 12 lines inside the Custom Strip SKU cards
+  (`customstrip-nfwb8` through `customstrip-plo2w`, "Driver compatibility" facts and
+  order-notes) before it was caught — Strip Lighting was explicitly out of scope, so
+  those 12 lines were reverted back to "driver family" and left untouched. Card ids in
+  the file run contiguously by category (Strip Lighting SKUs sit at lines ~929–1535,
+  immediately before the `drivers` card at 1536+), which is what made it possible to
+  audit "did anything in the strip id-range change" after the fact and catch this.
+  `cat-strip`'s own hub facts line ("PAL's Evenglow linear-strip/track family...") and
+  every "family" mention inside quickshipstrip/perimeterstripkit/customstrip and its 9
+  SKU cards were left alone throughout, per the standing instruction not to touch Strip
+  Lighting.
+- **Not yet done, flagged during this pass, needs Cory's call:** ~23 cards still contain
+  plain-text (non-clickable) mentions of "the Drivers card" and "the PCR-3D-120/500 card"
+  by name — both are stale leftovers from *before* this session's SKU-first
+  restructuring even started. "Drivers" was the `drivers` card's old title before the
+  Family Reference rename (now doubly stale). "PCR-3D-120/500" is worse: that id was
+  freed up and reassigned to the actual 64-PCR-3D-500 SKU card during the earlier
+  Drivers & Controllers restructuring — the name no longer maps to any single card at
+  all (the shared content it used to refer to now lives on `pcr3dref`). This is the
+  same class of bug as the one just fixed (stale name, not a real link) — already
+  flagged in this file's "Drivers & Controllers SKU-first restructuring" section as a
+  known follow-up, not touched yet since it's a larger, separate mass-edit (~23 cards)
+  and wasn't part of what was asked for in this pass.
+- Re-verified after the revert: DATA still parses (77 entries), Strip Lighting cards
+  confirmed unchanged (spot-checked `customstrip-nfwb8` in the live preview — still
+  reads "driver family"), no console errors.
+
 ## Pending sign-off
 Decision-tree diagrams (Master Triage, Driver Power and Manual Test, Cloning and DIP
 Switch Check, White/Primary Color Test) were sent to Jason as a standalone PDF for review.
@@ -1509,18 +1768,25 @@ flagged on the `attendant` card and cross-referenced here, but not merged into t
 `pcr3d500`/`pcr3dmx8z` cards. When Jason reviews the V3 4-mode logic, the DMX-mode dip
 table on the `attendant` card is worth checking against whatever PAL's own source says.
 
-**New (2026-07-07):** the `pcr2d` card (built from PAL's current Color Touch Series 2 sell
-sheet) states 24V DC consistently for the PCR-2D driver — but the pre-existing `evenglow`
-and `evenglownicheless` cards, built earlier from Evenglow's own install manual, document
-the same driver as genuinely 12V DC when paired with PCR-4 for older Evenglow installs.
-This is not the recurring within-document copy-paste artifact — it's two different PAL
-source documents disagreeing about the same driver's real voltage. Plausible explanation
-is PAL's known 12V→24V driver evolution (an older 12V-era PCR-2D vs a newer 24V-era one
-under the same model name), but nothing on file confirms that. Flagged in all three
-cards, not resolved either direction. Jason should confirm whether these are actually two
-hardware generations, and if so around when the changeover happened, so the guide can
-tell techs which one they're likely looking at from install date rather than "check
-voltage and hope."
+**New (2026-07-07), evidence strengthened (2026-07-10):** the `pcr2d` card (built from
+PAL's current Color Touch Series 2 sell sheet) states 24V DC consistently for the PCR-2D
+driver — but the pre-existing `evenglow` and `evenglownicheless` cards, built earlier
+from Evenglow's own install manual, document the same driver as genuinely 12V DC when
+paired with PCR-4 for older Evenglow installs. This is not the recurring within-document
+copy-paste artifact — it's two different PAL source documents disagreeing about the same
+driver's real voltage. Plausible explanation is PAL's known 12V→24V driver evolution (an
+older 12V-era PCR-2D vs a newer 24V-era one under the same model name), but nothing on
+file confirms that. **2026-07-10 update:** two newly-reviewed dedicated install manuals —
+one for PCR-2D, one for PCR-4, both published by Bellson Electric Pty Ltd (Australia) —
+are each internally consistent and unambiguous at 12V DC throughout, with no self-
+contradiction in either document. This is real independent corroboration that a
+12V-DC-era board genuinely exists (not just an artifact), consistent with the Evenglow
+cards and consistent with a Bellson-made-Australia vs. current-US-sell-sheet generational
+split. Still flagged in all cards, not resolved either direction — Jason should confirm
+whether these are actually two hardware generations, and if so around when the changeover
+happened and whether "Bellson Electric" vs. current PAL branding tracks that split, so
+the guide can tell techs which one they're likely looking at from install date/manufacturer
+rather than "check voltage and hope."
 
 **New (2026-07-07):** the `evenglowfiberglass` card's install manual specifies a 2⅜"/2½"
 holesaw for the wall-mount hole, but PAL's current sell sheet for the same product
@@ -1532,17 +1798,22 @@ confirm against the actual fibreglass nut hardware in hand rather than trusting 
 document blindly. Jason should confirm the correct hole diameter for this product before
 a tech relies on this card for a live first-time install.
 
-**New (2026-07-08):** the new `colortouchapp` card's official app guide surfaces two
-driver types never documented in this guide — "Touch 5" and "Touch 9" — selectable
-alongside the familiar 1ZW/2ZW in the app's own driver-setup screen. Source manuals exist
-on file (`source-manuals/Automation/Pool Touch 5/`, `.../Pool Touch 9/`) but haven't been
-reviewed or built out. Per the standing rule, structurally new product content goes to
-Jason before being built into the HTML — flagged only for now on the `colortouchapp`
-card. Also unresolved from the same card: the `wifi` card's older documented
-driver-linking procedure (Code Setting + Link button 3x) doesn't match the current app
-guide's own on-screen steps (hold Reset 3 seconds, then WiFi password + Start
-Configuration in-app) — Jason should confirm whether these are sequential steps for
-different scenarios, or the old text is simply stale.
+**New (2026-07-08), partially resolved (2026-07-10):** the `colortouchapp` card's
+official app guide surfaces two driver types never documented in this guide — "Touch 5"
+and "Touch 9" — selectable alongside the familiar 1ZW/2ZW in the app's own driver-setup
+screen. **Touch 5 is now built out** (see `pcr4`'s Wi-Fi module section, `pct5`, and the
+new `pcr5cu` card) — it turned out to span two genuinely different pieces of hardware
+under one app icon: a Wi-Fi-module retrofit of a standard PCR-4 lighting driver, and a
+separate standalone 5-channel relay/equipment controller. This was real install-manual
+content (mounting, wiring diagrams), not ambiguous diagnostic logic, so it didn't need
+to wait on Jason — same bar as any other new product card in this guide. **Touch 9
+remains completely undocumented** — no manual has been found for it yet (the
+`source-manuals/Automation/Pool Touch 9/` folder exists but only has a product photo,
+no install guide) — still flagged only. Also unresolved from the same card: the `wifi`
+card's older documented driver-linking procedure (Code Setting + Link button 3x) doesn't
+match the current app guide's own on-screen steps (hold Reset 3 seconds, then WiFi
+password + Start Configuration in-app) — Jason should confirm whether these are
+sequential steps for different scenarios, or the old text is simply stale.
 
 ## Handoff / IP considerations (background — not an active task)
 Cory needs a clean contract-exit path: PAL should be able to keep updating this guide
