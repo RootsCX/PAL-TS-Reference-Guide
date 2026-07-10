@@ -131,7 +131,7 @@
       <option value="">Cloned to a competitor system?</option>
       <option value="pentair">Pentair (IntelliBrite)</option>
       <option value="jandy">Jandy (LED)</option>
-      <option value="hayward">Hayward (ColorLogic)</option>
+      <option value="hayward">Hayward (Universal Color Logic)</option>
     </select>
     <select id="productSelect">
       <option value="">Jump to a product…</option>
@@ -234,28 +234,45 @@ const DATA = [
   {
     id: "competitors",
     title: "Cloning to Competitor Systems — Pentair / Jandy / Hayward",
-    tags: ["competitor","clone","cloning","pentair","intellibrite","jandy","watercolors","aqualink","hayward","colorlogic","protocol","driver setting","dip switch","wrong colors","won't sync","out of sync"],
+    tags: ["competitor","clone","cloning","pentair","intellibrite","jandy","watercolors","aqualink","hayward","colorlogic","universal color logic","ucl","protocol","driver setting","dip switch","wrong colors","won't sync","out of sync","waterColors led","jl","jc","short code","california sunset","romance mode","light show"],
     facts: `Two separate things both have to match the target brand, or the light will misbehave (won't sync, wrong colors, or automation can't control it) — this is the #1 cause of cloning support calls, and it's almost never a hardware fault.<br><br>
             <b>1. Driver protocol setting</b> — a menu/coding setting on the PAL driver itself (separate from the DIP bank) that tells the driver which command language to speak:<br>
             &nbsp;&nbsp;• Pentair system → set to <b>IntelliBrite</b><br>
             &nbsp;&nbsp;• Jandy system → set to <b>LED</b><br>
-            &nbsp;&nbsp;• Hayward system → set to <b>ColorLogic</b><br><br>
+            &nbsp;&nbsp;• Hayward system → set to <b>Universal Color Logic (UCL)</b> — this is what current-generation PAL drivers label the option; older driver menus may still show it as "ColorLogic"<br><br>
             <b>2. DIP switch bank</b> — the physical switches on the driver board that select the brand. See the DIP tables on the <b>Drivers</b> card above (V2 4-switch and V3 PCR-1Z-SM 3-switch).<br><br>
             If a call comes in as "wrong colors" or "won't respond to the automation panel" on a cloned system, check both of these before assuming a wiring or hardware problem.`,
     issues: [
-      ["Protocol setting doesn't match target brand","Confirm driver protocol menu is set to IntelliBrite (Pentair) / LED (Jandy) / ColorLogic (Hayward) — not left on PAL"],
+      ["Protocol setting doesn't match target brand","Confirm driver protocol menu is set to IntelliBrite (Pentair) / LED (Jandy) / Universal Color Logic — UCL (Hayward) — not left on PAL"],
       ["DIP switches don't match target brand","Reference the DIP tables on the Drivers card and confirm the physical switch bank matches the brand"],
       ["Protocol and DIP set correctly but still won't sync","Check wiring color sequence into the automation panel/control box — see syncIssues on the relevant product card"],
+      ["Wrong or washed-out colors after cloning to Jandy, DIP/protocol already confirmed correct","Confirm the Jandy automation panel's light type is programmed as \"WaterColors LED\" (short code <b>JL</b>) — the similarly-named short code <b>JC</b> does not carry the correct color palette and will produce wrong colors even though the PAL driver side is set up correctly. This is a panel-programming issue on the automation side, not a PAL driver fault."],
       ["Brightness control missing or greyed out","Expected — brightness is only adjustable in native PAL mode, not once cloned/synced to a competitor system"],
     ],
     extra: `
       <div class="section-label">Quick Reference by Competitor</div>
       <table>
         <tr><td class="cause">Pentair</td><td class="action"><b>Automation:</b> IntelliTouch, EasyTouch, IntelliCenter<br><b>Driver protocol setting:</b> IntelliBrite<br><b>Reference:</b> IntelliBrite Architectural Series Install &amp; User's Guide (provided in project files)</td></tr>
-        <tr><td class="cause">Jandy</td><td class="action"><b>Automation:</b> AquaLink RS/PDA, iAquaLink<br><b>Driver protocol setting:</b> LED<br><b>Reference:</b> <a href="https://images.inyopools.com/cloud/documents/watercolors-install-manual.pdf" target="_blank" style="color:#3dbfa0;">Jandy WaterColors LED Install Manual</a> · <a href="https://clarksonpools.com/wp-content/uploads/2024/07/Jandy-IWC-Watercolor-Infinite-Controller-Installation-and-Operation-Manual.pdf" target="_blank" style="color:#3dbfa0;">Jandy Infinite WaterColors Controller Manual</a></td></tr>
-        <tr><td class="cause">Hayward</td><td class="action"><b>Automation:</b> OmniLogic, OmniHub, ProLogic<br><b>Driver protocol setting:</b> ColorLogic<br><b>Reference:</b> <a href="https://hayward.com/media/akeneo_connector/asset_files/U/n/UniversalColorlogic_ENG_e105.pdf" target="_blank" style="color:#3dbfa0;">Hayward Universal ColorLogic/CrystaLogic Manual</a> · <a href="https://images.inyopools.com/cloud/documents/colorlogic-light-controller.pdf" target="_blank" style="color:#3dbfa0;">ColorLogic Light Controller Manual</a></td></tr>
+        <tr><td class="cause">Jandy</td><td class="action"><b>Automation:</b> AquaLink RS/PDA, iAquaLink<br><b>Driver protocol setting:</b> LED<br><b>Panel light-type programming:</b> must be set to <b>"WaterColors LED"</b> (short code <b>JL</b>) — the similar short code <b>JC</b> does not have the correct color palette<br><b>Reference:</b> <a href="https://images.inyopools.com/cloud/documents/watercolors-install-manual.pdf" target="_blank" style="color:#3dbfa0;">Jandy WaterColors LED Install Manual</a> · <a href="https://clarksonpools.com/wp-content/uploads/2024/07/Jandy-IWC-Watercolor-Infinite-Controller-Installation-and-Operation-Manual.pdf" target="_blank" style="color:#3dbfa0;">Jandy Infinite WaterColors Controller Manual</a></td></tr>
+        <tr><td class="cause">Hayward</td><td class="action"><b>Automation:</b> OmniLogic, OmniHub, ProLogic<br><b>Driver protocol setting:</b> Universal Color Logic (UCL) — labeled "ColorLogic" on older driver menus<br><b>Reference:</b> <a href="https://hayward.com/media/akeneo_connector/asset_files/U/n/UniversalColorlogic_ENG_e105.pdf" target="_blank" style="color:#3dbfa0;">Hayward Universal ColorLogic/CrystaLogic Manual</a> · <a href="https://images.inyopools.com/cloud/documents/colorlogic-light-controller.pdf" target="_blank" style="color:#3dbfa0;">ColorLogic Light Controller Manual</a></td></tr>
       </table>
       <div class="note-box">These competitor manuals are third-party references for cross-checking their wiring/color-sequence conventions — always confirm against the current version on the manufacturer's site, since these get revised.</div>
+
+      <div class="section-label">IntelliBrite Color Show / Fixed Color Reference (Pentair)</div>
+      <div class="order-note">From Pentair's own GloBrite install &amp; user's guide: GloBrite/IntelliBrite lights select a color show or fixed color by the number of times power is cycled to the light (1–14). Useful for translating an automation panel's numbered mode/scene into what the light should actually display when cloned to IntelliBrite.</div>
+      <table>
+        <tr><td class="cause">1 — SAm Mode</td><td class="action">Cycles through white, magenta, blue, and green (emulates Pentair's SAm color-changing light)</td></tr>
+        <tr><td class="cause">2 — Party Mode</td><td class="action">Rapid color changing</td></tr>
+        <tr><td class="cause">3 — Romance Mode</td><td class="action">Slow color transitions</td></tr>
+        <tr><td class="cause">4 — Caribbean Mode</td><td class="action">Transitions between blues and greens</td></tr>
+        <tr><td class="cause">5 — American Mode</td><td class="action">Red, white, and blue transition</td></tr>
+        <tr><td class="cause">6 — California Sunset Mode</td><td class="action">Transitions of orange, red, and magenta tones</td></tr>
+        <tr><td class="cause">7 — Royal Mode</td><td class="action">Richer, deeper color tones</td></tr>
+        <tr><td class="cause">8–12 — Fixed colors</td><td class="action">8 Blue &middot; 9 Green &middot; 10 Red &middot; 11 White &middot; 12 Magenta</td></tr>
+        <tr><td class="cause">13 — Hold</td><td class="action">Saves the current color/effect while in a show mode</td></tr>
+        <tr><td class="cause">14 — Recall</td><td class="action">Activates the last saved color/effect</td></tr>
+      </table>
+      <div class="order-note">If power to the light is off for more than 5 seconds, the last saved show mode or fixed color is what displays on power-up (unless Hold/Recall was used).</div>
     `
   },
   {
@@ -1702,7 +1719,8 @@ const DATA = [
             Home Automation System &rarr; DMX Controller &rarr; PAL DMX Driver<br>
             The driver reads its assigned starting channel from its own dipswitches, then maps the incoming DMX data to Red/Green/Blue output for each of its 2 zones.<br><br>
             16/35/65W versions, 24V DC output for PAL 4-wire lights &nbsp; <b>2 zones</b> (Z1 + Z2 terminal blocks)<br>
-            No bonding required — Class 2 power supply, all-plastic PAL fixtures, complies with NEC article 680`,
+            No bonding required — Class 2 power supply, all-plastic PAL fixtures, complies with NEC article 680<br><br>
+            <b>Scope of support:</b> PAL covers the hardware side — wiring and DIP-switch addressing on this driver. Programming the DMX controller/automation platform itself is the home automation integrator's responsibility — see the <b>Attendant</b> card's "Scope of support" note.`,
     steps: [
       "Mount on a flat surface using the enclosure's mounting legs — minimum 5 ft horizontally from the inner pool wall, no lower than 1 ft above max pool water level (measured to top of enclosure).",
       "Bottom (bottom-front) right-hand conduit entry: connect the 110-240V power supply to NEC code requirements.",
@@ -1918,7 +1936,8 @@ const DATA = [
             24 total DMX channels per 8-zone driver (3 channels — R/G/B — per zone)<br>
             <b>Note:</b> this manual's title and "Important Information" section both state 12V DC, but "IMPORTANT INFORMATION" also says (twice) the driver is "specifically designed to supply 24V DC" — matches the same recurring copy-paste artifact confirmed across other PAL manuals; 24V DC is correct<br>
             <b>Flag — manual naming artifact:</b> this manual's own install-steps heading says "INSTALLATION INSTRUCTIONS FOR PCR-2MX RGB OUTDOOR DRIVER" and its DMX Operation section says "remote DMX control over the two zone outputs in the PCR 2Z" — both clearly copy-pasted from a 2-zone product's manual and left unedited. Doesn't change any actual instructions for this 8-zone unit, but don't let a customer reading their own manual get confused by it — flagged here rather than silently retyped as if PAL's manual said "8Z" throughout.<br>
-            Excluded from the "3D and 3DMX High Powered" V3 board update (SKUs 64-PCR-3D / 64-PCR-3DW / 64-PCR-3DMX) per PAL's own addendum — that 4-mode dip-switch architecture does not apply to this 8Z model`,
+            Excluded from the "3D and 3DMX High Powered" V3 board update (SKUs 64-PCR-3D / 64-PCR-3DW / 64-PCR-3DMX) per PAL's own addendum — that 4-mode dip-switch architecture does not apply to this 8Z model<br><br>
+            <b>Scope of support:</b> PAL covers the hardware side — wiring and DIP-switch addressing on this driver. Programming the DMX controller/automation platform itself is the home automation integrator's responsibility — see the <b>Attendant</b> card's "Scope of support" note.`,
     steps: [
       "Mount on a flat surface using the enclosure's mounting legs — minimum 5 ft horizontally from the inner pool wall, no lower than 1 ft above max pool water level.<br><img class=\"zoomable\" src=\"assets/image_84.jpg\" alt=\"PCR-3DMX-8Z dimension and knockout diagram\" style=\"width:100%;border-radius:8px;margin-top:8px;border:1px solid #2a3b5c;cursor:zoom-in;\"><span style=\"display:block;font-size:11px;color:#9fb0c5;margin-top:4px;font-style:italic;\">11&#8541;\" x 4&#8541;\" x 6&#8542;\" (293 x 119 x 175mm) — 6 conduit knockouts, use a 3/16\" flat-blade screwdriver + light hammer tap, or drill the centered pilot point (tap to zoom)</span>",
       "Front-left entry: connect the 100-240V power supply. At the JST clip, join brown and blue open wires using twist-on wire connectors — brown on top (positive/hot), blue on bottom (negative/neutral).<br><img class=\"zoomable\" src=\"assets/image_85.jpg\" alt=\"Labeled PCR-3DMX-8Z driver board diagram\" style=\"width:100%;border-radius:8px;margin-top:8px;border:1px solid #2a3b5c;cursor:zoom-in;\"><span style=\"display:block;font-size:11px;color:#9fb0c5;margin-top:4px;font-style:italic;\">Labeled board — DMX In/Thru/Shunt-Termination, DIP Switches 9-1, DMX Connection LED, Zone 1-8 terminals, JST input power clip (tap to zoom)</span>",
@@ -2200,7 +2219,7 @@ const DATA = [
               <tr><td>PAL (native)</td><td>ON / OFF / OFF</td></tr>
               <tr><td>Jandy (LED)</td><td>OFF / ON / OFF</td></tr>
               <tr><td>Pentair (IntelliBrite)</td><td>OFF / OFF / ON</td></tr>
-              <tr><td>Hayward (ColorLogic)</td><td>ON / ON / OFF</td></tr>
+              <tr><td>Hayward (Universal Color Logic)</td><td>ON / ON / OFF</td></tr>
               <tr><td>Astral</td><td>ON / OFF / ON</td></tr>
             </table>
             <i>Note: confirm exact DIP legend against the physical enclosure label on-site before quoting a customer — verify silkscreen matches this table.</i>`,
@@ -2456,6 +2475,7 @@ const DATA = [
     title: "The Attendant (Poolside Tech) — DMX Lighting Integration",
     tags: ["poolside tech","the attendant","automation","dmx","dmx512","bus port","address mapping","zone","integration","dip switch","pcr-2dmx","pcr-3dmx","third party"],
     facts: `<b>What it is:</b> "The Attendant" is a pool automation/control platform made by Poolside Tech LLC (poolside.support) — a separate company from PAL. It controls PAL lighting over native <b>DMX512</b> addressing, not the Pentair/Hayward/Jandy protocol-cloning method used elsewhere in this guide — see the <b>Competitors</b> card for that separate path.<br><br>
+            <b>Scope of support — hardware vs. software:</b> on any DMX call, PAL support covers the <b>hardware</b> side only — confirming the lights, cables, and driver(s) are wired correctly and DIP-addressed to spec. Programming the DMX controller or automation platform itself (channel mapping, scenes, zones inside that platform's own software) is the home automation integrator's responsibility, not PAL's. If the driver's hardware checks out (CPU LED responding to DMX packets, starting-channel dipswitches set correctly) but lights still don't behave as expected in the automation software, that's a controller-side programming issue — hand off to the customer's automation installer rather than continuing to troubleshoot the platform's configuration.<br><br>
             <b>Driver compatibility — confirm this first on any Attendant lighting call:</b> only PAL driver models <b>PCR-2DMX</b> and <b>PCR-3DMX</b> communicate with The Attendant. Any other PAL driver (PCR-1Z/2Z family, PCR-3D, PCR-2D, etc.) is not DMX-capable and must instead be cloned into Pentair/Hayward/Jandy protocol mode per the Competitors card — it cannot be wired to The Attendant directly.<br><br>
             <b>Wiring requirement:</b> PAL drivers must be wired directly from the power supply, never routed through a relay — The Attendant needs constant power to the driver to maintain DMX communication.<br><br>
             <b>Cross-reference to driver cards in this guide:</b> the "PCR-3DMX (Old Style)" driver documented below (8 zones, DIP switches 9-1) appears to be the same physical product as this guide's <b>PCR-3DMX-8Z</b> card. The "64-PCR-3DMX V3" board pictured below — with its Module Config / Board Function switch banks (Cloner / Module / DMX / Strip modes) — also matches the newer V3 "High Powered" board flagged as not-yet-built-out on the <b>PCR-3D-120/500</b> and <b>PCR-3DMX-8Z</b> cards, pending review of its 4-mode dip-switch architecture. This article documents that board's DMX mode specifically from a working third-party integration — useful evidence for that pending review, but not merged into those cards' content here.`,

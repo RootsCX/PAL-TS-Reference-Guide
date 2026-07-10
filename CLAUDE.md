@@ -1416,6 +1416,58 @@ Verified in preview: DATA parses (68 entries, no dupes), both hubs expand and li
 resources, all 5 nested cards resolve with a working "← Back to Troubleshooting"/"← Back
 to Process" link, both quick-search chips still return results, no console errors.
 
+## Cloning / competitor updates (2026-07-10)
+Several small corrections and additions from Cory, all landing on the `competitors` card
+unless noted:
+- **Jandy panel programming — new content.** The Jandy automation panel's relay/output
+  must be programmed as "WaterColors LED" (short code **JL**) for a cloned PAL light to
+  get the correct color palette — the similarly-named short code **JC** does not have the
+  correct palette and will produce wrong colors even with the PAL driver's DIP/protocol
+  set correctly. Added to the Jandy row of the Quick Reference table and as a new
+  `issues` entry (a real, common wrong-colors cause that isn't a PAL-side fault).
+- **Hayward protocol name corrected to Universal Color Logic (UCL).** Cory confirmed this
+  is what current-generation PAL drivers actually label the Hayward protocol menu option
+  as — "ColorLogic" (the name previously used throughout this guide) is what it's called
+  on older driver menus. Updated everywhere the guide names this protocol setting: the
+  `competitorSelect` dropdown label, the `competitors` card's facts/issues/Quick Reference
+  table, and the `waterblade` card's LIT driver DIP switch table (the only other DIP
+  table in the guide that names protocols rather than just brands). Phrased as "Universal
+  Color Logic (UCL) — labeled 'ColorLogic' on older driver menus" rather than a blanket
+  replacement, since Cory's framing was specifically about newer drivers — not resolved
+  as to exactly when the naming changed over.
+- **Pentair IntelliBrite color show/fixed-color reference — new content.** Cory added
+  `source-manuals/Competitors/Pentair/globrite-color-changing-led-light-manual...pdf` —
+  Pentair's own GloBrite install/user's guide, which documents the 14-item numbered list
+  (7 light shows, 5 fixed colors, Hold, Recall) that GloBrite/IntelliBrite lights cycle
+  through via wall-switch power-cycling, and which the manual's own text confirms
+  IntelliBrite is compatible with/synchronizes to. Added as a new table on the
+  `competitors` card under the existing Quick Reference table — useful for translating an
+  automation panel's numbered mode/scene into what a PAL light cloned to IntelliBrite
+  should actually display. Framed as a translation reference, not a claim that PAL's own
+  cloned drivers use the same wall-switch power-cycling mechanism themselves.
+- **Search bug — investigated, already fixed, no code change needed.** Cory reported that
+  searching a full part number (e.g. "PCR-1Z-65") for the 1Z/1ZW/1Z-SM/2Z/2ZW drivers
+  returned nothing, while the shorter "PCR-1Z" worked. Traced this to the *old* bundled
+  `drivers` card structure (pre-dating the SKU-first restructuring two sessions ago): its
+  title ("PCR-1Z / PCR-2Z / PCR-1Z-SM / PCR-1ZW / PCR-2ZW Drivers") and tags never
+  contained a contiguous "1z65"-type substring for the search index's squash-matching to
+  find, so full part numbers silently fell through to zero results. Confirmed on the live
+  site (rootscx.github.io) that this is already resolved as a side effect of last
+  session's SKU-card split — every one of the 5 full part numbers, with or without the
+  "64-" prefix, now correctly surfaces its own card as the top result, since each SKU's
+  id/title is now the part number itself. Nothing further to do here.
+- **DMX hardware-vs-software scope — new content.** Cory's guidance for techs: separate
+  what's PAL's responsibility on a DMX call (hardware — lights, cables, and the driver
+  being wired/DIP-addressed correctly) from what's the home automation integrator's
+  responsibility (programming the DMX controller/automation platform's own software).
+  Added as a "Scope of support" note on the `attendant` card (the primary third-party DMX
+  integration card, where this boundary matters most) with a full explanation, and as a
+  shorter cross-reference line on `pcr2dmx` and `pcr3dmx8z` (the two DMX-capable driver
+  cards) pointing back to it — so a tech landing on either the driver-hardware side or the
+  automation-integration side gets the same framing.
+All five changes verified in preview: DATA parses clean (68 entries, no dupes), each
+edited card renders the new content, no console errors.
+
 ## Pending sign-off
 Decision-tree diagrams (Master Triage, Driver Power and Manual Test, Cloning and DIP
 Switch Check, White/Primary Color Test) were sent to Jason as a standalone PDF for review.
