@@ -275,7 +275,7 @@ const DATA = [
   {
     id: "competitors",
     title: "Cloning to Competitor Systems — Pentair / Jandy / Hayward",
-    tags: ["competitor","clone","cloning","pentair","intellibrite","jandy","watercolors","aqualink","hayward","colorlogic","universal color logic","ucl","protocol","driver setting","dip switch","wrong colors","won't sync","out of sync","waterColors led","jl","jc","short code","california sunset","romance mode","light show"],
+    tags: ["competitor","clone","cloning","pentair","intellibrite","jandy","watercolors","aqualink","hayward","colorlogic","universal color logic","ucl","protocol","driver setting","dip switch","wrong colors","won't sync","out of sync","waterColors led","jl","jc","short code","california sunset","romance mode","light show","intelliflo3","intellipro3","vsf pump","relay control board","pool light relay","5a relay"],
     facts: `Two separate things both have to match the target brand, or the light will misbehave (won't sync, wrong colors, or automation can't control it) — this is the #1 cause of cloning support calls, and it's almost never a hardware fault.<br><br>
             <b>1. Driver protocol setting</b> — a menu/coding setting on the PAL driver itself (separate from the DIP bank) that tells the driver which command language to speak:<br>
             &nbsp;&nbsp;• Pentair system → set to <b>IntelliBrite</b><br>
@@ -314,6 +314,12 @@ const DATA = [
         <tr><td class="cause">14 — Recall</td><td class="action">Activates the last saved color/effect</td></tr>
       </table>
       <div class="order-note">If power to the light is off for more than 5 seconds, the last saved show mode or fixed color is what displays on power-up (unless Hold/Recall was used).</div>
+
+      <div class="section-label">IntelliFlo3/IntelliPro3 VSF Pump — Driver Relay Tie-In (Pentair)</div>
+      <div class="order-note">Pentair's IntelliFlo3&reg; VSF / IntelliPro3&reg; VSF variable-speed pumps offer an optional Relay Control Board Kit (P/N 356365z) with a 5A relay terminal (0-300 VAC / 0-48 VDC) explicitly labeled <b>"Pool Light / Transformer"</b> in the pump's own install manual. Team-confirmed: a PAL driver's power can tie directly into this relay, letting the pump (or a connected automation system) switch the light on/off in place of a standalone wall switch or relay at the equipment pad. This is a wiring tie-in, not a physical mount — nothing in the pump's manual shows a bracket or mounting point for a separate driver enclosure on the pump body itself.</div>
+      <div class="order-note"><b>For the light to clone/respond correctly through this path, both of the following still apply — this doesn't replace normal cloning steps, it's an additional power/switching path:</b><br>
+      1. The PAL driver's own DIP switches must still be set to the Pentair/IntelliBrite protocol, same as any other Pentair cloning job — see the DIP tables on the driver's own card.<br>
+      2. The relay itself must be programmed correctly. At minimum, set the pump's own Device Type for that relay to <b>"Lights"</b> (Pump Dashboard &gt; Device Settings &gt; Relays) — that's the only light-specific option exposed on the pump's own touchscreen/app. If the customer also has a full Pentair automation system (IntelliTouch/EasyTouch/IntelliCenter) tied in and it offers a more specific color-light circuit type (e.g., IntelliBrite/GloBrite), set that too where available.</div>
     `
   },
   {

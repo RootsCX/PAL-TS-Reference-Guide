@@ -1467,6 +1467,51 @@ unless noted:
 All five changes verified in preview: DATA parses clean (68 entries, no dupes), each
 edited card renders the new content, no console errors.
 
+## Pentair IntelliFlo3/IntelliPro3 VSF pump relay tie-in (2026-07-14)
+Cory added `source-manuals/Competitors/Pentair/intelliflo3-pro3-vsf-install-guide.pdf`
+(Pentair's own 27-page Installation and Maintenance Guide for the IntelliFlo3®/
+IntelliPro3® VSF variable-speed/flow pump) and said PAL drivers "can be mounted directly
+to this pump." Read the full manual before building anything — nothing in it shows a
+physical mounting bracket/point on the pump body for a separate driver enclosure. The one
+real match: the pump's optional Relay Control Board Kit (P/N 356365z, installs inside the
+pump's own field-wiring compartment) has a 5A relay terminal (0-300 VAC/0-48 VDC)
+explicitly labeled **"Pool Light / Transformer"** in the pump's wiring diagram (manual
+p.5), and the pump's own touchscreen/app Relay Settings screen (p.12) offers "Lights" as
+a Device Type for that relay. Asked Cory to clarify "mounted directly" against this
+finding before writing anything into the guide, rather than guess at a physical-mount
+claim on a live troubleshooting card. **Cory confirmed: it's the relay tie-in, not a
+physical mount** — team-confirmed a PAL driver's power ties into that 5A relay, the relay
+gets programmed as a Pentair color light (IntelliBrite/GloBrite specifically, if that
+option is exposed), and as long as the PAL driver's own DIP switches are set correctly
+*and* the relay is programmed right, the light should clone properly.
+- Added a new "IntelliFlo3/IntelliPro3 VSF Pump — Driver Relay Tie-In (Pentair)" section
+  to the `competitors` card, right after the existing IntelliBrite Color Show reference
+  table. Framed as an *additional* power/switching path, not a replacement for normal
+  cloning steps — both the standard DIP-switch/protocol requirement (already documented
+  above it on the same card) and correct relay programming are needed together.
+- **Flagged, not overclaimed:** the pump's own manual/touchscreen only expose a generic
+  "Lights" device type for the relay — no "IntelliBrite" or "GloBrite"-specific circuit
+  option is shown anywhere in this manual. Cory's own phrasing ("if explicitly stated")
+  suggested that more specific label may only exist on a full Pentair automation panel
+  (IntelliTouch/EasyTouch/IntelliCenter) tied into the same system, not on the pump's own
+  screen — worded the card so a tech sets "Lights" at minimum on the pump itself, and the
+  more specific color-light type on the automation panel *if* one is present and offers
+  it, rather than asserting a specific menu label that isn't confirmed to exist.
+- Not gated behind Jason sign-off — this is real install-manual content (a documented
+  relay terminal + device-type setting) plus direct team confirmation, not a contested
+  diagnostic branch, same bar as the `attendant` (Poolside Tech) card.
+- Added tags (`intelliflo3`, `intellipro3`, `vsf pump`, `relay control board`, `pool
+  light relay`, `5a relay`) to the `competitors` card for searchability.
+- Verified in preview: DATA parses (77 entries), new section renders under Pentair,
+  no console errors.
+- **Corrected same session, per [[feedback_no_incard_flags]]:** the first pass added a
+  trailing amber note-box sourcing the section ("Confirmed by the team and cross-checked
+  against the pump's own install manual... not a single documented button/menu sequence
+  in either PAL's or Pentair's own materials...") — exactly the build-process/sourcing
+  commentary that standing rule says stays out of the guide. Removed. The two `order-note`
+  divs above it stay — they're real in-workflow instructions (DIP switches, relay
+  programming), not meta-commentary about how the card was built.
+
 ## Remotes promoted to front page, restructured SKU-first (2026-07-10)
 Third category to get the Custom-Strip-style hub+SKU-card treatment (after Custom Strip
 and Drivers), and the first one Cory asked to put at the very top of the front page
